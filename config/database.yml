@@ -1,0 +1,14 @@
+# PostgreSQL version 9.3.5-1
+#  
+#  Install pg driver
+#		gem install pg
+#
+#	Configure Using Gemfile
+#		gem 'pg'
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: root
+  password: root
+  timeout: 5000
