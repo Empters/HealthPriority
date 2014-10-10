@@ -9,6 +9,12 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: root
+  username: postgres
   password: root
-  timeout: 5000
+  
+development: &development
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: postgres
+  password: root
