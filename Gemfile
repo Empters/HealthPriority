@@ -14,8 +14,6 @@ gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -40,6 +38,16 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
 # Postgres adapter
 gem 'pg'
+
+#jquery
+gem 'jquery-rails'
+gem 'rails3-jquery-autocomplete', '~> 1.0.12'
+
+#Admin Page
+gem 'activeadmin', github: 'activeadmin'
+
+#Authentication solution for rails
+gem 'devise'
 
 #better way for testing
 group :development, :test do
