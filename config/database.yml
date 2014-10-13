@@ -12,3 +12,12 @@ development: &development
   pool: 5
   username: postgres
   password: root
+
+
+test: &test
+  adapter: postgresql
+  encoding: unicode
+  database: helth_priority_test
+  pool: 5
+  username: postgres
+  password: root
