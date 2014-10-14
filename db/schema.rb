@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20141012190436) do
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
     t.string   "email"
+
   end
 
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
