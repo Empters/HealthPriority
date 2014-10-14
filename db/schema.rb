@@ -10,8 +10,8 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
-ActiveRecord::Schema.define(version: 20141012190436) do
 
+ActiveRecord::Schema.define(version: 20141013195525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,22 +49,86 @@ ActiveRecord::Schema.define(version: 20141012190436) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "categories", force: true do |t|
+    t.string   "name",                         null: false
+    t.text     "description"
+    t.string   "image"
+    t.integer  "status",                       null: false
+    t.integer  "sort_order",       default: 0
+    t.string   "meta_keyword"
+    t.string   "meta_description"
+    t.datetime "date_added",                   null: false
+    t.datetime "date_modified"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "manufacturers", force: true do |t|
+    t.string   "name",                    null: false
+    t.string   "image"
+    t.text     "description"
+    t.integer  "sort_order",  default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "product_discounts", force: true do |t|
+    t.integer  "product_id",        null: false
+    t.integer  "customer_group_id"
+    t.integer  "quantity",          null: false
+    t.integer  "priority"
+    t.decimal  "price",             null: false
+    t.date     "date_start"
+    t.date     "date_end"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "product_images", force: true do |t|
+    t.integer  "product_id",             null: false
+    t.string   "image",                  null: false
+    t.integer  "sort_order", default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "product_reviews", force: true do |t|
+    t.integer  "product_id",    null: false
+    t.integer  "customer_id"
+    t.string   "author"
+    t.string   "text",          null: false
+    t.integer  "rating"
+    t.integer  "status",        null: false
+    t.datetime "date_added",    null: false
+    t.datetime "date_modified"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "products", force: true do |t|
-    t.string   "name"
+    t.string   "name",                           null: false
     t.string   "model"
-    t.integer  "quantity"
+    t.integer  "quantity",         default: 0,   null: false
     t.integer  "viewed"
     t.string   "image"
-    t.decimal  "price"
+    t.decimal  "price",            default: 0.0, null: false
     t.integer  "points"
     t.text     "description"
-    t.datetime "date_added"
-    t.datetime "date_modified"
-    t.integer  "status",                      null: false
-    t.integer  "stock_status_id",             null: false
-    t.integer  "manufacture_id",              null: false
-    t.integer  "sort_order",      default: 0, null: false
+    t.integer  "status",                         null: false
+    t.integer  "manufacturer_id",                null: false
+    t.integer  "sort_order",       default: 0,   null: false
     t.date     "date_available"
+    t.string   "meta_keyword"
+    t.string   "meta_description"
+    t.datetime "date_added",                     null: false
+    t.datetime "date_modified"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "products_categories", force: true do |t|
+    t.integer "product_id"
+    t.integer "category_id"
   end
 
   create_table "users", force: true do |t|
