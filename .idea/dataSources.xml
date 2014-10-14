@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="4113567529">
+  <component name="DataSourceManagerImpl" format="xml" hash="126887350">
     <data-source source="LOCAL" name="Rails HealthPriority: development" uuid="47c2805e-5b6d-4cee-89e6-88ea3991989a">
       <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql:helth_priority_dev</jdbc-url>
+      <user-name>postgres</user-name>
+      <user-password>dfd8dfc5dfc5dfde</user-password>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails HealthPriority: test" uuid="ec39db2e-76b5-447f-9a7c-2b52b019e273">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:helth_priority_test</jdbc-url>
       <user-name>postgres</user-name>
       <user-password>dfd8dfc5dfc5dfde</user-password>
       <libraries />

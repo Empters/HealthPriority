@@ -13,8 +13,18 @@ Rails.application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-  # Don't care if the mailer can't send.
+  # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
+  # Gmail SMTP server setup
+  ActionMailer::Base.smtp_settings = {
+      :address => "smtp.gmail.com",
+      :enable_starttls_auto => false,
+      :port => 465,
+      :authentication => :plain,
+      :user_name => "healthpriorityltd@gmail.com",
+      :password => 'healthpriorityltd2014',
+      :ssl => true
+  }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -40,8 +50,7 @@ Rails.application.configure do
   # is an example of default_url_options appropriate for a development environment
   # in config/environments/development.rb:
   # In production, :host should be set to the actual host of your application.
-  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   # .... need to check this?!
-
 
 end
