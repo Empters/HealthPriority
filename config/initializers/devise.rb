@@ -256,4 +256,10 @@ Devise.setup do |config|
   # When using omniauth, Devise cannot automatically set Omniauth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
+
+
+  # in Devise Initializer
+  # If you want to add a "grace period" where unconfirmed users may still login,
+  # use the allow_unconfirmed_access_for config option (which defaults to 0):
+  # config.allow_unconfirmed_access_for = 365.days
 end
