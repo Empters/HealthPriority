@@ -15,9 +15,5 @@
 /log/*.log
 /tmp
 
-/.idea/workspace.xml
+# Ignore idea directory
 /.idea
-/.idea/HealthPriority.iml
-.idea/workspace.xml
-.idea
-.idea/HealthPriority.iml
