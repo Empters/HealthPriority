@@ -8,8 +8,6 @@ class CreateCategories < ActiveRecord::Migration
       t.integer :sort_order, :default => 0
       t.string :meta_keyword
       t.string :meta_description
-      t.datetime :date_added, :null => false
-      t.datetime :date_modified
 
       t.timestamps
     end

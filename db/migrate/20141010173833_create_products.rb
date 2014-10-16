@@ -15,8 +15,6 @@ class CreateProducts < ActiveRecord::Migration
       t.date :date_available
       t.string :meta_keyword
       t.string :meta_description
-      t.datetime :date_added, :null => false
-      t.datetime :date_modified
 
       t.timestamps
     end

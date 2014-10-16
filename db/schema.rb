@@ -57,8 +57,6 @@ ActiveRecord::Schema.define(version: 20141013195525) do
     t.integer  "sort_order",       default: 0
     t.string   "meta_keyword"
     t.string   "meta_description"
-    t.datetime "date_added",                   null: false
-    t.datetime "date_modified"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -93,14 +91,12 @@ ActiveRecord::Schema.define(version: 20141013195525) do
   end
 
   create_table "product_reviews", force: true do |t|
-    t.integer  "product_id",    null: false
+    t.integer  "product_id",  null: false
     t.integer  "customer_id"
     t.string   "author"
-    t.string   "text",          null: false
+    t.string   "text",        null: false
     t.integer  "rating"
-    t.integer  "status",        null: false
-    t.datetime "date_added",    null: false
-    t.datetime "date_modified"
+    t.integer  "status",      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -120,8 +116,6 @@ ActiveRecord::Schema.define(version: 20141013195525) do
     t.date     "date_available"
     t.string   "meta_keyword"
     t.string   "meta_description"
-    t.datetime "date_added",                     null: false
-    t.datetime "date_modified"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

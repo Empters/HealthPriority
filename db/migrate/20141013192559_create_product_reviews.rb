@@ -7,9 +7,6 @@ class CreateProductReviews < ActiveRecord::Migration
       t.string :text, :null => false
       t.integer :rating
       t.integer :status, :null => false
-      t.datetime :date_added, :null => false
-      t.datetime :date_modified
-
       t.timestamps
     end
   end
