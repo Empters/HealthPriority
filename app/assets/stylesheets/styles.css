@@ -62,7 +62,7 @@ body {
     color: #3e7808;
 }
 
-.item-title, .category-name, .title-banner, .category-name {
+.item-title, .category-name, .title-banner, .category-name, .top-bar-text {
     text-transform: uppercase;
 }
 
@@ -74,6 +74,12 @@ body {
 
 .products-count, .page {
     color: #8A8A8A;
+}
+
+.item-image, .fb_top {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 /* Common styles End */
 
@@ -112,6 +118,14 @@ body {
 	display: inline-block;
 	padding: 10px;
 }
+
+.fb_top {
+    display: inline-block;
+    height: 14px;
+    width: 7px;
+    vertical-align: sub;
+}
+
 
 .main-nav-tab:hover {
 	background: #5a9812;
@@ -165,6 +179,10 @@ body {
 	background-size: contain;
 	background-position: center;
 	background-repeat: no-repeat;
+}
+
+.item-image:hover {
+    background-color: transparent;
 }
 
 .item-title {
