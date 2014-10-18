@@ -1,0 +1,36 @@
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">
+          This Modal title
+        </h4>
+      </div>
+      <%= binding.pry %>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), remote: true) do |f| %>
+          <div class="modal-body">
+            <% if @user.errors.any? %>
+                <div id="error_explanation">
+                    <%= devise_error_messages! %>
+                </div>
+            <% end %>
+            <div class="field">
+              <%= f.label :email %><br />
+              <%= f.email_field :email, autofocus: true %></div>
+            </div>
+            <div class="field">
+              <%= f.label :password %><br />
+              <%= f.password_field :password %>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="actions">
+                <%= submit_or_cancel(f) %>
+            </div>
+            <%= render "devise/shared/links" %>
+          </div>
+      <% end %>
+    </div><!-- /.modal-content -->
+  </div>
+</div><!-- /.modal -->
