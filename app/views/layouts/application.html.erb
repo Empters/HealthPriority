@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>HealthPriority</title>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400&subset=latin,cyrillic-ext,greek-ext,greek,vietnamese,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -11,7 +12,138 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
   </div>
-<%= yield %>
+  <!-- Top bar -->
+  <div class="top-bar-wrapper">
+    <div class="container">
+      <div class="top-bar-container left">
+        <div class="top-bar-text phone">
+          For more information 0883 412 071
+        </div>
+      </div>
+      <div class="top-bar-container right">
+        <div class="top-bar-tab first-tab top-bar-text">
+          FAQ
+        </div>
+        <div class="top-bar-tab top-bar-text">
+          DELIVERY
+        </div>
+        <div class="top-bar-tab top-bar-text">
+          <%= link_to "Sign In", new_user_session_path, remote: true, :"data-toggle" => 'modal', :"data-target" => '#loginModal' %>
+        </div>
+        <div class="top-bar-tab top-bar-text">
+          <div class="fb_top" style='background-image: url("<%= image_path "fb-header.png" %>");'></div>
+          Connect
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Top bar end -->
+
+  <!-- Main Navigation -->
+  <div class="main-nav-wrapper">
+    <div class="container text-center">
+      <div class="main-nav-tab">
+        HOME
+      </div>
+      <div class="main-nav-tab">
+        ABOUT US
+      </div>
+      <div class="main-nav-tab">
+        PRODUCTS
+      </div>
+      <div class="main-nav-tab">
+        SPECIAL OFFERS
+      </div>
+      <div class="main-nav-tab">
+        ONLY ORGANIC
+      </div>
+      <div class="main-nav-tab">
+        CONTACTS
+      </div>
+    </div>
+  </div>
+  <!-- Main Navigation End -->
+
+
+  <%= yield %>
+
+
+  <br/>
+  <br/>
+  <!-- Footer navigation -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2">
+        <div class="category-name">
+          First Category
+        </div>
+        <a href="#" class="category-item">Category namee </a>
+        <a href="#" class="category-item">Category name </a>
+        <a href="#" class="category-item">Category name </a>
+        <a href="#" class="category-item">Category name </a>
+      </div>
+      <div class="col-md-2">
+        <div class="category-name">
+          First Category
+        </div>
+        <a href="#" class="category-item">Category name </a>
+        <a href="#" class="category-item">Category name </a>
+        <a href="#" class="category-item">Category name </a>
+        <a href="#" class="category-item">Category name </a>
+      </div>
+      <div class="col-md-4">
+        <div class="category-name">
+          First Category
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <a href="#" class="category-item">Category name </a>
+            <a href="#" class="category-item">Category name </a>
+            <a href="#" class="category-item">Category name </a>
+            <a href="#" class="category-item">Category name </a>
+          </div>
+          <div class="col-md-6">
+            <a href="#" class="category-item">Category name </a>
+            <a href="#" class="category-item">Category name </a>
+            <a href="#" class="category-item">Category name </a>
+            <a href="#" class="category-item">Category name </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="category-name">
+          e-mail newsletter
+        </div>
+        <div class="category-text">
+          All products on the website would be
+          featured under categories lists.
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer navigation End -->
+
+  <!-- Footer -->
+  <div class="footer text-center">
+    <br/>
+    <div class="footer-main-text">
+      Health Priority © Copyright 2014  All rights reserved.
+    </div>
+    <br/>
+    <div class="footer-main-text">
+      “Brand Name” is a registered trademark of this that and lorem ipsum dolor sit amet. Aber conques sed to do.
+    </div>
+    <div class="footer-text-title">Tuesday, Sep 09, 2014, 8:51 PST</div>
+    <div class="footer-text">
+      Disclaimer: Statements made, or products sold through this website, have not been evaluated by the English Food and Drug Administration.
+      They are not intended to diagnose, treat, cure or prevent any disease. Read more »
+    </div>
+  </div>
+  <!-- Footer End -->
+
+  <!-- Login modal -->
+  <%= render 'layouts/sign_in_modal' %>
+  <!-- Login modal End-->
 
 </body>
 </html>
