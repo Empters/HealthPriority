@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  resources :product_reviews
+
+  resources :product_discounts
+
+  resources :categories
+
+  resources :product_images
+
+  resources :manufacturers
+
   root :to => "home#index"
 
   devise_for :users
