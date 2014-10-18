@@ -1,17 +1,154 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>HealthPriority</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <div id="errors_div">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-  </div>
-<%= yield %>
+    <head>
+      <title>HealthPriority</title>
+      <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+      <%= csrf_meta_tags %>
+    </head>
+    <body>
+        <!-- Top bar -->
+        <div class="top-bar-wrapper">
+          <div class="container">
+            <div class="top-bar-container left">
+              <div class="top-bar-text">
+                For more information 0883 412 071
+              </div>
+            </div>
+            <div class="top-bar-container right">
+              <div class="top-bar-tab first top-bar-text">
+                FAQ
+              </div>
+              <div class="top-bar-tab top-bar-text">
+                DELIVERY
+              </div>
+              <div class="top-bar-tab top-bar-text">
+                <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#loginModal">Sign In</button>
+              </div>
+              <div class="top-bar-tab top-bar-text">
+                CONNECT
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Top bar end -->
 
-</body>
+        <!-- Main Navigation -->
+        <div class="main-nav-wrapper">
+          <div class="container text-center">
+            <div class="main-nav-tab">
+              HOME
+            </div>
+            <div class="main-nav-tab">
+              ABOUT US
+            </div>
+            <div class="main-nav-tab">
+              PRODUCTS
+            </div>
+            <div class="main-nav-tab">
+              SPECIAL OFFERS
+            </div>
+            <div class="main-nav-tab">
+              ONLY ORGANIC
+            </div>
+            <div class="main-nav-tab">
+              CONTACTS
+            </div>
+          </div>
+        </div>
+        <!-- Main Navigation End -->
+        <div id="errors_div">
+          <p class="notice"><%= notice %></p>
+
+          <p class="alert"><%= alert %></p>
+        </div>
+
+        <!-- Content -->
+        <%= yield %>
+
+
+        <!-- Footer navigation -->
+         <div class="container">
+          <div class="row">
+            <div class="col-md-2">
+              <div class="category-name">
+                First Category
+              </div>
+              <div class="category-item">
+                First link
+              </div>
+              <div class="category-item">
+                First link
+              </div>
+              <div class="category-item">
+                First link
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="category-name">
+                First Category
+              </div>
+              <div class="category-item">
+                First link
+              </div>
+              <div class="category-item">
+                First link
+              </div>
+              <div class="category-item">
+                First link
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="category-name">
+                First Category
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="category-item">
+                    First link
+                  </div>
+                  <div class="category-item">
+                    First link
+                  </div>
+                  <div class="category-item">
+                    First link
+                  </div>
+                  <div class="category-item">
+                    First link
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="category-item">
+                    First link
+                  </div>
+                  <div class="category-item">
+                    First link
+                  </div>
+                  <div class="category-item">
+                    First link
+                  </div>
+                  <div class="category-item">
+                    First link
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="category-name">
+                First Category
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Footer navigation End -->
+
+        <!-- Footer -->
+        <div class="footer text-center">
+          <div>
+            TextTextTextTextTextTextTextTextText TextTextText Text Text Text
+          </div>
+        </div>
+        <!-- Footer End -->`
+
+    </body>
 </html>
