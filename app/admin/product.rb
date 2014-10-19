@@ -1,22 +1,39 @@
 ActiveAdmin.register Product do
 
+  permit_params :name, :price, :manufacturer_id, :status, :sort_order
 
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # permit_params :list, :of, :attributes, :on, :model
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:permitted, :attributes]
-  #   permitted << :other if resource.something?
-  #   permitted
-  # end
-
-  controller do
-    def permitted_params
-      params.permit(:product => [:name, :price])
+  index do
+    selectable_column
+    column 'Name' do |post|
+      link_to post.name, admin_product_path(post)
     end
+    column :manufacturer
+    column :quantity
+    column :price
+    column :status
+    column :create_at
+    column :updated_at
+    actions
   end
+
+  form do |f|
+    f.inputs do
+      f.input :name
+      f.input :create_at, :as => :ui
+      f.input :model
+      f.input :manufacturer_id, :as => :select, collection: Manufacturer.all, :member_label => :name, :member_value => :id, :include_blank => 'Choose manufacturer'
+      f.input :quantity
+      f.input :price
+      f.input :image
+      f.input :description
+      f.input :status, :as => :radio, :collection => [['Active', 1, {:checked => true}], ['Disable', 0]]
+      f.input :sort_order
+      f.input :date_available
+      f.input :meta_keyword
+      f.input :meta_description
+
+    end
+    f.actions
+  end
+
 end

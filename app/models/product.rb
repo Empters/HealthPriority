@@ -1,7 +1,7 @@
 class Product < ActiveRecord::Base
   validates_presence_of :name, :quantity, :price, :status, :manufacturer_id, :sort_order
 
-  has_one :manufacturer
+  belongs_to :manufacturer
 
   has_many :product_images
   has_many :product_reviews
