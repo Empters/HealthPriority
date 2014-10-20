@@ -1,0 +1,27 @@
+<div class="modal fade" id="resendConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal">×</button>
+        <h3>Resend confirmation instructions</h3>
+      </div>
+      <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: {method: :post}) do |f| %>
+          <div class="modal-body">
+            <div class="inputs">
+              <%= devise_error_messages! %>
+
+              <div><%= f.label :email %>
+                <br/>
+                <%= f.email_field :email, autofocus: true %></div>
+
+              <div><%= f.submit "Resend confirmation instructions" %></div>
+            </div>
+          </div>
+      <% end %>
+
+      <%= render "users/shared/signin_link" %>
+      <%= render "users/shared/signup_link" %>
+      <%= render "users/shared/forgotten_pass_link" %>
+    </div>
+  </div>
+</div>

@@ -28,7 +28,7 @@
         DELIVERY
       </div>
       <div class="top-bar-tab top-bar-text">
-        <%= link_to "Sign In", new_user_session_path, remote: true, :"data-toggle" => 'modal', :"data-target" => '#loginModal' %>
+        <%= link_to "Sign In", new_user_session_path, remote: true, :"data-toggle" => 'modal', :"data-target" => '#signInModal' %>
       </div>
       <div class="top-bar-tab top-bar-text">
         <div class="fb_top" style='background-image: url("<%= image_path "fb-header.png" %>");'></div>
@@ -146,9 +146,12 @@
 </div>
 <!-- Footer End -->
 
-<!-- Login modal -->
+<!-- Login modals -->
 <%= render 'layouts/sign_in_modal' %>
-<!-- Login modal End-->
+<%= render 'layouts/sign_up_modal' %>
+<%= render 'layouts/forgotten_pass_modal' %>
+<%= render 'layouts/resend_confirmation_modal' %>
+<!-- Login modals End-->
 
 </body>
 </html>

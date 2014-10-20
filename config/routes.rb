@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   root to: "home#index"
 
-  devise_for :users, controllers: { sessions: "users/sessions" }
+  devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations" }
 end
