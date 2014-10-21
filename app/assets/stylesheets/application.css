@@ -12,7 +12,9 @@
  *
  *= require jquery-ui
  *= require bootstrap.min
- *= require styles
+ *= require royalslider/royalslider
+ *= require royalslider/skins/minimal-white/rs-minimal-white
+ *= require styles.css.erb
  *= require_self
  *= require_tree .
  */

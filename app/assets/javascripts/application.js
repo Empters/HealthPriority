@@ -13,5 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require bootstrap.min
+//= require royalslider/jquery.royalslider.min
+//= require main
 //= require turbolinks
 //= require_tree .
