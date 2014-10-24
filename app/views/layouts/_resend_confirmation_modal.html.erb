@@ -1,27 +1,28 @@
-<div class="modal fade" id="resendConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade login-modal" id="resendConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="resendConfirmationModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header title-banner">
         <button class="close" data-dismiss="modal">×</button>
-        <h3>Resend confirmation instructions</h3>
+        <div>Resend confirmation instructions</div>
       </div>
       <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: {method: :post}) do |f| %>
           <div class="modal-body">
             <div class="inputs">
-              <%= devise_error_messages! %>
 
               <div><%= f.label :email %>
                 <br/>
                 <%= f.email_field :email, autofocus: true %></div>
 
-              <div><%= f.submit "Resend confirmation instructions" %></div>
+              <div class="modal-footer">
+                <div class="login-links">
+                  <%= render "users/shared/signin_link" %>
+                  <%= render "users/shared/signup_link" %>
+                  <%= render "users/shared/forgotten_pass_link" %>
+                </div>
+                <%= f.submit "Resend confirmation", :class => 'btn btn-primary button green' %></div>
             </div>
           </div>
       <% end %>
-
-      <%= render "users/shared/signin_link" %>
-      <%= render "users/shared/signup_link" %>
-      <%= render "users/shared/forgotten_pass_link" %>
     </div>
   </div>
 </div>

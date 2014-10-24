@@ -1,13 +1,7 @@
 <!-- Page content -->
 <!-- Gallery -->
 <div class="container-fluid nopadding nomargin hidden-xs">
-  <div class="container">
-    <div class="royalSlider rsMinW" id="hpGallery">
-        <div class="gallery-item" style='background-image: url("<%= image_path "slider-image.jpg" %>");'></div>
-        <div class="gallery-item" style='background-image: url("<%= image_path "slider-image.jpg" %>");'></div>
-        <div class="gallery-item" style='background-image: url("<%= image_path "slider-image.jpg" %>");'></div>
-    </div>
-  </div>
+  <%= render 'homepage_slider' %>
 </div>
 <!-- Gallery End -->
 <br/>
@@ -17,169 +11,12 @@
     <div class="row">
       <!-- Categories -->
       <div class="col-md-3">
-        <div class="title-banner">
-          OUR CATEGORIES
-        </div>
-        <div class="content-container">
-          <ul class="categories-list">
-            <li>
-              <a href="#">Category Name (10)</a>
-            </li>
-            <li>
-              <a href="#">Category Name (10)</a>
-            </li>
-            <li>
-              <a href="#">Category Name (10)</a>
-            </li>
-            <li>
-              <a href="#">Category Name (10)</a>
-            </li>
-            <li>
-              <a href="#">Category Name (10)</a>
-            </li>
-            <li>
-              <a href="#">Category Name (10)</a>
-            </li>
-            <li>
-              <a href="#">Category Name (10)</a>
-            </li>
-            <li>
-              <a href="#">Category Name (10)</a>
-            </li>
-            <li>
-              <a href="#">Category Name (10)</a>
-            </li>
-            <li>
-              <a href="#">Category Name (10)</a>
-            </li>
-            <li>
-              <a href="#">Category Name (10)</a>
-            </li>
-            <li>
-              <a href="#">Category Name (10)</a>
-            </li>
-            <li>
-              <a href="#">Category Name (10)</a>
-            </li>
-            <li>
-              <a href="#">Category Name (10)</a>
-            </li>
-            <li>
-              <a href="#">Category Name (10)</a>
-            </li>
-            <li>
-              <a href="#">Category Name (10)</a>
-            </li>
-            <li>
-              <a href="#">Category Name (10)</a>
-            </li>
-            <li>
-              <a href="#">Category Name (10)</a>
-            </li>
-            <li>
-              <a href="#">Category Name (10)</a>
-            </li>
-            <li>
-              <a href="#">Category Name (10)</a>
-            </li>
-            <li>
-              <a href="#">Category Name (10)</a>
-            </li>
-            <li>
-              <a href="#">Category Name (10)</a>
-            </li>
-            <li>
-              <a href="#">Category Name (10)</a>
-            </li>
-          </ul>
-        </div>
+        <%= render 'categories_pane' %>
       </div>
       <!-- Categories End -->
       <!-- Products -->
       <div class="col-md-9">
-        <div class="title-banner">
-          OUR FEATURED PRODUCTS
-        </div>
-        <div class="content-container">
-          <!-- First row -->
-          <div class="row nopadding nomargin">
-            <div class="col-md-4 nopadding nomargin">
-              <div class="item-container text-center">
-                <a href="#" class="item-image" style='background-image: url("<%= image_path "product-image-1.jpg" %>");'></a>
-
-                <div class="item-title">
-                  Hair protection & BLA bla bla
-                </div>
-                <div class="item-price">
-                  <div class="price left">
-                    17$
-                  </div>
-                  <div class="rating right"></div>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="button green">
-                  ADD TO CART
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 nopadding nomargin">
-              <div class="item-container text-center">
-                <a href="#" class="item-image" style='background-image: url("<%= image_path "product-image-1.jpg" %>");'></a>
-
-                <div class="item-title">
-                  Hair protection & BLA bla bla
-                </div>
-                <div class="item-price">
-                  <div class="price left">
-                    17$
-                  </div>
-                  <div class="rating right"></div>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="button green">
-                  ADD TO CART
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 nopadding nomargin">
-              <div class="item-container last-item text-center">
-                <a href="#" class="item-image" style='background-image: url("<%= image_path "product-image-1.jpg" %>");'></a>
-
-                <div class="item-title">
-                  Hair protection & BLA bla bla
-                </div>
-                <div class="item-price">
-                  <div class="price left">
-                    17$
-                  </div>
-                  <div class="rating right"></div>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="button green">
-                  ADD TO CART
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- First row End -->
-        </div>
-        <div class="pager-wrapper">
-          <div class="products-count left">
-            9 of 34 products
-          </div>
-          <div class="pager-container right">
-            <div class="page active">
-              1
-            </div>
-            <div class="page">
-              2
-            </div>
-            <div class="page">
-              3
-            </div>
-          </div>
-          <div class="clearfix"></div>
-        </div>
+       <%= render 'products_list' %>
       </div>
       <!-- Products End -->
     </div>
@@ -187,94 +24,8 @@
 
     <!-- Last Visited Products -->
     <div class="row">
-      <div class="col-md-12">
-        <div class="title-banner">
-          Last Visited Products
-        </div>
-        <div class="content-container">
-          <!-- First row -->
-          <div class="row nopadding nomargin">
-            <div class="col-md-3 nopadding nomargin">
-              <div class="item-container text-center">
-                <a href="#" class="item-image" style='background-image: url("<%= image_path "product-image-1.jpg" %>");'></a>
-
-                <div class="item-title">
-                  Hair protection & BLA bla bla
-                </div>
-                <div class="item-price">
-                  <div class="price left">
-                    17$
-                  </div>
-                  <div class="rating right"></div>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="button green">
-                  ADD TO CART
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3 nopadding nomargin">
-              <div class="item-container text-center">
-                <a href="#" class="item-image" style='background-image: url("<%= image_path "product-image-1.jpg" %>");'></a>
-
-                <div class="item-title">
-                  Hair protection & BLA bla bla
-                </div>
-                <div class="item-price">
-                  <div class="price left">
-                    17$
-                  </div>
-                  <div class="rating right"></div>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="button green">
-                  ADD TO CART
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3 nopadding nomargin">
-              <div class="item-container text-center">
-                <a href="#" class="item-image" style='background-image: url("<%= image_path "product-image-1.jpg" %>");'></a>
-
-                <div class="item-title">
-                  Hair protection & BLA bla bla
-                </div>
-                <div class="item-price">
-                  <div class="price left">
-                    17$
-                  </div>
-                  <div class="rating right"></div>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="button green">
-                  ADD TO CART
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3 nopadding nomargin">
-              <div class="item-container last-item text-center">
-                <a href="#" class="item-image" style='background-image: url("<%= image_path "product-image-1.jpg" %>");'></a>
-
-                <div class="item-title">
-                  Hair protection & BLA bla bla
-                </div>
-                <div class="item-price">
-                  <div class="price left">
-                    17$
-                  </div>
-                  <div class="rating right"></div>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="button green">
-                  ADD TO CART
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- First row End -->
-        </div>
-      </div>
-      <!-- Last Visited Products End -->
+      <%= render 'last_visited_products' %>
     </div>
+  <!-- Last Visited Products End -->
 </div>
 <!-- Page content End -->
