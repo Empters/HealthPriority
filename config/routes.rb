@@ -3,5 +3,8 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   root to: "home#index"
 
-  devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations" }
+  # get "/users/sign_in", to: "home#index"
+
+  devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations", passwords: "users/passwords", confirmations: "users/confirmations" }
+
 end
