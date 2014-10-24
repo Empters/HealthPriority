@@ -28,7 +28,11 @@
         DELIVERY
       </div>
       <div class="top-bar-tab top-bar-text">
-        <%= link_to "Sign In", new_user_session_path, remote: true, :"data-toggle" => 'modal', :"data-target" => '#signInModal' %>
+        <% if user_signed_in? -%>
+            <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+        <% else %>
+            <%= link_to "Sign In", new_user_session_path, remote: true, :"data-toggle" => 'modal', :"data-target" => '#signInModal' %>
+        <% end %>
       </div>
       <div class="top-bar-tab top-bar-text">
         <div class="fb_top" style='background-image: url("<%= image_path "fb-header.png" %>");'></div>
