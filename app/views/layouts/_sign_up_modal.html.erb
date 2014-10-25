@@ -1,15 +1,13 @@
-<div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade login-modal" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header title-banner">
         <button class="close" data-dismiss="modal">×</button>
-        <h3>Sign Up</h3>
+        <div>Sign Up</div>
       </div>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
           <div class="modal-body">
             <div class="inputs">
-              <%= devise_error_messages! %>
-
               <div><%= f.label :email %>
                 <br/>
                 <%= f.email_field :email, autofocus: true %></div>
@@ -25,14 +23,18 @@
                 <br/>
                 <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
 
-              <div><%= f.submit "Sign up" %></div>
+              <div class="modal-footer">
+                <div class="login-links">
+                    <%= render "users/shared/signin_link" %>
+                    <%= render "users/shared/forgotten_pass_link" %>
+                    <%= render "users/shared/resend_confirmation_link" %>
+                </div>
+                <%= f.submit "Sign up", :class => 'btn btn-primary button green' %>
+              </div>
             </div>
           </div>
       <% end %>
 
-      <%= render "users/shared/signin_link" %>
-      <%= render "users/shared/forgotten_pass_link" %>
-      <%= render "users/shared/resend_confirmation_link" %>
     </div>
   </div>
 </div>

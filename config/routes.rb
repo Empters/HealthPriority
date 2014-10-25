@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  mount Rich::Engine => '/rich', :as => 'rich'
+
   root to: "home#index"
-  devise_for :admin_users, ActiveAdmin::Devise.config
+
   ActiveAdmin.routes(self)
+  mount Rich::Engine => '/rich', :as => 'rich'
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
 
   resources :product_reviews
   resources :product_discounts
@@ -11,5 +14,6 @@ Rails.application.routes.draw do
   resources :manufacturers
   resources :products
 
-  devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations" }
+  devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations", passwords: "users/passwords", confirmations: "users/confirmations" }
+
 end

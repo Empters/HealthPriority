@@ -66,3 +66,8 @@ end
 gem 'rich'
 
 gem 'paperclip', '~> 4.2'
+
+group :development, :test do
+  gem "factory_girl_rails"
+  gem 'ffaker'
+end

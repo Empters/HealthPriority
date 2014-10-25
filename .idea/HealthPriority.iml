@@ -130,6 +130,9 @@
     <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.2.5, ruby-2.0.0-p576) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="erubis (v2.7.0, ruby-2.0.0-p576) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="execjs (v2.2.2, ruby-2.0.0-p576) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="factory_girl (v4.5.0, ruby-2.0.0-p576) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="factory_girl_rails (v4.5.0, ruby-2.0.0-p576) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ffaker (v1.25.0, ruby-2.0.0-p576) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="formtastic (v3.0.0, ruby-2.0.0-p576) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="formtastic_i18n (v0.1.1, ruby-2.0.0-p576) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="has_scope (v0.6.0.rc, ruby-2.0.0-p576) [gem]" level="application" />
