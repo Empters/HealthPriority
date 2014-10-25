@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20141013195525) do
-=======
-ActiveRecord::Schema.define(version: 20141020180812) do
->>>>>>> master
+ActiveRecord::Schema.define(version: 20141025085924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,11 +50,15 @@ ActiveRecord::Schema.define(version: 20141020180812) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "categories", force: true do |t|
-    t.string   "name",                         null: false
+    t.integer  "parent_id"
+    t.string   "name",                              null: false
     t.text     "description"
-    t.string   "image"
-    t.integer  "status",                       null: false
-    t.integer  "sort_order",       default: 0
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.boolean  "active",             default: true, null: false
+    t.integer  "sort_order",         default: 0
     t.string   "meta_keyword"
     t.string   "meta_description"
     t.datetime "created_at"
@@ -66,10 +66,13 @@ ActiveRecord::Schema.define(version: 20141020180812) do
   end
 
   create_table "manufacturers", force: true do |t|
-    t.string   "name",                    null: false
-    t.string   "image"
+    t.string   "name",                           null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
     t.text     "description"
-    t.integer  "sort_order",  default: 0
+    t.integer  "sort_order",         default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -87,9 +90,12 @@ ActiveRecord::Schema.define(version: 20141020180812) do
   end
 
   create_table "product_images", force: true do |t|
-    t.integer  "product_id",             null: false
-    t.string   "image",                  null: false
-    t.integer  "sort_order", default: 0
+    t.integer  "product_id",                     null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "sort_order",         default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -106,17 +112,20 @@ ActiveRecord::Schema.define(version: 20141020180812) do
   end
 
   create_table "products", force: true do |t|
-    t.string   "name",                           null: false
-    t.string   "model"
-    t.integer  "quantity",         default: 0,   null: false
-    t.integer  "viewed"
-    t.string   "image"
-    t.decimal  "price",            default: 0.0, null: false
-    t.integer  "points"
+    t.string   "name",                              null: false
+    t.decimal  "price",              default: 0.0,  null: false
+    t.integer  "quantity",           default: 0,    null: false
+    t.integer  "manufacturer_id",                   null: false
+    t.integer  "stock_status_id",                   null: false
     t.text     "description"
-    t.integer  "status",                         null: false
-    t.integer  "manufacturer_id",                null: false
-    t.integer  "sort_order",       default: 0,   null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "viewed"
+    t.integer  "points"
+    t.boolean  "active",             default: true, null: false
+    t.integer  "sort_order",         default: 0,    null: false
     t.date     "date_available"
     t.string   "meta_keyword"
     t.string   "meta_description"
@@ -127,6 +136,25 @@ ActiveRecord::Schema.define(version: 20141020180812) do
   create_table "products_categories", force: true do |t|
     t.integer "product_id"
     t.integer "category_id"
+  end
+
+  create_table "rich_rich_files", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "rich_file_file_name"
+    t.string   "rich_file_content_type"
+    t.integer  "rich_file_file_size"
+    t.datetime "rich_file_updated_at"
+    t.string   "owner_type"
+    t.integer  "owner_id"
+    t.text     "uri_cache"
+    t.string   "simplified_type",        default: "file"
+  end
+
+  create_table "stock_statuses", force: true do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|

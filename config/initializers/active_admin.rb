@@ -170,7 +170,6 @@ ActiveAdmin.setup do |config|
   # To load a javascript file:
   #   config.register_javascript 'my_javascript.js'
 
-
   # == CSV options
   #
   # Set the CSV builder separator
@@ -201,6 +200,14 @@ ActiveAdmin.setup do |config|
   #     end
   #   end
 
+  # This block will edit the default menu
+  config.namespace :admin do |admin|
+    admin.build_menu do |menu|
+      menu.add :label => 'Catalog', :priority => 1
+      menu.add :label => 'Sales', :priority => 2
+      menu.add :label => 'System', :priority => 3
+    end
+  end
 
   # == Download Links
   #
