@@ -17,3 +17,6 @@
 
 # Ignore idea directory
 /.idea
+
+# Ignore attached file folder
+/public/system
