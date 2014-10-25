@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   resources :special_offers, only: :index
   resources :only_organics, only: :index
   resources :contacts, only: :index
+  resources :shopping_cards, onlu: :index
 end
