@@ -76,22 +76,22 @@
 <div class="main-nav-wrapper">
   <div class="container text-center">
     <div class="main-nav-tab">
-      HOME
+      <%= link_to 'HOME', root_path, :data => { :no_turbolink => true }, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
-      ABOUT US
+      <%= link_to 'ABOUT US', about_us_path, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
-      PRODUCTS
+      <%= link_to 'PRODUCTS', products_path, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
-      SPECIAL OFFERS
+      <%= link_to 'SPECIAL OFFERS', special_offers_path, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
-      ONLY ORGANIC
+      <%= link_to 'ONLY ORGANIC', only_organics_path, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
-      CONTACTS
+      <%= link_to 'CONTACTS', contacts_path, :class => 'top-bar-text' %>
     </div>
   </div>
 </div>
