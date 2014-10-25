@@ -127,8 +127,6 @@ GEM
     pry-rails (0.3.2)
       pry (>= 0.9.10)
     rack (1.5.2)
-    rack-raw-upload (1.1.1)
-      multi_json
     rack-test (0.6.2)
       rack (>= 1.0)
     rails (4.1.6)
@@ -159,14 +157,6 @@ GEM
       json (~> 1.4)
     responders (1.0.0)
       railties (>= 3.2, < 5)
-    rich (1.4.6)
-      jquery-rails
-      kaminari
-      mime-types
-      paperclip
-      rack-raw-upload
-      rails (>= 3.2.0)
-      sass-rails
     rspec-core (3.0.4)
       rspec-support (~> 3.0.0)
     rspec-expectations (3.0.4)
@@ -234,7 +224,6 @@ DEPENDENCIES
   pry-rails
   rails (= 4.1.6)
   rails3-jquery-autocomplete (~> 1.0.12)
-  rich
   rspec-rails (~> 3.0.0)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)

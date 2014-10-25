@@ -63,8 +63,6 @@ group :test do
   gem 'tzinfo-data', platforms: [:mingw, :mswin]
 end
 
-gem 'rich'
-
 gem 'paperclip', '~> 4.2'
 
 group :development, :test do

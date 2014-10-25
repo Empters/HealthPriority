@@ -6,15 +6,23 @@ class Product < ActiveRecord::Base
   # Init image file - paperclip image
   has_attached_file :image, :styles => { :thumb => '48x48' }
 
-  # Explicitly do not validate attached image
-  do_not_validate_attachment_file_type :image
+  # Validate content type
+  validates_attachment_content_type :image, :content_type => /\Aimage/
+
+  # Validate filename
+  validates_attachment_file_name :image, :matches => [/png\Z/, /jpe?g\Z/, /gif\Z/]
 
   # Init product relationships
   belongs_to :manufacturer
-  has_many :product_images
+  belongs_to :stock_status
+
+  has_many :product_images, :dependent => :destroy, :autosave => true
   has_many :product_reviews
   has_many :product_discounts
+
   has_and_belongs_to_many :categories
-  has_one :stock_status
+
+  accepts_nested_attributes_for :product_images, allow_destroy: true,
+                                :reject_if => lambda { |attributes| attributes[:image].blank? }
 
 end

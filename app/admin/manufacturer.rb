@@ -24,10 +24,10 @@ ActiveAdmin.register Manufacturer do
   end
 
   # Init edit page
-  form do |f|
+  form :html => {:multipart => true} do |f|
     f.inputs 'Manufacturer' do
       f.input :name
-      f.input :image, :as => :file, :required => false, :hint => f.template.image_tag(f.object.image.url(:thumb))
+      f.input :image, :as => :file, :required => false, :hint => image_tag(f.object.image.url(:thumb))
       f.input :description
       f.input :sort_order
     end

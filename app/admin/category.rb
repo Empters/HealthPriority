@@ -28,7 +28,7 @@ ActiveAdmin.register Category do
       link_to post.parent, admin_category_path(post.parent)
     end
 =end
-    column :description, :as => :rich
+    column :description
     column :active
     column :sort_order
     column :meta_keyword
@@ -37,12 +37,12 @@ ActiveAdmin.register Category do
   end
 
   # Init edit page
-  form do |f|
+  form :html => {:multipart => true} do |f|
     f.inputs 'Category' do
       f.input :name
       f.input :parent_id, :as => :select, collection: Category.where.not(id: f.object.id), :member_label => :name, :member_value => :id, :include_blank => 'Choose category'
       f.input :description
-      f.input :image, :as => :file, :required => false, :hint => f.template.image_tag(f.object.image.url(:thumb))
+      f.input :image, :as => :file, :required => false, :hint => image_tag(f.object.image.url(:thumb))
       f.input :active
       f.input :sort_order
       f.input :meta_keyword
