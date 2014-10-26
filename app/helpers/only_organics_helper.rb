@@ -1,0 +1,2 @@
+module OnlyOrganicsHelper
+end
