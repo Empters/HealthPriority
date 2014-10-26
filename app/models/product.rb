@@ -4,13 +4,10 @@ class Product < ActiveRecord::Base
   validates_presence_of :name, :quantity, :price, :active, :manufacturer_id, :sort_order, :stock_status_id
 
   # Init image file - paperclip image
-  has_attached_file :image, :styles => { :thumb => '48x48' }
+  has_attached_file :image, :styles => Rails.application.config.paperclip_styles
 
   # Validate content type
-  validates_attachment_content_type :image, :content_type => /\Aimage/
-
-  # Validate filename
-  validates_attachment_file_name :image, :matches => [/png\Z/, /jpe?g\Z/, /gif\Z/]
+  validates_attachment_content_type :image, :content_type => Rails.application.config.paperclip_allow_image_content, :message => Rails.application.config.paperclip_allow_image_content_message
 
   # Init product relationships
   belongs_to :manufacturer
@@ -20,9 +17,23 @@ class Product < ActiveRecord::Base
   has_many :product_reviews
   has_many :product_discounts
 
-  has_and_belongs_to_many :categories
+  has_and_belongs_to_many :categories, :autosave => true, class_name: 'Category', join_table: 'products_categories'
 
+  # Edit product categories
+  accepts_nested_attributes_for :categories, allow_destroy: true,
+                                :reject_if => lambda { |attributes| attributes[:category_id].blank? }
+  # Edit product images
   accepts_nested_attributes_for :product_images, allow_destroy: true,
                                 :reject_if => lambda { |attributes| attributes[:image].blank? }
 
+  # Remove image attribute
+  attr_writer :remove_image
+
+  # Remove image methods
+  def remove_image
+    @remove_image || false
+  end
+
+  # Remove image validation
+  before_validation { self.image.clear if self.remove_image == '1' }
 end

@@ -1,12 +1,13 @@
 ActiveAdmin.register Product do
 
   # Set item menu position
-  menu :parent => 'Catalog', :priority => 3
+  menu :parent => 'Catalog', :priority => 4
 
   # Set permit parameters
-  permit_params :name, :quantity, :viewed, :image, :price, :points, :description, :active, :manufacturer_id, :sort_order
-  permit_params :date_available, :meta_keyword, :meta_description, :stock_status_id
-  permit_params :product_images
+  permit_params :name, :quantity, :viewed, :image, :price, :points, :description, :active, :manufacturer_id, :sort_order,
+                :date_available, :meta_keyword, :meta_description, :stock_status_id, :remove_image,
+                product_images_attributes: [:image, :image_file_name, :image_content_type, :image_file_size, :image_updated_at, :_destroy, :id],
+                categories_ids:[]
 
   # Init filters
   filter :name
@@ -30,7 +31,7 @@ ActiveAdmin.register Product do
     column :quantity
     column :manufacturer
     column :active
-    column :create_at
+    column :created_at
     column :updated_at
     actions
   end
@@ -39,11 +40,15 @@ ActiveAdmin.register Product do
   form :html => {:multipart => true} do |f|
     f.inputs do
       f.input :name
+      f.input :categories, :as => :check_boxes, :multiple => true
       f.input :manufacturer_id, :as => :select, collection: Manufacturer.all, :member_label => :name, :member_value => :id, :include_blank => 'Choose manufacturer'
       f.input :stock_status_id, :as => :select, collection: StockStatus.all, :member_label => :name, :member_value => :id, :include_blank => 'Choose stock status'
       f.input :quantity
       f.input :price
-      f.input :image, :as => :file, :required => false, :hint => image_tag(f.object.image.url(:thumb))
+      f.input :image, :as => :file, :required => false, :hint => f.object.image.present? ? image_tag(f.object.image.url(:thumb)) : ''
+      if (f.object.image.present?)
+        f.input :remove_image, :as=> :boolean, :required => false, :label => 'Remove image'
+      end
       f.input :description
       f.input :active
       f.input :sort_order
@@ -51,10 +56,9 @@ ActiveAdmin.register Product do
       f.input :meta_keyword
       f.input :meta_description
       f.inputs 'Product images' do
-        f.has_many :product_images do |images|
-          images.inputs do
-            images.input :sort_order
-            images.input :image, as: :file, :required => true, hint: image_tag(images.object.image.url(:thumb))
+        f.has_many :product_images, allow_destroy: true, new_record: true do |images|
+          images.inputs :html => {:multipart => true} do
+            images.input :image, as: :file, :required => true, :hint => images.object.image.present? ? image_tag(images.object.image.url(:thumb)) : ''
           end
         end
       end

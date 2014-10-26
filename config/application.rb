@@ -26,5 +26,11 @@ module HealthPriority
     config.assets.initialize_on_precompile = false
 
     config.autoload_paths += %W(#{config.root}/lib)
+
+    # Help configuration for paperclip images
+    config.paperclip_styles = { :thumb => '48x48' }
+    config.paperclip_allow_image_content = /\Aimage\/(jpg|jpeg|pjpeg|png|x-png|gif)\z/
+    config.paperclip_allow_image_content_message = 'Image type is not allowed!'
+
   end
 end

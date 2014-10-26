@@ -4,7 +4,7 @@ ActiveAdmin.register Manufacturer do
   menu :parent => 'Catalog', :priority => 2
 
   # Set permit parameters
-  permit_params :name, :image, :description, :sort_order
+  permit_params :name, :image, :description, :sort_order, :remove_image
 
   # Init filters
   filter :name
@@ -27,7 +27,10 @@ ActiveAdmin.register Manufacturer do
   form :html => {:multipart => true} do |f|
     f.inputs 'Manufacturer' do
       f.input :name
-      f.input :image, :as => :file, :required => false, :hint => image_tag(f.object.image.url(:thumb))
+      f.input :image, :as => :file, :required => false, :hint => f.object.image.present? ? image_tag(f.object.image.url(:thumb)) : ''
+      if (f.object.image.present?)
+        f.input :remove_image, :as=> :boolean, :required => false, :label => 'Remove image'
+      end
       f.input :description
       f.input :sort_order
     end
