@@ -3,74 +3,15 @@
 </div>
 <div class="content-container">
   <ul class="categories-list">
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
+    <% @categories.each do |category| %>
+        <li>
+          <a href="#"><%= category.name %></a>
+        </li>
+        <% category.children.each do |child_category| %>
+            <li>
+              <a href="#"> < <%= child_category.name %></a>
+            </li>
+        <% end %>
+    <% end %>
   </ul>
 </div>
