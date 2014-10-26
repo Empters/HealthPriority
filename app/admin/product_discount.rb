@@ -1,5 +1,9 @@
 ActiveAdmin.register ProductDiscount do
 
+  # Set item menu position
+  menu :parent => 'Sales', :priority => 5
+
+  # Set permit parameters
   permit_params :product_id, :customer_group_id, :quantity, :priority, :price, :date_start, :date_end
 
   # Init index page

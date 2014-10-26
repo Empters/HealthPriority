@@ -4,7 +4,8 @@ ActiveAdmin.register Category do
   menu :parent => 'Catalog', :priority => 1
 
   # Set permit parameters
-  permit_params :name, :description, :image, :active, :sort_order, :meta_keyword, :meta_description, :parent_id
+  permit_params :name, :description, :image, :active, :sort_order, :meta_keyword, :meta_description, :parent_id,
+                :remove_image
 
   # Init filters
   filter :name
@@ -35,8 +36,11 @@ ActiveAdmin.register Category do
     f.inputs 'Category' do
       f.input :name
       f.input :parent_id, :as => :select, collection: Category.where.not(id: f.object.id), :member_label => :name, :member_value => :id, :include_blank => 'Choose category'
+      f.input :image, :as => :file, :required => false, :hint => f.object.image.present? ? image_tag(f.object.image.url(:thumb)) : ''
+      if (f.object.image.present?)
+        f.input :remove_image, :as=> :boolean, :required => false, :label => 'Remove image'
+      end
       f.input :description
-      f.input :image, :as => :file, :required => false, :hint => image_tag(f.object.image.url(:thumb))
       f.input :active
       f.input :sort_order
       f.input :meta_keyword

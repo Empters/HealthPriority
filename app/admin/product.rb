@@ -5,7 +5,7 @@ ActiveAdmin.register Product do
 
   # Set permit parameters
   permit_params :name, :quantity, :viewed, :image, :price, :points, :description, :active, :manufacturer_id, :sort_order,
-                :date_available, :meta_keyword, :meta_description, :stock_status_id,
+                :date_available, :meta_keyword, :meta_description, :stock_status_id, :remove_image,
                 product_images_attributes: [:image, :image_file_name, :image_content_type, :image_file_size, :image_updated_at, :_destroy, :id],
                 categories_ids:[]
 
@@ -45,7 +45,10 @@ ActiveAdmin.register Product do
       f.input :stock_status_id, :as => :select, collection: StockStatus.all, :member_label => :name, :member_value => :id, :include_blank => 'Choose stock status'
       f.input :quantity
       f.input :price
-      f.input :image, :as => :file, :required => false, :hint => image_tag(f.object.image.url(:thumb))
+      f.input :image, :as => :file, :required => false, :hint => f.object.image.present? ? image_tag(f.object.image.url(:thumb)) : ''
+      if (f.object.image.present?)
+        f.input :remove_image, :as=> :boolean, :required => false, :label => 'Remove image'
+      end
       f.input :description
       f.input :active
       f.input :sort_order
@@ -55,7 +58,7 @@ ActiveAdmin.register Product do
       f.inputs 'Product images' do
         f.has_many :product_images, allow_destroy: true, new_record: true do |images|
           images.inputs :html => {:multipart => true} do
-            images.input :image, as: :file, :required => true, hint: image_tag(images.object.image.url(:thumb))
+            images.input :image, as: :file, :required => true, :hint => images.object.image.present? ? image_tag(images.object.image.url(:thumb)) : ''
           end
         end
       end

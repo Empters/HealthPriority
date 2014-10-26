@@ -12,4 +12,15 @@ class Manufacturer < ActiveRecord::Base
   # Init class relationships
   has_many :products
 
+  # Remove image attribute
+  attr_writer :remove_image
+
+  # Remove image methods
+  def remove_image
+    @remove_image || false
+  end
+
+  # Remove image validation
+  before_validation { self.image.clear if self.remove_image == '1' }
+
 end
