@@ -5,7 +5,9 @@ ActiveAdmin.register Product do
 
   # Set permit parameters
   permit_params :name, :quantity, :viewed, :image, :price, :points, :description, :active, :manufacturer_id, :sort_order,
-                :date_available, :meta_keyword, :meta_description, :stock_status_id, product_images_ids:[], categories_ids:[]
+                :date_available, :meta_keyword, :meta_description, :stock_status_id,
+                product_images_attributes: [:image, :image_file_name, :image_content_type, :image_file_size, :image_updated_at, :_destroy, :id],
+                categories_ids:[]
 
   # Init filters
   filter :name
@@ -51,7 +53,7 @@ ActiveAdmin.register Product do
       f.input :meta_keyword
       f.input :meta_description
       f.inputs 'Product images' do
-        f.has_many :product_images do |images|
+        f.has_many :product_images, allow_destroy: true, new_record: true do |images|
           images.inputs :html => {:multipart => true} do
             images.input :image, as: :file, :required => true, hint: image_tag(images.object.image.url(:thumb))
           end
@@ -60,20 +62,5 @@ ActiveAdmin.register Product do
     end
     f.actions
   end
-
-=begin
-  controller do
-    def update
-      post = Post.find(params[:id])
-      post.categories.delete_all
-      categories = params[:post][:category_ids]
-      categories.shift
-      categories.each do |category_id|
-        post.categories << Category.find(category_id.to_i)
-      end
-      redirect_to resource_path(post)
-    end
-  end
-=end
 
 end

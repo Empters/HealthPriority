@@ -4,7 +4,7 @@ class Product < ActiveRecord::Base
   validates_presence_of :name, :quantity, :price, :active, :manufacturer_id, :sort_order, :stock_status_id
 
   # Init image file - paperclip image
-  has_attached_file :image, :styles => { :thumb => '48x48' }
+  has_attached_file :image, :styles => { :thumb => '48x48' }, :allow_destroy => true
 
   # Validate content type
   validates_attachment_content_type :image, :content_type => /\Aimage/
