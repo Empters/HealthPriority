@@ -4,10 +4,10 @@ class Category < ActiveRecord::Base
   validates_presence_of :name, :active
 
   # Init image file - paperclip image
-  has_attached_file :image, :styles => { :thumb => '48x48' }, allow_destroy: true
+  has_attached_file :image, :styles => Rails.application.config.paperclip_styles
 
-  # Explicitly do not validate attached image
-  do_not_validate_attachment_file_type :image
+  # Validate content type
+  validates_attachment_content_type :image, :content_type => Rails.application.config.paperclip_allow_image_content, :message => Rails.application.config.paperclip_allow_image_content_message
 
   # Init category recursive relationships - parent and child categories
   belongs_to :parent, :class_name => 'Category'

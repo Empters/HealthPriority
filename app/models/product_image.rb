@@ -4,10 +4,10 @@ class ProductImage < ActiveRecord::Base
   validates_presence_of :product_id
 
   # Init image file - paperclip image
-  has_attached_file :image, :styles => { :thumb => '48x48' }
+  has_attached_file :image, :styles => Rails.application.config.paperclip_styles
 
-  # Explicitly do not validate attached image
-  do_not_validate_attachment_file_type :image
+  # Validate content type
+  validates_attachment_content_type :image, :content_type => Rails.application.config.paperclip_allow_image_content, :message => Rails.application.config.paperclip_allow_image_content_message
 
   # Init class relationships
   belongs_to :product

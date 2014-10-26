@@ -4,13 +4,10 @@ class Product < ActiveRecord::Base
   validates_presence_of :name, :quantity, :price, :active, :manufacturer_id, :sort_order, :stock_status_id
 
   # Init image file - paperclip image
-  has_attached_file :image, :styles => { :thumb => '48x48' }, :allow_destroy => true
+  has_attached_file :image, :styles => Rails.application.config.paperclip_styles
 
   # Validate content type
-  validates_attachment_content_type :image, :content_type => /\Aimage/
-
-  # Validate filename
-  validates_attachment_file_name :image, :matches => [/png\Z/, /jpe?g\Z/, /gif\Z/]
+  validates_attachment_content_type :image, :content_type => Rails.application.config.paperclip_allow_image_content, :message => Rails.application.config.paperclip_allow_image_content_message
 
   # Init product relationships
   belongs_to :manufacturer
