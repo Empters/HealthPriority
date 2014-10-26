@@ -6,8 +6,7 @@ FactoryGirl.define do
     factory :product do
         name
         price 100
-        status "green"
         stock_status_id 1
-        manufacture_id 1
+        manufacturer_id 1
     end
 end

@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/activeadmin/activeadmin.git
-  revision: c8e54d217998d4767bd803f831b549a2102ca509
+  revision: d775bb9edfc96c0d64bdde375fc3db697b77d728
   specs:
     activeadmin (1.0.0.pre)
       arbre (~> 1.0, >= 1.0.2)
@@ -48,11 +48,15 @@ GEM
     arbre (1.0.2)
       activesupport (>= 3.0.0)
     arel (5.0.1.20140414130214)
-    bcrypt (3.1.7-x64-mingw32)
+    bcrypt (3.1.9-x64-mingw32)
     bourbon (3.2.3)
       sass (~> 3.2)
       thor
     builder (3.2.2)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.4)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -88,7 +92,7 @@ GEM
     inherited_resources (1.4.1)
       has_scope (~> 0.6.0.rc)
       responders (~> 1.0.0.rc)
-    jbuilder (2.2.3)
+    jbuilder (2.2.4)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     jquery-rails (3.1.2)
@@ -103,10 +107,15 @@ GEM
     mail (2.6.1)
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
-    mime-types (2.4.2)
+    mime-types (2.4.3)
     minitest (5.4.2)
     multi_json (1.10.1)
     orm_adapter (0.5.0)
+    paperclip (4.2.0)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.3)
+      mime-types
     pg (0.17.1-x64-mingw32)
     polyamorous (1.1.0)
       activerecord (>= 3.0)
@@ -190,7 +199,7 @@ GEM
       coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    tzinfo-data (1.2014.8)
+    tzinfo-data (1.2014.9)
       tzinfo (>= 1.0.0)
     uglifier (2.5.3)
       execjs (>= 0.3.0)
@@ -210,6 +219,7 @@ DEPENDENCIES
   ffaker
   jbuilder (~> 2.0)
   jquery-rails
+  paperclip (~> 4.2)
   pg
   pry-rails
   rails (= 4.1.6)
