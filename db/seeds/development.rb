@@ -10,10 +10,13 @@ require 'factory_girl'
 
 # user = User.create :email => 'invisi@abv.bg', :password => '12345678', :confirmed_at => "2014-10-24 08:43:33", :confirmation_sent_at => "2014-10-24 08:43:20"
 
-=begin
 FactoryGirl.create(:user)
-=end
+
 
 6.times do
   FactoryGirl.create(:product)
+end
+
+6.times do
+  FactoryGirl.create(:category, is_top?: true)
 end

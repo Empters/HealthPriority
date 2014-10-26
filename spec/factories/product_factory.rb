@@ -1,10 +1,6 @@
 FactoryGirl.define do
-    sequence :name do |n|
-      "Product_#{n}"
-    end
-
     factory :product do
-        name
+        sequence(:name) {|n| "Product_#{n}"}
         price 100
         stock_status_id 1
         manufacturer_id 1

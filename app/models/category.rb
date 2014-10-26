@@ -17,7 +17,9 @@ class Category < ActiveRecord::Base
   has_and_belongs_to_many :products, class_name: 'Product', join_table: 'products_categories'
 
   # Get for top category level
-  scope :top_level, where(:parent_id => nil)
+  scope :top_level, -> do
+    where(parent: nil)
+  end
 
   # Remove image attribute
   attr_writer :remove_image
