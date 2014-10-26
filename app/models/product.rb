@@ -20,8 +20,10 @@ class Product < ActiveRecord::Base
   has_many :product_reviews
   has_many :product_discounts
 
-  has_and_belongs_to_many :categories
+  has_and_belongs_to_many :categories, :autosave => true, class_name: 'Category', join_table: 'products_categories'
 
+  accepts_nested_attributes_for :categories, allow_destroy: true,
+                                :reject_if => lambda { |attributes| attributes[:category_id].blank? }
   accepts_nested_attributes_for :product_images, allow_destroy: true,
                                 :reject_if => lambda { |attributes| attributes[:image].blank? }
 

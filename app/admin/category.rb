@@ -7,12 +7,11 @@ ActiveAdmin.register Category do
   permit_params :name, :description, :image, :active, :sort_order, :meta_keyword, :meta_description, :parent_id
 
   # Init filters
-  filter :parent_id
   filter :name
-  filter :description
+  filter :parent_id, :as => :select, collection: Category.all, :member_label => :name, :member_value => :id
   filter :active
-  filter :meta_keyword
-  filter :meta_description
+  filter :created_at
+  filter :updated_at
 
   # Init index page
   index do
@@ -23,16 +22,11 @@ ActiveAdmin.register Category do
     column 'Name' do |post|
       link_to post.name, admin_category_path(post)
     end
-=begin
-    column 'Parent' do |post|
-      link_to post.parent, admin_category_path(post.parent)
-    end
-=end
-    column :description
+    column :parent
     column :active
     column :sort_order
-    column :meta_keyword
-    column :meta_description
+    column :created_at
+    column :updated_at
     actions
   end
 

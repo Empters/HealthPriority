@@ -14,7 +14,7 @@ class Category < ActiveRecord::Base
   has_many :children, :class_name => 'Category', :foreign_key => 'parent_id'
 
   # Init category relationships
-  has_and_belongs_to_many :products
+  has_and_belongs_to_many :products, class_name: 'Product', join_table: 'products_categories'
 
   # Get for top category level
   scope :top_level, where(:parent_id => nil)
