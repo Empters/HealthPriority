@@ -72,7 +72,7 @@ body {
     color: #8A8A8A;
 }
 
-.item-image, .fb_top, .gallery-item, .item-image, .rsMinW.rsHor .rsArrowIcn, .logo, .cart-amount, .cart, .search-image {
+.item-image, .fb_top, .gallery-item, .item-image, .rsMinW.rsHor .rsArrowIcn, .logo, .cart-amount, .cart, .search-image, .send-email-button {
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -150,7 +150,7 @@ body {
     border-left: solid #ACACAC 1px;
 }
 
-.search-container {
+.search-container, .email-container {
     position: relative;
     height: 40px;
     border: solid #F79114 1px;
@@ -198,13 +198,13 @@ body {
     padding-left: 10px;
 }
 
-.search-input {
+.search-input, .email-input {
     height: 100%;
     width: 100%;
     border: none;
 }
 
-.search-input:focus {
+.search-input:focus, .email-input:focus {
     outline: 0;
 }
 
@@ -459,4 +459,20 @@ border: none;
 .top-bar-tab > a {
     color: #ffffff;
     text-decoration: none;
+}
+
+.email-container {
+    margin-top: 20px;
+}
+
+.email-input {
+    width: 80%;
+}
+
+.send-email-button {
+    width: 20%;
+    height: 100%;
+    cursor: pointer;
+    border-left: solid #F79114 1px;
+    background-image: url("<%= image_path "arrow.png" %>");
 }
