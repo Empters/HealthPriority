@@ -42,15 +42,15 @@ body {
     font-size: 14px;
 }
 
-.top-bar-text, .top-bar-container, .main-nav-tab, .button, .item-title, .products-count, .category-name, .category-item, .footer-main-text,.footer-text-title, .footer-text, .categories-list>li, .total-price, .dropdown-menu, #search_category  {
+.top-bar-text, .top-bar-container, .main-nav-tab, .button, .item-title, .products-count, .category-name, .category-item, .footer-main-text,.footer-text-title, .footer-text, .categories-list>li, .total-price, .dropdown-menu, #search_category, .phone-nav-title  {
     font-family: 'Open Sans';
 }
 
-.top-bar-text, .top-bar-container, .main-nav-tab, .button, .item-title, .main-nav-tab, .title-banner, .page.active, .page:hover, .footer-main-text, .cart-amount, .total-price {
+.top-bar-text, .top-bar-container, .main-nav-tab, .button, .item-title, .main-nav-tab, .title-banner, .page.active, .page:hover, .footer-main-text, .cart-amount, .total-price, .phone-nav-title {
     color: #FFFFFF;
 }
 
-.main-nav-wrapper, .title-banner, .footer, .button.green, .button.orange:hover, .page.active, .page:hover,.rsMinW .rsBullet span {
+.main-nav-wrapper, .title-banner, .footer, .button.green, .button.orange:hover, .page.active, .page:hover,.rsMinW .rsBullet span, .phone-nav {
     background: #69a820;
 }
 
@@ -58,7 +58,7 @@ body {
     color: #3e7808;
 }
 
-.item-title, .category-name, .title-banner, .category-name, .top-bar-text, .total-price {
+.item-title, .category-name, .title-banner, .category-name, .top-bar-text, .total-price, .phone-nav-title {
     text-transform: uppercase;
 }
 
@@ -94,6 +94,11 @@ body {
     font-size: 12px;
 }
 
+.top-bar-text:hover {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
 .top-bar-tab {
     display: inline-block;
     padding-right: 20px;
@@ -122,9 +127,34 @@ body {
     vertical-align: middle;
 }
 
-.main-nav-tab:hover {
+.main-nav-tab:hover, .navbar-header:hover, .nav>li>a:hover, .nav>li>a:focus {
     background: #5a9812;
     cursor: pointer;
+}
+
+.phone-nav-title {
+    font-size: 16px;
+}
+
+.navbar-header {
+    text-align: center;
+}
+
+.navbar-toggle {
+    border:none;
+    float:none;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background: #FFFFFF;
+}
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background: none;
+}
+
+.phone-nav-title, .navbar-toggle {
+   display: inline-block;
 }
 
 .title-banner {

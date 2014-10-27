@@ -49,10 +49,10 @@
 <div class="search-section-container">
   <div class="container">
     <div class="row">
-      <div class="col-md-2">
+      <div class="col-md-2 col-sm-2 col-xs-1">
         <%= link_to '', root_path, :class => 'logo', :data => { :no_turbolink => true } %>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-8 col-sm-8 col-xs-10">
         <div class="search-section">
             <div class="search-container">
                 <div class="search-dropdown-container left">
@@ -82,7 +82,7 @@
             </div>
         </div>
       </div>
-      <div class="col-md-2">
+      <div class="col-md-2 col-sm-2 col-xs-1">
         <div class="cart-info-section">
           <div class="cart-amount">3</div>
           <%= link_to '', shopping_cards_path, :class => 'cart' %>
@@ -98,8 +98,30 @@
 <!-- Search Section End -->
 
 <!-- Main Navigation -->
-<div class="main-nav-wrapper">
-  <div class="container text-center">
+<nav class="main-nav-wrapper">
+  <!-- Nav bar for phones -->
+  <div class="navbar navbar-default visible-xs phone-nav">
+    <div class="navbar-header" data-toggle="collapse" data-target=".phone-main-nav" >
+      <div class="phone-nav-title">MENU</div>
+      <button data-target=".phone-main-nav" class="navbar-toggle">
+        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse nopadding phone-main-nav">
+      <ul class="nav navbar navbar-left nomargin">
+        <li class="nav-item-phone text-center"><%= link_to 'HOME', root_path, :data => { :no_turbolink => true }, :class => 'top-bar-text' %></li>
+        <li class="nav-item-phone text-center"><%= link_to 'ABOUT US', about_us_path, :class => 'top-bar-text' %></li>
+        <li class="nav-item-phone text-center"><%= link_to 'PRODUCTS', products_path, :class => 'top-bar-text' %></li>
+        <li class="nav-item-phone text-center"><%= link_to 'SPECIAL OFFERS', special_offers_path, :class => 'top-bar-text' %></li>
+        <li class="nav-item-phone text-center"><%= link_to 'ONLY ORGANIC', only_organics_path, :class => 'top-bar-text' %></li>
+        <li class="nav-item-phone text-center"><%= link_to 'CONTACTS', contacts_path, :class => 'top-bar-text' %></li>
+      </ul>
+    </div>
+  </div>
+  <!-- Nav bar for phones end -->
+  <!-- nav bar large displays -->
+  <div class="container text-center hidden-xs">
     <div class="main-nav-tab">
       <%= link_to 'HOME', root_path, :data => { :no_turbolink => true }, :class => 'top-bar-text' %>
     </div>
@@ -119,7 +141,8 @@
       <%= link_to 'CONTACTS', contacts_path, :class => 'top-bar-text' %>
     </div>
   </div>
-</div>
+  <!-- nav bar large displays end -->
+</nav>
 <!-- Main Navigation End -->
 
 
@@ -135,7 +158,7 @@
 <!-- Footer navigation -->
 <div class="container">
   <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-2 col-sm-3 col-xs-6">
       <div class="category-name">
         First Category
       </div>
@@ -144,7 +167,7 @@
       <a href="#" class="category-item">Category name </a>
       <a href="#" class="category-item">Category name </a>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2 col-sm-3 col-xs-6">
       <div class="category-name">
         First Category
       </div>
@@ -153,18 +176,18 @@
       <a href="#" class="category-item">Category name </a>
       <a href="#" class="category-item">Category name </a>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 col-sm-6 col-xs-12">
       <div class="category-name">
         First Category
       </div>
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 col-xs-6">
           <a href="#" class="category-item">Category name </a>
           <a href="#" class="category-item">Category name </a>
           <a href="#" class="category-item">Category name </a>
           <a href="#" class="category-item">Category name </a>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 col-xs-6">
           <a href="#" class="category-item">Category name </a>
           <a href="#" class="category-item">Category name </a>
           <a href="#" class="category-item">Category name </a>
@@ -172,7 +195,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 col-sm-6 col-xs-12">
       <div class="category-name">
         e-mail newsletter
       </div>
