@@ -20,4 +20,8 @@ function initGallery() {
 
 $(function() {
     initGallery();
+
+    $(".dropdown-menu li").click(function(){
+        $("#chosen_category").text($(this).text());
+    });
 });
