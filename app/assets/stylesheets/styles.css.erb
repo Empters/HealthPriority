@@ -72,7 +72,7 @@ body {
     color: #8A8A8A;
 }
 
-.item-image, .fb_top, .gallery-item, .item-image, .rsMinW.rsHor .rsArrowIcn, .logo, .cart-amount, .cart, .search-image, .send-email-button {
+.item-image, .fb_top, .gallery-item, .item-image, .rsMinW.rsHor .rsArrowIcn, .logo, .cart-amount, .cart, .search-image, .send-email-button, .star {
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -323,10 +323,10 @@ body {
 }
 
 .content-container {
-padding: 20px 0px;
-border-right: solid #BBD1A1 1px;
-border-bottom: solid #BBD1A1 1px;
-border-left: solid #BBD1A1 1px;
+    padding: 20px 0px;
+    border-right: solid #BBD1A1 1px;
+    border-bottom: solid #BBD1A1 1px;
+    border-left: solid #BBD1A1 1px;
 }
 
 .categories_and_products_container {
@@ -334,33 +334,33 @@ border-left: solid #BBD1A1 1px;
 }
 
 .categories-list {
-list-style-type: none;
-padding: 0px;
-margin: 0px;
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
 }
 
 .categories-list>li {
-margin: 5px 40px;
-font-size: 14px;
+    margin: 5px 40px;
+    font-size: 14px;
 }
 
 .categories-list>li>a {
-text-decoration: none !important;
-color: #7A7A7A !important;
+    text-decoration: none !important;
+    color: #7A7A7A !important;
 }
 
 .categories-list>li>a:hover {
-color: #f79114 !important;
+    color: #f79114 !important;
 }
 
 .item-container {
-margin: 10px;
-padding: 0px 20px;
-border-right: solid #ACACAC 1px;
+    margin: 10px;
+    padding: 0px 20px;
+    border-right: solid #ACACAC 1px;
 }
 
 .item-container.last-item {
-border: none;
+    border: none;
 }
 
 .item-image {
@@ -383,6 +383,22 @@ border: none;
     font-size: 16px;
     font-weight: 700;
     color: #5d5d5d;
+}
+
+.rating, .star-rating {
+    width: 100px;
+    height: 15px;
+}
+
+.star {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    background-image: url("<%= image_path "product-page-star-inactive.png" %>");
+}
+
+.star.active {
+    background-image: url("<%= image_path "product-page-star-active.png" %>");
 }
 
 .page {

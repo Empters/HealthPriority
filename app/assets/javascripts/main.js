@@ -18,10 +18,27 @@ function initGallery() {
     });
 }
 
-$(function() {
-    initGallery();
-
+function initSearchDropdown() {
     $(".dropdown-menu li").click(function(){
         $("#chosen_category").text($(this).text());
     });
+}
+
+function initStarRatings() {
+    $('.star-rating').each(function() {
+        var currentRating = parseInt($('.rating-value', this).text());
+        $('.star', this).each(function() {
+            if ( currentRating >= parseInt($(this).data('rating'))) {
+                $(this).addClass('active');
+            } else {
+                $(this).removeClass('active');
+            }
+        });
+    });
+}
+
+$(function() {
+    initGallery();
+    initSearchDropdown();
+    initStarRatings();
 });
