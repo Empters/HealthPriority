@@ -15,7 +15,8 @@
 /log/*.log
 /tmp
 
-/.idea/workspace.xml
+# Ignore idea directory
 /.idea
-.idea/workspace.xml
-.idea
+
+# Ignore attached file folder
+/public/system

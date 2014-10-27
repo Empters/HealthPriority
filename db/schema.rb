@@ -49,22 +49,99 @@ ActiveRecord::Schema.define(version: 20141024090305) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
-  create_table "products", force: true do |t|
-    t.string   "name"
-    t.string   "model"
-    t.integer  "quantity"
-    t.integer  "viewed"
-    t.string   "image"
-    t.decimal  "price"
-    t.integer  "points"
+  create_table "categories", force: true do |t|
+    t.integer  "parent_id"
+    t.string   "name",                              null: false
     t.text     "description"
-    t.datetime "date_added"
-    t.datetime "date_modified"
-    t.integer  "status",                      null: false
-    t.integer  "stock_status_id",             null: false
-    t.integer  "manufacture_id",              null: false
-    t.integer  "sort_order",      default: 0, null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.boolean  "active",             default: true, null: false
+    t.integer  "sort_order",         default: 0
+    t.string   "meta_keyword"
+    t.string   "meta_description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "manufacturers", force: true do |t|
+    t.string   "name",                           null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.text     "description"
+    t.integer  "sort_order",         default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "product_discounts", force: true do |t|
+    t.integer  "product_id",        null: false
+    t.integer  "customer_group_id"
+    t.integer  "quantity",          null: false
+    t.integer  "priority"
+    t.decimal  "price",             null: false
+    t.date     "date_start"
+    t.date     "date_end"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "product_images", force: true do |t|
+    t.integer  "product_id",                     null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "sort_order",         default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "product_reviews", force: true do |t|
+    t.integer  "product_id",  null: false
+    t.integer  "customer_id"
+    t.string   "author"
+    t.string   "text",        null: false
+    t.integer  "rating"
+    t.integer  "status",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "products", force: true do |t|
+    t.string   "name",                              null: false
+    t.decimal  "price",              default: 0.0,  null: false
+    t.integer  "quantity",           default: 0,    null: false
+    t.integer  "manufacturer_id",                   null: false
+    t.integer  "stock_status_id",                   null: false
+    t.text     "description"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "viewed"
+    t.integer  "points"
+    t.boolean  "active",             default: true, null: false
+    t.integer  "sort_order",         default: 0,    null: false
     t.date     "date_available"
+    t.string   "meta_keyword"
+    t.string   "meta_description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "products_categories", force: true do |t|
+    t.integer "product_id"
+    t.integer "category_id"
+  end
+
+  create_table "stock_statuses", force: true do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|

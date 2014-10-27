@@ -1,7 +1,10 @@
 ActiveAdmin.register AdminUser do
 
-  permit_params :email, :password, :password_confirmation
+  # Set item menu position
+  menu :parent => 'System', :priority => 1
 
+  # Set permit parameters
+  permit_params :email, :password, :password_confirmation
 
   index do
     puts "--------    admin index do   ----------"

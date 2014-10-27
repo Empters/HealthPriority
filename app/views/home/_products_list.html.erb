@@ -2,18 +2,24 @@
   OUR FEATURED PRODUCTS
 </div>
 <div class="content-container">
-  <!-- First row -->
-  <div class="row nopadding nomargin">
-    <div class="col-md-4 nopadding nomargin">
+  <!-- rows -->
+  <% @products.in_groups_of(3, false).each do |group| %>
+   <div class="row nopadding nomargin">
+    <% group.each do |product| %>
+     <div class="col-md-4 nopadding nomargin">
       <div class="item-container text-center">
-        <a href="#" class="item-image" style='background-image: url("<%= image_path "product-image-1.jpg" %>");'></a>
+
+        <%= link_to '', product, :class => 'item-image', :style=> 'background-image: url('+
+                asset_path("product-image-1.jpg") + ');' %>
+
+        <br />
 
         <div class="item-title">
-          Hair protection & BLA bla bla
+          <%= product.name %>
         </div>
         <div class="item-price">
           <div class="price left">
-            17$
+            <%= product.price %> £
           </div>
           <div class="rating right"></div>
           <div class="clearfix"></div>
@@ -23,46 +29,10 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4 nopadding nomargin">
-      <div class="item-container text-center">
-        <a href="#" class="item-image" style='background-image: url("<%= image_path "product-image-1.jpg" %>");'></a>
-
-        <div class="item-title">
-          Hair protection & BLA bla bla
-        </div>
-        <div class="item-price">
-          <div class="price left">
-            17$
-          </div>
-          <div class="rating right"></div>
-          <div class="clearfix"></div>
-        </div>
-        <div class="button green">
-          ADD TO CART
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4 nopadding nomargin">
-      <div class="item-container last-item text-center">
-        <a href="#" class="item-image" style='background-image: url("<%= image_path "product-image-1.jpg" %>");'></a>
-
-        <div class="item-title">
-          Hair protection & BLA bla bla
-        </div>
-        <div class="item-price">
-          <div class="price left">
-            17$
-          </div>
-          <div class="rating right"></div>
-          <div class="clearfix"></div>
-        </div>
-        <div class="button green">
-          ADD TO CART
-        </div>
-      </div>
-    </div>
+    <% end %>
   </div>
-  <!-- First row End -->
+  <% end %>
+  <!-- rows -->
 </div>
 <div class="pager-wrapper">
   <div class="products-count left">

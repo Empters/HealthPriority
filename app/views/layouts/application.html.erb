@@ -50,7 +50,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-2">
-        <div class="logo"></div>
+        <%= link_to '', root_path, :class => 'logo', :data => { :no_turbolink => true } %>
       </div>
       <div class="col-md-8">
         <div class="search-section">
@@ -60,7 +60,7 @@
       <div class="col-md-2">
         <div class="cart-info-section">
           <div class="cart-amount">3</div>
-          <div class="cart"></div>
+          <%= link_to '', shopping_cards_path, :class => 'cart' %>
           <div class="total-price">
             <div class="total">total:</div>
             <div class="price">$112</div>
@@ -76,22 +76,22 @@
 <div class="main-nav-wrapper">
   <div class="container text-center">
     <div class="main-nav-tab">
-      HOME
+      <%= link_to 'HOME', root_path, :data => { :no_turbolink => true }, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
-      ABOUT US
+      <%= link_to 'ABOUT US', about_us_path, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
-      PRODUCTS
+      <%= link_to 'PRODUCTS', products_path, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
-      SPECIAL OFFERS
+      <%= link_to 'SPECIAL OFFERS', special_offers_path, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
-      ONLY ORGANIC
+      <%= link_to 'ONLY ORGANIC', only_organics_path, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
-      CONTACTS
+      <%= link_to 'CONTACTS', contacts_path, :class => 'top-bar-text' %>
     </div>
   </div>
 </div>
