@@ -53,4 +53,8 @@ Rails.application.configure do
 
 
   config.action_mailer.default_url_options = { host: 'health.empters.com' }
+
+
+  # Set ImageMagick path - crop image
+  Paperclip.options[:command_path] = '/usr/local/bin/'
 end
