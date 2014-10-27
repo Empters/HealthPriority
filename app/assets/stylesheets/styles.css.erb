@@ -42,7 +42,7 @@ body {
     font-size: 14px;
 }
 
-.top-bar-text, .top-bar-container, .main-nav-tab, .button, .item-title, .products-count, .category-name, .category-item, .footer-main-text,.footer-text-title, .footer-text, .categories-list>li, .total-price  {
+.top-bar-text, .top-bar-container, .main-nav-tab, .button, .item-title, .products-count, .category-name, .category-item, .footer-main-text,.footer-text-title, .footer-text, .categories-list>li, .total-price, .dropdown-menu, #search_category  {
     font-family: 'Open Sans';
 }
 
@@ -72,7 +72,7 @@ body {
     color: #8A8A8A;
 }
 
-.item-image, .fb_top, .gallery-item, .item-image, .rsMinW.rsHor .rsArrowIcn, .logo, .cart-amount, .cart {
+.item-image, .fb_top, .gallery-item, .item-image, .rsMinW.rsHor .rsArrowIcn, .logo, .cart-amount, .cart, .search-image, .send-email-button, .star {
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -140,13 +140,79 @@ body {
 }
 
 .logo {
-    background-image: url("<%= image_path "logo_transparent.png" %>");
+    background-image: url("<%= image_path "logo.png" %>");
     display: block;
 }
 
 .search-section {
+    padding: 20px 40px;
     border-right: solid #ACACAC 1px;
     border-left: solid #ACACAC 1px;
+}
+
+.search-container, .email-container {
+    position: relative;
+    height: 40px;
+    border: solid #F79114 1px;
+}
+
+.search-dropdown-container, .search-input-container {
+    height: 100%;
+    display: inline-block;
+}
+
+.search-dropdown-container {
+    width: 25%;
+    color: #bdbdbd;
+}
+
+#search_category {
+    height: 100%;
+    padding-top: 10px;
+    padding-left: 10px;
+    border-right: solid #F79114 1px;
+    cursor:pointer;
+}
+
+.dropdown-menu {
+    margin: 0;
+    padding:0;
+    border-radius: 0;
+    background-color: #FFFFFF;
+    border: solid #F79114 1px;
+}
+
+.dropdown-menu li {
+    padding: 10px;
+    border-bottom: solid #F79114 1px;
+}
+
+.dropdown-menu li:hover {
+    background:  #F79114;
+    color: #FFFFFF;
+    cursor:pointer;
+}
+
+.search-input-container {
+    width: 60%;
+    padding-left: 10px;
+}
+
+.search-input, .email-input {
+    height: 100%;
+    width: 100%;
+    border: none;
+}
+
+.search-input:focus, .email-input:focus {
+    outline: 0;
+}
+
+.search-image {
+    width: 15%;
+    height: 100%;
+    background-image: url("<%= image_path "search.png" %>");
+    background-size: inherit;
 }
 
 .cart-amount {
@@ -257,40 +323,44 @@ body {
 }
 
 .content-container {
-padding: 20px 0px;
-border-right: solid #BBD1A1 1px;
-border-bottom: solid #BBD1A1 1px;
-border-left: solid #BBD1A1 1px;
+    padding: 20px 0px;
+    border-right: solid #BBD1A1 1px;
+    border-bottom: solid #BBD1A1 1px;
+    border-left: solid #BBD1A1 1px;
+}
+
+.categories_and_products_container {
+    margin: 40px 0px;
 }
 
 .categories-list {
-list-style-type: none;
-padding: 0px;
-margin: 0px;
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
 }
 
 .categories-list>li {
-margin: 5px 40px;
-font-size: 14px;
+    margin: 5px 40px;
+    font-size: 14px;
 }
 
 .categories-list>li>a {
-text-decoration: none !important;
-color: #7A7A7A !important;
+    text-decoration: none !important;
+    color: #7A7A7A !important;
 }
 
 .categories-list>li>a:hover {
-color: #f79114 !important;
+    color: #f79114 !important;
 }
 
 .item-container {
-margin: 10px;
-padding: 0px 20px;
-border-right: solid #ACACAC 1px;
+    margin: 10px;
+    padding: 0px 20px;
+    border-right: solid #ACACAC 1px;
 }
 
 .item-container.last-item {
-border: none;
+    border: none;
 }
 
 .item-image {
@@ -313,6 +383,22 @@ border: none;
     font-size: 16px;
     font-weight: 700;
     color: #5d5d5d;
+}
+
+.rating, .star-rating {
+    width: 100px;
+    height: 15px;
+}
+
+.star {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    background-image: url("<%= image_path "product-page-star-inactive.png" %>");
+}
+
+.star.active {
+    background-image: url("<%= image_path "product-page-star-active.png" %>");
 }
 
 .page {
@@ -389,4 +475,20 @@ border: none;
 .top-bar-tab > a {
     color: #ffffff;
     text-decoration: none;
+}
+
+.email-container {
+    margin-top: 20px;
+}
+
+.email-input {
+    width: 80%;
+}
+
+.send-email-button {
+    width: 20%;
+    height: 100%;
+    cursor: pointer;
+    border-left: solid #F79114 1px;
+    background-image: url("<%= image_path "arrow.png" %>");
 }
