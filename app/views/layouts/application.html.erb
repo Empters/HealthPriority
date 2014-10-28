@@ -49,10 +49,10 @@
 <div class="search-section-container">
   <div class="container">
     <div class="row">
-      <div class="col-md-2 col-sm-2 col-xs-1">
+      <div class="col-md-2 col-sm-2 col-xs-1 nomargin nopadding">
         <%= link_to '', root_path, :class => 'logo', :data => { :no_turbolink => true } %>
       </div>
-      <div class="col-md-8 col-sm-8 col-xs-10">
+      <div class="col-md-8 col-sm-8 col-xs-9">
         <div class="search-section">
             <div class="search-container">
                 <div class="search-dropdown-container left">
@@ -76,13 +76,13 @@
                     </ul>
                 </div>
                 <div class="search-input-container left">
-                  <input type="text" class="search-input" placeholder="Search in our products..." />
+                  <input type="text" class="search-input" placeholder="Search..." />
                 </div>
                 <div class="search-image right"></div>
             </div>
         </div>
       </div>
-      <div class="col-md-2 col-sm-2 col-xs-1">
+      <div class="col-md-2 col-sm-2 col-xs-2 nopadding nomargin">
         <div class="cart-info-section">
           <div class="cart-amount">3</div>
           <%= link_to '', shopping_cards_path, :class => 'cart' %>
@@ -146,15 +146,9 @@
 <!-- Main Navigation End -->
 
 
-
-
 <%= yield %>
 
 
-
-
-<br/>
-<br/>
 <!-- Footer navigation -->
 <div class="container">
   <div class="row">
@@ -204,7 +198,7 @@
         featured under categories lists.
       </div>
       <div class="email-container">
-        <input type="text" class="email-input" placeholder="Enter Your Email Address" />
+        <input type="text" class="email-input" placeholder=" Enter Your Email Address" />
         <div class="send-email-button right"></div>
       </div>
     </div>
@@ -215,9 +209,12 @@
 
 <!-- Footer -->
 <div class="footer text-center">
-  <br/>
+  <div class="sponsors-footer"></div>
   <div class="footer-main-text">
     Health Priority © Copyright 2014  All rights reserved.
+  </div>
+  <div class="footer-main-text">
+    Developed and designed by <a href="http://www.empters.com">Empters Ltd.</a>
   </div>
   <br/>
   <div class="footer-main-text">

@@ -37,8 +37,26 @@ function initStarRatings() {
     });
 }
 
+function  initCategoriesDropdowns() {
+    $('.category-arrow').click(function() {
+        var categoryName = $(this).data("category");
+        if($(this).hasClass("open")) {
+            $(this).removeClass("open");
+            $(".sub-category[data-category='" + categoryName + "']").each(function() {
+                $(this).addClass("hidden");
+            });
+        } else {
+            $(this).addClass("open");
+            $(".sub-category[data-category='" + categoryName + "']").each(function() {
+                $(this).removeClass("hidden");
+            });
+        }
+    });
+}
+
 $(function() {
     initGallery();
     initSearchDropdown();
     initStarRatings();
+    initCategoriesDropdowns();
 });

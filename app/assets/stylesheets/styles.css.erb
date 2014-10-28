@@ -72,7 +72,7 @@ body {
     color: #8A8A8A;
 }
 
-.item-image, .fb_top, .gallery-item, .item-image, .rsMinW.rsHor .rsArrowIcn, .logo, .cart-amount, .cart, .search-image, .send-email-button, .star {
+.item-image, .fb_top, .gallery-item, .item-image, .rsMinW.rsHor .rsArrowIcn, .logo, .cart-amount, .cart, .search-image, .send-email-button, .star, .sponsors-footer, .category-arrow {
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -138,6 +138,10 @@ body {
 
 .navbar-header {
     text-align: center;
+}
+
+.navbar {
+    margin-bottom: 10px;
 }
 
 .navbar-toggle {
@@ -320,6 +324,27 @@ body {
     .gallery-item {
         height: 220px;
     }
+    .search-section {
+        padding-left: 5px;
+        padding-right: 5px;
+
+    }
+
+    .search-dropdown-container {
+        width: 40%;
+    }
+
+    .search-input-container {
+        width: 50%;
+    }
+
+    .search-image {
+        width: 10%;
+    }
+
+    #search_category, .dropdown-menu {
+        font-size: 12px;
+    }
 }
 
 .rsMinW .rsArrowLeft {
@@ -381,6 +406,20 @@ body {
 
 .categories-list>li>a:hover {
     color: #f79114 !important;
+}
+
+.category-arrow {
+    display: inline-block;
+    height:15px;
+    width: 15px;
+    margin-left: 10px;
+    vertical-align: baseline;
+    background-image: url("<%= image_path "arrow-cat-right.png" %>");
+    cursor: pointer;
+}
+
+.category-arrow.open {
+    background-image: url("<%= image_path "arrow-down.png" %>");
 }
 
 .item-container {
@@ -467,6 +506,10 @@ body {
     background: none;
 }
 
+.sub-category>a {
+    margin-left: 20px;
+}
+
 .footer {
     margin-top: 40px;
     padding: 50px;
@@ -474,6 +517,11 @@ body {
 
 .footer-main-text {
     font-size: 14px;
+}
+
+
+.footer-main-text a {
+    color: #FFFFFF;
 }
 
 .footer-text-title {
@@ -521,4 +569,10 @@ body {
     cursor: pointer;
     border-left: solid #F79114 1px;
     background-image: url("<%= image_path "arrow.png" %>");
+}
+
+.sponsors-footer {
+    height: 40px;
+    margin: 10px;
+    background-image: url("<%= image_path "logos-footer.png" %>");
 }

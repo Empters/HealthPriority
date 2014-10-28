@@ -5,11 +5,11 @@
   <ul class="categories-list">
     <% @categories.each do |category| %>
         <li>
-          <a href="#"><%= category.name %></a>
+          <a href="#"><%= category.name %></a><div class="category-arrow" data-category="<%= category.name %>"></div>
         </li>
         <% category.children.each do |child_category| %>
-            <li>
-              <a href="#"> < <%= child_category.name %></a>
+            <li class="sub-category hidden" data-category="<%= category.name %>">
+              <a href="#"><%= child_category.name %></a>
             </li>
         <% end %>
     <% end %>
