@@ -3,7 +3,10 @@
   <data-source source="LOCAL" name="Rails HealthPriority: development" uuid="47c2805e-5b6d-4cee-89e6-88ea3991989a">
     <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
-  <data-source source="LOCAL" name="Rails HealthPriority: test" uuid="ec39db2e-76b5-447f-9a7c-2b52b019e273">
+  <data-source source="LOCAL" name="Rails HealthPriority: test" uuid="9b7a6fff-9436-4248-8f55-93e350b0d1d0">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source source="LOCAL" name="Rails HealthPriority: cucumber" uuid="ca8ed124-0c95-4998-b557-a0d1ca1517c0">
     <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
 </component>
