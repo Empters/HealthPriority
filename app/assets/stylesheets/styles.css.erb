@@ -42,15 +42,15 @@ body {
     font-size: 14px;
 }
 
-.top-bar-text, .top-bar-container, .main-nav-tab, .button, .item-title, .products-count, .category-name, .category-item, .footer-main-text,.footer-text-title, .footer-text, .categories-list>li, .total-price, .dropdown-menu, #search_category  {
+.top-bar-text, .top-bar-container, .main-nav-tab, .button, .item-title, .products-count, .category-name, .category-item, .footer-main-text,.footer-text-title, .footer-text, .categories-list>li, .total-price, .dropdown-menu, #search_category, .phone-nav-title  {
     font-family: 'Open Sans';
 }
 
-.top-bar-text, .top-bar-container, .main-nav-tab, .button, .item-title, .main-nav-tab, .title-banner, .page.active, .page:hover, .footer-main-text, .cart-amount, .total-price {
+.top-bar-text, .top-bar-container, .main-nav-tab, .button, .item-title, .main-nav-tab, .title-banner, .page.active, .page:hover, .footer-main-text, .cart-amount, .total-price, .phone-nav-title {
     color: #FFFFFF;
 }
 
-.main-nav-wrapper, .title-banner, .footer, .button.green, .button.orange:hover, .page.active, .page:hover,.rsMinW .rsBullet span {
+.main-nav-wrapper, .title-banner, .footer, .button.green, .button.orange:hover, .page.active, .page:hover,.rsMinW .rsBullet span, .phone-nav {
     background: #69a820;
 }
 
@@ -58,7 +58,7 @@ body {
     color: #3e7808;
 }
 
-.item-title, .category-name, .title-banner, .category-name, .top-bar-text, .total-price {
+.item-title, .category-name, .title-banner, .category-name, .top-bar-text, .total-price, .phone-nav-title {
     text-transform: uppercase;
 }
 
@@ -72,7 +72,7 @@ body {
     color: #8A8A8A;
 }
 
-.item-image, .fb_top, .gallery-item, .item-image, .rsMinW.rsHor .rsArrowIcn, .logo, .cart-amount, .cart, .search-image, .send-email-button, .star {
+.item-image, .fb_top, .gallery-item, .item-image, .rsMinW.rsHor .rsArrowIcn, .logo, .cart-amount, .cart, .search-image, .send-email-button, .star, .sponsors-footer, .category-arrow, .dot {
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -92,6 +92,11 @@ body {
 .top-bar-text {
     padding: 5px 0px;
     font-size: 12px;
+}
+
+.top-bar-text:hover {
+    color: #FFFFFF;
+    text-decoration: none;
 }
 
 .top-bar-tab {
@@ -122,9 +127,38 @@ body {
     vertical-align: middle;
 }
 
-.main-nav-tab:hover {
+.main-nav-tab:hover, .navbar-header:hover, .nav>li>a:hover, .nav>li>a:focus {
     background: #5a9812;
     cursor: pointer;
+}
+
+.phone-nav-title {
+    font-size: 16px;
+}
+
+.navbar-header {
+    text-align: center;
+}
+
+.navbar {
+    margin-bottom: 10px;
+}
+
+.navbar-toggle {
+    border:none;
+    float:none;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background: #FFFFFF;
+}
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background: none;
+}
+
+.phone-nav-title, .navbar-toggle {
+   display: inline-block;
 }
 
 .title-banner {
@@ -290,6 +324,27 @@ body {
     .gallery-item {
         height: 220px;
     }
+    .search-section {
+        padding-left: 5px;
+        padding-right: 5px;
+
+    }
+
+    .search-dropdown-container {
+        width: 40%;
+    }
+
+    .search-input-container {
+        width: 50%;
+    }
+
+    .search-image {
+        width: 10%;
+    }
+
+    #search_category, .dropdown-menu {
+        font-size: 12px;
+    }
 }
 
 .rsMinW .rsArrowLeft {
@@ -351,6 +406,29 @@ body {
 
 .categories-list>li>a:hover {
     color: #f79114 !important;
+}
+
+.category-arrow {
+    display: inline-block;
+    height:15px;
+    width: 15px;
+    margin-left: 10px;
+    vertical-align: sub;
+    background-image: url("<%= image_path "arrow-cat-right.png" %>");
+    cursor: pointer;
+}
+
+.category-arrow.open {
+    background-image: url("<%= image_path "arrow-down.png" %>");
+}
+
+.dot {
+    display:inline-block;
+    width: 7px;
+    height: 10px;
+    margin-right: 5px;
+    vertical-align: baseline;
+    background-image: url("<%= image_path "carousel-dot-inactive.png" %>");
 }
 
 .item-container {
@@ -437,6 +515,10 @@ body {
     background: none;
 }
 
+.sub-category {
+    padding-left: 20px;
+}
+
 .footer {
     margin-top: 40px;
     padding: 50px;
@@ -444,6 +526,11 @@ body {
 
 .footer-main-text {
     font-size: 14px;
+}
+
+
+.footer-main-text a {
+    color: #FFFFFF;
 }
 
 .footer-text-title {
@@ -491,4 +578,10 @@ body {
     cursor: pointer;
     border-left: solid #F79114 1px;
     background-image: url("<%= image_path "arrow.png" %>");
+}
+
+.sponsors-footer {
+    height: 40px;
+    margin: 10px;
+    background-image: url("<%= image_path "logos-footer.png" %>");
 }
