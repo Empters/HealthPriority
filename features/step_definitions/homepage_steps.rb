@@ -2,7 +2,9 @@ require 'factory_girl'
 
 Given(/^we have (\d+) products$/) do |arg1|
   # binding.pry
-  FactoryGirl.create(:product, :name=> 'test')
+  arg1.to_i.times do
+    FactoryGirl.create(:product)
+  end
 end
 
 When(/^I visit the homepage$/) do
@@ -11,5 +13,5 @@ When(/^I visit the homepage$/) do
 end
 
 Then(/^I have to see the products$/) do
-  expect(page).to have_content 'TEST'
+  expect(page).to have_content 'PRODUCT'
 end
