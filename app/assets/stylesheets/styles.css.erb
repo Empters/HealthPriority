@@ -72,7 +72,7 @@ body {
     color: #8A8A8A;
 }
 
-.item-image, .fb_top, .gallery-item, .item-image, .rsMinW.rsHor .rsArrowIcn, .logo, .cart-amount, .cart, .search-image, .send-email-button, .star, .sponsors-footer, .category-arrow {
+.item-image, .fb_top, .gallery-item, .item-image, .rsMinW.rsHor .rsArrowIcn, .logo, .cart-amount, .cart, .search-image, .send-email-button, .star, .sponsors-footer, .category-arrow, .dot {
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -413,13 +413,22 @@ body {
     height:15px;
     width: 15px;
     margin-left: 10px;
-    vertical-align: baseline;
+    vertical-align: sub;
     background-image: url("<%= image_path "arrow-cat-right.png" %>");
     cursor: pointer;
 }
 
 .category-arrow.open {
     background-image: url("<%= image_path "arrow-down.png" %>");
+}
+
+.dot {
+    display:inline-block;
+    width: 7px;
+    height: 10px;
+    margin-right: 5px;
+    vertical-align: baseline;
+    background-image: url("<%= image_path "carousel-dot-inactive.png" %>");
 }
 
 .item-container {
@@ -506,8 +515,8 @@ body {
     background: none;
 }
 
-.sub-category>a {
-    margin-left: 20px;
+.sub-category {
+    padding-left: 20px;
 }
 
 .footer {
