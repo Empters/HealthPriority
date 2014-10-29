@@ -43,14 +43,6 @@ gem 'activeadmin', github: 'activeadmin'
 # Authentication solution for rails
 gem 'devise'
 
-# debugging
-gem 'pry-rails', :group => :development
-
-#better way for testing
-group :development, :test do
-  gem 'rspec-rails', '~> 3.0.0'
-end
-
 #gem 'tlsmail'
 
 group :development, :test do
@@ -63,6 +55,7 @@ gem 'paperclip', '~> 4.2'
 group :development, :test do
   gem "factory_girl_rails"
   gem 'ffaker'
+  gem 'rspec-rails', '~> 3.0.0'
   gem 'cucumber-rails', :require => false
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'
@@ -72,6 +65,7 @@ group :development, :test do
   gem 'email_spec'
   gem 'poltergeist'
   gem 'selenium-webdriver'
+  gem 'pry-rails'
 end
 
 # Rich text editor

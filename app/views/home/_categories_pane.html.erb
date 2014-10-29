@@ -3,74 +3,17 @@
 </div>
 <div class="content-container">
   <ul class="categories-list">
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
-    <li>
-      <a href="#">Category Name (10)</a>
-    </li>
+    <% @categories.each do |category| %>
+        <li>
+            <div class="dot"></div>
+            <a href="#"><%= category.name %></a><div class="category-arrow" data-category="<%= category.name %>"></div>
+        </li>
+        <% category.children.each do |child_category| %>
+            <li class="sub-category hidden" data-category="<%= category.name %>">
+              <div class="dot"></div>
+              <a href="#"><%= child_category.name %></a>
+            </li>
+        <% end %>
+    <% end %>
   </ul>
 </div>
