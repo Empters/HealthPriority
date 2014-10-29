@@ -53,4 +53,22 @@ Rails.application.configure do
 
 
   config.action_mailer.default_url_options = { host: 'health.empters.com' }
+
+  # Set ImageMagick path - crop image
+  Paperclip.options[:command_path] = '/usr/bin'
+
+  # repair paperclip validate content type error
+  require 'paperclip/media_type_spoof_detector'
+  Paperclip::MediaTypeSpoofDetector.class_eval do
+    def spoofed?
+      false
+    end
+    def type_from_file_command
+      begin
+        Paperclip.run('file', '-b --mime :file', :file => @file.path)
+      rescue Cocaine::CommandLineError
+        ''
+      end
+    end
+  end
 end

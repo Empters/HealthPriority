@@ -20,3 +20,4 @@
 
 # Ignore attached file folder
 /public/system
+.idea

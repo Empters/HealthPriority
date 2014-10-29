@@ -53,14 +53,9 @@ end
 
 #gem 'tlsmail'
 
-group :development do
+group :development, :test do
   # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
   gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
-end
-
-group :test do
-  # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-  gem 'tzinfo-data', platforms: [:mingw, :mswin]
 end
 
 gem 'paperclip', '~> 4.2'
@@ -68,4 +63,16 @@ gem 'paperclip', '~> 4.2'
 group :development, :test do
   gem "factory_girl_rails"
   gem 'ffaker'
+  gem 'cucumber-rails', :require => false
+  # database_cleaner is not required, but highly recommended
+  gem 'database_cleaner'
+  gem 'capybara'
+  # gem 'capybara-webkit', '~> 1.3.1'
+  gem 'capybara-screenshot'
+  gem 'email_spec'
+  gem 'poltergeist'
+  gem 'selenium-webdriver'
 end
+
+# Rich text editor
+gem 'ckeditor'
