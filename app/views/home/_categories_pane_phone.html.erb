@@ -10,7 +10,7 @@
 
     <div class="collapse navbar-collapse nopadding phone-categories-nav">
       <ul class="nav navbar navbar-left nomargin">
-        <% @categories.each do |category| %>
+        <% @categories.top_level.each do |category| %>
             <li class="nav-item-phone text-center">
               <a href="#" class="top-bar-text"><%= category.name %></a>
             </li>

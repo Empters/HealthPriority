@@ -40,7 +40,7 @@ ActiveAdmin.register Category do
       if (f.object.image.present?)
         f.input :remove_image, :as=> :boolean, :required => false, :label => 'Remove image'
       end
-      f.input :description
+      f.input :description, :as => :ckeditor
       f.input :active
       f.input :sort_order
       f.input :meta_keyword

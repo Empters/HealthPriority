@@ -3,8 +3,11 @@ class Product < ActiveRecord::Base
   # Validate required attributes
   validates_presence_of :name, :quantity, :price, :active, :manufacturer_id, :sort_order, :stock_status_id
 
+  #TODO - config missing product image
   # Init image file - paperclip image
-  has_attached_file :image, :styles => Rails.application.config.paperclip_styles
+  has_attached_file :image,
+                    :styles => Rails.application.config.paperclip_styles,
+                    :default_url => ActionController::Base.helpers.asset_path('product-image-1.jpg')
 
   # Validate content type
   validates_attachment_content_type :image, :content_type => Rails.application.config.paperclip_allow_image_content, :message => Rails.application.config.paperclip_allow_image_content_message
@@ -25,6 +28,10 @@ class Product < ActiveRecord::Base
   # Edit product images
   accepts_nested_attributes_for :product_images, allow_destroy: true,
                                 :reject_if => lambda { |attributes| attributes[:image].blank? }
+
+  scope :feature_products, -> do
+    order('created_at desc').limit(18)
+  end
 
   # Remove image attribute
   attr_writer :remove_image

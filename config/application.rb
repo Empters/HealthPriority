@@ -26,6 +26,7 @@ module HealthPriority
     config.assets.initialize_on_precompile = false
 
     config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
 
     # Help configuration for paperclip images
     config.paperclip_styles = { :thumb => '48x48' }
