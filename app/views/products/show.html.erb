@@ -1,39 +1,277 @@
-<p id="notice"><%= notice %></p>
+<div class="container product">
+<div class="row">
+  <!-- Product's Gallery -->
+  <div class="col-md-4 col-xs-12">
+    <div id="items-carousel" class="carousel slide" data-ride="carousel">
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <div class="item">
+          <img src="<%= @product.image %>" alt="...">
+        </div>
+        <div class="item">
+          <img src="<%= image_path "product-image-2.jpg" %>" alt="...">
+        </div>
+        <div class="item">
+          <img src="<%= image_path "product-image-3.jpg" %>" alt="...">
+        </div>
+        <div class="item active">
+          <img src="<%= image_path "product-image-4.jpg" %>" alt="...">
+        </div>
+      </div>
+      <!-- Wrapper for slides end -->
+      <br>
+      <!-- Indicators -->
+      <div class="carousel-indicators thumbs row thumbIndicatorsContainer">
+        <div class="inline">
+          <div data-target="#items-carousel" data-slide-to="0" class="col-md-3 col-xs-3 indicator">
+            <img class="img-responsive" src="<%= @product.image %>" alt="...">
+          </div>
+        </div>
+        <div class="inline">
+          <div data-target="#items-carousel" data-slide-to="1" class="col-md-3 col-xs-3 indicator">
+            <img class="img-responsive" src="<%= image_path "product-image-2.jpg" %>" alt="...">
+          </div>
+        </div>
+        <div class="inline">
+          <div data-target="#items-carousel" data-slide-to="2" class="col-md-3 col-xs-3 indicator">
+            <img class="img-responsive" src="<%= image_path "product-image-3.jpg" %>" alt="...">
+          </div>
+        </div>
+        <div class="inline active">
+          <div data-target="#items-carousel" data-slide-to="3" class="col-md-3 col-xs-3 indicator">
+            <img class="img-responsive" src="<%= image_path "product-image-4.jpg" %>" alt="...">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Product's Gallery  end-->
 
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
+  <!-- Product's basic info -->
+  <div class="col-md-4">
+    <div class="path">
+      <a href="#">Home</a>
+      /
+      <a href="#">Products</a>
+      /
+      <a href="#">Category</a>
+      /
+      <a href="product.path" class="active"> <%= @product.name %></a>
+    </div>
+    <div class="product-title">
+      <%= @product.name %>
+    </div>
+    <div class="product-price">Old price:
+      <div class="old-price">£62,87</div>
+    </div>
+    <div class="product-price">Our price:
+      <div class="our-price">£ <%= @product.price %></div>
+    </div>
+    <div class="product-price saving">You are saving: £62,87 (20%)</div>
+    <div class="product-reviews-container">
+      <div class="product-rating left">
+        <div class="star-rating">
+          <div class="star" data-rating="1"></div>
+          <div class="star" data-rating="2"></div>
+          <div class="star" data-rating="3"></div>
+          <div class="star" data-rating="4"></div>
+          <div class="star" data-rating="5"></div>
+          <!-- Place the product's rating in the div below -->
+          <div class="hidden rating-value">3</div>
+        </div>
+      </div>
+      <div class="product-reviews left"><a href="#">12 Reviews</a></div>
+      <div class="product-in-stock right">In Stock:
+        <div class="stock">yes</div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="qty-add-container">
+        <div class="quantity-container">
+          <div class="text-center">QTY</div>
+          <div class="quantity">
+            <%= @product.quantity %>
+          </div>
+        </div>
+        <div class="add-to-cart-container">
+          <div class="button green">Add To Cart</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Product's basic info end -->
+</div>
+<!-- Product's details info -->
+<div class="row">
+  <div class="col-md-12 product-details-container">
+    <div class="product-details-tab-container">
+      <div class="product-details-tab active">
+        Product Overview
+      </div>
+      <div class="product-details-tab">
+        Product Overview
+      </div>
+      <div class="product-details-tab">
+        Product Overview
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="details-content-container">
+      <div class="details-header">Full Description of the product</div>
+      <div class="details-content">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+        standard dummy text ever since the 1500s,
+        when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not
+        only five centuries, but also the leap into
+        electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+        Letraset sheets containing Lorem Ipsum
+        passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem
+        Ipsum.
 
-<p>
-  <strong>Quantity:</strong>
-  <%= @product.quantity %>
-</p>
+        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
+        literature from 45 BC, making it over 2000
+        years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the
+        more obscure Latin words, consectetur,
+        from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the
+        undoubtable source. Lorem Ipsum comes
+        from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero,
+        written in 45 BC. This book is a
+        treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem
+        ipsum dolor sit amet..", comes from a line
+        in section 1.10.32.
+      </div>
 
-<p>
-  <strong>Viewed:</strong>
-  <%= @product.viewed %>
-</p>
+      <div class="details-header">The Product Contains:</div>
+      <!-- Product's content titles -->
+      <div class="row nomargin nopadding product-content-table-item">
+        <div class="col-md-2 content-table-td title">&nbsp;</div>
+        <div class="col-md-2 content-table-td title">Something</div>
+        <div class="col-md-2 content-table-td title">Something</div>
+        <div class="col-md-2 content-table-td title">Something</div>
+        <div class="col-md-2 content-table-td title">Something</div>
+        <div class="col-md-2 content-table-td title">Something</div>
+      </div>
+      <!-- Product's content titles end -->
+      <!-- Product's content rows -->
+      <div class="row nomargin nopadding product-content-table-item">
+        <div class="col-md-2 content-table-td title">Something</div>
+        <div class="col-md-2 content-table-td">Something</div>
+        <div class="col-md-2 content-table-td">Something</div>
+        <div class="col-md-2 content-table-td">Something</div>
+        <div class="col-md-2 content-table-td">Something</div>
+        <div class="col-md-2 content-table-td">Something</div>
+      </div>
+      <div class="row nomargin nopadding product-content-table-item">
+        <div class="col-md-2 content-table-td title">Something</div>
+        <div class="col-md-2 content-table-td">Something</div>
+        <div class="col-md-2 content-table-td">Something</div>
+        <div class="col-md-2 content-table-td">Something</div>
+        <div class="col-md-2 content-table-td">Something</div>
+        <div class="col-md-2 content-table-td">Something</div>
+      </div>
+      <div class="row nomargin nopadding product-content-table-item">
+        <div class="col-md-2 content-table-td title">Something</div>
+        <div class="col-md-2 content-table-td">Something</div>
+        <div class="col-md-2 content-table-td">Something</div>
+        <div class="col-md-2 content-table-td">Something</div>
+        <div class="col-md-2 content-table-td">Something</div>
+        <div class="col-md-2 content-table-td">Something</div>
+      </div>
+      <!-- Product's content rows end -->
+    </div>
+  </div>
+</div>
+<!-- Product's reviews -->
 
-<p>
-  <strong>Image:</strong>
-  <%= @product.image %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @product.price %>
-</p>
-
-<p>
-  <strong>Points:</strong>
-  <%= @product.points %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @product.description %>
-</p>
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="product-review-title">Customer Reviews</div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="product-review-stars-container">
+      <div class="product-reviews-container distinct">
+        <div class="product-rating">
+          <div class="star-rating">
+            <div class="star" data-rating="1"></div>
+            <div class="star" data-rating="2"></div>
+            <div class="star" data-rating="3"></div>
+            <div class="star" data-rating="4"></div>
+            <div class="star" data-rating="5"></div>
+            <!-- Place the product's rating in the div below -->
+            <div class="hidden rating-value">3</div>
+            <div class="product-reviews"><a href="#">(12 Reviews)</a></div>
+          </div>
+        </div>
+        <!-- 5 stars -->
+        <div class="product-reviews-distinct-container">
+          <div class="product-review-star">
+            <div class="star-name">5 Stars</div>
+            <div class="star-percentage">
+              <!-- Fill the percentage below -->
+              <div class="star-percentage-cover" style="width: 20%;"></div>
+            </div>
+            <div class="star-count">(3)</div>
+          </div>
+        </div>
+        <!-- 5 stars end -->
+        <!-- 4 stars -->
+        <div class="product-reviews-distinct-container">
+          <div class="product-review-star">
+            <div class="star-name">4 Stars</div>
+            <div class="star-percentage">
+              <!-- Fill the percentage below -->
+              <div class="star-percentage-cover" style="width: 60%;"></div>
+            </div>
+            <div class="star-count">(3)</div>
+          </div>
+        </div>
+        <!-- 4 stars end -->
+        <!-- 3 stars -->
+        <div class="product-reviews-distinct-container">
+          <div class="product-review-star">
+            <div class="star-name">3 Stars</div>
+            <div class="star-percentage">
+              <!-- Fill the percentage below -->
+              <div class="star-percentage-cover" style="width: 10%;"></div>
+            </div>
+            <div class="star-count">(3)</div>
+          </div>
+        </div>
+        <!-- 3 stars end -->
+        <!-- 2 stars -->
+        <div class="product-reviews-distinct-container">
+          <div class="product-review-star">
+            <div class="star-name">2 Stars</div>
+            <div class="star-percentage">
+              <!-- Fill the percentage below -->
+              <div class="star-percentage-cover" style="width: 0%;"></div>
+            </div>
+            <div class="star-count">(3)</div>
+          </div>
+        </div>
+        <!-- 2 stars end -->
+        <!-- 1 stars -->
+        <div class="product-reviews-distinct-container">
+          <div class="product-review-star">
+            <div class="star-name">1 Stars</div>
+            <div class="star-percentage">
+              <!-- Fill the percentage below -->
+              <div class="star-percentage-cover" style="width: 100%;"></div>
+            </div>
+            <div class="star-count">(3)</div>
+          </div>
+        </div>
+        <!-- 1 stars end -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Product's reviews end -->
+<!-- Product's details info end -->
+<!-- Last Visited Products -->
+<div class="row">
+  <%= render 'home/last_visited_products' %>
+</div>
+<!-- Last Visited Products End -->
+</div>
