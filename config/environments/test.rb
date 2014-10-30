@@ -56,5 +56,5 @@ Rails.application.configure do
 
 
   # Set ImageMagick path - crop image
-  Paperclip.options[:command_path] = '/usr/local/bin/'
+    Paperclip.options[:command_path] = '/usr/local/bin/'
 end
