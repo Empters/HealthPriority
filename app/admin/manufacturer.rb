@@ -31,7 +31,7 @@ ActiveAdmin.register Manufacturer do
       if (f.object.image.present?)
         f.input :remove_image, :as=> :boolean, :required => false, :label => 'Remove image'
       end
-      f.input :description
+      f.input :description, :as => :ckeditor
       f.input :sort_order
     end
     f.actions

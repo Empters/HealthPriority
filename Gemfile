@@ -45,14 +45,9 @@ gem 'devise'
 
 #gem 'tlsmail'
 
-group :development do
+group :development, :test do
   # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
   gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
-end
-
-group :test do
-  # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-  gem 'tzinfo-data', platforms: [:mingw, :mswin]
 end
 
 gem 'paperclip', '~> 4.2'
@@ -72,3 +67,6 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'pry-rails'
 end
+
+# Rich text editor
+gem 'ckeditor'

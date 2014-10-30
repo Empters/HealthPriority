@@ -8,6 +8,6 @@ class HomeController < ApplicationController
     end
 
     def set_products
-      @products = Product.all
+      @products = Product.feature_products
     end
 end

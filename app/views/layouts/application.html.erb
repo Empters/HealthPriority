@@ -3,7 +3,7 @@
 <head>
   <title>HealthPriority</title>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400&subset=latin,cyrillic-ext,greek-ext,greek,vietnamese,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
@@ -29,13 +29,18 @@
       <div class="top-bar-tab top-bar-text">
         DELIVERY
       </div>
-      <div class="top-bar-tab top-bar-text">
-        <% if user_signed_in? -%>
-            <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-        <% else %>
+      <% if user_signed_in? -%>
+          <div class="top-bar-tab top-bar-text">
+            <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link' %>
+          </div>
+          <div class="top-bar-tab top-bar-text">
+            <%= link_to "User profile", :class => 'navbar-link' %>
+          </div>
+      <% else %>
+          <div class="top-bar-tab top-bar-text">
             <%= link_to "Sign In", new_user_session_path, remote: true, :"data-toggle" => 'modal', :"data-target" => '#signInModal' %>
-        <% end %>
-      </div>
+          </div>
+      <% end %>
       <div class="top-bar-tab top-bar-text">
         <div class="fb_top"></div>
         Connect
@@ -50,36 +55,30 @@
   <div class="container">
     <div class="row">
       <div class="col-md-2 col-sm-2 col-xs-1 nomargin nopadding">
-        <%= link_to '', root_path, :class => 'logo', :data => { :no_turbolink => true } %>
+        <%= link_to '', root_path, :class => 'logo', :data => {:no_turbolink => true} %>
       </div>
       <div class="col-md-8 col-sm-8 col-xs-9">
         <div class="search-section">
-            <div class="search-container">
-                <div class="search-dropdown-container left">
-                    <div class="dropdown-toggle" id="search_category" data-toggle="dropdown">
-                        <span id="chosen_category">All Categories</span>
-                        <b class="caret"></b>
-                    </div>
-                    <ul aria-labelledby="search_category" role="menu" class="dropdown-menu ">
-                        <li>
-                            All Categories
-                        </li>
-                        <li>
-                            Category 1
-                        </li>
-                        <li>
-                            Category 2
-                        </li>
-                        <li>
-                            Category 3
-                        </li>
-                    </ul>
-                </div>
-                <div class="search-input-container left">
-                  <input type="text" class="search-input" placeholder="Search..." />
-                </div>
-                <div class="search-image right"></div>
+          <div class="search-container">
+            <div class="search-dropdown-container left">
+              <div class="dropdown-toggle" id="search_category" data-toggle="dropdown">
+                <span id="chosen_category">All Categories</span>
+                <b class="caret"></b>
+              </div>
+              <ul aria-labelledby="search_category" role="menu" class="dropdown-menu ">
+                <li>
+                  All Categories
+                </li>
+                <% @categories.top_level.each do |category| %>
+                    <li><%= category.name %></li>
+                <% end %>
+              </ul>
             </div>
+            <div class="search-input-container left">
+              <input type="text" class="search-input" placeholder="Search..."/>
+            </div>
+            <div class="search-image right"></div>
+          </div>
         </div>
       </div>
       <div class="col-md-2 col-sm-2 col-xs-2 nopadding nomargin">
@@ -101,7 +100,7 @@
 <nav class="main-nav-wrapper">
   <!-- Nav bar for phones -->
   <div class="navbar navbar-default visible-xs phone-nav">
-    <div class="navbar-header" data-toggle="collapse" data-target=".phone-main-nav" >
+    <div class="navbar-header" data-toggle="collapse" data-target=".phone-main-nav">
       <div class="phone-nav-title">MENU</div>
       <button data-target=".phone-main-nav" class="navbar-toggle">
         <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
@@ -110,7 +109,7 @@
 
     <div class="collapse navbar-collapse nopadding phone-main-nav">
       <ul class="nav navbar navbar-left nomargin">
-        <li class="nav-item-phone text-center"><%= link_to 'HOME', root_path, :data => { :no_turbolink => true }, :class => 'top-bar-text' %></li>
+        <li class="nav-item-phone text-center"><%= link_to 'HOME', root_path, :data => {:no_turbolink => true}, :class => 'top-bar-text' %></li>
         <li class="nav-item-phone text-center"><%= link_to 'ABOUT US', about_us_path, :class => 'top-bar-text' %></li>
         <li class="nav-item-phone text-center"><%= link_to 'PRODUCTS', products_path, :class => 'top-bar-text' %></li>
         <li class="nav-item-phone text-center"><%= link_to 'SPECIAL OFFERS', special_offers_path, :class => 'top-bar-text' %></li>
@@ -123,7 +122,7 @@
   <!-- nav bar large displays -->
   <div class="container text-center hidden-xs">
     <div class="main-nav-tab">
-      <%= link_to 'HOME', root_path, :data => { :no_turbolink => true }, :class => 'top-bar-text' %>
+      <%= link_to 'HOME', root_path, :data => {:no_turbolink => true}, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
       <%= link_to 'ABOUT US', about_us_path, :class => 'top-bar-text' %>
@@ -156,7 +155,7 @@
       <div class="category-name">
         First Category
       </div>
-      <a href="#" class="category-item">Category namee </a>
+      <a href="#" class="category-item">Category name </a>
       <a href="#" class="category-item">Category name </a>
       <a href="#" class="category-item">Category name </a>
       <a href="#" class="category-item">Category name </a>
@@ -198,7 +197,8 @@
         featured under categories lists.
       </div>
       <div class="email-container">
-        <input type="text" class="email-input" placeholder=" Enter Your Email Address" />
+        <input type="text" class="email-input" placeholder=" Enter Your Email Address"/>
+
         <div class="send-email-button right"></div>
       </div>
     </div>
@@ -211,18 +211,20 @@
 <div class="footer text-center">
   <div class="sponsors-footer"></div>
   <div class="footer-main-text">
-    Health Priority © Copyright 2014  All rights reserved.
+    Health Priority © Copyright 2014 All rights reserved.
   </div>
   <div class="footer-main-text">
     Developed and designed by <a href="http://www.empters.com">Empters Ltd.</a>
   </div>
   <br/>
+
   <div class="footer-main-text">
     “Brand Name” is a registered trademark of this that and lorem ipsum dolor sit amet. Aber conques sed to do.
   </div>
   <div class="footer-text-title">Tuesday, Sep 09, 2014, 8:51 PST</div>
   <div class="footer-text">
-    Disclaimer: Statements made, or products sold through this website, have not been evaluated by the English Food and Drug Administration.
+    Disclaimer: Statements made, or products sold through this website, have not been evaluated by the English Food and
+    Drug Administration.
     They are not intended to diagnose, treat, cure or prevent any disease. Read more »
   </div>
 </div>
