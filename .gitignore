@@ -21,3 +21,4 @@
 # Ignore attached file folder
 /public/system
 .idea
+.idea/HealthPriority.iml

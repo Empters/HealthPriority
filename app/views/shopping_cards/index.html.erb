@@ -1,1 +1,95 @@
-shopping card
+<div class="container">
+  <!-- Shopping cart -->
+  <div class="shopping-cart-container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="path">
+          <a href="#">Home</a>
+          /
+          <a href="#">Cart</a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="cart-title">Shopping Cart</div>
+      </div>
+    </div>
+    <!-- Product's content titles -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="product-content-table-item">
+          <div class="col-md-2 content-table-td title">Image</div>
+          <div class="col-md-2 content-table-td title">Product</div>
+          <div class="col-md-2 content-table-td title">Category</div>
+          <div class="col-md-2 content-table-td title">QTY</div>
+          <div class="col-md-2 content-table-td title">Price</div>
+          <div class="col-md-2 content-table-td title">Total</div>
+        </div>
+      </div>
+    </div>
+    <!-- Product's content titles end -->
+    <!-- Products rows -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="product-content-table-item">
+          <div class="col-md-2 content-table-td image" style="background-image: url('<%= image_path "product-image-1.jpg" %>');"></div>
+          <div class="col-md-2 content-table-td">Something</div>
+          <div class="col-md-2 content-table-td">Something</div>
+          <div class="col-md-2 content-table-td">Something</div>
+          <div class="col-md-2 content-table-td">Something</div>
+          <div class="col-md-2 content-table-td">Something</div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="product-content-table-item">
+          <div class="col-md-2 content-table-td image" style="background-image: url('<%= image_path "product-image-1.jpg" %>');"></div>
+          <div class="col-md-2 content-table-td">Something</div>
+          <div class="col-md-2 content-table-td">Something</div>
+          <div class="col-md-2 content-table-td">Something</div>
+          <div class="col-md-2 content-table-td">Something</div>
+          <div class="col-md-2 content-table-td">Something</div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="product-content-table-item">
+          <div class="col-md-2 content-table-td image" style="background-image: url('<%= image_path "product-image-1.jpg" %>');"></div>
+          <div class="col-md-2 content-table-td">Something</div>
+          <div class="col-md-2 content-table-td">Something</div>
+          <div class="col-md-2 content-table-td">Something</div>
+          <div class="col-md-2 content-table-td">Something</div>
+          <div class="col-md-2 content-table-td">Something</div>
+        </div>
+      </div>
+    </div>
+    <!-- Products rows end -->
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="cart-total-container">
+          <div class="product-price text-right">Total:
+            <div class="our-price">£1234</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 buttons-container">
+        <a href="#" class="button green right">Payment</a>
+        <a href="#" class="button green right continue-shopping">Continue Shopping</a>
+      </div>
+    </div>
+  </div>
+  <!-- Shopping cart end -->
+
+  <!-- Last Visited Products -->
+  <div class="row">
+    <%= render 'home/last_visited_products' %>
+  </div>
+  <!-- Last Visited Products End -->
+</div>
