@@ -18,3 +18,10 @@
 //= require main
 //= require turbolinks
 //= require_tree .
+
+
+$().ready(function(){
+    $('#search_link').click(function(){
+        $(this).attr('href', 'products/search?token=' + $('#search_input').val());
+    });
+});

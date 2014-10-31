@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
+  get '/products/search', to: 'products#search'
+
   resources :product_reviews
   resources :product_discounts
   resources :categories

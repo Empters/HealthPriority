@@ -258,11 +258,17 @@ body {
     outline: 0;
 }
 
-.search-image {
-    width: 15%;
+.search-image-div {
+    width: 10%;
     height: 100%;
-    background-image: url("<%= image_path "search.png" %>");
     background-size: inherit;
+}
+
+.search-image {
+    background-image: url("<%= image_path "search.png" %>");
+    display:block;
+    width: 40%;
+    height: 100%;
 }
 
 .cart-amount {
@@ -355,7 +361,7 @@ body {
     }
 
     .search-image {
-        width: 10%;
+        width: 60%;
     }
 
     #search_category, .dropdown-menu {
@@ -715,7 +721,7 @@ body {
 
 
 .product-details-container {
-    margin-top: 50px;:
+    margin-top: 50px;
 }
 
 .product-details-tab {

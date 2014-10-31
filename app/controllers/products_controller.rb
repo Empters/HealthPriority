@@ -61,6 +61,19 @@ class ProductsController < ApplicationController
     end
   end
 
+  # GET /products/search
+  def search
+    puts "search"
+    puts search_params
+    @products = Product.where("name LIKE :name", {:name => "%" + search_params + "%"})
+    puts @products
+
+    respond_to do |format|
+      format.html { puts "html" }
+      format.js { puts 'js' }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
@@ -71,4 +84,8 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:name, :model, :quantity, :viewed, :image, :price, :points, :description)
     end
+
+  def search_params
+    params.require(:token)
+  end
 end
