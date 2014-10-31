@@ -7,13 +7,14 @@ ActiveAdmin.register Product do
   permit_params :name, :quantity, :viewed, :image, :price, :points, :description, :active, :manufacturer_id, :sort_order,
                 :date_available, :meta_keyword, :meta_description, :stock_status_id, :remove_image,
                 product_images_attributes: [:image, :image_file_name, :image_content_type, :image_file_size, :image_updated_at, :_destroy, :id],
-                categories_ids:[]
+                category_ids:[]
 
   # Init filters
   filter :name
   filter :price
   filter :quantity
   filter :manufacturer
+  filter :categories
   filter :active
   filter :meta_description
 
@@ -30,6 +31,11 @@ ActiveAdmin.register Product do
     column :price
     column :quantity
     column :manufacturer
+    column 'Categories' do |post|
+      post.categories.each do |category|
+        div link_to category.name, admin_category_path(category)
+      end
+    end
     column :active
     column :created_at
     column :updated_at
@@ -40,7 +46,7 @@ ActiveAdmin.register Product do
   form :html => {:multipart => true} do |f|
     f.inputs do
       f.input :name
-      f.input :categories, :as => :check_boxes, :multiple => true
+      f.input :categories, :as => :select, :multiple => true, :member_label => :full_name
       f.input :manufacturer_id, :as => :select, collection: Manufacturer.all, :member_label => :name, :member_value => :id, :include_blank => 'Choose manufacturer'
       f.input :stock_status_id, :as => :select, collection: StockStatus.all, :member_label => :name, :member_value => :id, :include_blank => 'Choose stock status'
       f.input :quantity

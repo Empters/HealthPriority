@@ -32,4 +32,22 @@ class Category < ActiveRecord::Base
   # Remove image validation
   before_validation { self.image.clear if self.remove_image == '1' }
 
+  def parent_names
+    @parent_names ||= get_ancestors(self).reverse.join(' > ')
+  end
+
+  def full_name
+    @full_name = parent_names.empty? ? self.name : parent_names << ' > ' << self.name
+  end
+
+  def get_ancestors(who)
+    @tree ||= []
+    if who.parent.nil?
+      return @tree
+    else
+      @tree << who.parent.name
+      get_ancestors(who.parent)
+    end
+  end
+
 end
