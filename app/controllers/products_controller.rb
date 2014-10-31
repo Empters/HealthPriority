@@ -65,7 +65,7 @@ class ProductsController < ApplicationController
   def search
     puts "search"
     puts search_params
-    @products = Product.where("name LIKE :name", {:name => "%" + search_params + "%"})
+    @products = Product.where("UPPER(name) LIKE :name", {:name => "%" + search_params.upcase + "%"})
     puts @products
 
     respond_to do |format|
