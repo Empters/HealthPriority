@@ -63,14 +63,25 @@ class ProductsController < ApplicationController
 
   # GET /products/search
   def search
-    puts "search"
-    puts search_params
     @products = Product.where("UPPER(name) LIKE :name", {:name => "%" + search_params.upcase + "%"})
-    puts @products
-
     respond_to do |format|
       format.html { puts "html" }
       format.js { puts 'js' }
+    end
+  end
+
+  # GET /products/filter
+  def filter
+    @category = Category.find(filter_params)
+    if(@category.parent)
+      @products = Product.joins(products_categories: :category).where(categories: {id: @category})
+    else
+      @products = Product.joins(products_categories: :category).where('categories.id = :category or categories.parent_id = :category', {:category => @category})
+    end
+
+    respond_to do |format|
+      format.html { puts "html" }
+      format.js { render 'search.js.erb' }
     end
   end
 
@@ -87,5 +98,9 @@ class ProductsController < ApplicationController
 
   def search_params
     params.require(:token)
+  end
+
+  def filter_params
+    params.require(:category)
   end
 end

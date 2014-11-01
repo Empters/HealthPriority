@@ -6,7 +6,8 @@
     <% @categories.each do |category| %>
         <li>
           <!--<div class="dot"></div>-->
-          <a href="#"><%= category.name %></a>
+          <%= link_to category.name, filter_path(category),  remote: true %>
+
           <div class="category-arrow" data-category="<%= category.name %>"></div>
         </li>
         <% category.children.each do |child_category| %>
