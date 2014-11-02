@@ -60,7 +60,7 @@ group :development, :test do
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'
   gem 'capybara'
-  # gem 'capybara-webkit', '~> 1.3.1'
+  # gem 'capybara-webkit'
   gem 'capybara-screenshot'
   gem 'email_spec'
   gem 'poltergeist'
