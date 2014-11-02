@@ -5,4 +5,4 @@ Feature: Check if we are able to search
     Given we have product called "My_Needed_Product"
     When I visit the homepage
     And Search by "Needed"
-    Then I have to see the My_Needed_Product
+    Then I have to see the product

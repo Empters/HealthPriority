@@ -14,9 +14,9 @@ FactoryGirl.create(:user)
 
 
 6.times do
-  FactoryGirl.create(:product)
+  FactoryGirl.create(:category, is_top?: true)
 end
 
 6.times do
-  FactoryGirl.create(:category, is_top?: true)
+  FactoryGirl.create(:product)
 end

@@ -22,6 +22,6 @@
 
 $().ready(function(){
     $('#search_link').click(function(){
-        $(this).attr('href', 'products/search?token=' + $('#search_input').val());
+        $(this).attr('href', 'products/search/' + $('#search_input').val());
     });
 });

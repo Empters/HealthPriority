@@ -4,5 +4,6 @@ FactoryGirl.define do
         price 100
         stock_status_id 1
         manufacturer_id 1
+        categories {[Category.all.sample]}
     end
 end
