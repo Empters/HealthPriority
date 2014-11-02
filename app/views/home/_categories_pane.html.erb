@@ -13,7 +13,7 @@
         <% category.children.each do |child_category| %>
             <li class="sub-category hidden" data-category="<%= category.name %>">
               <!--<div class="dot"></div>-->
-              <a href="#"><%= child_category.name %></a>
+              <%= link_to child_category.name, filter_path(child_category),  remote: true %>
             </li>
         <% end %>
     <% end %>
