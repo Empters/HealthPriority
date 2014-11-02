@@ -1,5 +1,6 @@
 class ContactsController < ApplicationController
   def index
-    @contacts = WebStoreDetail.first.nil? ? 'No contacts data' : WebStoreDetail.first.contact.html_safe
+    web_store_detail = WebStoreDetail.first
+    @contacts = web_store_detail.nil? ? '' : web_store_detail.contact.nil? ? '' : web_store_detail.contact.html_safe
   end
 end

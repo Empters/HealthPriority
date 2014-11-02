@@ -4,6 +4,7 @@ class CreateWebStoreDetails < ActiveRecord::Migration
       t.text :contact
       t.text :delivery
       t.text :faq
+      t.text :about_us
 
       t.timestamps
     end
