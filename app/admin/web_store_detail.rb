@@ -6,6 +6,14 @@ ActiveAdmin.register WebStoreDetail do
   # Set permit parameters
   permit_params :about_us, :contact, :delivery, :faq
 
+  # Init filters
+  filter :about_us
+  filter :contact
+  filter :faq
+  filter :delivery
+  filter :created_at
+  filter :updated_at
+
   # Init index page
   index do
     selectable_column
@@ -21,6 +29,8 @@ ActiveAdmin.register WebStoreDetail do
     column 'Delivery' do |post|
       div post.delivery.nil? ? '' : post.delivery.html_safe
     end
+    column :created_at
+    column :updated_at
     actions
   end
 
