@@ -12,11 +12,11 @@
       <ul class="nav navbar navbar-left nomargin">
         <% @categories.top_level.each do |category| %>
             <li class="nav-item-phone text-center">
-              <a href="#" class="top-bar-text"><%= category.name %></a>
+              <%= link_to category.name, filter_path(category),  remote: true %>
             </li>
             <% category.children.each do |child_category| %>
                 <li class="nav-item-phone text-center">
-                  <a href="#" class="top-bar-text"> < <%= child_category.name %></a>
+                  <%= link_to child_category.name, filter_path(child_category),  remote: true %>
                 </li>
             <% end %>
         <% end %>

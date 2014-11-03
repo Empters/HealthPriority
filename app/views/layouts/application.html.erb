@@ -8,12 +8,6 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<!--
-<div id="errors_div">
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-</div>
--->
 <!-- Top bar -->
 <div class="top-bar-wrapper">
   <div class="container">
@@ -59,6 +53,7 @@
       </div>
       <div class="col-md-8 col-sm-8 col-xs-9">
         <div class="search-section">
+
           <div class="search-container">
             <div class="search-dropdown-container left">
               <div class="dropdown-toggle" id="search_category" data-toggle="dropdown">
@@ -78,6 +73,10 @@
               <input type="text" id="search_input" class="search-input" placeholder="Search..."/>
             </div>
             <div class="right search-image-div"><%= link_to '', '', :class => 'search-image', remote: true, :id => "search_link" %></div>
+          </div>
+          <div>
+            <div class="notice"><%= notice %></div>
+            <div class="alert"><%= alert %></div>
           </div>
         </div>
       </div>
