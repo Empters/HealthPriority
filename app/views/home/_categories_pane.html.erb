@@ -3,17 +3,16 @@
 </div>
 <div class="content-container">
   <ul class="categories-list">
-    <% Category.top_level.each do |category| %>
+    <% @root_categories.each do |category| %>
         <li>
-          <!--<div class="dot"></div>-->
-          <%= link_to category.name, filter_path(category),  remote: true %>
-
-          <div class="category-arrow" data-category="<%= category.name %>"></div>
+          <%= link_to category.name, filter_path(category), remote: true %>
+          <% if !category.children.empty? -%>
+              <div class="category-arrow" data-category="<%= category.name %>"></div>
+          <% end %>
         </li>
         <% category.children.each do |child_category| %>
             <li class="sub-category hidden" data-category="<%= category.name %>">
-              <!--<div class="dot"></div>-->
-              <%= link_to child_category.name, filter_path(child_category),  remote: true %>
+              <%= link_to child_category.name, filter_path(child_category), remote: true %>
             </li>
         <% end %>
     <% end %>
