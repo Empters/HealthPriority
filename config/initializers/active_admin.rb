@@ -119,10 +119,12 @@ ActiveAdmin.setup do |config|
   #
   # You can completely disable comments:
   # config.allow_comments = false
+  config.allow_comments = false
   #
   # You can disable the menu item for the comments index page:
   # config.show_comments_in_menu = false
   #
+  config.show_comments_in_menu = false
   # You can change the name under which comments are registered:
   # config.comments_registration_name = 'AdminComment'
 
@@ -237,7 +239,6 @@ ActiveAdmin.setup do |config|
   # You can control the default per page count for all resources here.
   #
   # config.default_per_page = 30
-
 
   # == Filters
   #

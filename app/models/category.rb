@@ -20,7 +20,7 @@ class Category < ActiveRecord::Base
 
   # Get for top category level
   scope :top_level, -> do
-    where(parent: nil)
+    where(parent: nil).order(:sort_order)
   end
 
   # Remove image attribute

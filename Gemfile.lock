@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/activeadmin/activeadmin.git
-  revision: c26ae0b1393311180b5137c6b4a271de3385d069
+  revision: c93f6f49c6d4a7f35c98466fc1bc1cd0e1c826c5
   specs:
     activeadmin (1.0.0.pre)
       arbre (~> 1.0, >= 1.0.2)
@@ -143,9 +143,9 @@ GEM
     kaminari (0.16.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
-    launchy (2.4.2)
+    launchy (2.4.3)
       addressable (~> 2.3)
-    mail (2.6.1)
+    mail (2.6.3)
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
     mime-types (2.4.3)
