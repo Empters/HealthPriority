@@ -23,19 +23,18 @@
       <div class="top-bar-tab top-bar-text">
         DELIVERY
       </div>
-
       <% if user_signed_in? -%>
-        <div class="top-bar-tab top-bar-text">
-          <%= link_to "User profile", :class => 'navbar-link' %>
-        </div>
-      <% end %>
-      <div class="top-bar-tab top-bar-text">
-        <% if user_signed_in? -%>
-            <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-        <% else %>
+          <div class="top-bar-tab top-bar-text">
+            <%= link_to "User profile", :class => 'navbar-link' %>
+          </div>
+          <div class="top-bar-tab top-bar-text">
+            <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link' %>
+          </div>
+      <% else %>
+          <div class="top-bar-tab top-bar-text">
             <%= link_to "Sign In", new_user_session_path, remote: true, :"data-toggle" => 'modal', :"data-target" => '#signInModal' %>
-        <% end %>
-      </div>
+          </div>
+      <% end %>
       <div class="top-bar-tab top-bar-text">
         <div class="fb_top"></div>
         Connect
@@ -65,15 +64,15 @@
                 <li>
                   All Categories
                 </li>
-                <% @categories.top_level.each do |category| %>
+                <% Category.top_level.each do |category| %>
                     <li><%= category.name %></li>
                 <% end %>
               </ul>
             </div>
             <div class="search-input-container left">
-              <input type="text" id="search_input" class="search-input" placeholder="Search..." />
+              <input type="text" id="search_input" class="search-input" placeholder="Search..."/>
             </div>
-            <div class="right search-image-div"><%= link_to '', '', :class => 'search-image',  remote: true, :id => "search_link" %></div>
+            <div class="right search-image-div"><%= link_to '', '', :class => 'search-image', remote: true, :id => "search_link" %></div>
           </div>
           <div>
             <div class="notice"><%= notice %></div>
@@ -93,6 +92,7 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 <!-- Search Section End -->
 

@@ -4,7 +4,9 @@ class Category < ActiveRecord::Base
   validates_presence_of :name, :active
 
   # Init image file - paperclip image
-  has_attached_file :image, :styles => Rails.application.config.paperclip_styles
+  has_attached_file :image,
+                    :styles => Rails.application.config.paperclip_styles,
+                    :default_url => '/missing_:style.png'
 
   # Validate content type
   validates_attachment_content_type :image, :content_type => Rails.application.config.paperclip_allow_image_content, :message => Rails.application.config.paperclip_allow_image_content_message
@@ -18,7 +20,7 @@ class Category < ActiveRecord::Base
 
   # Get for top category level
   scope :top_level, -> do
-    where(parent: nil)
+    where(parent: nil).order(:sort_order)
   end
 
   # Remove image attribute

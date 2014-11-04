@@ -7,8 +7,7 @@ class Product < ActiveRecord::Base
   # Init image file - paperclip image
   has_attached_file :image,
                     :styles => Rails.application.config.paperclip_styles,
-                    :default_url => ActionController::Base.helpers.asset_path('missing.png')
-
+                    :default_url => '/missing_:style.png'
 
   # Validate content type
   validates_attachment_content_type :image, :content_type => Rails.application.config.paperclip_allow_image_content, :message => Rails.application.config.paperclip_allow_image_content_message
