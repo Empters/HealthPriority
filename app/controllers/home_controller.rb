@@ -4,6 +4,6 @@ class HomeController < ApplicationController
 
   private
     def set_products
-      @products = Product.feature_products
+      $products ||= Product.feature_products
     end
 end

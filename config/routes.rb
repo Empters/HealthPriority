@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
-  get '/products/search/:token', to: 'products#search', :as => 'search'
+  get '/products/search/((:token)(/from_page/:page))(/category/:category)', to: 'products#search', :as => 'search'
 
   get '/products/filter/:category' => 'products#filter', :as => 'filter'
 

@@ -4,7 +4,7 @@
 <div class="content-container">
   <!-- rows -->
   <div class="row nopadding nomargin">
-  <% @products.in_groups_of(3, false).each do |group| %>
+  <% $products.in_groups_of(3, false).each do |group| %>
     <% group.each do |product| %>
      <div class="col-md-4 col-sm-6 col-xs-12 nopadding nomargin">
       <div class="item-container text-center">

@@ -58,22 +58,22 @@
           <div class="search-container">
             <div class="search-dropdown-container left">
               <div class="dropdown-toggle" id="search_category" data-toggle="dropdown">
-                <span id="chosen_category">All Categories</span>
+                <span id="chosen_category" selected_category="">All Categories</span>
                 <b class="caret"></b>
               </div>
-              <ul aria-labelledby="search_category" role="menu" class="dropdown-menu ">
+              <ul aria-labelledby="search_category" role="menu" class="dropdown-menu" id="category-menu">
                 <li>
                   All Categories
                 </li>
                 <% @categories.top_level.each do |category| %>
-                    <li><%= category.name %></li>
+                    <li category="<%= category.id %>"><%= category.name %></li>
                 <% end %>
               </ul>
             </div>
             <div class="search-input-container left">
               <input type="text" id="search_input" class="search-input" placeholder="Search..." />
             </div>
-            <div class="right search-image-div"><%= link_to '', '', :class => 'search-image',  remote: true, :id => "search_link" %></div>
+            <div class="right search-image-div"><div class='search-image' id="search_link"></div></div>
           </div>
           <div>
             <div class="notice"><%= notice %></div>
