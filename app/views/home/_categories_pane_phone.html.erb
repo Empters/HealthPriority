@@ -10,7 +10,7 @@
 
     <div class="collapse navbar-collapse nopadding phone-categories-nav">
       <ul class="nav navbar navbar-left nomargin">
-        <% @root_categories.each do |category| %>
+        <% $root_categories.each do |category| %>
             <li class="nav-item-phone text-center">
               <%= link_to category.name, filter_path(category),  remote: true %>
             </li>

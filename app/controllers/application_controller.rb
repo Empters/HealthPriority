@@ -7,6 +7,6 @@ class ApplicationController < ActionController::Base
 
   # Lazy loading init root categories
   def init_root_categories
-    @root_categories ||= Category.top_level
+    $root_categories ||= Category.top_level
   end
 end

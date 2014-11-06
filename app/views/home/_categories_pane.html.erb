@@ -3,7 +3,7 @@
 </div>
 <div class="content-container">
   <ul class="categories-list">
-    <% @root_categories.each do |category| %>
+    <% $root_categories.each do |category| %>
         <li>
           <%= link_to category.name, filter_path(category), remote: true %>
           <% if !category.children.empty? -%>
