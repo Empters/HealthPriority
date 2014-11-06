@@ -3,7 +3,7 @@
 </div>
 <div class="content-container">
   <ul class="categories-list">
-    <% @categories.each do |category| %>
+    <% Category.top_level.each do |category| %>
         <li>
           <!--<div class="dot"></div>-->
           <div class="category-arrow" data-category="<%= category.name %>"></div>

@@ -4,7 +4,9 @@ class ProductImage < ActiveRecord::Base
   validates_presence_of :product_id
 
   # Init image file - paperclip image
-  has_attached_file :image, :styles => Rails.application.config.paperclip_styles
+  has_attached_file :image,
+                    :styles => Rails.application.config.paperclip_styles,
+                    :default_url => '/missing_:style.png'
 
   # Validate content type
   validates_attachment_content_type :image, :content_type => Rails.application.config.paperclip_allow_image_content, :message => Rails.application.config.paperclip_allow_image_content_message

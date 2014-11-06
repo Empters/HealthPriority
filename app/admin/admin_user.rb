@@ -1,7 +1,7 @@
 ActiveAdmin.register AdminUser do
 
   # Set item menu position
-  menu :parent => 'System', :priority => 1
+  menu :parent => 'System', :priority => 2
 
   # Set permit parameters
   permit_params :email, :password, :password_confirmation
