@@ -64,7 +64,7 @@
                 <li>
                   All Categories
                 </li>
-                <% Category.top_level.each do |category| %>
+                <% $root_categories.each do |category| %>
                     <li><%= category.name %></li>
                 <% end %>
               </ul>
