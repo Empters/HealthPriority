@@ -5,10 +5,11 @@
   <ul class="categories-list">
     <% $root_categories.each do |category| %>
         <li>
-          <%= link_to category.name, filter_path(category), remote: true %>
           <% if !category.children.empty? -%>
               <div class="category-arrow" data-category="<%= category.name %>"></div>
           <% end %>
+
+          <%= link_to category.name, filter_path(category),  remote: true %>
         </li>
         <% category.children.each do |child_category| %>
             <li class="sub-category hidden" data-category="<%= category.name %>">

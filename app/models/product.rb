@@ -43,4 +43,5 @@ class Product < ActiveRecord::Base
 
   # Remove image validation
   before_validation { self.image.clear if self.remove_image == '1' }
+
 end

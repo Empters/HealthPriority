@@ -70,3 +70,5 @@ end
 
 # Rich text editor
 gem 'ckeditor'
+
+gem 'jquery-turbolinks'
