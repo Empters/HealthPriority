@@ -8,8 +8,9 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
+  get 'delivery/index'
+  get 'faq/index'
   get '/products/search/:token', to: 'products#search', :as => 'search'
-
   get '/products/filter/:category' => 'products#filter', :as => 'filter'
 
   resources :product_reviews
@@ -21,7 +22,7 @@ Rails.application.routes.draw do
   resources :special_offers, only: :index
   resources :only_organics, only: :index
   resources :contacts, only: :index
-  resources :shopping_cards, onlu: :index
+  resources :shopping_cards, only: :index
   resources :products
 
   devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations", passwords: "users/passwords", confirmations: "users/confirmations" }
