@@ -8,8 +8,8 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
-  get 'delivery/index'
-  get 'faq/index'
+  get 'delivery', to: 'delivery#index'
+  get 'faq', to: 'faq#index'
   get '/products/search/:token', to: 'products#search', :as => 'search'
   get '/products/filter/:category' => 'products#filter', :as => 'filter'
 
