@@ -1,0 +1,58 @@
+// This is a manifest file that'll be compiled into application.js, which will include all the files
+// listed below.
+//
+// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
+// or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
+//
+// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
+// compiled file.
+//
+// Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
+// about supported directives.
+//
+//= require jquery
+//= require jquery.turbolinks
+//= require jquery_ujs
+//= require jquery-ui
+//= require bootstrap.min
+//= require royalslider/jquery.royalslider.min
+//= require main
+//= require turbolinks
+//= require_tree .
+
+function getUrlRoot() {
+    return 'http://' + location.host
+}
+
+$().ready(function(){
+    $('#search_link').click(function(){
+        var url_arr = document.URL.split('/');
+        var page_name = url_arr[3];
+        var token = $('#search_input').val();
+        if(token != '') {
+            token = '/' + token
+        }
+        var category =  $('#chosen_category').attr('selected_category');
+        if(category != '') {
+            category = '/category/' + category
+        }
+
+        if(page_name == '' || (page_name == 'products' && (url_arr[4] == undefined || url_arr[4] == 'search'))) {
+            var url = getUrlRoot() + '/products/search' + token + category + '.js';
+            $.ajax({
+                url: url
+            });
+        } else {
+            page_name = '/from_page/' + page_name
+            var path = getUrlRoot() +'/products/search' + token + category;
+            document.location.href = path
+        }
+    });
+
+    $('#category-menu').children('li').click(function(){
+
+        var filter_category = $(this).attr('category') == undefined? '' : $(this).attr('category');
+        $('#chosen_category').attr('selected_category', filter_category);
+    });
+});
+

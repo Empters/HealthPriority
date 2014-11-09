@@ -7,7 +7,7 @@ When(/^Search by "(.*?)"$/) do |arg1|
   visit root_path
   within ".search-container" do
     fill_in "search_input", with: arg1
-    click_on "search_link"
+    find("#search_link").click
   end
 end
 
