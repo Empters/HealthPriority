@@ -18,10 +18,10 @@
     </div>
     <div class="top-bar-container right">
       <div class="top-bar-tab first-tab top-bar-text">
-        FAQ
+        <%= link_to 'FAQ', faq_index_path, :class => 'navbar-link' %>
       </div>
       <div class="top-bar-tab top-bar-text">
-        DELIVERY
+        <%= link_to 'DELIVERY', delivery_index_path, :class => 'navbar-link' %>
       </div>
       <% if user_signed_in? -%>
           <div class="top-bar-tab top-bar-text">
