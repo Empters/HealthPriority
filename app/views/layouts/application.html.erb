@@ -32,7 +32,7 @@
           </div>
       <% else %>
           <div class="top-bar-tab top-bar-text">
-            <%= link_to "Sign In", new_user_session_path, remote: true, :"data-toggle" => 'modal', :"data-target" => '#signInModal' %>
+            <%= link_to "Login", new_user_session_path, remote: true, :"data-toggle" => 'modal', :"data-target" => '#signInModal' %>
           </div>
       <% end %>
       <div class="top-bar-tab top-bar-text">
@@ -72,8 +72,11 @@
             <div class="search-input-container left">
               <input type="text" id="search_input" class="search-input" placeholder="Search..."/>
             </div>
-
-            <div class="right search-image-div"><div class='search-image' id="search_link"></div></div>
+            <div class="right search-image-div">
+              <a href="#" id="search_link">
+                <div class='search-image'></div>
+              </a>
+            </div>
           </div>
           <div>
             <div class="notice"><%= notice %></div>

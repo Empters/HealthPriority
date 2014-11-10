@@ -1,13 +1,20 @@
 #encoding: utf-8
 Feature: See if login works
 
-  Scenario: Try to login as a user
-    Given we have a user
-    When login with this user
-    Then login is successful
+  Scenario: Test user login
+    Given I am on the home page
+    When I click "Login"
+    And I fill in "invisi@abv.bg" for "user_email"
+    And I fill in "12345678" for "user_password"
+    And I press "Log in"
+    Then I should see "USER PROFILE"
+    And I should see "LOGOUT"
 
-  Scenario: Log out as a user
-    Given we have a user
-    When login with this user
-    And we click sign out
-    Then logout is successful
+  Scenario: Test user log out
+    Given I am on the home page
+    When I click "Login"
+    And I fill in "invisi@abv.bg" for "user_email"
+    And I fill in "12345678" for "user_password"
+    And I press "Log in"
+    And I click "Logout"
+    Then I should see "LOGIN"
