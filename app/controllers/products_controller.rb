@@ -103,6 +103,16 @@ class ProductsController < ApplicationController
     end
   end
 
+  def change_page
+    puts request.headers
+    @current_page = page_params[:page_number].to_i
+    puts 'curr_page = ', @current_page
+
+    respond_to do |format|
+      format.js { render 'search.js.erb' }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product

@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   get 'delivery/index'
   get 'faq/index'
   get '/products/filter/:category' => 'products#filter', :as => 'filter'
+  get '/products/change_page/:page_number' => 'products#change_page'
+  get '/home/change_page/:page_number' => 'home#change_page'
+
 
   resources :product_reviews
   resources :product_discounts

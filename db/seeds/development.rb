@@ -5,7 +5,7 @@ FactoryGirl.create(:user)
   FactoryGirl.create(:category, is_top?: true)
 end
 
-6.times do
+14.times do
   FactoryGirl.create(:product)
 end
 
