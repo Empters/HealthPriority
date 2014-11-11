@@ -72,3 +72,5 @@ end
 gem 'ckeditor'
 
 gem 'jquery-turbolinks'
+
+gem 'will_paginate'
