@@ -8,7 +8,7 @@ Feature: See if login works
     And I fill in "invisi@abv.bg" for "user_email"
     And I fill in "12345678" for "user_password"
     And I press "Log in"
-    Then I should see "USER PROFILE"
+    Then I should see "MY ACCOUNT"
     And I should see "LOGOUT"
 
   Scenario: Test user log out
