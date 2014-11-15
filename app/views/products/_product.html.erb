@@ -1,0 +1,30 @@
+<div class="<%= item_class%>">
+  <div class="item-container text-center">
+    <%= link_to '', product, :class => 'item-image', :style => 'background-image: url('+ product.image.url() + ');' %>
+    <br/>
+
+    <div class="item-title">
+      <%= product.name %>
+    </div>
+    <div class="item-price">
+      <div class="price left">
+        <%= product.price %> £
+      </div>
+      <div class="rating right">
+        <div class="star-rating">
+          <div class="star" data-rating="1"></div>
+          <div class="star" data-rating="2"></div>
+          <div class="star" data-rating="3"></div>
+          <div class="star" data-rating="4"></div>
+          <div class="star" data-rating="5"></div>
+          <!-- Place the product's rating in the div below -->
+          <div class="hidden rating-value">2</div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="button green">
+      ADD TO CART
+    </div>
+  </div>
+</div>

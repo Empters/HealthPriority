@@ -25,14 +25,14 @@
       </div>
       <% if user_signed_in? -%>
           <div class="top-bar-tab top-bar-text">
-            <%= link_to "My Account", :class => 'navbar-link' %>
+            <%= link_to 'My Account', :class => 'navbar-link' %>
           </div>
           <div class="top-bar-tab top-bar-text">
-            <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link' %>
+            <%= link_to 'Logout', destroy_user_session_path, method: :delete, :class => 'navbar-link' %>
           </div>
       <% else %>
           <div class="top-bar-tab top-bar-text">
-            <%= link_to "Login", new_user_session_path, remote: true, :"data-toggle" => 'modal', :"data-target" => '#signInModal' %>
+            <%= link_to 'Login', new_user_session_path, remote: true, :'data-toggle' => 'modal', :'data-target' => '#signInModal' %>
           </div>
       <% end %>
       <div class="top-bar-tab top-bar-text">
@@ -200,6 +200,7 @@
       </div>
       <div class="email-container">
         <input type="text" class="email-input" placeholder="Enter Your Email Address"/>
+
         <div class="send-email-button right"></div>
       </div>
     </div>
