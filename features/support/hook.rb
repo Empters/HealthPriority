@@ -2,7 +2,6 @@
 #require_relative 'storage.rb'
 
 Before do
-  # delete_database backend_url('audiobooks')
-  Product.delete_all
+  # Call init action before start tests - seed data
 end
 

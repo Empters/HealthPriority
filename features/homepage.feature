@@ -44,5 +44,6 @@ Feature: See if homepage is available
     Then I should be on the delivery page
 
   Scenario: See products in home page
+    Given I have 6 products
     When I am on the home page
-    Then I should see "Product_1"
+    Then I should see "PRODUCT"

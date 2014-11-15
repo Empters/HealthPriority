@@ -2,7 +2,8 @@
 Feature: See if login works
 
   Scenario: Test user login
-    Given I am on the home page
+    Given I have a user with email "invisi@abv.bg" and password "12345678"
+    And I am on the home page
     When I click "Login"
     And I fill in "invisi@abv.bg" for "user_email"
     And I fill in "12345678" for "user_password"
@@ -11,7 +12,8 @@ Feature: See if login works
     And I should see "LOGOUT"
 
   Scenario: Test user log out
-    Given I am on the home page
+    Given I have a user with email "invisi@abv.bg" and password "12345678"
+    And I am on the home page
     When I click "Login"
     And I fill in "invisi@abv.bg" for "user_email"
     And I fill in "12345678" for "user_password"
