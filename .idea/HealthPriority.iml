@@ -296,6 +296,7 @@
     <orderEntry type="library" scope="PROVIDED" name="arel (v5.0.1.20140414130214, ruby-2.0.0-p576) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bcrypt (v3.1.9, ruby-2.0.0-p576) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bourbon (v3.2.3, ruby-2.0.0-p576) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="breadcrumbs_on_rails (v2.3.0, ruby-2.0.0-p576) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.2, ruby-2.0.0-p576) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bundler (v1.7.3, ruby-2.0.0-p576) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="capybara (v2.4.4, ruby-2.0.0-p576) [gem]" level="application" />

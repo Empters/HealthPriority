@@ -2,15 +2,20 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   respond_to :html, :js
 
+  add_breadcrumb 'Home', :root_path
+
   # GET /products
   # GET /products.json
   def index
+    add_breadcrumb 'Products', :products_path
     $products ||= Product.all
   end
 
   # GET /products/1
   # GET /products/1.json
   def show
+    add_breadcrumb 'Products', :products_path
+
   end
 
   # GET /products/new
