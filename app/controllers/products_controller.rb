@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
+  before_action :set_from_controller
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_action :set_products, :set_pages, :set_from_controller, only: [:search, :filter]
+  before_action :set_pages, only: [:change_page]
   respond_to :html, :js
 
   include Modules::SearchModule
@@ -12,6 +13,7 @@ class ProductsController < ApplicationController
   def index
     add_breadcrumb 'Products', :products_path
     $products ||= Product.all
+    set_pages
   end
 
   # GET /products/1
@@ -73,8 +75,9 @@ class ProductsController < ApplicationController
   # GET /products/search
   def search
     search_and_filter(search_params[:category], search_params[:token])
-    set_pages
     $products = $products.paginate(:page => @current_page, :per_page => 6)
+    set_pages
+
     respond_to do |format|
       format.js {
         if request.xhr?
@@ -90,13 +93,10 @@ class ProductsController < ApplicationController
   # GET /products/filter
   def filter
     @category = Category.find(search_params[:category])
-    # if(@category.parent)
-    #   $products = Product.joins(products_categories: :category).where(categories: {id: @category})
-    #   else
-    #   $products = Product.joins(products_categories: :category).where('categories.id = :category or categories.parent_id = :category', {:category => @category})
-    # end
 
     search_and_filter(@category, '')
+    $products = $products.paginate(:page => @current_page, :per_page => 6)
+    set_pages
 
     respond_to do |format|
       format.html { puts "html" }
@@ -113,13 +113,17 @@ class ProductsController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_product
-    @product = Product.find(params[:id])
-  end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_product
+      @product = Product.find(params[:id])
+    end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def product_params
-    params.require(:product).permit(:name, :model, :quantity, :viewed, :image, :price, :points, :description)
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def product_params
+      params.require(:product).permit(:name, :model, :quantity, :viewed, :image, :price, :points, :description)
+    end
+
+  def set_from_controller
+    @from_controller = 'products'
   end
 end

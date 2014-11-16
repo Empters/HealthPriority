@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   skip_before_filter :authenticate_user!
-  before_action :set_products, :set_pages, :set_from_controller
+  before_action :set_products, only: [:index]
+  before_action :set_pages, :set_from_controller
 
   include Modules::SearchModule
 
@@ -15,4 +16,9 @@ class HomeController < ApplicationController
     #TODO - check if have by ip
     $last_visit_products ||= Product.last_visit_products.to_a()
   end
+
+  private
+    def set_from_controller
+      @from_controller = 'home'
+    end
 end

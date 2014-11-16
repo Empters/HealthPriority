@@ -17,13 +17,13 @@ module Modules
       @current_page = 1
     end
 
-    def set_from_controller
-      @from_controller = 'home'
+    def paginate_products
+      $products = $products.paginate(:page => @current_page, :per_page => 6)
     end
 
     def main_change_page
       @current_page = search_params[:page_number].to_i
-      $products ||= Product.paginate(:page => @current_page, :per_page => 6)
+      $products = $products.paginate(:page => @current_page, :per_page => 6)
       @pages.each { |p| p.is_active=false }
       @pages[@current_page-1].is_active=true
     end

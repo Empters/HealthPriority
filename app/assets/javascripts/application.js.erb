@@ -54,5 +54,11 @@ $().ready(function(){
         var filter_category = $(this).attr('category') == undefined? '' : $(this).attr('category');
         $('#chosen_category').attr('selected_category', filter_category);
     });
+
+    $('#search_input').on('keypress', function(e){
+        if(e.keyCode==13){
+            $('#search_link').click();
+        }
+    });
 });
 
