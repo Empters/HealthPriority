@@ -18,21 +18,21 @@
     </div>
     <div class="top-bar-container right">
       <div class="top-bar-tab first-tab top-bar-text">
-        <%= link_to 'FAQ', faq_index_path, :class => 'navbar-link' %>
+        <%= link_to 'FAQ', faq_path, :class => 'navbar-link' %>
       </div>
       <div class="top-bar-tab top-bar-text">
-        <%= link_to 'DELIVERY', delivery_index_path, :class => 'navbar-link' %>
+        <%= link_to 'DELIVERY', delivery_path, :class => 'navbar-link' %>
       </div>
       <% if user_signed_in? -%>
           <div class="top-bar-tab top-bar-text">
-            <%= link_to "User profile", :class => 'navbar-link' %>
+            <%= link_to 'My Account', :class => 'navbar-link' %>
           </div>
           <div class="top-bar-tab top-bar-text">
-            <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link' %>
+            <%= link_to 'Logout', destroy_user_session_path, method: :delete, :class => 'navbar-link' %>
           </div>
       <% else %>
           <div class="top-bar-tab top-bar-text">
-            <%= link_to "Sign In", new_user_session_path, remote: true, :"data-toggle" => 'modal', :"data-target" => '#signInModal' %>
+            <%= link_to 'Login', new_user_session_path, remote: true, :'data-toggle' => 'modal', :'data-target' => '#signInModal' %>
           </div>
       <% end %>
       <div class="top-bar-tab top-bar-text">
@@ -70,10 +70,11 @@
               </ul>
             </div>
             <div class="search-input-container left">
-              <input type="text" id="search_input" class="search-input" placeholder="Search..."/>
+              <input type="text" id="search_input" class="search-input" placeholder="Search in our products"/>
             </div>
-
-            <div class="right search-image-div"><div class='search-image' id="search_link"></div></div>
+            <div class="right search-image-div">
+              <div id="search_link" class='search-image'></div>
+            </div>
           </div>
           <div>
             <div class="notice"><%= notice %></div>
@@ -198,7 +199,7 @@
         featured under categories lists.
       </div>
       <div class="email-container">
-        <input type="text" class="email-input" placeholder=" Enter Your Email Address"/>
+        <input type="text" class="email-input" placeholder="Enter Your Email Address"/>
 
         <div class="send-email-button right"></div>
       </div>

@@ -1,97 +1,14 @@
 <div class="col-md-12">
+
   <div class="title-banner">
     Last Visited Products
   </div>
+
   <div class="content-container">
-    <!-- First row -->
-    <div class="row nopadding nomargin">
-      <div class="col-md-3 col-sm-6 nopadding nomargin">
-        <div class="item-container text-center">
-          <a href="#" class="item-image" style='background-image: url("<%= image_path "product-image-1.jpg" %>");'></a>
-
-          <div class="item-title">
-            Hair protection & BLA bla bla
-          </div>
-          <div class="item-price">
-            <div class="price left">
-              17$
-            </div>
-            <div class="rating right">
-              <div class="star-rating">
-                <div class="star" data-rating="1"></div>
-                <div class="star" data-rating="2"></div>
-                <div class="star" data-rating="3"></div>
-                <div class="star" data-rating="4"></div>
-                <div class="star" data-rating="5"></div>
-                <!-- Place the product's rating in the div below -->
-                <div class="hidden rating-value">3</div>
-              </div>
-            </div>
-            <div class="clearfix"></div>
-          </div>
-          <div class="button green">
-            ADD TO CART
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6 nopadding nomargin">
-        <div class="item-container text-center">
-          <a href="#" class="item-image" style='background-image: url("<%= image_path "product-image-1.jpg" %>");'></a>
-
-          <div class="item-title">
-            Hair protection & BLA bla bla
-          </div>
-          <div class="item-price">
-            <div class="price left">
-              17$
-            </div>
-            <div class="rating right"></div>
-            <div class="clearfix"></div>
-          </div>
-          <div class="button green">
-            ADD TO CART
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6 nopadding nomargin">
-        <div class="item-container text-center">
-          <a href="#" class="item-image" style='background-image: url("<%= image_path "product-image-1.jpg" %>");'></a>
-
-          <div class="item-title">
-            Hair protection & BLA bla bla
-          </div>
-          <div class="item-price">
-            <div class="price left">
-              17$
-            </div>
-            <div class="rating right"></div>
-            <div class="clearfix"></div>
-          </div>
-          <div class="button green">
-            ADD TO CART
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6 nopadding nomargin">
-        <div class="item-container last-item text-center">
-          <a href="#" class="item-image" style='background-image: url("<%= image_path "product-image-1.jpg" %>");'></a>
-
-          <div class="item-title">
-            Hair protection & BLA bla bla
-          </div>
-          <div class="item-price">
-            <div class="price left">
-              17$
-            </div>
-            <div class="rating right"></div>
-            <div class="clearfix"></div>
-          </div>
-          <div class="button green">
-            ADD TO CART
-          </div>
-        </div>
-      </div>
+    <div class="row">
+      <% $last_visit_products[0..3].each do |product| %>
+          <%= render partial: 'products/product', locals: {product: product, item_class: 'col-md-3 col-sm-6 col-xs-12'} %>
+      <% end %>
     </div>
-    <!-- First row End -->
   </div>
 </div>

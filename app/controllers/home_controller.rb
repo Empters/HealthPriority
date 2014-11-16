@@ -12,5 +12,7 @@ class HomeController < ApplicationController
   end
 
   def index
+    #TODO - check if have by ip
+    $last_visit_products ||= Product.last_visit_products.to_a()
   end
 end

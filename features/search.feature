@@ -2,7 +2,8 @@
 Feature: Check if we are able to search
 
   Scenario: Search for a product by name
-    Given we have product called "My_Needed_Product"
-    When I visit the homepage
-    And Search by "Needed"
-    Then I have to see the product
+    Given I am on the home page
+    And I fill in "Product_3" for "search_input"
+    When I click element "#search_link"
+    Then I should see "PRODUCT_3"
+    And I should not see "PRODUCT_1"
