@@ -1,6 +1,9 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_products, :set_pages, :set_from_controller, only: [:search, :filter]
   respond_to :html, :js
+
+  include Modules::SearchModule
 
   # GET /products
   # GET /products.json
@@ -104,12 +107,10 @@ class ProductsController < ApplicationController
   end
 
   def change_page
-    puts request.headers
-    @current_page = page_params[:page_number].to_i
-    puts 'curr_page = ', @current_page
+    main_change_page
 
     respond_to do |format|
-      format.js { render 'search.js.erb' }
+      format.js { render 'products/search.js.erb' }
     end
   end
 
@@ -123,10 +124,6 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:name, :model, :quantity, :viewed, :image, :price, :points, :description)
     end
-
-  def search_params
-    params.permit(:token, :format, :category)
-  end
 
   def search_and_filter(category, token)
     if(!token && !category)

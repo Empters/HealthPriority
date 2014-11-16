@@ -1,3 +1,16 @@
-<div class="col-md-9 col-xs-12" id="products_div">
-    <%= render 'products/products_list' %>
+<div class="container">
+  <!-- Categories & Products-->
+  <div class="row categories_and_products_container">
+    <!-- Categories -->
+    <div class="col-md-3 hidden-xs">
+      <%= render 'home/categories_pane' %>
+    </div>
+    <!-- Categories End -->
+    <!-- Products -->
+    <div class="col-md-9 col-xs-12" id="products_div">
+      <%= render 'products/products_list' %>
+    </div>
+    <!-- Products End -->
+  </div>
+  <!-- Categories & Products End-->
 </div>

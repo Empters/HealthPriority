@@ -37,7 +37,7 @@ $().ready(function(){
             category = '/category/' + category
         }
 
-        if(page_name == '' || (page_name == 'products' && (url_arr[4] == undefined || url_arr[4] == 'search'))) {
+        if(page_name == 'products' && (url_arr[4] == undefined || url_arr[4] == 'search')) {
             var url = getUrlRoot() + '/products/search' + token + category + '.js';
             $.ajax({
                 url: url
