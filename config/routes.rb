@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   get 'faq', to: 'faq#index'
   get '/products/search/((:token)(/from_page/:page))(/category/:category)', to: 'products#search', :as => 'search'
   get '/products/filter/:category' => 'products#filter', :as => 'filter'
+  get '/products/change_page/:page_number' => 'products#change_page'
+  get '/home/change_page/:page_number' => 'home#change_page'
+
 
   resources :product_reviews
   resources :product_discounts

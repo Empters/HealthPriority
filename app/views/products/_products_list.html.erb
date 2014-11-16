@@ -13,19 +13,18 @@
   <!-- rows -->
 </div>
 <div class="pager-wrapper">
+
   <div class="products-count left">
     9 of 34 products
   </div>
   <div class="pager-container right">
-    <div class="page active">
-      1
-    </div>
-    <div class="page">
-      2
-    </div>
-    <div class="page">
-      3
-    </div>
+    <% @pages.each do |page| %>
+        <%= link_to({ controller: @from_controller, action: "change_page", page_number: page.number } , remote: true) do %>
+            <div class="page <%= 'active' if page.is_active?  %>">
+              <div> <%= page.number %></div>
+            </div>
+        <% end %>
+    <% end %>
   </div>
   <div class="clearfix"></div>
 </div>

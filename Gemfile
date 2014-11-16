@@ -73,4 +73,6 @@ gem 'ckeditor'
 
 gem 'jquery-turbolinks'
 
+gem 'will_paginate'
+
 gem "breadcrumbs_on_rails"
