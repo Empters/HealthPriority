@@ -1,3 +1,13 @@
-<div class="col-md-9 col-xs-12" id="products_div">
-    <%= render 'products/products_list' %>
+<div class="container margin-top" id="products_div">
+  <div class="path">
+    <%= render_breadcrumbs :separator => ' / ' %>
+  </div>
+
+  <div class="page-title">
+    Products
+  </div>
+
+  <!-- Products List -->
+  <%= render 'products/products_list' %>
+  <!-- Products List -->
 </div>

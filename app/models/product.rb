@@ -33,6 +33,10 @@ class Product < ActiveRecord::Base
     order('created_at desc').limit(18)
   end
 
+  scope :last_visit_products, -> do
+    order('created_at desc').limit(4)
+  end
+
   # Remove image attribute
   attr_writer :remove_image
 

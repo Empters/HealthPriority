@@ -6,11 +6,15 @@ Rails.application.routes.draw do
 
   ActiveAdmin.routes(self)
 
+  # Init active admin
   devise_for :admin_users, ActiveAdmin::Devise.config
 
+  # Init login gem
+  devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations", passwords: "users/passwords", confirmations: "users/confirmations" }
+
+  get 'delivery', to: 'delivery#index'
+  get 'faq', to: 'faq#index'
   get '/products/search/((:token)(/from_page/:page))(/category/:category)', to: 'products#search', :as => 'search'
-  get 'delivery/index'
-  get 'faq/index'
   get '/products/filter/:category' => 'products#filter', :as => 'filter'
 
   resources :product_reviews
@@ -25,5 +29,4 @@ Rails.application.routes.draw do
   resources :shopping_cards, only: :index
   resources :products
 
-  devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations", passwords: "users/passwords", confirmations: "users/confirmations" }
 end
