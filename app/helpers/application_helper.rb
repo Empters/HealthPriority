@@ -37,10 +37,15 @@ module ApplicationHelper
       last_visit_products = Array.new
       last_visit_products << product
     else
-      if last_visit_products.length > 3
-        last_visit_products.delete_at(last_visit_products.length - 1)
+      if last_visit_products.include?(product)
+        index = last_visit_products.index(product)
+        last_visit_products.insert(0, last_visit_products.delete_at(index))
+      else
+        if last_visit_products.length > 3
+          last_visit_products.delete_at(last_visit_products.length - 1)
+        end
+        last_visit_products.unshift(product)
       end
-      last_visit_products.unshift(product)
     end
     session[:last_visit_products] = last_visit_products
   end
