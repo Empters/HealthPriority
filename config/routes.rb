@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   resources :special_offers, only: :index
   resources :only_organics, only: :index
   resources :contacts, only: :index
-  resources :shopping_cards, only: :index
+  resources :shopping_carts, only: :index
   resources :products
 
 end
