@@ -9,4 +9,5 @@ class ApplicationController < ActionController::Base
   def init_root_categories
     $root_categories ||= Category.top_level
   end
+
 end

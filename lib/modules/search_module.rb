@@ -55,23 +55,5 @@ module Modules
         end
       end
     end
-
-    def add_to_last_visit_product(product)
-      # Check input parameters
-      if product.nil?
-        return
-      end
-
-      # Change last visit products
-      if $last_visit_products.nil?
-        $last_visit_products = Array.new
-        $last_visit_products << product
-      else
-        if $last_visit_products.length > 3
-          $last_visit_products.delete_at($last_visit_products.length - 1)
-        end
-        $last_visit_products.unshift(product)
-      end
-    end
   end
 end

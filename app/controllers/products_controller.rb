@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
   before_action :set_pages, only: [:change_page]
   respond_to :html, :js
 
+  include ApplicationHelper
   include Modules::SearchModule
 
   add_breadcrumb 'Home', :root_path

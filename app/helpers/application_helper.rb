@@ -17,4 +17,32 @@ module ApplicationHelper
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end
+
+  # Get last visit products by user
+  def last_visit_products
+    session[:last_visit_products] ||= Product.last_visit_products.to_a()
+    @last_visit_products = session[:last_visit_products]
+  end
+
+  # Add to user last visit product collection
+  def add_to_last_visit_product(product)
+    # Check input parameters
+    if product.nil?
+      return
+    end
+
+    # Change last visit products
+    last_visit_products = session[:last_visit_products]
+    if last_visit_products.nil?
+      last_visit_products = Array.new
+      last_visit_products << product
+    else
+      if last_visit_products.length > 3
+        last_visit_products.delete_at(last_visit_products.length - 1)
+      end
+      last_visit_products.unshift(product)
+    end
+    session[:last_visit_products] = last_visit_products
+  end
+
 end
