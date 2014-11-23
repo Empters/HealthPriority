@@ -4,7 +4,7 @@
 <div class="content-container">
   <!-- rows -->
   <div class="row">
-    <% $products.in_groups_of(3, false).each do |group| %>
+    <% @products.in_groups_of(3, false).each do |group| %>
         <% group.each do |product| %>
             <%= render partial: 'products/product', locals: {product: product, item_class: 'col-md-4 col-sm-6 col-xs-12'} %>
         <% end %>
@@ -15,7 +15,7 @@
 <div class="pager-wrapper">
 
   <div class="products-count left">
-    9 of 34 products
+    <%= product_passed %> of <%= @products.count %> products
   </div>
   <div class="pager-container right">
     <% @pages.each do |page| %>
