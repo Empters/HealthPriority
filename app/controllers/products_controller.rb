@@ -1,10 +1,13 @@
 class ProductsController < ApplicationController
   before_action :set_from_controller
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_action :set_pages, only: [:change_page]
+  before_action :set_products, only: [:index]
+  before_action :set_search_and_filter_params, only: [:filter, :search]
   respond_to :html, :js
 
   include Modules::SearchModule
+
+  helper_method :product_passed
 
   add_breadcrumb 'Home', :root_path
 
@@ -12,7 +15,6 @@ class ProductsController < ApplicationController
   # GET /products.json
   def index
     add_breadcrumb 'Products', :products_path
-    $products ||= Product.all
     set_pages
   end
 
@@ -36,7 +38,6 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
-
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
@@ -66,6 +67,7 @@ class ProductsController < ApplicationController
   # DELETE /products/1.json
   def destroy
     @product.destroy
+
     respond_to do |format|
       format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
@@ -74,9 +76,9 @@ class ProductsController < ApplicationController
 
   # GET /products/search
   def search
-    search_and_filter(search_params[:category], search_params[:token])
-    $products = $products.paginate(:page => @current_page, :per_page => 6)
+    search_and_filter()
     set_pages
+    @products = @products.paginate(:page => @current_page, :per_page => 6)
 
     respond_to do |format|
       format.js {
@@ -92,11 +94,9 @@ class ProductsController < ApplicationController
 
   # GET /products/filter
   def filter
-    @category = Category.find(search_params[:category])
-
-    search_and_filter(@category, '')
-    $products = $products.paginate(:page => @current_page, :per_page => 6)
+    search_and_filter()
     set_pages
+    @products = @products.paginate(:page => @current_page, :per_page => 6)
 
     respond_to do |format|
       format.html { puts "html" }
@@ -105,7 +105,10 @@ class ProductsController < ApplicationController
   end
 
   def change_page
-    main_change_page
+    session[:page_number] = search_params[:page_number].to_i
+    search_and_filter
+    set_pages
+    @products = main_change_page
 
     respond_to do |format|
       format.js { render 'products/search.js.erb' }
