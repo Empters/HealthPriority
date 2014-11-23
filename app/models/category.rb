@@ -39,7 +39,11 @@ class Category < ActiveRecord::Base
   end
 
   def full_name
-    @full_name = parent_names.empty? ? self.name : parent_names << ' > ' << self.name
+    @full_name ||= parent_names.empty? ? self.name : parent_names << ' > ' << self.name
+  end
+
+  def name_with_products_count
+    @name_with_products_count = "#{name}(#{products.length})"
   end
 
   def get_ancestors(who)

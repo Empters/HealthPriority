@@ -6,7 +6,7 @@
 
   <div class="content-container">
     <div class="row">
-      <% $last_visit_products[0..3].each do |product| %>
+      <% last_visit_products[0..3].each do |product| %>
           <%= render partial: 'products/product', locals: {product: product, item_class: 'col-md-3 col-sm-6 col-xs-12'} %>
       <% end %>
     </div>

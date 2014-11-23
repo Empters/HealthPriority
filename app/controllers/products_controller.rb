@@ -5,6 +5,7 @@ class ProductsController < ApplicationController
   before_action :set_search_and_filter_params, only: [:filter, :search]
   respond_to :html, :js
 
+  include ApplicationHelper
   include Modules::SearchModule
 
   helper_method :product_passed

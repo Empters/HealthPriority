@@ -8,7 +8,6 @@
           <% if !category.children.empty? -%>
               <div class="category-arrow" data-category="<%= category.name %>"></div>
           <% end %>
-
           <%= link_to category.name, filter_path(category),  remote: true %>
         </li>
         <% category.children.each do |child_category| %>
