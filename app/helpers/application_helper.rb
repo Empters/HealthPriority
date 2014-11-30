@@ -2,8 +2,7 @@ module ApplicationHelper
   # Creates a submit button with the given name with a cancel link
   # Accepts two arguments: Form object and the cancel link name
   def submit_or_cancel(form, name='Cancel')
-    form.submit + " or " +
-        link_to(name, 'javascript:history.go(-1);', :class => 'cancel')
+    form.submit + ' or ' +  link_to(name, 'javascript:history.go(-1);', :class => 'cancel')
   end
 
   def resource_name
@@ -48,6 +47,11 @@ module ApplicationHelper
       end
     end
     session[:last_visit_products] = last_visit_products
+  end
+
+  def shopping_cart
+    session[:shopping_cart] ||= ShoppingCart.new()
+    @shopping_cart = session[:shopping_cart]
   end
 
 end
