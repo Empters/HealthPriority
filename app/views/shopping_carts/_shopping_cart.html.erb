@@ -3,6 +3,6 @@
   <%= link_to '', shopping_carts_path, :class => 'cart' %>
   <div class="total-price">
     <div class="total">total:</div>
-    <div class="price">&#163; <%= shopping_cart.total_price %></div>
+    <div class="price"><%= format('£ %.2f', shopping_cart.total_price) %></div>
   </div>
 </div>
