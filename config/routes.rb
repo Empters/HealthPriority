@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
 
-  root to: "home#index"
+  root to: 'home#index'
 
   ActiveAdmin.routes(self)
 
@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   # Init login gem
-  devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations", passwords: "users/passwords", confirmations: "users/confirmations" }
+  devise_for :users, controllers: {:sessions => 'users/sessions', registrations: 'users/registrations', passwords: 'users/passwords', confirmations: 'users/confirmations'}
 
   get 'delivery', to: 'delivery#index'
   get 'faq', to: 'faq#index'
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get '/products/filter/:category' => 'products#filter', :as => 'filter'
   get '/products/change_page/:page_number' => 'products#change_page'
   get '/home/change_page/:page_number' => 'home#change_page'
-
+  get '/products/add_to_shopping_cart/:id&:quantity' => 'products#add_to_shopping_cart'
 
   resources :product_reviews
   resources :product_discounts
