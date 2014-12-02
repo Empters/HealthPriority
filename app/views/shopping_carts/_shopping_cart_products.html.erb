@@ -21,10 +21,12 @@
           <div class="col-md-2 content-table-td image" style="background-image: url('<%= product.image.url(:thumb) %>');">
           </div>
           <div class="col-md-2 content-table-td">
-            <%= product.name %>
+            <%= link_to product.name, product %>
           </div>
           <div class="col-md-2 content-table-td">
-            Category
+            <% product.categories.each do |category| %>
+                <%= link_to category.name, category %>
+            <% end %>
           </div>
           <div class="col-md-2 content-table-td">
             <%= number_field_tag 'quantity', quantity, {:min => 1, :step => 1} %>
