@@ -1,9 +1,23 @@
-<!-- Page content -->
-<!-- Gallery -->
-<div class="container-fluid nopadding nomargin hidden-xs">
-  <%= render 'homepage_slider' %>
+`<!-- Page content -->
+<div class="top-market-section">
+    <div class="container hidden-xs">
+      <div class="row">
+        <!-- Gallery -->
+        <div class="col-md-9">
+            <%= render 'homepage_slider' %>
+        </div>
+        <!-- Gallery End -->
+        <div class="col-md-3">
+
+        </div>
+      </div>
+        <div class="row">
+            <div class="col-md-12">
+                <%= render 'best_sellers' %>
+            </div>
+        </div>
+    </div>
 </div>
-<!-- Gallery End -->
 
 <div class="container-fluid nopadding nomargin visible-xs">
     <%= render 'categories_pane_phone' %>
@@ -31,4 +45,4 @@
     </div>
     <!-- Last Visited Products End -->
 </div>
-<!-- Page content End -->
+<!-- Page content End -->`
