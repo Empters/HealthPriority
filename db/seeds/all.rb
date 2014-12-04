@@ -1,7 +1,81 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+# Create categories
+Category.create(name: 'Homeopathy', sort_order: 1)
+
+category = Category.create(name: 'Baby & Child Care', sort_order: 2)
+Category.create(name: 'Baby Grooming', sort_order: 1, parent_id: category.id)
+Category.create(name: 'Bathing', sort_order: 2, parent_id: category.id)
+Category.create(name: 'Nappy Changing', sort_order: 3, parent_id: category.id)
+Category.create(name: 'Skin Care', sort_order: 4, parent_id: category.id)
+Category.create(name: 'Bath & Body', sort_order: 3)
+
+category = Category.create(name: 'Dental Care', sort_order: 4)
+Category.create(name: 'Denture Care', sort_order: 1, parent_id: category.id)
+Category.create(name: 'Mouthwashes', sort_order: 2, parent_id: category.id)
+Category.create(name: 'Toothpastes', sort_order: 3, parent_id: category.id)
+
+category = Category.create(name: 'Hair Care', sort_order: 5)
+Category.create(name: 'Conditioners', sort_order: 1, parent_id: category.id)
+Category.create(name: 'Hair Loss Products', sort_order: 2, parent_id: category.id)
+Category.create(name: 'Shampoos', sort_order: 3, parent_id: category.id)
+Category.create(name: 'Hair Tonic', sort_order: 4, parent_id: category.id)
+Category.create(name: 'Hair Oils', sort_order: 5, parent_id: category.id)
+Category.create(name: 'Shampoo & Conditioner Sets', sort_order: 6, parent_id: category.id)
+
+category = Category.create(name: 'Intimate Hygiene', sort_order: 6)
+Category.create(name: 'Men', sort_order: 1, parent_id: category.id)
+Category.create(name: 'Women', sort_order: 2, parent_id: category.id)
+
+category = Category.create(name: 'Medication, Remedies & Dietary Supplements', sort_order: 7)
+Category.create(name: 'Alternative Medicine', sort_order: 1, parent_id: category.id)
+Category.create(name: 'Diet & Nutrition', sort_order: 2, parent_id: category.id)
+Category.create(name: 'Ear Care', sort_order: 3, parent_id: category.id)
+Category.create(name: 'Eye Care', sort_order: 4, parent_id: category.id)
+Category.create(name: 'First Aid', sort_order: 5, parent_id: category.id)
+Category.create(name: 'Foot Care', sort_order: 6, parent_id: category.id)
+Category.create(name: 'Allergies', sort_order: 7, parent_id: category.id)
+Category.create(name: 'Antifungals', sort_order: 8, parent_id: category.id)
+Category.create(name: 'Bladder, Kidney, Prostate', sort_order: 9, parent_id: category.id)
+Category.create(name: 'Bruising', sort_order: 10, parent_id: category.id)
+Category.create(name: 'Cold & Flu', sort_order: 11, parent_id: category.id)
+Category.create(name: 'Cold Sores', sort_order: 12, parent_id: category.id)
+Category.create(name: 'Hemorrhoids & Piles', sort_order: 13, parent_id: category.id)
+Category.create(name: 'Heart, Circulation & Vessels', sort_order: 14, parent_id: category.id)
+Category.create(name: 'Immune System', sort_order: 15, parent_id: category.id)
+Category.create(name: 'Insect & Pest Repellents', sort_order: 16, parent_id: category.id)
+Category.create(name: 'Insomnia & Snore Relief', sort_order: 17, parent_id: category.id)
+Category.create(name: 'Itching & Rash Treatments', sort_order: 18, parent_id: category.id)
+Category.create(name: 'Liver & Gall Bladder', sort_order: 19, parent_id: category.id)
+Category.create(name: 'Memory Loss', sort_order: 20, parent_id: category.id)
+Category.create(name: 'Menopause', sort_order: 21, parent_id: category.id)
+Category.create(name: 'Muscles, Bones & Joints', sort_order: 22, parent_id: category.id)
+Category.create(name: 'Pain & Fever', sort_order: 23, parent_id: category.id)
+Category.create(name: 'Scars & Stretch Marks', sort_order: 24, parent_id: category.id)
+Category.create(name: 'Skin Diseases', sort_order: 25, parent_id: category.id)
+Category.create(name: 'Stimulants', sort_order: 26, parent_id: category.id)
+Category.create(name: 'Stress & Anxiety Relief', sort_order: 27, parent_id: category.id)
+Category.create(name: 'Tired Legs', sort_order: 28, parent_id: category.id)
+Category.create(name: 'Varicose Veins', sort_order: 29, parent_id: category.id)
+Category.create(name: 'Other (Medication)', sort_order: 30, parent_id: category.id)
+
+Category.create(name: 'Sex & Sensuality', sort_order: 8)
+
+Category.create(name: 'Visual Care', sort_order: 9)
+
+Category.create(name: 'Wellness', sort_order: 10)
+
+Category.create(name: 'Make-up', sort_order: 11)
+
+Category.create(name: 'Manicure & Pedicure', sort_order: 12)
+
+category = Category.create(name: 'Skin Care', sort_order: 13)
+Category.create(name: 'Body', sort_order: 1, parent_id: category.id)
+Category.create(name: 'Eyes', sort_order: 2, parent_id: category.id)
+Category.create(name: 'Face', sort_order: 3, parent_id: category.id)
+Category.create(name: 'Hands & Feet', sort_order: 4, parent_id: category.id)
+Category.create(name: 'Lips', sort_order: 5, parent_id: category.id)
+Category.create(name: 'Neck & Decollete', sort_order: 6, parent_id: category.id)
+Category.create(name: 'Sun Care & Tanning', sort_order: 7, parent_id: category.id)
+
+Category.create(name: 'Vitamins and minerals', sort_order: 14)
+
+Category.create(name: 'Weight loss', sort_order: 15)
