@@ -1,0 +1,11 @@
+var shopping_cart_div = $("#shopping_cart_div");
+if (shopping_cart_div)
+{
+    shopping_cart_div.html("<%= escape_javascript render('shopping_carts/shopping_cart') %>");
+}
+
+var shopping_cart_products_div = $("#shopping_cart_products_div");
+if (shopping_cart_products_div)
+{
+    shopping_cart_products_div.html("<%= escape_javascript render('shopping_carts/shopping_cart_products') %>");
+}

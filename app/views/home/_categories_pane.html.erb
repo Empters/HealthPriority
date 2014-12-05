@@ -3,7 +3,7 @@
 </div>
 <div class="content-container categories-container">
   <ul class="categories-list">
-    <% $root_categories.each do |category| %>
+    <% @root_categories.each do |category| %>
         <li>
           <% if !category.children.empty? -%>
               <div class="category-arrow" data-category="<%= category.name %>"></div>

@@ -1,9 +1,6 @@
 require 'factory_girl'
 
 FactoryGirl.create(:user)
-6.times do
-  FactoryGirl.create(:category, is_top?: true)
-end
 
 14.times do
   FactoryGirl.create(:product)

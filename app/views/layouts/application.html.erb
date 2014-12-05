@@ -64,7 +64,7 @@
                 <li>
                   All Categories
                 </li>
-                <% $root_categories.each do |category| %>
+                <% @root_categories.each do |category| %>
                     <li category="<%= category.id %>"><%= category.name %></li>
                 <% end %>
               </ul>
@@ -82,15 +82,8 @@
           </div>
         </div>
       </div>
-      <div class="col-md-2 col-sm-2 col-xs-2 nopadding nomargin">
-        <div class="cart-info-section">
-          <div class="cart-amount">3</div>
-          <%= link_to '', shopping_cards_path, :class => 'cart' %>
-          <div class="total-price">
-            <div class="total">total:</div>
-            <div class="price">$112</div>
-          </div>
-        </div>
+      <div id="shopping_cart_div" class="col-md-2 col-sm-2 col-xs-2 nopadding nomargin">
+        <%= render 'shopping_carts/shopping_cart' %>
       </div>
     </div>
   </div>

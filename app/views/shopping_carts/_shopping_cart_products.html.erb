@@ -1,0 +1,69 @@
+<% if shopping_cart.nil? || shopping_cart.products.nil? || shopping_cart.products.empty? %>
+
+    <%= link_to 'Shopping cart is empty. Continue with shopping.', root_path %>
+
+<% else %>
+
+    <!-- Product's content titles -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="product-content-table-item">
+          <div class="col-md-2 content-table-td title">Image</div>
+          <div class="col-md-2 content-table-td title">Product</div>
+          <div class="col-md-2 content-table-td title">Category</div>
+          <div class="col-md-2 content-table-td title">Quantity</div>
+          <div class="col-md-2 content-table-td title">Price</div>
+          <div class="col-md-2 content-table-td title">Total</div>
+        </div>
+      </div>
+    </div>
+    <!-- Product's content titles end -->
+
+    <!-- Products rows -->
+    <% shopping_cart.products.each do |product, quantity| %>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="product-content-table-item">
+              <div class="col-md-2 content-table-td image" style="background-image: url('<%= product.image.url(:thumb) %>');">
+              </div>
+              <div class="col-md-2 content-table-td">
+                <%= link_to product.name, product %>
+              </div>
+              <div class="col-md-2 content-table-td">
+                <% product.categories.each do |category| %>
+                    <%= link_to category.name, category %>
+                <% end %>
+              </div>
+              <div class="col-md-2 content-table-td">
+                <%= number_field_tag 'quantity', quantity, {:min => 1, :step => 1} %>
+              </div>
+              <div class="col-md-2 content-table-td">
+                <%= format('£ %.2f', product.price) %>
+              </div>
+              <div class="col-md-2 content-table-td">
+                <%= format('£ %.2f', product.price * quantity) %>
+              </div>
+            </div>
+          </div>
+        </div>
+    <% end %>
+    <!-- Products rows end -->
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="cart-total-container">
+          <div class="product-price text-right">Total:
+            <div class="our-price">£ <%= shopping_cart.total_price %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 buttons-container">
+        <a href="#" class="button green right">Payment</a>
+        <%= link_to 'Continue Shopping', root_path, html_options = { class: 'button green right continue-shopping' } %>
+      </div>
+    </div>
+
+<% end %>

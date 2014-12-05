@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_from_controller
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :add_to_shopping_cart]
   before_action :set_products, only: [:index]
   before_action :set_search_and_filter_params, only: [:filter, :search]
   respond_to :html, :js
@@ -11,6 +11,14 @@ class ProductsController < ApplicationController
   helper_method :product_passed
 
   add_breadcrumb 'Home', :root_path
+
+  # Add product to shopping cart
+  def add_to_shopping_cart
+    shopping_cart.add_product_to_cart(@product, params[:quantity].to_i())
+    respond_to do |format|
+      format.js { render 'products/add_to_shopping_cart' }
+    end
+  end
 
   # GET /products
   # GET /products.json

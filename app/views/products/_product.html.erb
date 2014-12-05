@@ -2,13 +2,12 @@
   <div class="item-container text-center">
     <%= link_to '', product, :class => 'item-image', :style => 'background-image: url('+ product.image.url() + ');' %>
     <br/>
-
     <div class="item-title">
       <%= product.name %>
     </div>
     <div class="item-price">
       <div class="price left">
-        <%= product.price %> £
+        <%= format('£ %.2f', product.price) %>
       </div>
       <div class="rating right">
         <div class="star-rating">
@@ -23,8 +22,6 @@
       </div>
       <div class="clearfix"></div>
     </div>
-    <div class="button gray">
-      ADD TO CART
-    </div>
-  </div>
+    <%= link_to 'ADD TO CART', {:controller => :products, :action => :add_to_shopping_cart, :id => product.id, :quantity => 1, :remote => true}, {:class => 'button green'} %>
+</div>
 </div>

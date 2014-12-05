@@ -1,9 +1,9 @@
 module ApplicationHelper
+
   # Creates a submit button with the given name with a cancel link
   # Accepts two arguments: Form object and the cancel link name
   def submit_or_cancel(form, name='Cancel')
-    form.submit + " or " +
-        link_to(name, 'javascript:history.go(-1);', :class => 'cancel')
+    form.submit + ' or ' +  link_to(name, 'javascript:history.go(-1);', :class => 'cancel')
   end
 
   def resource_name
@@ -16,6 +16,11 @@ module ApplicationHelper
 
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
+  end
+
+  # Lazy loading init root categories
+  def init_root_categories
+    @root_categories ||= Category.top_level
   end
 
   # Get last visit products by user
@@ -48,6 +53,17 @@ module ApplicationHelper
       end
     end
     session[:last_visit_products] = last_visit_products
+  end
+
+  # Get shopping cart
+  def shopping_cart
+    session[:shopping_cart] ||= ShoppingCart.new()
+    @shopping_cart = session[:shopping_cart]
+  end
+
+  # Add product to shopping cart
+  def add_to_shopping_cart(product, quantity)
+    shopping_cart.add_product_to_cart(product, quantity)
   end
 
 end

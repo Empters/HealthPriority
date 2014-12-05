@@ -48,4 +48,12 @@ class Product < ActiveRecord::Base
   # Remove image validation
   before_validation { self.image.clear if self.remove_image == '1' }
 
+  def eql?(other_product)
+    self.id == other_product.id
+  end
+
+  def hash
+    id.hash
+  end
+
 end
