@@ -37,7 +37,7 @@ function initStarRatings() {
     });
 }
 
-function  initCategoriesDropdowns() {
+function initCategoriesDropdowns() {
     $('.category-arrow').click(function() {
         var categoryName = $(this).data("category");
         if($(this).hasClass("open")) {

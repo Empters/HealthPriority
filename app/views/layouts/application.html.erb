@@ -51,9 +51,8 @@
       <div class="col-md-2 col-sm-2 col-xs-1 nomargin nopadding">
         <%= link_to '', root_path, :class => 'logo', :data => {:no_turbolink => true} %>
       </div>
-      <div class="col-md-8 col-sm-8 col-xs-9">
+      <div class="col-md-8 col-sm-8 col-xs-8">
         <div class="search-section">
-
           <div class="search-container">
             <div class="search-dropdown-container left">
               <div class="dropdown-toggle" id="search_category" data-toggle="dropdown">
@@ -76,12 +75,19 @@
               <div id="search_link" class='search-image'></div>
             </div>
           </div>
+
+          <!-- TODO - popup notifications -->
           <div>
             <div class="notice"><%= notice %></div>
             <div class="alert"><%= alert %></div>
           </div>
+
         </div>
       </div>
+
+      <!-- Cert logo -->
+      <%= link_to '', '#', :class => 'cert-logo', :data => {:no_turbolink => true} %>
+
       <div id="shopping_cart_div" class="col-md-2 col-sm-2 col-xs-2 nopadding nomargin">
         <%= render 'shopping_carts/shopping_cart' %>
       </div>
