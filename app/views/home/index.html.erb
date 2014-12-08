@@ -1,48 +1,53 @@
 `<!-- Page content -->
 <div class="top-market-section">
-    <div class="container hidden-xs">
-      <div class="row">
-        <!-- Gallery -->
-        <div class="col-md-9">
-            <%= render 'homepage_slider' %>
-        </div>
-        <!-- Gallery End -->
-        <div class="col-md-3">
+  <div class="container hidden-xs">
+    <div class="row">
 
-        </div>
+      <!-- Gallery -->
+      <div class="col-md-9">
+        <%= render 'homepage_slider' %>
       </div>
-        <div class="row">
-            <div class="col-md-12">
-                <%= render 'best_sellers' %>
-            </div>
-        </div>
+      <!-- Gallery End -->
+
+      <!-- Banners -->
+      <div class="col-md-3">
+        <%= render 'banners' %>
+      </div>
+      <!-- Banners End -->
+
     </div>
+    <div class="row">
+      <div class="col-md-12">
+        <%= render 'best_sellers' %>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="container-fluid nopadding nomargin visible-xs">
-    <%= render 'categories_pane_phone' %>
+  <%= render 'categories_pane_phone' %>
 </div>
 
 <div class="container">
-<!-- Categories & Products-->
-    <div class="row categories_and_products_container">
-      <!-- Categories -->
-      <div class="col-md-3 hidden-xs">
-        <%= render 'categories_pane' %>
-      </div>
-      <!-- Categories End -->
-      <!-- Products -->
-      <div class="col-md-9 col-xs-12" id="products_div">
-       <%= render 'products/products_list' %>
-      </div>
-      <!-- Products End -->
+  <!-- Categories & Products-->
+  <div class="row categories_and_products_container">
+    <!-- Categories -->
+    <div class="col-md-3 hidden-xs">
+      <%= render 'categories_pane' %>
     </div>
-    <!-- Categories & Products End-->
+    <!-- Categories End -->
+    <!-- Products -->
+    <div class="col-md-9 col-xs-12" id="products_div">
+      <%= render 'products/products_list' %>
+    </div>
+    <!-- Products End -->
+  </div>
+  <!-- Categories & Products End-->
 
-    <!-- Last Visited Products -->
-    <div class="row">
-      <%= render partial: 'home/last_visited_products' %>
-    </div>
-    <!-- Last Visited Products End -->
+  <!-- Last Visited Products -->
+  <div class="row">
+    <%= render partial: 'home/last_visited_products' %>
+  </div>
+  <!-- Last Visited Products End -->
 </div>
 <!-- Page content End -->`
