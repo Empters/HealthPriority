@@ -1,40 +1,42 @@
 <div class="modal fade login-modal" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-        <div class="modal-header title-banner">
-            <button class="close" data-dismiss="modal">×</button>
-            <div>Sign In</div>
-        </div>
-        <%= form_for(:user, :url => user_session_path) do |f| %>
-            <div class="modal-body">
-                <div class="inputs">
-                    <div>
-                        <%= f.label :email %><br />
-                        <%= f.email_field :email, autofocus: true, :placeholder => 'Username' %>
-                    </div>
-
-                    <div>
-                        <%= f.label :password %><br />
-                        <%= f.password_field :password, autocomplete: "off", :placeholder => 'Password' %>
-                    </div>
-
-                    <% if devise_mapping.rememberable? -%>
-                      <div>
-                        <%= f.check_box :remember_me %> <%= f.label :remember_me %>
-                      </div>
-                    <% end -%>
-                </div>
-            </div>
-
-            <div class="modal-footer">
-                <div class="login-links">
-                    <%= render "users/shared/signup_link" %>
-                    <%= render "users/shared/forgotten_pass_link" %>
-                    <%= render "users/shared/resend_confirmation_link" %>
-                </div>
-                <%= f.submit "Log in", :class => 'btn btn-primary button gray'%>
-            </div>
-        <% end %>
+      <div class="modal-header title-banner">
+        <button class="close" data-dismiss="modal">×</button>
+        <div>Sign In</div>
       </div>
+      <%= form_for(:user, :url => user_session_path) do |f| %>
+          <div class="modal-body">
+            <div class="inputs">
+              <div>
+                <%= f.label :email %>
+                <br/>
+                <%= f.email_field :email, autofocus: true, :placeholder => 'Username' %>
+              </div>
+
+              <div>
+                <%= f.label :password %>
+                <br/>
+                <%= f.password_field :password, autocomplete: "off", :placeholder => 'Password' %>
+              </div>
+
+              <% if devise_mapping.rememberable? -%>
+                  <div>
+                    <%= f.check_box :remember_me %> <%= f.label :remember_me %>
+                  </div>
+              <% end -%>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <div class="login-links">
+              <%= render "users/shared/signup_link" %>
+              <%= render "users/shared/forgotten_pass_link" %>
+              <%= render "users/shared/resend_confirmation_link" %>
+            </div>
+            <%= f.submit "Log in", :class => 'btn btn-primary button gray' %>
+          </div>
+      <% end %>
     </div>
+  </div>
 </div>
