@@ -1,11 +1,11 @@
 <div class="content-container">
     <div class="best-sellers-title text-center">Best Sellers</div>
     <!-- rows -->
-    <div class="row">
-          <%= render partial: 'products/product', locals: {product: @products.first, item_class: 'col-md-3 col-sm-6 col-xs-12'} %>
-          <%= render partial: 'products/product', locals: {product: @products.first, item_class: 'col-md-3 col-sm-6 col-xs-12'} %>
-          <%= render partial: 'products/product', locals: {product: @products.first, item_class: 'col-md-3 col-sm-6 col-xs-12'} %>
-          <%= render partial: 'products/product', locals: {product: @products.first, item_class: 'col-md-3 col-sm-6 col-xs-12'} %>
+    <div class="row nomargin">
+          <%= render partial: 'products/product', locals: {product: @products.first, item_class: 'col-md-3 col-sm-6 col-xs-12 item-container'} %>
+          <%= render partial: 'products/product', locals: {product: @products.first, item_class: 'col-md-3 col-sm-6 col-xs-12 item-container'} %>
+          <%= render partial: 'products/product', locals: {product: @products.first, item_class: 'col-md-3 col-sm-6 col-xs-12 item-container'} %>
+          <%= render partial: 'products/product', locals: {product: @products.first, item_class: 'col-md-3 col-sm-6 col-xs-12 item-container'} %>
     </div>
     <!-- rows -->
 </div>
