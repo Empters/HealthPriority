@@ -40,9 +40,21 @@ class Product < ActiveRecord::Base
   # Remove image attribute
   attr_writer :remove_image
 
+  def isInStock?
+    stock_status_id > 0
+  end
+
   # Remove image methods
   def remove_image
     @remove_image || false
+  end
+
+  def average_rating
+    begin
+      (product_reviews.map{|x| x.rating}.inject(:+) / product_reviews.size).round
+    rescue
+      0
+    end
   end
 
   # Remove image validation

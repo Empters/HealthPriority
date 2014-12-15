@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   skip_before_filter :authenticate_user!
+  before_action :set_products_per_page
   before_action :set_products, :set_pages, :set_search_and_filter_params, only: [:index]
   before_action :set_from_controller
 
@@ -25,5 +26,11 @@ class HomeController < ApplicationController
   private
     def set_from_controller
       @from_controller = 'home'
+    end
+
+    def set_products_per_page
+      session[:products_per_page] = 8
+      @products_per_page = 8
+      @table_css = 'col-md-3 col-sm-4 col-xs-12'
     end
 end

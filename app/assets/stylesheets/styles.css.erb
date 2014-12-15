@@ -162,8 +162,11 @@ body {
 }
 
 .main-nav-tab:hover, .navbar-header:hover, .nav > li > a:hover, .nav > li > a:focus {
-    background: #5a9812;
+    background: #69a820;
     cursor: pointer;
+    border: 0;
+    color: inherit;
+    outline: none;
 }
 
 .phone-nav-title {
@@ -891,4 +894,27 @@ body {
 
 .alert {
     text-align: center;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    text-decoration: none;
+    border: 0;
+    width:  100%;
+    height: 100%;
+    cursor: pointer;
+    background: transparent;
+}
+
+.nav-tabs:hover > li.active:hover > a:hover, .nav-tabs:hover > li.active:hover > a:hover, .nav-tabs:hover > li.active:hover > a:hover {
+    text-decoration: none;
+    border: 0;
+    width:  100%;
+    height: 100%;
+    cursor: pointer;
+    background: transparent;
+    color: inherit;
+}
+
+a, a:visited, a:hover, a:active {
+    color: inherit;
 }
