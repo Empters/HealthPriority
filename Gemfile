@@ -74,3 +74,6 @@ gem 'will_paginate'
 
 # Gem for breadcrumbs menu navigation
 gem 'breadcrumbs_on_rails'
+
+# Gem for Excel
+gem 'spreadsheet', '~> 1.0.0'

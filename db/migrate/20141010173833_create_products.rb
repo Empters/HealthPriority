@@ -6,7 +6,7 @@ class CreateProducts < ActiveRecord::Migration
       t.decimal :price, :null => false, :default => 0
       t.integer :quantity, :null => false, :default => 0
       t.integer :manufacturer_id, :null => false
-      t.integer :stock_status_id, :null => false
+      t.integer :stock_status_id, :null => false, :default => 1
       t.text :ingredients
       t.text :benefits
       t.text :description
