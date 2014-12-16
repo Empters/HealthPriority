@@ -129,6 +129,7 @@ ActiveAdmin.register_page 'Import Products' do
           puts product.id
 
         end
+
       end
     end
 

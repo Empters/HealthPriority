@@ -76,4 +76,4 @@ gem 'will_paginate'
 gem 'breadcrumbs_on_rails'
 
 # Gem for Excel
-gem 'spreadsheet', '~> 1.0.0'
+gem 'roo', '~> 1.13.2'
