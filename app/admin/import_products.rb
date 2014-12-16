@@ -84,34 +84,53 @@ ActiveAdmin.register_page 'Import Products' do
       # Read excel file
       sheet.each 1 do |row|
 
-        # Init manufacturer
-        manufacturer_name = row[13]
-        manufacturer = Manufacturer.where('lower(name) = ?', manufacturer_name.downcase).first
-        if manufacturer.nil?
-          manufacturer = Manufacturer.create(name: manufacturer_name)
-        end
+        # Row transaction
+        ActiveRecord::Base.transaction do
 
-        # Init category
-        category_name = row[6]
-        category = Category.where('lower(name) = ?', category_name.downcase).first
-        if category.nil?
-          category = Category.create(name: manufacturer_name)
-        end
-
-        # Init subcategory
-        subcategory_name = row[7]
-        if subcategory_name?
-          subcategory = Category.where('lower(name) = ?', subcategory_name.downcase).first
-          if subcategory.nil?
-            subcategory = Category.create(name: manufacturer_name, parent_id: category.id)
+          # Init manufacturer
+          manufacturer_name = row[13]
+          if !manufacturer_name.nil? && !manufacturer_name.blank?
+            manufacturer = Manufacturer.where('lower(name) = ?', manufacturer_name.downcase).first
+            if manufacturer.nil?
+              manufacturer = Manufacturer.create!(name: manufacturer_name)
+            end
           end
+
+          # Init category
+          category_name = row[6]
+          category = Category.where('lower(name) = ?', category_name.downcase).first
+          if category.nil?
+            category = Category.create!(name: category_name)
+          end
+
+          # Init subcategory
+          subcategory_name = row[7]
+          if !subcategory_name.blank?
+            subcategory = Category.where('lower(name) = ?', subcategory_name.downcase).first
+            if subcategory.nil?
+              subcategory = Category.create!(name: subcategory_name, parent_id: category.id)
+            end
+          end
+
+          # Create product
+          product = Product.create!(
+              name: row[0],
+              full_name: row[1],
+              benefits: row[3],
+              description: row[4],
+              ingredients: row[5],
+              direction: row[6],
+              stock_status_id: 1,
+              price: row[8].to_f,
+              quantity: row[9].to_i,
+              manufacturer_id: manufacturer.nil? ? nil : manufacturer.id,
+              categories: subcategory.nil? ? [category] : [subcategory])
+
+          puts product.id
+
         end
-
-        # Create product
-        Product.create(name: row[0], full_name: row[1], benefits: row[3], description: row[4], ingredients: row[5], direction: row[6], price: row[8], quantity: row[9], manufacturer_id: manufacturer.id, categories: subcategory.nil? ? [category] : [subcategory])
-
       end
-  end
+    end
 
   end
 
