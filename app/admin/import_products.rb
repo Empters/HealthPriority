@@ -42,23 +42,8 @@ ActiveAdmin.register_page 'Import Products' do
     product_file_io = params[:productFile]
     images_file_io = params[:imagesFile]
 
-    # Get import directory
-    importDirectory = Rails.root.join('tmp/imports')
-
-    # Create import directory if not exist
-    FileUtils.mkdir_p(importDirectory) unless File.directory?(importDirectory)
-
-    # Clear import directory - delete files and folders
-    # FileUtils.rm_rf(importDirectory + '/*')
-
-    # Try to save file local
-    excel_file = Rails.root.join(importDirectory, product_file_io.original_filename)
-    File.open(excel_file, 'wb') do |file|
-      file.write(product_file_io.read)
-    end
-
     # Import products from excel to DB
-    import_products(excel_file)
+    import_products(product_file_io)
 
     # Redirect to import page with notice
     redirect_to admin_import_products_path, :notice => 'Import products is success!'
@@ -67,44 +52,42 @@ ActiveAdmin.register_page 'Import Products' do
   controller do
 
     # Require gems
-    require 'spreadsheet'
+    require 'roo'
 
     # Read products from excel and add its to DB
-    def import_products(excel_path)
-      book = Spreadsheet.open excel_path
-      sheet = book.worksheet 0
+    def import_products(file)
 
-=begin
-    header_row = sheet.row(0)
-    header_row.each do |cell|
-      cell
-    end
-=end
+      # Open workbook
+      workbook = open_spreadsheet(file)
 
-      # Read excel file
-      sheet.each 1 do |row|
+      headers = Hash.new
+      workbook.row(1).each_with_index { |header, i|
+        headers[header.downcase] = i
+      }
 
-        # Row transaction
-        ActiveRecord::Base.transaction do
+      # Import products is in one transaction
+      ActiveRecord::Base.transaction do
+
+        ((workbook.first_row + 1)..workbook.last_row).each do |i|
+
+          product_name = workbook.row(i)[headers['name']]
 
           # Init manufacturer
-          manufacturer_name = row[13]
-          if !manufacturer_name.nil? && !manufacturer_name.blank?
-            manufacturer = Manufacturer.where('lower(name) = ?', manufacturer_name.downcase).first
-            if manufacturer.nil?
-              manufacturer = Manufacturer.create!(name: manufacturer_name)
-            end
+          manufacturer_name = workbook.row(i)[headers['manufacturer']]
+          manufacturer = Manufacturer.where('lower(name) = ?', manufacturer_name.downcase).first
+          if manufacturer.nil?
+            manufacturer = Manufacturer.create!(name: manufacturer_name)
           end
 
           # Init category
-          category_name = row[6]
+          category_name = workbook.row(i)[headers['category']]
           category = Category.where('lower(name) = ?', category_name.downcase).first
           if category.nil?
             category = Category.create!(name: category_name)
           end
 
           # Init subcategory
-          subcategory_name = row[7]
+          subcategory_name = workbook.row(i)[headers['subcategory']]
           if !subcategory_name.blank?
             subcategory = Category.where('lower(name) = ?', subcategory_name.downcase).first
             if subcategory.nil?
@@ -112,24 +95,40 @@ ActiveAdmin.register_page 'Import Products' do
             end
           end
 
+          # Init manufacturer
+          stock_status_name = workbook.row(i)[headers['stock status']]
+          if !stock_status_name.nil? && !stock_status_name.blank?
+            stock_status = StockStatus.where('lower(name) = ?', stock_status_name.downcase).first
+            if stock_status.nil?
+              stock_status = StockStatus.create!(name: stock_status_name)
+            end
+          end
+
           # Create product
           product = Product.create!(
-              name: row[0],
-              full_name: row[1],
-              benefits: row[3],
-              description: row[4],
-              ingredients: row[5],
-              direction: row[6],
-              stock_status_id: 1,
-              price: row[8].to_f,
-              quantity: row[9].to_i,
-              manufacturer_id: manufacturer.nil? ? nil : manufacturer.id,
+              name: workbook.row(i)[headers['name']],
+              full_name: workbook.row(i)[headers['full name']],
+              benefits: workbook.row(i)[headers['benefits']],
+              description: workbook.row(i)[headers['description']],
+              ingredients: workbook.row(i)[headers['ingredients']],
+              direction: workbook.row(i)[headers['direction']],
+              stock_status_id: stock_status.id,
+              price: workbook.row(i)[headers['price']].to_f,
+              quantity: workbook.row(i)[headers['quantity']].to_i,
+              manufacturer_id: manufacturer.id,
               categories: subcategory.nil? ? [category] : [subcategory])
-
-          puts product.id
-
         end
+      end
+    end
 
+    def open_spreadsheet(file)
+      case File.extname(file.original_filename)
+        when '.xls' then
+          Roo::Excel.new(file.path, nil, :ignore)
+        when '.xlsx' then
+          Roo::Excelx.new(file.path, nil, :ignore)
+        else
+          raise "Unknown file type: #{file.original_filename}"
       end
     end
 
