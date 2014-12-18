@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
 
+  post 'import_products_post' => 'admin#import_products#import'
+
   ActiveAdmin.routes(self)
 
   # Init active admin

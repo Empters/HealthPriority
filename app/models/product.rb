@@ -16,11 +16,20 @@ class Product < ActiveRecord::Base
   belongs_to :manufacturer
   belongs_to :stock_status
 
+  # Has many relations
   has_many :product_images, :dependent => :destroy, :autosave => true
   has_many :product_reviews
   has_many :product_discounts
 
+  # Category relations
   has_and_belongs_to_many :categories, :autosave => true, class_name: 'Category', join_table: 'products_categories'
+
+  # Related products relation
+  has_and_belongs_to_many :related_products, :autosave => true, class_name: 'Product', join_table: 'product_related', foreign_key: 'related_id'
+
+  # Edit product categories
+  accepts_nested_attributes_for :related_products, allow_destroy: true,
+                                :reject_if => lambda { |attributes| attributes[:product_id].blank? }
 
   # Edit product categories
   accepts_nested_attributes_for :categories, allow_destroy: true,

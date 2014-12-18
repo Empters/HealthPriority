@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141102104012) do
+ActiveRecord::Schema.define(version: 20141213124207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,6 +116,11 @@ ActiveRecord::Schema.define(version: 20141102104012) do
     t.datetime "updated_at"
   end
 
+  create_table "product_related", id: false, force: true do |t|
+    t.integer "product_id"
+    t.integer "related_id", null: false
+  end
+
   create_table "product_reviews", force: true do |t|
     t.integer  "product_id",  null: false
     t.integer  "customer_id"
@@ -129,11 +134,15 @@ ActiveRecord::Schema.define(version: 20141102104012) do
 
   create_table "products", force: true do |t|
     t.string   "name",                              null: false
+    t.string   "full_name"
     t.decimal  "price",              default: 0.0,  null: false
     t.integer  "quantity",           default: 0,    null: false
     t.integer  "manufacturer_id",                   null: false
     t.integer  "stock_status_id",                   null: false
+    t.text     "ingredients"
+    t.text     "benefits"
     t.text     "description"
+    t.text     "direction"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -149,7 +158,7 @@ ActiveRecord::Schema.define(version: 20141102104012) do
     t.datetime "updated_at"
   end
 
-  create_table "products_categories", force: true do |t|
+  create_table "products_categories", id: false, force: true do |t|
     t.integer "product_id"
     t.integer "category_id"
   end
