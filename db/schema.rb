@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141213124207) do
+ActiveRecord::Schema.define(version: 20141218134831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -133,12 +133,12 @@ ActiveRecord::Schema.define(version: 20141213124207) do
   end
 
   create_table "products", force: true do |t|
-    t.string   "name",                              null: false
+    t.string   "name",                               null: false
     t.string   "full_name"
-    t.decimal  "price",              default: 0.0,  null: false
-    t.integer  "quantity",           default: 0,    null: false
-    t.integer  "manufacturer_id",                   null: false
-    t.integer  "stock_status_id",                   null: false
+    t.decimal  "price",              default: 0.0,   null: false
+    t.integer  "quantity",           default: 0,     null: false
+    t.integer  "manufacturer_id",                    null: false
+    t.integer  "stock_status_id",    default: 1,     null: false
     t.text     "ingredients"
     t.text     "benefits"
     t.text     "description"
@@ -149,13 +149,14 @@ ActiveRecord::Schema.define(version: 20141213124207) do
     t.datetime "image_updated_at"
     t.integer  "viewed"
     t.integer  "points"
-    t.boolean  "active",             default: true, null: false
-    t.integer  "sort_order",         default: 0,    null: false
+    t.boolean  "active",             default: true,  null: false
+    t.integer  "sort_order",         default: 0,     null: false
     t.date     "date_available"
     t.string   "meta_keyword"
     t.string   "meta_description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_best_seller",     default: false
   end
 
   create_table "products_categories", id: false, force: true do |t|

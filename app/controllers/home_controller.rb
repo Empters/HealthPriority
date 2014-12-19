@@ -36,6 +36,6 @@ class HomeController < ApplicationController
     end
 
     def set_best_sellers
-      @best_sellers = Product.where('')
+      @best_sellers = Product.where(is_best_seller: true)
     end
 end
