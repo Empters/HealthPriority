@@ -77,3 +77,6 @@ gem 'breadcrumbs_on_rails'
 
 # Gem for Excel
 gem 'roo', '~> 1.13.2'
+
+# Zip gem
+gem 'rubyzip', '~> 1.1.6'

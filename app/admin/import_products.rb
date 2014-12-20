@@ -4,9 +4,20 @@ ActiveAdmin.register_page 'Import Products' do
   menu :parent => 'System', :priority => 3
 
   # Left slider with help import data
-  sidebar :help do
+  sidebar 'Allow columns' do
     ul do
-      li 'First Line of Help'
+      li 'Name'
+      li 'Full Name'
+      li 'Benefits'
+      li 'Description'
+      li 'Ingredients'
+      li 'Direction'
+      li 'Category'
+      li 'Subcategory'
+      li 'Price'
+      li 'Quantity'
+      li 'Manufacturer'
+      li 'Stock status'
     end
   end
 
@@ -39,11 +50,14 @@ ActiveAdmin.register_page 'Import Products' do
   page_action :import, :method => :post do
 
     # Try to import products
-    product_file_io = params[:productFile]
-    images_file_io = params[:imagesFile]
+    product_file = params[:productFile]
+    images_file = params[:imagesFile]
 
     # Import products from excel to DB
-    import_products(product_file_io)
+    import_products(product_file)
+
+    # Import products images from zip to DB
+    import_product_images(images_file)
 
     # Redirect to import page with notice
     redirect_to admin_import_products_path, :notice => 'Import products is success!'
@@ -55,10 +69,15 @@ ActiveAdmin.register_page 'Import Products' do
     require 'roo'
 
     # Read products from excel and add its to DB
-    def import_products(file)
+    def import_products(product_file)
+
+      # Check if has file
+      if product_file.nil?
+        return
+      end
 
       # Open workbook
-      workbook = open_spreadsheet(file)
+      workbook = open_spreadsheet(product_file)
 
       headers = Hash.new
       workbook.row(1).each_with_index { |header, i|
@@ -70,17 +89,15 @@ ActiveAdmin.register_page 'Import Products' do
 
         ((workbook.first_row + 1)..workbook.last_row).each do |i|
 
-          product_name = workbook.row(i)[headers['name']]
-
           # Init manufacturer
-          manufacturer_name = workbook.row(i)[headers['manufacturer']]
+          manufacturer_name = workbook.row(i)[headers['manufacturer']].strip
           manufacturer = Manufacturer.where('lower(name) = ?', manufacturer_name.downcase).first
           if manufacturer.nil?
             manufacturer = Manufacturer.create!(name: manufacturer_name)
           end
 
           # Init category
-          category_name = workbook.row(i)[headers['category']]
+          category_name = workbook.row(i)[headers['category']].strip
           category = Category.where('lower(name) = ?', category_name.downcase).first
           if category.nil?
             category = Category.create!(name: category_name)
@@ -88,7 +105,8 @@ ActiveAdmin.register_page 'Import Products' do
 
           # Init subcategory
           subcategory_name = workbook.row(i)[headers['subcategory']]
-          if !subcategory_name.blank?
+          unless subcategory_name.blank?
+            subcategory_name = subcategory_name.strip
             subcategory = Category.where('lower(name) = ?', subcategory_name.downcase).first
             if subcategory.nil?
               subcategory = Category.create!(name: subcategory_name, parent_id: category.id)
@@ -97,7 +115,8 @@ ActiveAdmin.register_page 'Import Products' do
 
           # Init manufacturer
           stock_status_name = workbook.row(i)[headers['stock status']]
-          if !stock_status_name.nil? && !stock_status_name.blank?
+          unless stock_status_name.nil? || stock_status_name.blank?
+            stock_status_name = stock_status_name.strip
             stock_status = StockStatus.where('lower(name) = ?', stock_status_name.downcase).first
             if stock_status.nil?
               stock_status = StockStatus.create!(name: stock_status_name)
@@ -106,8 +125,8 @@ ActiveAdmin.register_page 'Import Products' do
 
           # Create product
           product = Product.create!(
-              name: workbook.row(i)[headers['name']],
-              full_name: workbook.row(i)[headers['full name']],
+              name: workbook.row(i)[headers['name']].strip,
+              full_name: workbook.row(i)[headers['full name']].strip,
               benefits: workbook.row(i)[headers['benefits']],
               description: workbook.row(i)[headers['description']],
               ingredients: workbook.row(i)[headers['ingredients']],
@@ -118,10 +137,15 @@ ActiveAdmin.register_page 'Import Products' do
               manufacturer_id: manufacturer.id,
               categories: subcategory.nil? ? [category] : [subcategory])
         end
+
       end
     end
 
+    # Open excel file
     def open_spreadsheet(file)
+
+      puts "Open file #{file.original_filename}"
+
       case File.extname(file.original_filename)
         when '.xls' then
           Roo::Excel.new(file.path, nil, :ignore)
@@ -130,6 +154,73 @@ ActiveAdmin.register_page 'Import Products' do
         else
           raise "Unknown file type: #{file.original_filename}"
       end
+    end
+
+    def import_product_images(image_file)
+
+      # Check if has file
+      if image_file.nil?
+        return
+      end
+
+      # Validate zip file extension
+      if File.extname(image_file.original_filename) != '.zip'
+        raise 'Product image import file must be zip file!'
+      end
+
+      # Open zip file
+      zip_file = Zip::File.open(image_file.path)
+
+      # Read zip directories
+      directories = Array.new
+      zip_file.each do |entry|
+        puts "Read zip entry: #{entry.name}"
+        directory_name = File.dirname(entry.name)
+        unless directory_name == '.' || directories.include?(directory_name)
+          directories << directory_name
+        end
+      end
+
+      # Import products is in one transaction
+      ActiveRecord::Base.transaction do
+
+        directories.each do |directory|
+          puts "Working with zip directory: #{directory}"
+
+          # Search product by name
+          product = Product.where('lower(name) = ?', directory.downcase).first
+          unless product.nil?
+            glob_args = File.join("#{directory}", 'main.{jpg,jpeg,png,gif}')
+            entry_main_image = zip_file.glob(glob_args).first
+            unless entry_main_image.nil?
+              product.image = get_image(entry_main_image)
+            end
+
+            images = Array.new
+            glob_args = File.join("#{directory}", '*.{jpg,jpeg,png,gif}')
+            entry_images = zip_file.glob(glob_args)
+            entry_images.select { |n| !n.name.start_with?('main') }.each do |entry_image|
+              images << ProductImage.create!(
+                  product: product,
+                  image: get_image(entry_image)
+              )
+            end
+
+            product.product_images = images
+            product.save!
+          end
+        end
+      end
+    end
+
+    def get_image(zip_entry)
+
+      basename = File.basename(zip_entry.name)
+      main_image = Tempfile.new(basename)
+      main_image.binmode
+      main_image.write zip_entry.get_input_stream.read
+
+      return main_image
     end
 
   end

@@ -299,6 +299,7 @@ DEPENDENCIES
   rails3-jquery-autocomplete (~> 1.0.12)
   roo (~> 1.13.2)
   rspec-rails (~> 3.0.0)
+  rubyzip (~> 1.1.6)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   selenium-webdriver
