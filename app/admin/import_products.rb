@@ -190,16 +190,16 @@ ActiveAdmin.register_page 'Import Products' do
           # Search product by name
           product = Product.where('lower(name) = ?', directory.downcase).first
           unless product.nil?
-            glob_args = File.join("#{directory}", 'main.{jpg,jpeg,png,gif}')
+            glob_args = File.join("#{directory}", 'main.jpg')
             entry_main_image = zip_file.glob(glob_args).first
             unless entry_main_image.nil?
               product.image = get_image(entry_main_image)
             end
 
             images = Array.new
-            glob_args = File.join("#{directory}", '*.{jpg,jpeg,png,gif}')
+            glob_args = File.join("#{directory}", '*.jpg')
             entry_images = zip_file.glob(glob_args)
-            entry_images.select { |n| !n.name.start_with?('main') }.each do |entry_image|
+            entry_images.select { |n| !n.name.start_with?('main.') }.each do |entry_image|
               images << ProductImage.create!(
                   product: product,
                   image: get_image(entry_image)
