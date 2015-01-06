@@ -20,7 +20,6 @@ class ShoppingCart
       # Remove product
       remove_product_from_cart(product)
     end
-
   end
 
   # Remove product from cart

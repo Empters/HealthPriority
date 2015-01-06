@@ -9,3 +9,9 @@ if (shopping_cart_products_div)
 {
     shopping_cart_products_div.html("<%= escape_javascript render('shopping_carts/shopping_cart_products') %>");
 }
+
+var notificationMessages = $("#notificationMessages");
+if(notificationMessages)
+{
+    notificationMessages.html("<%= escape_javascript render('layouts/flash_messages') %>");
+}

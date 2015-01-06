@@ -14,7 +14,9 @@ class ProductsController < ApplicationController
 
   # Add product to shopping cart
   def add_to_shopping_cart
-    shopping_cart.add_product_to_cart(@product, params[:quantity].to_i())
+    product_quantity = params[:quantity].to_i()
+    shopping_cart.add_product_to_cart(@product, product_quantity)
+    flash[:success] = product_quantity > 0 ? 'The products are added!' : 'The products are removed!'
     respond_to do |format|
       format.js { render 'products/add_to_shopping_cart' }
     end
