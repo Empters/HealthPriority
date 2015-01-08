@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
 
+  post 'import_products_post' => 'admin#import_products#import'
+
   ActiveAdmin.routes(self)
 
   # Init active admin
@@ -16,6 +18,8 @@ Rails.application.routes.draw do
   get 'faq', to: 'faq#index'
   get '/products/search/(:token)(/category/:category)', to: 'products#search', :as => 'search'
   get '/products/filter/:category' => 'products#filter', :as => 'filter'
+  get '/products/brand/:brand' => 'products#brand', :as => 'brand'
+  get '/products/price/:range' => 'products#price', :as => 'price'
   get '/products/change_page/:page_number' => 'products#change_page'
   get '/home/change_page/:page_number' => 'home#change_page'
   get '/products/add_to_shopping_cart/:id&:quantity' => 'products#add_to_shopping_cart'

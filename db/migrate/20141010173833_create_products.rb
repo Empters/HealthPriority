@@ -2,11 +2,15 @@ class CreateProducts < ActiveRecord::Migration
   def change
     create_table :products do |t|
       t.string :name, :null => false
+      t.string :full_name
       t.decimal :price, :null => false, :default => 0
       t.integer :quantity, :null => false, :default => 0
       t.integer :manufacturer_id, :null => false
-      t.integer :stock_status_id, :null => false
+      t.integer :stock_status_id, :null => false, :default => 1
+      t.text :ingredients
+      t.text :benefits
       t.text :description
+      t.text :direction
       t.attachment :image
       t.integer :viewed
       t.integer :points

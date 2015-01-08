@@ -42,8 +42,8 @@ class Category < ActiveRecord::Base
     @full_name ||= parent_names.empty? ? self.name : parent_names << ' > ' << self.name
   end
 
-  def name_with_products_count
-    @name_with_products_count = "#{name}(#{products.length})"
+  def products_count
+    @products_count ||= get_products_count(self)
   end
 
   def get_ancestors(who)
@@ -54,6 +54,17 @@ class Category < ActiveRecord::Base
       @tree << who.parent.name
       get_ancestors(who.parent)
     end
+  end
+
+  def get_products_count(who)
+    count = who.products.count
+    if !who.children.nil? && who.children.count > 0
+      who.children.each do |child|
+        count += get_products_count(child)
+      end
+    end
+
+    return count
   end
 
 end

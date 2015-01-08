@@ -2,10 +2,9 @@
     <div class="best-sellers-title text-center">Best Sellers</div>
     <!-- rows -->
     <div class="row nomargin">
-          <%= render partial: 'products/product', locals: {product: @products.first, item_class: 'col-md-3 col-sm-6 col-xs-12 item-container'} %>
-          <%= render partial: 'products/product', locals: {product: @products.first, item_class: 'col-md-3 col-sm-6 col-xs-12 item-container'} %>
-          <%= render partial: 'products/product', locals: {product: @products.first, item_class: 'col-md-3 col-sm-6 col-xs-12 item-container'} %>
-          <%= render partial: 'products/product', locals: {product: @products.first, item_class: 'col-md-3 col-sm-6 col-xs-12 item-container'} %>
+      <% @best_sellers.sample(4).each do |product| %>
+          <%= render partial: 'products/product', locals: {product: product, item_class: 'col-md-3 col-sm-6 col-xs-12 item-container'} %>
+      <% end %>
     </div>
     <!-- rows -->
 </div>
