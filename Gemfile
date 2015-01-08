@@ -76,6 +76,3 @@ gem 'jquery-turbolinks'
 gem 'will_paginate'
 
 gem "breadcrumbs_on_rails"
-
-
-gem 'paypal-sdk-rest'

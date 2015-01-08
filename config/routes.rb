@@ -19,9 +19,13 @@ Rails.application.routes.draw do
   get '/products/change_page/:page_number' => 'products#change_page'
   get '/home/change_page/:page_number' => 'home#change_page'
   get '/products/add_to_shopping_cart/:id&:quantity' => 'products#add_to_shopping_cart'
-  get '/shopping_carts/pay' => 'shopping_carts#pay'
-  get '/shopping_carts/success' => 'shopping_carts#success'
-  get '/shopping_carts/cancel' => 'shopping_carts#cancel'
+  get '/shopping_carts/pay', to: 'shopping_carts#pay'
+  get '/shopping_carts/success', to: 'shopping_carts#success'
+  get '/shopping_carts/cancel', to: 'shopping_carts#cancel'
+  get '/shopping_carts/payment', to: 'shopping_carts#payment', :as => 'payments'
+  post '/shopping_carts/payment', to: 'shopping_carts#pay', :as => 'pay'
+  post "/shopping_carts/hook" => "shopping_carts#hook", :as => 'hook'
+  post "/payment/:id" => "payments#show"
 
   resources :product_reviews
   resources :product_discounts
