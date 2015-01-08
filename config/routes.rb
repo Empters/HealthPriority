@@ -22,10 +22,10 @@ Rails.application.routes.draw do
   get '/shopping_carts/pay', to: 'shopping_carts#pay'
   get '/shopping_carts/success', to: 'shopping_carts#success'
   get '/shopping_carts/cancel', to: 'shopping_carts#cancel'
-  get '/shopping_carts/payment', to: 'shopping_carts#payment', :as => 'payments'
-  post '/shopping_carts/payment', to: 'shopping_carts#pay', :as => 'pay'
-  post "/shopping_carts/hook" => "shopping_carts#hook", :as => 'hook'
-  post "/payment/:id" => "payments#show"
+  get '/shopping_carts/payments', to: 'shopping_carts#payments', :as => 'payments_list'
+  post '/shopping_carts/payments', to: 'shopping_carts#pay', :as => 'pay'
+  post "/payments/hook" => "payments#hook", :as => 'hook'
+  post "/payments/:id" => "payments#show"
 
   resources :product_reviews
   resources :product_discounts
@@ -38,5 +38,6 @@ Rails.application.routes.draw do
   resources :contacts, only: :index
   resources :shopping_carts, only: :index
   resources :products
+  resources :payments
 
 end

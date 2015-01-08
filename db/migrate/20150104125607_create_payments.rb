@@ -17,7 +17,10 @@ class CreatePayments < ActiveRecord::Migration
       t.string :description
       t.string :status, default: 'new'
       t.string :transaction_id
+      t.integer :total_quantity
       t.datetime :purchased_at
+      t.string :item_name
+      t.string :item_number
       t.timestamps
     end
   end

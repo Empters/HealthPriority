@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :payment do
+  factory :payments do
     payment_method "MyString"
 card_type "MyString"
 card_number "MyString"

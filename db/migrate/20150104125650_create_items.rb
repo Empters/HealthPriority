@@ -4,7 +4,7 @@ class CreateItems < ActiveRecord::Migration
       t.integer :payment_id
       t.integer :product_id
       t.string :name
-      t.string :price
+      t.decimal :price
       t.string :quantity
 
       t.timestamps
