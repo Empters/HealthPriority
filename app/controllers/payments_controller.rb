@@ -52,6 +52,7 @@ class PaymentsController < ApplicationController
 
   def show
     puts "show"
+    puts params
   end
 
   def payment_params
