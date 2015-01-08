@@ -57,6 +57,12 @@ class ProductsController < ApplicationController
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
+
+    if @payment.save
+      redirect_to @payment.paypal_url
+    else
+      render nothing: true
+    end
   end
 
   # PATCH/PUT /products/1

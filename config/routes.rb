@@ -23,6 +23,13 @@ Rails.application.routes.draw do
   get '/products/change_page/:page_number' => 'products#change_page'
   get '/home/change_page/:page_number' => 'home#change_page'
   get '/products/add_to_shopping_cart/:id&:quantity' => 'products#add_to_shopping_cart'
+  get '/shopping_carts/pay', to: 'shopping_carts#pay'
+  get '/shopping_carts/success', to: 'shopping_carts#success'
+  get '/shopping_carts/cancel', to: 'shopping_carts#cancel'
+  get '/shopping_carts/payments', to: 'shopping_carts#payments', :as => 'payments_list'
+  post '/shopping_carts/payments', to: 'shopping_carts#pay', :as => 'pay'
+  post "/payments/hook" => "payments#hook", :as => 'hook'
+  post "/payments/:id" => "payments#show"
 
   resources :product_reviews
   resources :product_discounts
@@ -35,5 +42,6 @@ Rails.application.routes.draw do
   resources :contacts, only: :index
   resources :shopping_carts, only: :index
   resources :products
+  resources :payments
 
 end

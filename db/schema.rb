@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141218134413) do
+ActiveRecord::Schema.define(version: 20150104132303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,16 @@ ActiveRecord::Schema.define(version: 20141218134413) do
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
+  create_table "items", force: true do |t|
+    t.integer  "payment_id"
+    t.integer  "product_id"
+    t.string   "name"
+    t.decimal  "price"
+    t.string   "quantity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "manufacturers", force: true do |t|
     t.string   "name",                           null: false
     t.string   "image_file_name"
@@ -89,6 +99,31 @@ ActiveRecord::Schema.define(version: 20141218134413) do
     t.datetime "image_updated_at"
     t.text     "description"
     t.integer  "sort_order",         default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "payments", force: true do |t|
+    t.integer  "user_id"
+    t.string   "payment_method"
+    t.string   "name"
+    t.string   "company"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "postal_code"
+    t.string   "country"
+    t.string   "total"
+    t.string   "currency",       default: "£"
+    t.string   "description"
+    t.string   "status",         default: "new"
+    t.string   "transaction_id"
+    t.integer  "total_quantity"
+    t.datetime "purchased_at"
+    t.string   "item_name"
+    t.string   "item_number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -187,6 +222,8 @@ ActiveRecord::Schema.define(version: 20141218134413) do
     t.string   "unconfirmed_email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
