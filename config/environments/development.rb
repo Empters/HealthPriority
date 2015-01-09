@@ -71,4 +71,5 @@ Rails.application.configure do
     end
   end
 
+  #config.allow_concurrency = true
 end
