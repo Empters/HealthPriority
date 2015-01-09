@@ -101,7 +101,7 @@ body {
     color: #8A8A8A;
 }
 
-.item-image, .fb_top, .gallery-item, .item-image, .rsMinW.rsHor .rsArrowIcn, .logo, .cert-logo, .cart-amount, .cart, .search-image, .send-email-button, .star, .sponsors-footer, .category-arrow, .dot, .image {
+.item-image, .fb_top, .gallery-item, .item-image, .rsMinW.rsHor .rsArrowIcn, .logo, .cert-logo, .cart-amount, .cart, .search-image, .send-email-button, .star, .star-small, .sponsors-footer, .category-arrow, .dot, .image {
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -489,12 +489,12 @@ body {
 }
 
 .categories-list > li > a {
-    text-decoration: none !important;
-    color: #7A7A7A !important;
+    text-decoration: none;
+    color: #7A7A7A;
 }
 
 .categories-list > li > a:hover {
-    color: #f79114 !important;
+    color: #f79114;
 }
 
 .category-arrow {
@@ -610,7 +610,7 @@ body {
 }
 
 .category-item:hover, .categories-list > li > a:hover {
-    text-decoration: underline !important;
+    text-decoration: underline;
     background: none;
 }
 
@@ -653,8 +653,8 @@ body {
 }
 
 .login-links > a {
-    color: #7a7a7a !important;
-    text-decoration: none !important;
+    color: #7a7a7a;
+    text-decoration: none;
 }
 
 .top-bar-tab > a {
@@ -925,4 +925,38 @@ a, a:visited, a:hover, a:active {
 
 .product-content-table-item > .content-table-td > input {
     width: 70px;
+}
+
+.top-market-section {
+    background: -webkit-linear-gradient(#FFFFFF, #F2F2F2); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#FFFFFF, #F2F2F2); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#FFFFFF, #F2F2F2); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#FFFFFF, #F2F2F2); /* Standard syntax (must be last) */
+}
+
+.main-fonts {
+    font-family: MyOpenSans !important;;
+}
+
+body {
+    font-family: MyOpenSans !important;
+}
+
+.price-small {
+    font-size: 13px;
+}
+
+.star-small {
+    background-image: url("/assets/product-page-star-inactive.png");
+    display: inline-block;
+    height: 15px;
+    width: 8px;
+}
+
+.categories-list > li >a:focus {
+    color: #f79114;
+    text-decoration: underline;
+}
+.button.gray {
+    box-shadow: 4px 4px 4px #888888;
 }
