@@ -64,6 +64,8 @@ group :development, :test do
   gem 'email_spec'
   gem 'poltergeist'
   gem 'selenium-webdriver'
+
+  gem 'pry-rails'
 end
 
 # Rich text editor
@@ -76,6 +78,9 @@ gem 'will_paginate'
 gem 'breadcrumbs_on_rails'
 
 # Gem for Excel
+gem 'spreadsheet', '~> 1.0.0'
+
+#gem 'thin'
 gem 'roo', '~> 1.13.2'
 
 # Zip gem

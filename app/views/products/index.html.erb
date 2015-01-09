@@ -1,18 +1,23 @@
 <div class="container margin-top">
-  <div class="path">
+ <!-- <div class="path">
     <%= render_breadcrumbs :separator => ' / ' %>
   </div>
 
   <div class="page-title">
     Products
-  </div>
+  </div>-->
 
   <!-- Categories & Products-->
   <div class="row categories_and_products_container">
     <!-- Categories -->
     <div class="col-md-3 hidden-xs">
       <%= render 'home/categories_pane' %>
+      <br/>
+      <%= render 'home/brand_pane' %>
+      <br/>
+      <%= render 'home/price_pane' %>
     </div>
+
     <!-- Categories End -->
     <!-- Products -->
     <div class="col-md-9 col-xs-12" id="products_div">

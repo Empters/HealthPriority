@@ -20,8 +20,32 @@
 //= require turbolinks
 //= require_tree .
 
+jQuery.fn.center = function () {
+    this.css("position","absolute");
+    this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) +
+            $(window).scrollTop()) + "px");
+    this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) +
+            $(window).scrollLeft()) + "px");
+    return this;
+}
+
 function getUrlRoot() {
     return 'http://' + location.host
+}
+
+function show_ajax_message(msg, type) {
+    var message = '<div class="alert alert-' + type +' notification">' +
+    '<button class="close" data-dismiss="alert">×</button>' +
+            msg +
+    '</div>';
+
+    $("#flash-message").append(message);
+    show_notifications();
+}
+
+function show_notifications(){
+    $("#flash-message").center();
+    $(".notification").show().delay(3000).fadeOut(300, function() { $(this).remove(); });
 }
 
 $().ready(function(){
@@ -59,5 +83,15 @@ $().ready(function(){
             $('#search_link').click();
         }
     });
-});
 
+    $(document).ajaxComplete(function(event, request) {
+        var msg = request.getResponseHeader('X-Message');
+        var type = request.getResponseHeader('X-Message-Type');
+        if (msg && type)
+        {
+            show_ajax_message(msg, type);
+        }
+    });
+
+    show_notifications();
+});

@@ -4,9 +4,9 @@
 <div class="content-container">
   <!-- rows -->
   <div class="row nomargin">
-    <% @products.in_groups_of(3, false).each do |group| %>
+    <% @products.in_groups_of(@products_per_page/2, false).each do |group| %>
         <% group.each do |product| %>
-            <%= render partial: 'products/product', locals: {product: product, item_class: 'col-md-4 col-sm-6 col-xs-12 item-container'} %>
+            <%= render partial: 'products/product', locals: {product: product, item_class: @table_css + ' item-container', is_small: '-small'} %>
         <% end %>
     <% end %>
   </div>

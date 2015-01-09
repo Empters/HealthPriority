@@ -1,8 +1,9 @@
 class ProductsController < ApplicationController
+  before_action :initFilters, :set_products_per_page
   before_action :set_from_controller
   before_action :set_product, only: [:show, :edit, :update, :destroy, :add_to_shopping_cart]
   before_action :set_products, only: [:index]
-  before_action :set_search_and_filter_params, only: [:filter, :search]
+  before_action :set_search_and_filter_params, only: [:filter, :search, :brand, :price]
   respond_to :html, :js
 
   include ApplicationHelper
@@ -58,6 +59,12 @@ class ProductsController < ApplicationController
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
+
+    if @payment.save
+      redirect_to @payment.paypal_url
+    else
+      render nothing: true
+    end
   end
 
   # PATCH/PUT /products/1
@@ -87,9 +94,10 @@ class ProductsController < ApplicationController
 
   # GET /products/search
   def search
+
     search_and_filter()
     set_pages
-    @products = @products.paginate(:page => @current_page, :per_page => 6)
+    @products = @products.paginate(:page => @current_page, :per_page => session[:products_per_page])
 
     respond_to do |format|
       format.js {
@@ -107,7 +115,31 @@ class ProductsController < ApplicationController
   def filter
     search_and_filter()
     set_pages
-    @products = @products.paginate(:page => @current_page, :per_page => 6)
+    @products = @products.paginate(:page => @current_page, :per_page => session[:products_per_page])
+
+    respond_to do |format|
+      format.html { puts "html" }
+      format.js { render 'search.js.erb' }
+    end
+  end
+
+  # GET /products/filter
+  def brand
+    filter_by_manufacturer()
+    set_pages
+    @products = @products.paginate(:page => @current_page, :per_page => session[:products_per_page])
+
+    respond_to do |format|
+      format.html { puts "html" }
+      format.js { render 'search.js.erb' }
+    end
+  end
+
+  def price
+
+    filter_by_price()
+    set_pages
+    @products = @products.paginate(:page => @current_page, :per_page => session[:products_per_page])
 
     respond_to do |format|
       format.html { puts "html" }
@@ -139,5 +171,16 @@ class ProductsController < ApplicationController
 
   def set_from_controller
     @from_controller = 'products'
+  end
+
+  def set_products_per_page
+    session[:products_per_page] = 12
+    @products_per_page = 6
+    @table_css = 'col-md-4 col-sm-6 col-xs-12'
+  end
+
+  def initFilters
+    @brands ||= Manufacturer.all
+    @price_ranges ||= [ [0.01, 1.99, 0], [2, 4.99, 1], [5, 9.99, 2], [10.00, 15.99, 3], [16.00, 19.99, 4], [20.00, 49.99, 5], [50.00, 99.99, 6], [100, 1000, 7] ]
   end
 end

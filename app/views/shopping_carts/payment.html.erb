@@ -1,0 +1,71 @@
+<div class="container margin-top">
+  <div class="path">
+    <%= render_breadcrumbs :separator => ' / ' %>
+  </div>
+  <div class="row">
+    <div class="col-md-12" >
+
+      <div class="demo-container">
+
+        <div class="form-container active">
+          <%= form_for(@payment) do |f| %>
+            <!-- your regular form follows -->
+            <table class="table table-striped table-hover">
+              <tr bgcolor="#E5E5E5">
+                <td height="22" colspan="3" align="left" valign="middle"><strong>&nbsp;Billing Information (required)</strong></td>
+              </tr>
+              <tr>
+                <td height="22" width="180" align="right" valign="middle">Name:</td>
+                <td colspan="2" align="left"><%= f.text_field :name, :size => '50'%></td>
+              </tr>
+              <tr>
+                <td height="22" width="180" align="right" valign="middle">Company:</td>
+                <td colspan="2" align="left"><%= f.text_field :company, :size => '50'%></td>
+              </tr>
+              <tr>
+                <td height="22" width="180" align="right" valign="middle">Phone:</td>
+                <td colspan="2" align="left"><%= f.text_field :phone, :size => '50'%></td>
+              </tr>
+              <tr>
+                <td height="22" width="180" align="right" valign="middle">E-mail:</td>
+                <td colspan="2" align="left"><%= f.text_field :email, :size => '50'%></td>
+              </tr>
+              <tr>
+                <td height="22" width="180" align="right" valign="middle">Address:</td>
+                <td colspan="2" align="left"><%= f.text_field :address, :size => '50'%></td>
+              </tr>
+              <tr>
+                <td height="22" width="180" align="right" valign="middle">City:</td>
+                <td colspan="2" align="left"><%= f.text_field :city, :size => '50'%></td>
+              </tr>
+              <tr>
+                <td height="22" width="180" align="right" valign="middle">State:</td>
+                <td colspan="2" align="left"><%= f.text_field :state, :size => '50'%></td>
+              </tr>
+              <tr>
+                <td height="22" width="180" align="right" valign="middle">Postal Code:</td>
+                <td colspan="2" align="left"><%= f.text_field :postal_code, :size => '50'%></td>
+              </tr>
+              <tr>
+                <td height="22" width="180" align="right" valign="middle">Country:</td>
+                <td colspan="2" align="left"><%= f.text_field :country, :size => '50'%></td>
+              </tr>
+              <tr>
+                <td height="22" width="180" align="right" valign="middle">Description:</td>
+                <td colspan="2" align="left"><%= f.text_area :description, :size => '50'%></td>
+              </tr>
+            </table>
+            <p><input name="Submit" type="submit" value="Send Secure Form &gt;&gt;"></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Last Visited Products -->
+  <div class="row">
+    <%= render 'home/last_visited_products' %>
+  </div>
+  <!-- Last Visited Products End -->
+
+</div>

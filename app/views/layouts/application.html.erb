@@ -7,7 +7,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="main-fonts">
 <!-- Top bar -->
 <div class="top-bar-wrapper">
   <div class="container">
@@ -140,10 +140,7 @@
 </nav>
 <!-- Main Navigation End -->
 
-<!-- TODO - popup notifications - use bootstrap notifications -->
-<div id="notificationMessages">
-  <%= render partial: 'layouts/flash_messages', locals: {flash: flash} %>
-</div>
+<%= render partial: 'layouts/flash_messages', locals: {flash: flash} %>
 
 <div>
   <div class="notice"><%= notice %></div>
