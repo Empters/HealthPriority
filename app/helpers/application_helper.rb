@@ -61,6 +61,11 @@ module ApplicationHelper
     @shopping_cart = session[:shopping_cart]
   end
 
+  def clear_shopping_cart
+    session[:shopping_cart] = ShoppingCart.new()
+    @shopping_cart = session[:shopping_cart]
+  end
+
   # Add product to shopping cart
   def add_to_shopping_cart(product, quantity)
     shopping_cart.add_product_to_cart(product, quantity)

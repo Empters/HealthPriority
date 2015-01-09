@@ -80,7 +80,7 @@
       </div>
       <div class="product-reviews left"><a href="#">12 Reviews</a></div>
       <div class="product-in-stock right">In Stock:
-        <div class="stock"> <%= @product.isInStock? ? @product.stock_status.name : 'No' %></div>
+        <div class="stock"> <%= @product.isInStock? && !@product.stock_status.nil? ? @product.stock_status.name : 'No' %></div>
       </div>
       <div class="clearfix"></div>
       <div class="qty-add-container">
