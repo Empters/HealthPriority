@@ -79,3 +79,5 @@ gem 'breadcrumbs_on_rails'
 
 # Gem for Excel
 gem 'spreadsheet', '~> 1.0.0'
+
+#gem 'thin'
