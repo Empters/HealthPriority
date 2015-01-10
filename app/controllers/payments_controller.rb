@@ -38,6 +38,7 @@ class PaymentsController < ApplicationController
   protect_from_forgery except: [:hook, :show]
   def hook
     puts "--------- hook ------------"
+    puts params
     clear_shopping_cart
     params.permit! # Permit all Paypal input params
     status = params[:payment_status]
