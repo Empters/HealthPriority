@@ -39,6 +39,7 @@ class PaymentsController < ApplicationController
   def hook
     puts "--------- hook ------------"
     puts params
+    # TODO where to clear the cart?
     clear_shopping_cart
     params.permit! # Permit all Paypal input params
     status = params[:payment_status]
