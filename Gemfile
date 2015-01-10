@@ -81,3 +81,7 @@ gem 'breadcrumbs_on_rails'
 gem 'spreadsheet', '~> 1.0.0'
 
 #gem 'thin'
+gem 'roo', '~> 1.13.2'
+
+# Zip gem
+gem 'rubyzip', '~> 1.1.6'

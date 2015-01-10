@@ -1,5 +1,20 @@
 module ApplicationHelper
 
+  def bootstrap_class_for flash_type
+    case flash_type
+      when 'success'
+        'alert-success'
+      when 'error'
+        'alert-error'
+      when 'alert'
+        'alert-block'
+      when 'notice'
+        'alert-info'
+      else
+        flash_type.to_s
+    end
+  end
+
   # Creates a submit button with the given name with a cancel link
   # Accepts two arguments: Form object and the cancel link name
   def submit_or_cancel(form, name='Cancel')

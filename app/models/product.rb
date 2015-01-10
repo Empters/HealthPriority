@@ -3,7 +3,6 @@ class Product < ActiveRecord::Base
   # Validate required attributes
   validates_presence_of :name, :quantity, :price, :active, :manufacturer_id, :sort_order, :stock_status_id
 
-  #TODO - config missing product image
   # Init image file - paperclip image
   has_attached_file :image,
                     :styles => Rails.application.config.paperclip_styles,

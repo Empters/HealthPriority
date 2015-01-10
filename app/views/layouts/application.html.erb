@@ -76,12 +76,6 @@
                 <div id="search_link" class='search-image'></div>
               </div>
             </div>
-
-            <!-- TODO - popup notifications -->
-            <div>
-              <div class="notice"><%= notice %></div>
-              <div class="alert nopadding nomargin"><%= alert %></div>
-            </div>
           </div>
           <div class="col-md-2 col-sm-2 col-xs-2">
             <!-- Cert logo -->
@@ -146,9 +140,14 @@
 </nav>
 <!-- Main Navigation End -->
 
+<%= render partial: 'layouts/flash_messages', locals: {flash: flash} %>
+
+<div>
+  <div class="notice"><%= notice %></div>
+  <div class="alert nopadding nomargin"><%= alert %></div>
+</div>
 
 <%= yield %>
-
 
 <!-- Footer navigation -->
 <div class="container">

@@ -7,7 +7,7 @@ ActiveAdmin.register Product do
   permit_params :name, :quantity, :viewed, :image, :price, :points, :description, :active, :manufacturer_id, :sort_order,
                 :date_available, :meta_keyword, :meta_description, :stock_status_id, :remove_image,
                 product_images_attributes: [:image, :image_file_name, :image_content_type, :image_file_size, :image_updated_at, :_destroy, :id],
-                category_ids:[]
+                category_ids: []
 
   # Init filters
   filter :name
@@ -53,7 +53,7 @@ ActiveAdmin.register Product do
       f.input :price
       f.input :image, :as => :file, :required => false, :hint => f.object.image.present? ? image_tag(f.object.image.url(:thumb)) : ''
       if (f.object.image.present?)
-        f.input :remove_image, :as=> :boolean, :required => false, :label => 'Remove image'
+        f.input :remove_image, :as => :boolean, :required => false, :label => 'Remove image'
       end
       f.input :description, :as => :ckeditor
       f.input :active
@@ -63,9 +63,7 @@ ActiveAdmin.register Product do
       f.input :meta_description
       f.inputs 'Product images' do
         f.has_many :product_images, allow_destroy: true, new_record: true do |images|
-          images.inputs :html => {:multipart => true} do
-            images.input :image, as: :file, :required => true, :hint => images.object.image.present? ? image_tag(images.object.image.url(:thumb)) : ''
-          end
+          images.input :image, as: :file, :required => false, :hint => images.object.image.present? ? image_tag(images.object.image.url(:thumb)) : ''
         end
       end
     end
