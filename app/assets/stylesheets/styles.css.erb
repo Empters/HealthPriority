@@ -546,12 +546,23 @@ body {
 
 .item-title {
     margin: 20px;
+    height: 40px;
+    overflow: hidden;
+    text-overflow: clip;
 }
 
 .item-title, .cart-title {
     font-size: 14px;
     font-weight: 600;
 }
+
+.item-title.small {
+    height: 55px;
+    font-size: 10px;
+    font-weight: 600;
+    margin: 10px;
+}
+
 
 .cart-title, .buttons-container {
     margin: 10px 0px;
@@ -943,11 +954,11 @@ body {
     font-family: MyOpenSans !important;
 }
 
-.price-small {
+.price.small {
     font-size: 13px;
 }
 
-.star-small {
+.star.small {
     background-image: url("/assets/product-page-star-inactive.png");
     display: inline-block;
     height: 15px;
