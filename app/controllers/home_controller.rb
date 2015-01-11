@@ -27,6 +27,7 @@ class HomeController < ApplicationController
   private
     def set_from_controller
       @from_controller = 'home'
+      @page_label='OUR FEATURED PRODUCTS'
     end
 
     def set_products_per_page

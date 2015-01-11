@@ -8,11 +8,11 @@
           <% if !category.children.empty? -%>
               <div class="category-arrow" data-category="<%= category.name %>"></div>
           <% end %>
-          <%= link_to format('%{category} (%{product_count})', {:category => category.name, :product_count => category.products_count}), filter_path(category), remote: true %>
+          <%= link_to format('%{category} (%{product_count})', {:category => category.name, :product_count => category.products_count}), filter_path(category), remote: is_ajax %>
         </li>
         <% category.children.each do |child_category| %>
             <li class="sub-category hidden" data-category="<%= category.name %>">
-              <%= link_to format('%{category} (%{product_count})', {:category => child_category.name, :product_count => child_category.products_count}), filter_path(child_category), remote: true %>
+              <%= link_to format('%{category} (%{product_count})', {:category => child_category.name, :product_count => child_category.products_count}), filter_path(child_category), remote: is_ajax %>
             </li>
         <% end %>
     <% end %>

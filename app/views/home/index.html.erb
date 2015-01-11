@@ -25,7 +25,7 @@
 </div>
 
 <div class="container-fluid nopadding nomargin visible-xs">
-  <%= render 'categories_pane_phone' %>
+  <%= render 'categories_pane_phone', is_ajax: false %>
 </div>
 
 <div class="container" style="padding-top: 15px;">
@@ -33,7 +33,7 @@
   <div class="row">
     <!-- Categories -->
     <div class="col-md-3 hidden-xs">
-      <%= render 'categories_pane' %>
+      <%= render 'categories_pane', is_ajax: false %>
     </div>
     <!-- Categories End -->
     <!-- Products -->

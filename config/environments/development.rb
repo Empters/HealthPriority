@@ -55,6 +55,7 @@ Rails.application.configure do
 
   # Set ImageMagick path - crop image
   Paperclip.options[:command_path] = 'C:/Program Files/ImageMagick-6.8.9-Q16'
+  # Paperclip.options[:command_path] = 'C:\Program Files\ImageMagick-6.9.0-Q16'
 
   # repair paperclip validate content type error
   require 'paperclip/media_type_spoof_detector'

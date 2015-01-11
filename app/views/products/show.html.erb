@@ -112,68 +112,34 @@
     <div class="details-content-container" >
       <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="home">
-              <div class="details-header">Full Description of the product</div>
-              <div class="details-content">
-                <%= @product.description %>
-              </div>
+            <div class="details-header">Product Benefits</div>
+            <div style="word-wrap: break-word; width: auto;">
+                <%= @product.benefits %>
+            </div>
+            <br/>
+            <div class="details-header">Product Ingredients</div>
+            <div style="word-wrap: break-word; width: auto;">
+                <%= @product.ingredients %>
+            </div>
+            <br/>
+            <div class="details-header">Product Direction</div>
+            <div style="word-wrap: break-word; width: auto;">
+                <%= @product.direction %>
+            </div>
           </div>
 
-          <div role="tabpanel" class="tab-pane" id="profile">.1..</div>
-      </div>
-
-      <div class="details-header">The Product Contains:</div>
-      <!-- Product's content titles -->
-      <div class="row">
-        <div class="col-md-12">
-          <div class="product-content-table-item">
-            <div class="col-md-2 content-table-td title">&nbsp;</div>
-            <div class="col-md-2 content-table-td title">Something</div>
-            <div class="col-md-2 content-table-td title">Something</div>
-            <div class="col-md-2 content-table-td title">Something</div>
-            <div class="col-md-2 content-table-td title">Something</div>
-            <div class="col-md-2 content-table-td title">Something</div>
+          <div role="tabpanel" class="tab-pane" id="profile">
+            <div class="details-header">Full Description of the product</div>
+            <div style="word-wrap: break-word; width: auto;">
+              <%= @product.description %>
+            </div>
+            <br/>
+            <div class="details-header">Manufacturing Company</div>
+            <div style="word-wrap: break-word; width: auto;">
+              <%= @product.manufacturer.name %>
+            </div>
           </div>
-        </div>
       </div>
-      <!-- Product's content titles end -->
-      <!-- Product's content rows -->
-      <div class="row">
-        <div class="col-md-12">
-          <div class="product-content-table-item">
-            <div class="col-md-2 content-table-td title">Something</div>
-            <div class="col-md-2 content-table-td">Something</div>
-            <div class="col-md-2 content-table-td">Something</div>
-            <div class="col-md-2 content-table-td">Something</div>
-            <div class="col-md-2 content-table-td">Something</div>
-            <div class="col-md-2 content-table-td">Something</div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="product-content-table-item">
-            <div class="col-md-2 content-table-td title">Something</div>
-            <div class="col-md-2 content-table-td">Something</div>
-            <div class="col-md-2 content-table-td">Something</div>
-            <div class="col-md-2 content-table-td">Something</div>
-            <div class="col-md-2 content-table-td">Something</div>
-            <div class="col-md-2 content-table-td">Something</div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="product-content-table-item">
-            <div class="col-md-2 content-table-td title">Something</div>
-            <div class="col-md-2 content-table-td">Something</div>
-            <div class="col-md-2 content-table-td">Something</div>
-            <div class="col-md-2 content-table-td">Something</div>
-            <div class="col-md-2 content-table-td">Something</div>
-            <div class="col-md-2 content-table-td">Something</div>
-          </div>
-        </div>
-      </div>
-      <!-- Product's content rows end -->
     </div>
   </div>
 </div>
