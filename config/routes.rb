@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get '/products/change_page/:page_number' => 'products#change_page'
   get '/home/change_page/:page_number' => 'home#change_page'
   get '/products/add_to_shopping_cart/:id&:quantity' => 'products#add_to_shopping_cart'
+  post "/products/set_product_count" => "products#set_product_count"
   get '/shopping_carts/pay', to: 'shopping_carts#pay'
   get '/shopping_carts/success', to: 'shopping_carts#success'
   get '/shopping_carts/cancel', to: 'shopping_carts#cancel'

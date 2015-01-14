@@ -109,7 +109,9 @@
         <li class="nav-item-phone text-center"><%= link_to 'ABOUT US', about_us_path, :class => 'top-bar-text' %></li>
         <li class="nav-item-phone text-center"><%= link_to 'PRODUCTS', products_path, :class => 'top-bar-text' %></li>
         <li class="nav-item-phone text-center"><%= link_to 'SPECIAL OFFERS', special_offers_path, :class => 'top-bar-text' %></li>
-        <li class="nav-item-phone text-center"><%= link_to 'ONLY ORGANIC', only_organics_path, :class => 'top-bar-text' %></li>
+        <li class="nav-item-phone text-center"><%= link_to 'PAYMENT METHODS', '#', :class => 'top-bar-text' %></li>
+        <li class="nav-item-phone text-center"><%= link_to 'SHIPPING DETAILS', delivery_path, :class => 'top-bar-text' %></li>
+        <li class="nav-item-phone text-center"><%= link_to 'OUR PARTNERS', '#', :class => 'top-bar-text' %></li>
         <li class="nav-item-phone text-center"><%= link_to 'CONTACTS', contacts_path, :class => 'top-bar-text' %></li>
       </ul>
     </div>
@@ -130,7 +132,13 @@
       <%= link_to 'SPECIAL OFFERS', special_offers_path, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to 'ONLY ORGANIC', only_organics_path, :class => 'top-bar-text' %>
+      <%= link_to 'PAYMENT METHODS', '#', :class => 'top-bar-text' %>
+    </div>
+    <div class="main-nav-tab">
+      <%= link_to 'SHIPPING DETAILS', delivery_path, :class => 'top-bar-text' %>
+    </div>
+    <div class="main-nav-tab">
+      <%= link_to 'OUR PARTNERS', '#', :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
       <%= link_to 'CONTACTS', contacts_path, :class => 'top-bar-text' %>
@@ -140,7 +148,8 @@
 </nav>
 <!-- Main Navigation End -->
 
-<!--<%= render partial: 'layouts/flash_messages', locals: {flash: flash} %>-->
+<!-- Notification messages -->
+<%= render partial: 'layouts/flash_messages', locals: {flash: flash} %>
 
 <div>
   <div class="notice"><%= notice %></div>
@@ -182,10 +191,10 @@
           <a href="#" class="category-item">Category name </a>
         </div>
         <div class="col-md-6 col-xs-6">
-          <a href="#" class="category-item">Category name </a>
-          <a href="#" class="category-item">Category name </a>
-          <a href="#" class="category-item">Category name </a>
-          <a href="#" class="category-item">Category name </a>
+          <a href="#" class="category-item">Help Center</a>
+          <a href="#" class="category-item">Shipping</a>
+          <a href="#" class="category-item">Payment methods</a>
+          <a href="#" class="category-item">What is included in the price</a>
         </div>
       </div>
     </div>

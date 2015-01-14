@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   private
 
-  ALLOW_MESSAGE_TYPES = [:error, :warning, :notice, :success]
+  ALLOW_MESSAGE_TYPES = ['error', 'warning', 'success', 'notice']
 
   def flash_to_headers
     return unless request.xhr?
@@ -23,14 +23,22 @@ class ApplicationController < ActionController::Base
 
   def flash_message
     ALLOW_MESSAGE_TYPES.each do |type|
-      return flash[type] unless flash[type].blank?
+      if flash.key?(type) && !flash[type].blank?
+        return flash[type]
+      end
     end
+
+    return nil
   end
 
   def flash_type
     ALLOW_MESSAGE_TYPES.each do |type|
-      return type unless flash[type].blank?
+      if flash.key?(type) && !flash[type].blank?
+        return type
+      end
     end
+
+    return nil
   end
 
 end

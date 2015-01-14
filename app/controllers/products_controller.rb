@@ -23,6 +23,16 @@ class ProductsController < ApplicationController
     end
   end
 
+  # set_product_count
+  def set_product_count
+    @product = Product.find(params[:product_id].to_i())
+    @product_count = params[:count].to_i()
+    shopping_cart.set_product_count(@product, @product_count)
+    respond_to do |format|
+      format.js { render 'products/set_product_count' }
+    end
+  end
+
   # GET /products
   # GET /products.json
   def index

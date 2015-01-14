@@ -20,6 +20,12 @@
 //= require turbolinks
 //= require_tree .
 
+/* Get application url */
+function getUrlRoot() {
+    return 'http://' + location.host
+}
+
+/* Add jquery extension method */
 jQuery.fn.center = function () {
     this.css("position","absolute");
     this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) +
@@ -29,11 +35,61 @@ jQuery.fn.center = function () {
     return this;
 }
 
-function getUrlRoot() {
-    return 'http://' + location.host
+/* Simple parse and check */
+function isInt(value) {
+    var x = parseFloat(value);
+    return !isNaN(value) && (x | 0) === x;
 }
 
+/* Validate product quantity */
+function validateProductQuantity(e) {
+    // Allow: backspace, delete, tab, escape, enter and .
+    if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+        // Allow: Ctrl+A
+            (e.keyCode == 65 && e.ctrlKey === true) ||
+        // Allow: home, end, left, right
+            (e.keyCode >= 35 && e.keyCode <= 39)) {
+        // let it happen, don't do anything
+        return;
+    }
+    // Ensure that it is a number and stop the keypress
+    if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+        e.preventDefault();
+    }
+}
+
+/* Set product count */
+function setProductCountToCart(e) {
+    var value = $(this).val();
+    var count = isInt(value) && parseInt(Number(value)) > 0 ? parseInt(Number(value)) : 0;
+    $(this).val(count);
+
+    // Call ajax to change products count
+    var product_id = $(this).attr("product_id");
+    var url = getUrlRoot() + '/products/set_product_count'
+    $.ajax({
+        url: url,
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({ product_id: product_id, count: count })
+    });
+}
+
+/* Show ajax message */
 function show_ajax_message(msg, type) {
+    switch (type){
+        case 'notice':
+        {
+            type = 'info';
+            break;
+        }
+        case 'error':
+        {
+            type = 'danger';
+            break;
+        }
+    }
+
     var message = '<div class="alert alert-' + type +' notification">' +
     '<button class="close" data-dismiss="alert">×</button>' +
             msg +
@@ -43,12 +99,47 @@ function show_ajax_message(msg, type) {
     show_notifications();
 }
 
+/* Show notifications */
 function show_notifications(){
     $("#flash-message").center();
     $(".notification").show().delay(3000).fadeOut(300, function() { $(this).remove(); });
 }
 
-$().ready(function(){
+function getAjaxNotificationMessage(request){
+    var msg = request.getResponseHeader('X-Message');
+    var type = request.getResponseHeader('X-Message-Type');
+    if (msg && type)
+    {
+        return { msg: msg, notificationType: type };
+    }
+
+    return null;
+}
+
+/* Hook document ajax completed - show ajax notification */
+$(document).ajaxComplete(function(event, request) {
+    var notification = getAjaxNotificationMessage(request);
+    if (notification)
+    {
+        show_ajax_message(notification.msg, notification.notificationType);
+    }
+});
+
+/* Hook document ajax errors - show ajax notification */
+$( document ).ajaxError(function(event, request) {
+    var notification = getAjaxNotificationMessage(request);
+    if (notification)
+    {
+        show_ajax_message(notification.msg, notification.notificationType);
+    }
+    else
+    {
+        show_ajax_message("Application error!", "error");
+    }
+});
+
+/* Hook document ready - bind js events */
+$(document).ready(function(){
     $('#search_link').click(function(){
         var url_arr = document.URL.split('/');
         var page_name = url_arr[3];
@@ -73,7 +164,6 @@ $().ready(function(){
     });
 
     $('#category-menu').children('li').click(function(){
-
         var filter_category = $(this).attr('category') == undefined? '' : $(this).attr('category');
         $('#chosen_category').attr('selected_category', filter_category);
     });
@@ -84,14 +174,9 @@ $().ready(function(){
         }
     });
 
-    $(document).ajaxComplete(function(event, request) {
-        var msg = request.getResponseHeader('X-Message');
-        var type = request.getResponseHeader('X-Message-Type');
-        if (msg && type)
-        {
-            show_ajax_message(msg, type);
-        }
-    });
+    $(".quantity-js").on("keydown", validateProductQuantity);
+
+    $(".quantity-js").on("focusout", setProductCountToCart);
 
     show_notifications();
 });
