@@ -15,10 +15,11 @@ class ApplicationController < ActionController::Base
   ALLOW_MESSAGE_TYPES = ['error', 'warning', 'success', 'notice']
 
   def flash_to_headers
-    return unless request.xhr?
-    response.headers['X-Message'] = flash_message
-    response.headers['X-Message-Type'] = flash_type.to_s
-    flash.discard
+    if request.xhr? && !flash.empty?
+      response.headers['X-Message'] = flash_message
+      response.headers['X-Message-Type'] = flash_type.to_s
+      flash.discard
+    end
   end
 
   def flash_message

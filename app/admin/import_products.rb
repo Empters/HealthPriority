@@ -16,8 +16,10 @@ ActiveAdmin.register_page 'Import Products' do
       li 'Subcategory'
       li 'Price'
       li 'Quantity'
+      li 'Questions & Answers'
       li 'Manufacturer'
       li 'Stock status'
+      li 'Best Seller'
     end
   end
 
@@ -134,6 +136,8 @@ ActiveAdmin.register_page 'Import Products' do
               stock_status_id: stock_status.id,
               price: workbook.row(i)[headers['price']].to_f,
               quantity: workbook.row(i)[headers['quantity']].to_i,
+              is_best_seller: !workbook.row(i)[headers['best seller']].blank? && workbook.row(i)[headers['best seller']].downcase == 'true',
+              questions_answers: workbook.row(i)[headers['questions & answers']],
               manufacturer_id: manufacturer.id,
               categories: subcategory.nil? ? [category] : [subcategory])
         end

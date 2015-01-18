@@ -22,15 +22,16 @@ Rails.application.routes.draw do
   get '/products/price/:range' => 'products#price', :as => 'price'
   get '/products/change_page/:page_number' => 'products#change_page'
   get '/home/change_page/:page_number' => 'home#change_page'
-  get '/products/add_to_shopping_cart/:id&:quantity' => 'products#add_to_shopping_cart'
-  post "/products/set_product_count" => "products#set_product_count"
   get '/shopping_carts/pay', to: 'shopping_carts#pay'
   get '/shopping_carts/success', to: 'shopping_carts#success'
   get '/shopping_carts/cancel', to: 'shopping_carts#cancel'
   get '/shopping_carts/payments', to: 'shopping_carts#payments', :as => 'payments_list'
   post '/shopping_carts/payments', to: 'shopping_carts#pay', :as => 'pay'
-  post "/payments/hook" => "payments#hook", :as => 'hook'
-  post "/payments/:id" => "payments#show"
+  post '/payments/:id' => 'payments#show'
+  post '/payments/hook' => 'payments#hook', :as => 'hook'
+  get '/shopping_carts/add_to_shopping_cart/:id&:quantity' => 'shopping_carts#add_to_shopping_cart'
+  post '/shopping_carts/set_product_count' => 'shopping_carts#set_product_count'
+  delete '/shopping_carts/remove_product' => 'shopping_carts#remove_product'
 
   resources :product_reviews
   resources :product_discounts
