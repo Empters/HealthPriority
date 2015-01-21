@@ -18,10 +18,10 @@
     </div>
     <div class="top-bar-container right">
       <div class="top-bar-tab first-tab top-bar-text">
-        <%= link_to 'FAQ', faq_path, :class => 'navbar-link' %>
+        <%= link_to 'FAQ', {:action => :faq, :controller => 'home'}, {:class => 'navbar-link'} %>
       </div>
       <div class="top-bar-tab top-bar-text">
-        <%= link_to 'DELIVERY', delivery_path, :class => 'navbar-link' %>
+        <%= link_to 'DELIVERY', {:action => :delivery_methods, :controller => 'home'}, :class => 'navbar-link' %>
       </div>
       <% if user_signed_in? -%>
           <div class="top-bar-tab top-bar-text">
@@ -106,13 +106,13 @@
     <div class="collapse navbar-collapse nopadding phone-main-nav">
       <ul class="nav navbar navbar-left nomargin">
         <li class="nav-item-phone text-center"><%= link_to 'HOME', root_path, :data => {:no_turbolink => true}, :class => 'top-bar-text' %></li>
-        <li class="nav-item-phone text-center"><%= link_to 'ABOUT US', about_us_path, :class => 'top-bar-text' %></li>
+        <li class="nav-item-phone text-center"><%= link_to 'ABOUT US', {:action => :about_us, :controller => 'home'}, :class => 'top-bar-text' %></li>
         <li class="nav-item-phone text-center"><%= link_to 'PRODUCTS', products_path, :class => 'top-bar-text' %></li>
         <li class="nav-item-phone text-center"><%= link_to 'SPECIAL OFFERS', special_offers_path, :class => 'top-bar-text' %></li>
-        <li class="nav-item-phone text-center"><%= link_to 'PAYMENT METHODS', '#', :class => 'top-bar-text' %></li>
-        <li class="nav-item-phone text-center"><%= link_to 'SHIPPING DETAILS', delivery_path, :class => 'top-bar-text' %></li>
-        <li class="nav-item-phone text-center"><%= link_to 'OUR PARTNERS', '#', :class => 'top-bar-text' %></li>
-        <li class="nav-item-phone text-center"><%= link_to 'CONTACTS', contacts_path, :class => 'top-bar-text' %></li>
+        <li class="nav-item-phone text-center"><%= link_to 'PAYMENT METHODS', {:action => :payment_methods, :controller => 'home'}, :class => 'top-bar-text' %></li>
+        <li class="nav-item-phone text-center"><%= link_to 'SHIPPING DETAILS', {:action => :delivery_methods, :controller => 'home'}, :class => 'top-bar-text' %></li>
+        <li class="nav-item-phone text-center"><%= link_to 'OUR PARTNERS', {:action => :our_partners, :controller => 'home'}, :class => 'top-bar-text' %></li>
+        <li class="nav-item-phone text-center"><%= link_to 'CONTACTS', {:action => :contacts, :controller => 'home'}, :class => 'top-bar-text' %></li>
       </ul>
     </div>
   </div>
@@ -123,7 +123,7 @@
       <%= link_to 'HOME', root_path, :data => {:no_turbolink => true}, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to 'ABOUT US', about_us_path, :class => 'top-bar-text' %>
+      <%= link_to 'ABOUT US', {:action => :about_us, :controller => 'home'}, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
       <%= link_to 'PRODUCTS', products_path, :class => 'top-bar-text' %>
@@ -132,16 +132,16 @@
       <%= link_to 'SPECIAL OFFERS', special_offers_path, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to 'PAYMENT METHODS', '#', :class => 'top-bar-text' %>
+      <%= link_to 'PAYMENT METHODS', {:action => :payment_methods, :controller => 'home'}, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to 'SHIPPING DETAILS', delivery_path, :class => 'top-bar-text' %>
+      <%= link_to 'SHIPPING DETAILS', {:action => :delivery_methods, :controller => 'home'}, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to 'OUR PARTNERS', '#', :class => 'top-bar-text' %>
+      <%= link_to 'OUR PARTNERS', {:action => :our_partners, :controller => 'home'}, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to 'CONTACTS', contacts_path, :class => 'top-bar-text' %>
+      <%= link_to 'CONTACTS', {:action => :contacts, :controller => 'home'}, :class => 'top-bar-text' %>
     </div>
   </div>
   <!-- nav bar large displays end -->
@@ -191,10 +191,10 @@
           <a href="#" class="category-item">Category name </a>
         </div>
         <div class="col-md-6 col-xs-6">
-          <a href="#" class="category-item">Help Center</a>
-          <a href="#" class="category-item">Shipping</a>
-          <a href="#" class="category-item">Payment methods</a>
-          <a href="#" class="category-item">What is included in the price</a>
+          <%= link_to 'Help Center', {:action => :help_center, :controller => 'home'}, :class => 'category-item' %>
+          <%= link_to 'Shipping', {:action => :delivery_methods, :controller => 'home'}, :class => 'category-item' %>
+          <%= link_to 'Payment methods', {:action => :payment_methods, :controller => 'home'}, :class => 'category-item' %>
+          <%= link_to 'What is included in the price', {:action => :price_details, :controller => 'home'}, :class => 'category-item' %>
         </div>
       </div>
     </div>

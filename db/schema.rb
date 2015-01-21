@@ -236,6 +236,8 @@ ActiveRecord::Schema.define(version: 20150104132303) do
     t.text     "delivery"
     t.text     "faq"
     t.text     "about_us"
+    t.text     "partners"
+    t.text     "payment_methods"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

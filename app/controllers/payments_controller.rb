@@ -1,4 +1,12 @@
 class PaymentsController < ApplicationController
+
+  protect_from_forgery except: [:hook]
+
+  def show
+    #TODO - show payment status
+    @payment = Payment.find params[:id]
+  end
+
   def new
     @payment = Payment.new
   end
@@ -39,28 +47,16 @@ class PaymentsController < ApplicationController
     end
   end
 
-  protect_from_forgery except: [:hook, :show]
-
   def hook
-    puts "--------- hook ------------"
-    puts params
-    # TODO where to clear the cart?
 
-    clear_shopping_cart
-    params.permit! # Permit all Paypal input params
-    status = params[:payment_status]
-    puts 'status = ', status
-    if status == 'Completed'
-      @payment = Payment.find params[:invoice]
-      @payment.update_attributes notification_params: params, status: status, transaction_id: params[:txn_id], purchased_at: Time.now
-      @payment.save
-    end
+    # Permit all Paypal input params
+    params.permit!
+
+    @payment = Payment.find params[:invoice]
+    @payment.update_attributes notification_params: params, status: params[:payment_status], transaction_id: params[:txn_id], purchased_at: Time.now
+    @payment.save
+
     render nothing: true
-  end
-
-  def show
-    puts 'show'
-    puts params
   end
 
   def payment_params

@@ -1,10 +1,10 @@
-<div class="content-container">
-    <div class="best-sellers-title text-center">BestSellers</div>
-    <!-- rows -->
-    <div class="row nomargin">
-      <% @best_sellers.sample(4).each do |product| %>
-          <%= render partial: 'products/product', locals: {product: product, item_class: 'col-md-3 col-sm-6 col-xs-12 item-container', is_small: '' } %>
-      <% end %>
+<% if !@best_sellers.empty? %>
+    <div class="content-container">
+      <div class="best-sellers-title text-center">BestSellers</div>
+      <div class="row nomargin">
+        <% @best_sellers.sample(4).each do |product| %>
+            <%= render partial: 'products/product', locals: {product: product, item_class: 'col-md-3 col-sm-6 col-xs-12 item-container', is_small: ''} %>
+        <% end %>
+      </div>
     </div>
-    <!-- rows -->
-</div>
+<% end %>

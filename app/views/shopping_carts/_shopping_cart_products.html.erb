@@ -70,13 +70,13 @@
 
     <div class="row">
       <div class="col-md-12">
-        <%= link_to 'Shipping details', delivery_path %>
+        <%= link_to 'Shipping details', {:action => :delivery_methods, controller: 'home'} %>
       </div>
     </div>
 
     <div class="row">
       <div class="col-md-12">
-        <%= link_to 'Payment methods', '#' %>
+        <%= link_to 'Payment methods', {:action => :payment_methods, controller: 'home'} %>
       </div>
     </div>
 

@@ -29,10 +29,10 @@ module HealthPriority
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
 
     # Help configuration for paperclip images
-    config.paperclip_styles = { :thumb => '48x48' }
+    config.paperclip_styles = {:thumb => '48x48'}
     config.paperclip_allow_image_content = /\Aimage\/(jpg|jpeg|pjpeg|png|x-png|gif)\z/
     config.paperclip_allow_image_content_message = 'Image type is not allowed!'
 
-    config.assets.paths << Rails.root.join("app", "assets", "fonts")
+    config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
   end
 end
