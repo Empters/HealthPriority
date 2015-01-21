@@ -124,7 +124,7 @@
             <br/>
             <div class="details-header">Manufacturing Company</div>
             <div style="word-wrap: break-word; width: auto;">
-              <%= @product.manufacturer.name %>
+              <%= @product.manufacturer.nil? ? '' : product.manufacturer.name %>
             </div>
           </div>
       </div>
