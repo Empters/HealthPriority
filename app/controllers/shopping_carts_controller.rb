@@ -7,7 +7,7 @@ class ShoppingCartsController < ApplicationController
 
   # Index action
   def index
-    add_breadcrumb 'Cart', :shopping_carts_path
+    add_breadcrumb 'Shopping Cart', :shopping_carts_path
   end
 
   # Get /add_to_shopping_cart
