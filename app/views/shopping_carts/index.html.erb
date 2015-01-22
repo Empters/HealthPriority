@@ -14,7 +14,7 @@
 
   <!-- Last Visited Products -->
   <div class="row">
-    <%= render 'home/last_visited_products' %>
+    <%= render partial: 'home/last_visited_products', locals: {title: 'Last Visited Products', products: last_visit_products} %>
   </div>
   <!-- Last Visited Products End -->
 

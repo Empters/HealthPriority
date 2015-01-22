@@ -23,7 +23,9 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-    add_breadcrumb 'Products', :products_pat
+    add_breadcrumb 'Products', :products_path
+    add_breadcrumb @product.name, @product
+
     add_to_last_visit_product(@product)
   end
 
