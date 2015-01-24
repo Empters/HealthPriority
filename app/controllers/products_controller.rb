@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :initFilters, :set_products_per_page
   before_action :set_from_controller
-  before_action :set_product, only: [:show, :edit, :update, :destroy, :add_to_shopping_cart]
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :set_products, only: [:index]
   before_action :set_search_and_filter_params, only: [:filter, :search, :brand, :price]
   respond_to :html, :js
@@ -13,16 +13,6 @@ class ProductsController < ApplicationController
 
   add_breadcrumb 'Home', :root_path
 
-  # Add product to shopping cart
-  def add_to_shopping_cart
-    product_quantity = params[:quantity].to_i()
-    shopping_cart.add_product_to_cart(@product, product_quantity)
-    flash[:success] = product_quantity > 0 ? 'The products are added!' : 'The products are removed!'
-    respond_to do |format|
-      format.js { render 'products/add_to_shopping_cart' }
-    end
-  end
-
   # GET /products
   # GET /products.json
   def index
@@ -33,7 +23,9 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-    add_breadcrumb 'Products', :products_pat
+    add_breadcrumb 'Products', :products_path
+    add_breadcrumb @product.name, @product
+
     add_to_last_visit_product(@product)
   end
 
@@ -130,7 +122,7 @@ class ProductsController < ApplicationController
     @products = @products.paginate(:page => @current_page, :per_page => session[:products_per_page])
 
     respond_to do |format|
-      format.html { puts "html" }
+      format.html { puts 'html' }
       format.js { render 'search.js.erb' }
     end
   end
@@ -142,7 +134,7 @@ class ProductsController < ApplicationController
     @products = @products.paginate(:page => @current_page, :per_page => session[:products_per_page])
 
     respond_to do |format|
-      format.html { puts "html" }
+      format.html { puts 'html' }
       format.js { render 'search.js.erb' }
     end
   end

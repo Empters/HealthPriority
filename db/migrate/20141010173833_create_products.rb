@@ -11,6 +11,7 @@ class CreateProducts < ActiveRecord::Migration
       t.text :benefits
       t.text :description
       t.text :direction
+      t.text :questions_answers
       t.attachment :image
       t.integer :viewed
       t.integer :points

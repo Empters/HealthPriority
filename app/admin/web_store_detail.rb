@@ -4,13 +4,15 @@ ActiveAdmin.register WebStoreDetail do
   menu :parent => 'System', :priority => 1
 
   # Set permit parameters
-  permit_params :about_us, :contact, :delivery, :faq
+  permit_params :about_us, :contact, :delivery, :faq, :partners, :payment_methods
 
   # Init filters
   filter :about_us
   filter :contact
   filter :faq
   filter :delivery
+  filter :partners
+  filter :payment_methods
   filter :created_at
   filter :updated_at
 
@@ -29,6 +31,12 @@ ActiveAdmin.register WebStoreDetail do
     column 'Delivery' do |post|
       div post.delivery.nil? ? '' : post.delivery.html_safe
     end
+    column 'Partners' do |post|
+      div post.partners.nil? ? '' : post.partners.html_safe
+    end
+    column 'Payment methods' do |post|
+      div post.payment_methods.nil? ? '' : post.payment_methods.html_safe
+    end
     column :created_at
     column :updated_at
     actions
@@ -41,6 +49,8 @@ ActiveAdmin.register WebStoreDetail do
       f.input :contact, :as => :ckeditor
       f.input :faq, :as => :ckeditor
       f.input :delivery, :as => :ckeditor
+      f.input :partners, :as => :ckeditor
+      f.input :payment_methods, :as => :ckeditor
     end
     f.actions
   end

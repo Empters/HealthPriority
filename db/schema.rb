@@ -152,7 +152,7 @@ ActiveRecord::Schema.define(version: 20150104132303) do
   end
 
   create_table "product_related", id: false, force: true do |t|
-    t.integer "product_id"
+    t.integer "product_id", null: false
     t.integer "related_id", null: false
   end
 
@@ -178,6 +178,7 @@ ActiveRecord::Schema.define(version: 20150104132303) do
     t.text     "benefits"
     t.text     "description"
     t.text     "direction"
+    t.text     "questions_answers"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -235,6 +236,8 @@ ActiveRecord::Schema.define(version: 20150104132303) do
     t.text     "delivery"
     t.text     "faq"
     t.text     "about_us"
+    t.text     "partners"
+    t.text     "payment_methods"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

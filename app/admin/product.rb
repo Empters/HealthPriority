@@ -5,9 +5,9 @@ ActiveAdmin.register Product do
 
   # Set permit parameters
   permit_params :name, :quantity, :viewed, :image, :price, :points, :description, :active, :manufacturer_id, :sort_order,
-                :date_available, :meta_keyword, :meta_description, :stock_status_id, :remove_image,
+                :date_available, :meta_keyword, :meta_description, :stock_status_id, :remove_image, :is_best_seller, :questions_answers,
                 product_images_attributes: [:image, :image_file_name, :image_content_type, :image_file_size, :image_updated_at, :_destroy, :id],
-                category_ids: []
+                category_ids: [], related_product_ids: []
 
   # Init filters
   filter :name
@@ -15,6 +15,7 @@ ActiveAdmin.register Product do
   filter :quantity
   filter :manufacturer
   filter :categories
+  filter :is_best_seller
   filter :active
   filter :meta_description
 
@@ -36,6 +37,7 @@ ActiveAdmin.register Product do
         div link_to category.name, admin_category_path(category)
       end
     end
+    column :is_best_seller
     column :active
     column :created_at
     column :updated_at
@@ -47,6 +49,7 @@ ActiveAdmin.register Product do
     f.inputs do
       f.input :name
       f.input :categories, :as => :select, :multiple => true, :member_label => :full_name
+      f.input :related_products, :as => :select, :multiple => true, :member_label => :name
       f.input :manufacturer_id, :as => :select, collection: Manufacturer.all, :member_label => :name, :member_value => :id, :include_blank => 'Choose manufacturer'
       f.input :stock_status_id, :as => :select, collection: StockStatus.all, :member_label => :name, :member_value => :id, :include_blank => 'Choose stock status'
       f.input :quantity
@@ -56,6 +59,8 @@ ActiveAdmin.register Product do
         f.input :remove_image, :as => :boolean, :required => false, :label => 'Remove image'
       end
       f.input :description, :as => :ckeditor
+      f.input :questions_answers, :as => :ckeditor
+      f.input :is_best_seller
       f.input :active
       f.input :sort_order
       f.input :date_available, :as => :date_picker

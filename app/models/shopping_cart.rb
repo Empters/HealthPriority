@@ -22,6 +22,18 @@ class ShoppingCart
     end
   end
 
+  # Set products count
+  def set_product_count(product, count)
+    # Check if
+    if count > 0
+      # Change product count
+      products[product] = count
+    else
+      # Remove product
+      remove_product_from_cart(product)
+    end
+  end
+
   # Remove product from cart
   def remove_product_from_cart(product)
     products.delete(product)

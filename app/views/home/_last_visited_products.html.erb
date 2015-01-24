@@ -1,14 +1,16 @@
-<div class="col-md-12">
+<% if !products.empty? %>
+    <div class="col-md-12">
 
-  <div class="title-banner">
-    Last Visited Products
-  </div>
+      <div class="title-banner">
+        <%= title %>
+      </div>
 
-  <div class="content-container" style="margin-top: -5px;">
-    <div class="row nomargin">
-      <% last_visit_products[0..3].each do |product| %>
-          <%= render partial: 'products/product', locals: {product: product, item_class: 'col-md-3 col-sm-6 col-xs-12 item-container', is_small: '' } %>
-      <% end %>
+      <div class="content-container" style="margin-top: -5px;">
+        <div class="row nomargin">
+          <% products[0..3].each do |product| %>
+              <%= render partial: 'products/product', locals: {product: product, item_class: 'col-md-3 col-sm-6 col-xs-12 item-container', is_small: ''} %>
+          <% end %>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+<% end %>
