@@ -7,7 +7,7 @@ class ShoppingCartsController < ApplicationController
 
   # Index action
   def index
-    add_breadcrumb 'Shopping Cart', :shopping_carts_path
+    add_breadcrumb t('shopping_cart'), :shopping_carts_path
   end
 
   # Get /add_to_shopping_cart
@@ -46,15 +46,12 @@ class ShoppingCartsController < ApplicationController
   end
 
   def success
-    puts '--------- success ------------'
   end
 
   def cancel
-    puts '--------- cancel ------------'
   end
 
   def payment
-    puts '--------- payments ------------'
     @payment = ActiveRecord::Base::Payment.new
   end
 

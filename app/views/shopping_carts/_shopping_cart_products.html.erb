@@ -2,7 +2,7 @@
 
     <div class="row">
       <div class="col-md-12 buttons-container">
-        <%= link_to 'Shopping cart is empty. Continue with shopping.', root_path %>
+        <%= link_to t('shopping_cart_is_empty'), root_path %>
       </div>
     </div>
 
@@ -10,8 +10,8 @@
 
     <div class="row">
       <div class="col-md-12 buttons-container">
-        <%= link_to 'Payment', new_payment_path, html_options = {class: 'button green right'} %>
-        <%= link_to 'Continue Shopping', root_path, html_options = {class: 'button green right continue-shopping'} %>
+        <%= link_to t('payment'), new_payment_path, html_options = {class: 'button green right'} %>
+        <%= link_to t('continue_shopping'), root_path, html_options = {class: 'button green right continue-shopping'} %>
       </div>
     </div>
 
@@ -19,11 +19,11 @@
     <div class="row">
       <div class="col-md-12">
         <div class="product-content-table-item">
-          <div class="col-md-2 content-table-td title">Image</div>
-          <div class="col-md-3 content-table-td title">Product</div>
-          <div class="col-md-2 content-table-td title">Quantity</div>
-          <div class="col-md-2 content-table-td title">Price</div>
-          <div class="col-md-2 content-table-td title">Total</div>
+          <div class="col-md-2 content-table-td title"><% t('image')%></div>
+          <div class="col-md-3 content-table-td title"><% t('product')%></div>
+          <div class="col-md-2 content-table-td title"><% t('quantity')%></div>
+          <div class="col-md-2 content-table-td title"><% t('price')%></div>
+          <div class="col-md-2 content-table-td title"><% t('total')%></div>
           <div class="col-md-1 content-table-td title"></div>
         </div>
       </div>
@@ -61,7 +61,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="cart-total-container">
-          <div class="product-price text-right">Total:
+          <div class="product-price text-right"><%= t('total')%>:
             <div class="our-price">£ <%= shopping_cart.total_price %></div>
           </div>
         </div>
@@ -70,20 +70,20 @@
 
     <div class="row">
       <div class="col-md-12">
-        <%= link_to 'Shipping details', {:action => :delivery_methods, controller: 'home'} %>
+        <%= link_to t('shipping_details'), {:action => :delivery_methods, controller: 'home'} %>
       </div>
     </div>
 
     <div class="row">
       <div class="col-md-12">
-        <%= link_to 'Payment methods', {:action => :payment_methods, controller: 'home'} %>
+        <%= link_to t('payment_methods'), {:action => :payment_methods, controller: 'home'} %>
       </div>
     </div>
 
     <div class="row">
       <div class="col-md-12 buttons-container">
-        <%= link_to 'Payment', new_payment_path, html_options = {class: 'button green right'} %>
-        <%= link_to 'Continue Shopping', root_path, html_options = {class: 'button green right continue-shopping'} %>
+        <%= link_to t('payment'), new_payment_path, html_options = {class: 'button green right'} %>
+        <%= link_to t('continue_shopping'), root_path, html_options = {class: 'button green right continue-shopping'} %>
       </div>
     </div>
 
