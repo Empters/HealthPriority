@@ -81,7 +81,7 @@
             </div>
           </div>
           <div class="add-to-cart-container">
-            <%= link_to 'ADD TO CART', {:controller => :shopping_carts, :action => :add_to_shopping_cart, :id => @product.id, :quantity => 1, :remote => true}, {:class => 'button gray'} %>
+            <%= link_to t('add_to_cart'), {:controller => :shopping_carts, :action => :add_to_shopping_cart, :id => @product.id, :quantity => 1, :remote => true}, {:class => 'button gray'} %>
           </div>
         </div>
       </div>
