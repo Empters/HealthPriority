@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150124135340) do
+ActiveRecord::Schema.define(version: 20150124141132) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -178,7 +178,6 @@ ActiveRecord::Schema.define(version: 20150124135340) do
     t.text     "benefits"
     t.text     "description"
     t.text     "direction"
-    t.text     "questions_answers"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -193,6 +192,7 @@ ActiveRecord::Schema.define(version: 20150124135340) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_best_seller",     default: false
+    t.text     "questions_answers"
   end
 
   create_table "products_categories", id: false, force: true do |t|

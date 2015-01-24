@@ -1,4 +1,5 @@
 class UpdateWebStoreDetails < ActiveRecord::Migration
+
   def up
     add_column :web_store_details, :partners, :text, default: nil
     add_column :web_store_details, :payment_methods, :text, default: nil
