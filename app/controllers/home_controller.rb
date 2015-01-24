@@ -103,9 +103,9 @@ class HomeController < ApplicationController
 
   # GET delivery_methods page
   def delivery_methods
-    add_breadcrumb 'Delivery methods'
+    add_breadcrumb t('delivery_methods')
 
-    @title = 'Delivery methods'
+    @title = t('delivery_methods')
     @html = if @web_store_detail.nil? then
               ''
             else
@@ -121,9 +121,9 @@ class HomeController < ApplicationController
 
   # GET delivery_methods page
   def payment_methods
-    add_breadcrumb 'Payment methods'
+    add_breadcrumb t('payment_methods')
 
-    @title = 'Payment methods'
+    @title = t('payment_mehtods')
     @html = if @web_store_detail.nil? then
               ''
             else
@@ -139,9 +139,9 @@ class HomeController < ApplicationController
 
   # GET help_center page
   def help_center
-    add_breadcrumb 'Help center'
+    add_breadcrumb t('help_center')
 
-    @title = 'Help center'
+    @title = t('help_center')
 
     respond_to do |format|
       format.html {
@@ -152,9 +152,9 @@ class HomeController < ApplicationController
 
   # GET price_details page
   def price_details
-    add_breadcrumb 'What is included in the price?'
+    add_breadcrumb t('what_is_included_in_the_price')
 
-    @title = 'What is included in the price?'
+    @title = t('what_is_included_in_the_price')
 
     respond_to do |format|
       format.html {
@@ -167,7 +167,7 @@ class HomeController < ApplicationController
 
   def set_from_controller
     @from_controller = 'home'
-    @page_label='OUR FEATURED PRODUCTS'
+    @page_label=@page_label = t('our_featured_products')
   end
 
   def set_products_per_page

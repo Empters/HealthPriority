@@ -174,6 +174,6 @@ class ProductsController < ApplicationController
   def initFilters
     @brands ||= Manufacturer.all
     @price_ranges ||= [ [0.01, 1.99, 0], [2, 4.99, 1], [5, 9.99, 2], [10.00, 15.99, 3], [16.00, 19.99, 4], [20.00, 49.99, 5], [50.00, 99.99, 6], [100, 1000, 7] ]
-    @page_label = 'OUR PRODUCTS'
+    @page_label = t('our_products')
   end
 end

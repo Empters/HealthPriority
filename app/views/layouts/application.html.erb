@@ -109,8 +109,8 @@
         <li class="nav-item-phone text-center"><%= link_to 'ABOUT US', {:action => :about_us, :controller => 'home'}, :class => 'top-bar-text' %></li>
         <li class="nav-item-phone text-center"><%= link_to 'PRODUCTS', products_path, :class => 'top-bar-text' %></li>
         <li class="nav-item-phone text-center"><%= link_to 'SPECIAL OFFERS', special_offers_path, :class => 'top-bar-text' %></li>
-        <li class="nav-item-phone text-center"><%= link_to 'PAYMENT METHODS', {:action => :payment_methods, :controller => 'home'}, :class => 'top-bar-text' %></li>
-        <li class="nav-item-phone text-center"><%= link_to 'SHIPPING DETAILS', {:action => :delivery_methods, :controller => 'home'}, :class => 'top-bar-text' %></li>
+        <li class="nav-item-phone text-center"><%= link_to t('payment_methods'), {:action => :payment_methods, :controller => 'home'}, :class => 'top-bar-text' %></li>
+        <li class="nav-item-phone text-center"><%= link_to t('shipping_details'), {:action => :delivery_methods, :controller => 'home'}, :class => 'top-bar-text' %></li>
         <li class="nav-item-phone text-center"><%= link_to 'OUR PARTNERS', {:action => :our_partners, :controller => 'home'}, :class => 'top-bar-text' %></li>
         <li class="nav-item-phone text-center"><%= link_to 'CONTACTS', {:action => :contacts, :controller => 'home'}, :class => 'top-bar-text' %></li>
       </ul>
@@ -132,7 +132,7 @@
       <%= link_to 'SPECIAL OFFERS', special_offers_path, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to 'PAYMENT METHODS', {:action => :payment_methods, :controller => 'home'}, :class => 'top-bar-text' %>
+      <%= link_to t('payment_mehtods'), {:action => :payment_methods, :controller => 'home'}, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
       <%= link_to 'SHIPPING DETAILS', {:action => :delivery_methods, :controller => 'home'}, :class => 'top-bar-text' %>
@@ -191,10 +191,10 @@
           <a href="#" class="category-item">Category name </a>
         </div>
         <div class="col-md-6 col-xs-6">
-          <%= link_to 'Help Center', {:action => :help_center, :controller => 'home'}, :class => 'category-item' %>
-          <%= link_to 'Shipping', {:action => :delivery_methods, :controller => 'home'}, :class => 'category-item' %>
-          <%= link_to 'Payment methods', {:action => :payment_methods, :controller => 'home'}, :class => 'category-item' %>
-          <%= link_to 'What is included in the price', {:action => :price_details, :controller => 'home'}, :class => 'category-item' %>
+          <%= link_to t('help_center'), {:action => :help_center, :controller => 'home'}, :class => 'category-item' %>
+          <%= link_to t('shipping'), {:action => :delivery_methods, :controller => 'home'}, :class => 'category-item' %>
+          <%= link_to t('payment_methods'), {:action => :payment_methods, :controller => 'home'}, :class => 'category-item' %>
+          <%= link_to t('what_is_included_in_the_price'), {:action => :price_details, :controller => 'home'}, :class => 'category-item' %>
         </div>
       </div>
     </div>
