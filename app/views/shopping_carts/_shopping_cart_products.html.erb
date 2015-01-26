@@ -19,11 +19,11 @@
     <div class="row">
       <div class="col-md-12">
         <div class="product-content-table-item">
-          <div class="col-md-2 content-table-td title"><% t('image')%></div>
-          <div class="col-md-3 content-table-td title"><% t('product')%></div>
-          <div class="col-md-2 content-table-td title"><% t('quantity')%></div>
-          <div class="col-md-2 content-table-td title"><% t('price')%></div>
-          <div class="col-md-2 content-table-td title"><% t('total')%></div>
+          <div class="col-md-2 content-table-td title"><%= t('image')%></div>
+          <div class="col-md-3 content-table-td title"><%= t('product')%></div>
+          <div class="col-md-2 content-table-td title"><%= t('quantity')%></div>
+          <div class="col-md-2 content-table-td title"><%= t('price')%></div>
+          <div class="col-md-2 content-table-td title"><%= t('total')%></div>
           <div class="col-md-1 content-table-td title"></div>
         </div>
       </div>
@@ -44,10 +44,10 @@
                 <%= number_field_tag 'quantity', quantity, {:min => 1, :step => 1, :class => 'quantity-js', :product_id => product.id} %>
               </div>
               <div class="col-md-2 content-table-td">
-                <%= format('£ %.2f', product.price) %>
+                <%= format('£ %.2f', product.discount.nil? ? product.price : product.discount.price) %>
               </div>
               <div class="col-md-2 content-table-td">
-                <%= format('£ %.2f', product.price * quantity) %>
+                <%= format('£ %.2f', product.discount.nil? ? product.price * quantity : product.discount.price * quantity) %>
               </div>
               <div class="col-md-1 content-table-td">
                 <%= link_to '', url_for(controller: :shopping_carts, action: :remove_product, id: product.id), method: :delete, remote: true, data: {confirm: "Are you sure you want to remove a product #{product.name}?"}, :class => 'remove-product' %>

@@ -76,4 +76,12 @@ class Product < ActiveRecord::Base
     id.hash
   end
 
+  def discount
+    @discount
+  end
+
+  def discount=(value)
+    @discount = value
+  end
+
 end

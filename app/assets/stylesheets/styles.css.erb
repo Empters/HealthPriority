@@ -248,11 +248,12 @@ body {
     border-left: solid #ACACAC 1px;
 }
 
-.search-container, .email-container {
+.search-container, .email-container, .contact-container {
     position: relative;
     border: solid #F79114 1px;
 }
-.search-container, .email-container {
+
+.search-container, .email-container, .contact-container {
     height: 40px;
 }
 
@@ -309,14 +310,14 @@ body {
     padding-left: 10px;
 }
 
-.search-input, .email-input {
+.search-input, .email-input, .contact-input {
     height: 100%;
     width: 100%;
     border: none;
     font-style: italic;
 }
 
-.search-input:focus, .email-input:focus {
+.search-input:focus, .email-input:focus, .contact-input:focus {
     outline: 0;
 }
 
@@ -571,7 +572,6 @@ body {
     margin: 10px;
 }
 
-
 .cart-title, .buttons-container {
     margin: 10px 0px;
 }
@@ -681,13 +681,21 @@ body {
     text-decoration: none;
 }
 
-.email-container {
+.email-container, .contact-container {
     margin-top: 20px;
     padding-left: 10px;
 }
 
 .email-input {
     width: 80%;
+}
+
+.contact-container {
+    margin: 5px;
+}
+
+.contact-input {
+    width: 100%;
 }
 
 .send-email-button {
@@ -918,7 +926,7 @@ body {
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
     text-decoration: none;
     border: 0;
-    width:  100%;
+    width: 100%;
     height: 100%;
     cursor: pointer;
     background: transparent;
@@ -927,7 +935,7 @@ body {
 .nav-tabs:hover > li.active:hover > a:hover, .nav-tabs:hover > li.active:hover > a:hover, .nav-tabs:hover > li.active:hover > a:hover {
     text-decoration: none;
     border: 0;
-    width:  100%;
+    width: 100%;
     height: 100%;
     cursor: pointer;
     background: transparent;
@@ -973,10 +981,11 @@ body {
     width: 8px;
 }
 
-.categories-list > li >a:focus {
+.categories-list > li > a:focus {
     color: #f79114;
     text-decoration: underline;
 }
+
 .button.gray {
     box-shadow: 4px 4px 4px #888888;
 }
@@ -993,3 +1002,13 @@ body {
 .title-banner {
     box-shadow: 4px 4px 4px #888888;
 }
+
+.control-group input {
+    width: 100%;
+}
+
+.control-group textarea {
+    width: 100%;
+    min-height: 100px;
+}
+

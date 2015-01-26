@@ -10,4 +10,26 @@
 
   <%= @html %>
 
+  <div class="row">
+    <div class="col-md-4 contact-container">
+      <input class="contact-input" id="mailName" type="text" placeholder=" * Name" data-content="Please, enter your name" data-placement="top" data-original-title="" title="">
+    </div>
+    <div class="col-md-4 contact-container">
+      <input class="contact-input" id="mailFrom" type="email" placeholder=" * Email" name="from" data-content="Please, enter correct email" data-placement="top" data-original-title="" title="">
+    </div>
+    <div class="col-md-4 contact-container">
+      <input class="contact-input" id="mailPhone" type="tel" placeholder=" Phone" name="phone" data-content="Please, enter correct phone" data-placement="top" data-original-title="" title="">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <textarea class="messageTextarea" id="mailContent" placeholder=" Your message..."></textarea>
+    </div>
+  </div>
+  <div class="row">
+    <div class="text-center">
+      <input class="messageButton" id="sendMail" type="button" value="DROP US A MESSAGE">
+    </div>
+  </div>
+
 </div>
