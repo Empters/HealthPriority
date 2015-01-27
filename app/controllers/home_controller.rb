@@ -165,10 +165,14 @@ class HomeController < ApplicationController
   end
 
   def send_message
-   #TODO - send mail message
-=begin
-    mail(to: params[:email], subject: 'Welcome to My Awesome Site')
-=end
+    # Try to send email message
+    UserMailer.send_message(params[:name], params[:email], 'HP message', params[:message])
+
+    # Display success message
+    flash[:success] = 'Message sent successfully!'
+
+    # Return to call page
+    redirect_to(:back)
   end
 
   private
