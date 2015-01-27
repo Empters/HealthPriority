@@ -57,6 +57,7 @@ class HomeController < ApplicationController
             else
               @web_store_detail.contact.nil? ? '' : @web_store_detail.contact.html_safe
             end
+    @isContactView = true
 
     respond_to do |format|
       format.html {
@@ -161,6 +162,13 @@ class HomeController < ApplicationController
         render 'home/render_html'
       }
     end
+  end
+
+  def send_message
+   #TODO - send mail message
+=begin
+    mail(to: params[:email], subject: 'Welcome to My Awesome Site')
+=end
   end
 
   private
