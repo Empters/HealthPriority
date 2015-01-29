@@ -387,6 +387,8 @@ body {
 
 .price {
     font-size: 16px;
+    padding: 0;
+    font-weight: 700;
 }
 
 .royalSlider {
@@ -427,7 +429,28 @@ body {
     }
 }
 
+@media screen and (max-width: 550px) {
+    .search_text {
+        font-size: 8px !important;
+        white-space: nowrap;
+    }
+
+    #search_category {
+        white-space: nowrap;
+        padding-left: 0;
+    }
+
+    .path {
+        display: none;
+    }
+
+    .search-container {
+        min-width: 196px;
+    }
+}
+
 @media screen and (max-width: 950px) {
+
     .gallery-item {
         height: 255px;
     }
@@ -977,6 +1000,8 @@ body {
 
 .price.small {
     font-size: 13px;
+    padding: 0;
+    font-weight: 700;
 }
 
 .star.small {

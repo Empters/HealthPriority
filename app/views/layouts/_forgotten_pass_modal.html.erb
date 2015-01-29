@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="modal-header title-banner">
         <button class="close" data-dismiss="modal">×</button>
-        <div>Forgot your password?</div>
+        <div><%= t('forgotten_pass')%></div>
       </div>
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :post}) do |f| %>
           <div class="modal-body">
@@ -20,7 +20,7 @@
                   <%= render "users/shared/resend_confirmation_link" %>
                 </div>
 
-                <%= f.submit "Send reset instructions", :class => 'btn btn-primary button gray' %>
+                <%= f.submit t('reset_instructions'), :class => 'btn btn-primary button gray' %>
               </div>
             </div>
           </div>

@@ -57,7 +57,7 @@
             <div class="search-container">
               <div class="search-dropdown-container left">
                 <div class="dropdown-toggle" id="search_category" data-toggle="dropdown">
-                  <span id="chosen_category" selected_category=""><%= t('all_categories')%></span>
+                  <span id="chosen_category" selected_category="" class="search_text"><%= t('all_categories')%></span>
                   <b class="caret"></b>
                 </div>
                 <ul aria-labelledby="search_category" role="menu" class="dropdown-menu" id="category-menu">
@@ -229,13 +229,11 @@
   <br/>
 
   <div class="footer-main-text">
-    “Brand Name” is a registered trademark of this that and lorem ipsum dolor sit amet. Aber conques sed to do.
+    <%= t('trade_mark')%>
   </div>
   <div class="footer-text-title">Tuesday, Sep 09, 2014, 8:51 PST</div>
   <div class="footer-text">
-    Disclaimer: Statements made, or products sold through this website, have not been evaluated by the English Food and
-    Drug Administration.
-    They are not intended to diagnose, treat, cure or prevent any disease. Read more »
+   <%= t('evaluated_by_html')%>
   </div>
 </div>
 <!-- Footer End -->

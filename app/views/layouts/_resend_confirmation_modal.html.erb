@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="modal-header title-banner">
         <button class="close" data-dismiss="modal">×</button>
-        <div>Resend confirmation instructions</div>
+        <div><%= t('resend_instr')%></div>
       </div>
       <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: {method: :post}) do |f| %>
           <div class="modal-body">
@@ -19,7 +19,7 @@
                   <%= render "users/shared/signup_link" %>
                   <%= render "users/shared/forgotten_pass_link" %>
                 </div>
-                <%= f.submit "Resend confirmation", :class => 'btn btn-primary button gray' %></div>
+                <%= f.submit t('resent_confirm'), :class => 'btn btn-primary button gray' %></div>
             </div>
           </div>
       <% end %>

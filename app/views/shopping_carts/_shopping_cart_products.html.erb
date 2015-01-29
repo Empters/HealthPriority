@@ -50,7 +50,7 @@
                 <%= format('£ %.2f', product.discount.nil? ? product.price * quantity : product.discount.price * quantity) %>
               </div>
               <div class="col-md-1 content-table-td">
-                <%= link_to '', url_for(controller: :shopping_carts, action: :remove_product, id: product.id), method: :delete, remote: true, data: {confirm: "Are you sure you want to remove a product #{product.name}?"}, :class => 'remove-product' %>
+                <%= link_to '', url_for(controller: :shopping_carts, action: :remove_product, id: product.id), method: :delete, remote: true, data: {confirm: t('confirm_remove_product', product_name: product.name)}, :class => 'remove-product' %>
               </div>
             </div>
           </div>

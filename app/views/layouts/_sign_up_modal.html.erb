@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="modal-header title-banner">
         <button class="close" data-dismiss="modal">×</button>
-        <div>Sign Up</div>
+        <div><%= t('sign_up')%></div>
       </div>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
           <div class="modal-body">
@@ -31,7 +31,7 @@
                   <%= render "users/shared/forgotten_pass_link" %>
                   <%= render "users/shared/resend_confirmation_link" %>
                 </div>
-                <%= f.submit "Sign up", :class => 'btn btn-primary button gray' %>
+                <%= f.submit t('sign_up'), :class => 'btn btn-primary button gray' %>
               </div>
             </div>
           </div>
