@@ -12,7 +12,6 @@ class PaymentsController < ApplicationController
   end
 
   def create
-    puts '!!!!!!!!!!! create !!!!!!!!!!!!!!'
 
     @payment = Payment.new(payment_params)
     total_quantity = 0
@@ -62,4 +61,5 @@ class PaymentsController < ApplicationController
   def payment_params
     params.require(:payment).permit(:name, :company, :address, :city, :state, :postal_code, :country, :phone, :email, :description)
   end
+
 end

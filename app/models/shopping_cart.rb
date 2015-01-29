@@ -59,9 +59,14 @@ class ShoppingCart
     # Init default value
     total_price = 0
 
-    # Calculate products count
+    # Calculate products price
     if !products.empty?
-      products.each {|key, value| total_price = total_price + (key.price * value) }
+      products.each{|key, value|
+        # Get products discount
+        key.discount = key.product_discounts.where('date_start <= ? and date_end >= ? and quantity <= ?', DateTime.now, DateTime.now, value).order('priority ASC').first
+        product_price = key.discount.nil? ? key.price : key.discount.price
+        total_price = total_price + (product_price * value)
+      }
     end
 
     @total_price = total_price

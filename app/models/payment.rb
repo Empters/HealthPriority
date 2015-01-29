@@ -1,4 +1,8 @@
 class Payment < ActiveRecord::Base
+
+  # Validate required attributes
+  validates_presence_of :name, :address, :city, :company, :country, :email, :item_name, :item_number, :items, :phone, :postal_code, :state, :status, :total, :total_quantity, :payment_method
+
   has_many :items, autosave: true
   belongs_to :user
 

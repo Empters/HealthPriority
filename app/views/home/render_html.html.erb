@@ -10,4 +10,8 @@
 
   <%= @html %>
 
+  <% if !@isContactView.nil? && @isContactView %>
+      <%= render partial: 'send_message' %>
+  <% end %>
+
 </div>

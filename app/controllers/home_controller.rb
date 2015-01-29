@@ -57,6 +57,7 @@ class HomeController < ApplicationController
             else
               @web_store_detail.contact.nil? ? '' : @web_store_detail.contact.html_safe
             end
+    @isContactView = true
 
     respond_to do |format|
       format.html {
@@ -161,6 +162,17 @@ class HomeController < ApplicationController
         render 'home/render_html'
       }
     end
+  end
+
+  def send_message
+    # Try to send email message
+    UserMailer.send_message(params[:name], params[:email], 'HP message', params[:message])
+
+    # Display success message
+    flash[:success] = 'Message sent successfully!'
+
+    # Return to call page
+    redirect_to(:back)
   end
 
   private
