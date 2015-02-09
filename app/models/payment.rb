@@ -8,7 +8,7 @@ class Payment < ActiveRecord::Base
 
   def paypal_url(return_path)
     values = {
-        business: 'test_health@test.com',
+        business: 'new_test_acc@abv.bg',
         cmd: '_xclick',
         upload: 1,
         return: "#{Rails.application.secrets.app_host}#{return_path}",
