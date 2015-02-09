@@ -102,3 +102,7 @@ en:
       They are not intended to diagnose, treat, cure or prevent any disease. Read more »'
   prohibited: 'prohibited this manufacturer from being saved:'
   payment_methods: 'Payment Methods'
+  personal_details: 'Personal details'
+  address: 'Address'
+  company: 'Company'
+  additional_information: 'Additional information'
