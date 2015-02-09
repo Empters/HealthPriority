@@ -23,49 +23,49 @@
             <legend><%= t('address') %></legend>
 
             <div class="control-group">
-              <%= f.label :country, class: 'control-label' %>
+              <%= f.label t('country'), class: 'control-label' %>
               <div class="controls">
                 <%= f.text_field :country %>
               </div>
             </div>
 
             <div class="control-group">
-              <%= f.label :state, class: 'control-label' %>
+              <%= f.label t('state'), class: 'control-label' %>
               <div class="controls">
                 <%= f.text_field :state %>
               </div>
             </div>
 
             <div class="control-group">
-              <%= f.label :city, class: 'control-label' %>
+              <%= f.label t('city'), class: 'control-label' %>
               <div class="controls">
                 <%= f.text_field :city %>
               </div>
             </div>
 
             <div class="control-group">
-              <%= f.label :postal_code, class: 'control-label' %>
+              <%= f.label t('postal_code'), class: 'control-label' %>
               <div class="controls">
                 <%= f.text_field :postal_code %>
               </div>
             </div>
 
             <div class="control-group">
-              <%= f.label :address, class: 'control-label' %>
+              <%= f.label t('address'), class: 'control-label' %>
               <div class="controls">
                 <%= f.text_field :address %>
               </div>
             </div>
 
             <div class="control-group">
-              <%= f.label :email, class: 'control-label' %>
+              <%= f.label t('email'), class: 'control-label' %>
               <div class="controls">
                 <%= f.text_field :email %>
               </div>
             </div>
 
             <div class="control-group">
-              <%= f.label :phone, class: 'control-label' %>
+              <%= f.label t('phone'), class: 'control-label' %>
               <div class="controls">
                 <%= f.text_field :phone %>
               </div>
@@ -78,7 +78,7 @@
           <fieldset>
             <legend><%= t('company') %></legend>
             <div class="control-group">
-              <%= f.label :company, class: 'control-label' %>
+              <%= f.label t('company'), class: 'control-label' %>
               <div class="controls">
                 <%= f.text_field :company %>
               </div>
@@ -90,7 +90,7 @@
           <fieldset>
             <legend><%= t('payment_methods') %></legend>
             <div class="control-group">
-              <%= f.label :choose_method, class: 'control-label' %>
+              <%= f.label t('choose_method'), class: 'control-label' %>
               <div class="controls">
                 <%= f.select(:payment_method, ['PayPal', 'Credit Card']) %>
               </div>
@@ -102,7 +102,7 @@
           <fieldset>
             <legend><%= t('additional_information') %></legend>
             <div class="control-group">
-              <%= f.label :description, class: 'control-label' %>
+              <%= f.label t('description'), class: 'control-label' %>
               <div class="controls">
                 <%= f.text_area :description %>
               </div>
