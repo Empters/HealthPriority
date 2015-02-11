@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :set_products, only: [:index]
   before_action :set_search_and_filter_params, only: [:filter, :search, :brand, :price]
+  before_action :set_breadcrumb
   respond_to :html, :js
 
   include ApplicationHelper
@@ -11,19 +12,17 @@ class ProductsController < ApplicationController
 
   helper_method :product_passed
 
-  add_breadcrumb 'Home', :root_path
-
   # GET /products
   # GET /products.json
   def index
-    add_breadcrumb 'Products', :products_path
+    add_breadcrumb t('products'), :products_path
     set_pages
   end
 
   # GET /products/1
   # GET /products/1.json
   def show
-    add_breadcrumb 'Products', :products_path
+    add_breadcrumb t('products'), :products_path
     add_breadcrumb @product.name, @product
 
     add_to_last_visit_product(@product)
@@ -175,5 +174,9 @@ class ProductsController < ApplicationController
     @brands ||= Manufacturer.all
     @price_ranges ||= [ [0.01, 1.99, 0], [2, 4.99, 1], [5, 9.99, 2], [10.00, 15.99, 3], [16.00, 19.99, 4], [20.00, 49.99, 5], [50.00, 99.99, 6], [100, 1000, 7] ]
     @page_label = t('our_products')
+  end
+
+  def set_breadcrumb
+    add_breadcrumb t('home'), :root_path
   end
 end

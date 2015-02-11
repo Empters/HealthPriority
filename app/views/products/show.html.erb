@@ -68,9 +68,9 @@
             <div class="hidden rating-value">3</div>
           </div>
         </div>
-        <div class="product-reviews left"><a href="#">12 Reviews</a></div>
+        <div class="product-reviews left"><a href="#">12 <%= t('Reviews')%></a></div>
         <div class="product-in-stock right"><%= t('in_stock')%>:
-          <div class="stock"> <%= @product.isInStock? && !@product.stock_status.nil? ? @product.stock_status.name : 'No' %></div>
+          <div class="stock"> <%= @product.isInStock? && !@product.stock_status.nil? ? @product.stock_status.name : t('no') %></div>
         </div>
         <div class="clearfix"></div>
         <div class="qty-add-container">

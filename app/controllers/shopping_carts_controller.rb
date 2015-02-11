@@ -1,9 +1,6 @@
 class ShoppingCartsController < ApplicationController
-
+  before_action :set_breadcrumb
   before_action :init_product, only: [:add_to_shopping_cart, :remove_product]
-
-  # Start breadcrumb root
-  add_breadcrumb 'Home', :root_path
 
   # Index action
   def index
@@ -65,4 +62,7 @@ class ShoppingCartsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
+  def set_breadcrumb
+    add_breadcrumb t('home'), :root_path
+  end
 end

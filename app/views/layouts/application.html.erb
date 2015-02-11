@@ -122,7 +122,7 @@
         <li class="nav-item-phone text-center"><%= link_to t('special_offers'), special_offers_path, :class => 'top-bar-text' %></li>
         <li class="nav-item-phone text-center"><%= link_to t('payment_methods'), {:action => :payment_methods, :controller => 'home'}, :class => 'top-bar-text' %></li>
         <li class="nav-item-phone text-center"><%= link_to t('shipping_details'), {:action => :delivery_methods, :controller => 'home'}, :class => 'top-bar-text' %></li>
-        <li class="nav-item-phone text-center"><%= link_to t('out_partners'), {:action => :our_partners, :controller => 'home'}, :class => 'top-bar-text' %></li>
+        <li class="nav-item-phone text-center"><%= link_to t('our_partners'), {:action => :our_partners, :controller => 'home'}, :class => 'top-bar-text' %></li>
         <li class="nav-item-phone text-center"><%= link_to t('contacts'), {:action => :contacts, :controller => 'home'}, :class => 'top-bar-text' %></li>
       </ul>
     </div>
@@ -131,28 +131,28 @@
   <!-- nav bar large displays -->
   <div class="container text-center hidden-xs">
     <div class="main-nav-tab">
-      <%= link_to 'HOME', root_path, :data => {:no_turbolink => true}, :class => 'top-bar-text' %>
+      <%= link_to t('home'), root_path, :data => {:no_turbolink => true}, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to 'ABOUT US', {:action => :about_us, :controller => 'home'}, :class => 'top-bar-text' %>
+      <%= link_to t('about_us'), {:action => :about_us, :controller => 'home'}, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to 'PRODUCTS', products_path, :class => 'top-bar-text' %>
+      <%= link_to t('products'), products_path, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to 'SPECIAL OFFERS', special_offers_path, :class => 'top-bar-text' %>
+      <%= link_to t('special_offers'), special_offers_path, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
       <%= link_to t('payment_mehtods'), {:action => :payment_methods, :controller => 'home'}, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to 'SHIPPING DETAILS', {:action => :delivery_methods, :controller => 'home'}, :class => 'top-bar-text' %>
+      <%= link_to t('shipping_details'), {:action => :delivery_methods, :controller => 'home'}, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to 'OUR PARTNERS', {:action => :our_partners, :controller => 'home'}, :class => 'top-bar-text' %>
+      <%= link_to t('our_partners'), {:action => :our_partners, :controller => 'home'}, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to 'CONTACTS', {:action => :contacts, :controller => 'home'}, :class => 'top-bar-text' %>
+      <%= link_to t('contacts'), {:action => :contacts, :controller => 'home'}, :class => 'top-bar-text' %>
     </div>
   </div>
   <!-- nav bar large displays end -->
