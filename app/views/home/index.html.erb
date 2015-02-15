@@ -1,24 +1,26 @@
 <!-- Page content -->
-<div class="top-market-section">
-  <div class="container hidden-xs">
-    <div class="row">
+<div class="container-background">
+  <div class="container main-content" style="padding-top: 0">
+    <div class="container hidden-xs">
+      <div class="row">
 
-      <!-- Gallery -->
-      <div class="col-md-8">
-        <%= render 'homepage_slider' %>
+        <!-- Gallery -->
+        <div class="col-md-8">
+          <%= render 'homepage_slider' %>
+        </div>
+        <!-- Gallery End -->
+
+        <!-- Banners -->
+        <div class="col-md-4">
+          <%= render 'banners' %>
+        </div>
+        <!-- Banners End -->
+
       </div>
-      <!-- Gallery End -->
-
-      <!-- Banners -->
-      <div class="col-md-4">
-        <%= render 'banners' %>
-      </div>
-      <!-- Banners End -->
-
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <%= render 'best_sellers' %>
+      <div class="row">
+        <div class="col-md-12">
+          <%= render 'best_sellers' %>
+        </div>
       </div>
     </div>
   </div>
@@ -43,10 +45,10 @@
     <!-- Products End -->
   </div>
   <!-- Categories & Products End-->
-    <br/>
+  <br/>
   <!-- Last Visited Products -->
   <div class="row">
-    <%= render partial: 'home/last_visited_products', locals: { title: t('last_visited_products'), products: last_visit_products} %>
+    <%= render partial: 'home/last_visited_products', locals: {title: t('last_visited_products'), products: last_visit_products} %>
   </div>
   <!-- Last Visited Products End -->
 </div>
