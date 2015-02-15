@@ -184,7 +184,7 @@ class HomeController < ApplicationController
 
   def set_from_controller
     @from_controller = 'home'
-    @page_label=@page_label = t('our_featured_products')
+    @page_label = t('our_featured_products')
   end
 
   def set_products_per_page
