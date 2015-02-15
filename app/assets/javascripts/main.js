@@ -40,6 +40,11 @@ function initStarRatings() {
 function initCategoriesDropdowns() {
     $('.category-arrow').click(function() {
         var categoryName = $(this).data("category");
+        if($(this).hasClass("disabled"))
+        {
+            return;
+        }
+
         if($(this).hasClass("open")) {
             $(this).removeClass("open");
             $(".sub-category[data-category='" + categoryName + "']").each(function() {
