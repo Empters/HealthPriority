@@ -13,11 +13,10 @@
       <%= render 'shopping_carts/shopping_cart_products' %>
     </div>
 
-    <!-- Last Visited Products -->
+    <!-- last visited products -->
     <div class="row">
-      <%= render partial: 'home/last_visited_products', locals: {title: 'Last Visited Products', products: last_visit_products} %>
+        <%= render partial: 'home/last_visited_products', locals: {title: t('last_visited_products'), products: last_visit_products} %>
     </div>
-    <!-- Last Visited Products End -->
-
+  <!-- Last Visited Products End -->
   </div>
 </div>

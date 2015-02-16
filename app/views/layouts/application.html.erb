@@ -29,14 +29,14 @@
     </div>
     <div class="top-bar-container right">
       <div class="top-bar-tab first-tab top-bar-text">
-        <%= link_to t('faq'), {:action => :faq, :controller => 'home'}, {:class => 'navbar-link'} %>
+        <%= link_to t('faq'), faq_path, {:class => 'navbar-link'} %>
       </div>
       <div class="top-bar-tab top-bar-text">
-        <%= link_to t('delivery'), {:action => :delivery_methods, :controller => 'home'}, :class => 'navbar-link' %>
+        <%= link_to t('delivery'), delivery_methods_path, :class => 'navbar-link' %>
       </div>
       <% if user_signed_in? -%>
           <div class="top-bar-tab top-bar-text">
-            <%= link_to t('my_account'), :class => 'navbar-link' %>
+            <%= link_to t('my_account'), user_path(@user), :class => 'navbar-link' %>
           </div>
           <div class="top-bar-tab top-bar-text">
             <%= link_to t('logout'), destroy_user_session_path, method: :delete, :class => 'navbar-link' %>
@@ -83,7 +83,7 @@
                 </ul>
               </div>
               <div class="search-input-container left">
-                <input type="text" id="search_input" class="search-input" placeholder="Search in our products"/>
+                <input type="text" id="search_input" class="search-input" placeholder="<%= t('search_token')%>"/>
               </div>
               <div class="right search-image-div">
                 <div id="search_link" class='search-image'></div>
@@ -119,13 +119,13 @@
     <div class="collapse navbar-collapse nopadding phone-main-nav">
       <ul class="nav navbar navbar-left nomargin">
         <li class="nav-item-phone text-center"><%= link_to t('home'), root_path, :data => {:no_turbolink => true}, :class => 'top-bar-text' %></li>
-        <li class="nav-item-phone text-center"><%= link_to t('about_us'), {:action => :about_us, :controller => 'home'}, :class => 'top-bar-text' %></li>
+        <li class="nav-item-phone text-center"><%= link_to t('about_us'), about_us_path, :class => 'top-bar-text' %></li>
         <li class="nav-item-phone text-center"><%= link_to t('products'), products_path, :class => 'top-bar-text' %></li>
         <li class="nav-item-phone text-center"><%= link_to t('special_offers'), special_offers_path, :class => 'top-bar-text' %></li>
-        <li class="nav-item-phone text-center"><%= link_to t('payment_methods'), {:action => :payment_methods, :controller => 'home'}, :class => 'top-bar-text' %></li>
-        <li class="nav-item-phone text-center"><%= link_to t('shipping_details'), {:action => :delivery_methods, :controller => 'home'}, :class => 'top-bar-text' %></li>
-        <li class="nav-item-phone text-center"><%= link_to t('out_partners'), {:action => :our_partners, :controller => 'home'}, :class => 'top-bar-text' %></li>
-        <li class="nav-item-phone text-center"><%= link_to t('contacts'), {:action => :contacts, :controller => 'home'}, :class => 'top-bar-text' %></li>
+        <li class="nav-item-phone text-center"><%= link_to t('payment_methods'), payment_methods_path, :class => 'top-bar-text' %></li>
+        <li class="nav-item-phone text-center"><%= link_to t('shipping_details'), delivery_methods_path, :class => 'top-bar-text' %></li>
+        <li class="nav-item-phone text-center"><%= link_to t('our_partners'), our_partners_path, :class => 'top-bar-text' %></li>
+        <li class="nav-item-phone text-center"><%= link_to t('contacts'), contacts_path, :class => 'top-bar-text' %></li>
       </ul>
     </div>
   </div>
@@ -133,28 +133,28 @@
   <!-- nav bar large displays -->
   <div class="container text-center hidden-xs">
     <div class="main-nav-tab">
-      <%= link_to 'HOME', root_path, :data => {:no_turbolink => true}, :class => 'top-bar-text' %>
+      <%= link_to t('home'), root_path, :data => {:no_turbolink => true}, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to 'ABOUT US', {:action => :about_us, :controller => 'home'}, :class => 'top-bar-text' %>
+      <%= link_to t('about_us'), about_us_path, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to 'PRODUCTS', products_path, :class => 'top-bar-text' %>
+      <%= link_to t('products'), products_path, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to 'SPECIAL OFFERS', special_offers_path, :class => 'top-bar-text' %>
+      <%= link_to t('special_offers'), special_offers_path, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to t('payment_mehtods'), {:action => :payment_methods, :controller => 'home'}, :class => 'top-bar-text' %>
+      <%= link_to t('payment_mehtods'), payment_methods_path, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to 'SHIPPING DETAILS', {:action => :delivery_methods, :controller => 'home'}, :class => 'top-bar-text' %>
+      <%= link_to t('shipping_details'), delivery_methods_path, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to 'OUR PARTNERS', {:action => :our_partners, :controller => 'home'}, :class => 'top-bar-text' %>
+      <%= link_to t('our_partners'), our_partners_path, :class => 'top-bar-text' %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to 'CONTACTS', {:action => :contacts, :controller => 'home'}, :class => 'top-bar-text' %>
+      <%= link_to t('contacts'), contacts_path, :class => 'top-bar-text' %>
     </div>
   </div>
   <!-- nav bar large displays end -->
@@ -200,10 +200,10 @@
           <a href="#" class="category-item">Category name </a>
         </div>
         <div class="col-md-6 col-xs-6">
-          <%= link_to t('help_center'), {:action => :help_center, :controller => 'home'}, :class => 'category-item' %>
-          <%= link_to t('shipping'), {:action => :delivery_methods, :controller => 'home'}, :class => 'category-item' %>
-          <%= link_to t('payment_methods'), {:action => :payment_methods, :controller => 'home'}, :class => 'category-item' %>
-          <%= link_to t('what_is_included_in_the_price'), {:action => :price_details, :controller => 'home'}, :class => 'category-item' %>
+          <%= link_to t('help_center'), help_center_path, :class => 'category-item' %>
+          <%= link_to t('shipping'), delivery_methods_path, :class => 'category-item' %>
+          <%= link_to t('payment_methods'), payment_methods_path, :class => 'category-item' %>
+          <%= link_to t('what_is_included_in_the_price'), price_details_path, :class => 'category-item' %>
         </div>
       </div>
     </div>
@@ -252,6 +252,7 @@
 <%= render 'layouts/sign_up_modal' %>
 <%= render 'layouts/forgotten_pass_modal' %>
 <%= render 'layouts/resend_confirmation_modal' %>
+<%= render 'layouts/edit_profile_modal' %>
 <!-- Login modals End-->
 
 </body>

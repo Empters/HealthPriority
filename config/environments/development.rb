@@ -76,5 +76,5 @@ Rails.application.configure do
   #config.allow_concurrency = true
   #Setting default language
   config.i18n.enforce_available_locales = true
-  config.i18n.default_locale = :en
+  config.i18n.default_locale = :bg
 end

@@ -3,14 +3,12 @@ class HomeController < ApplicationController
   include Modules::SearchModule
 
   skip_before_filter :authenticate_user!
-
+  before_action :set_breadcrumb
   before_action :set_products_per_page, only: [:index, :change_page]
   before_action :set_from_controller, :set_best_sellers, :set_products, :set_pages, :set_search_and_filter_params, only: [:index, :change_page]
   before_action :set_web_store_detail, only: [:about_us, :contacts, :delivery_methods, :faq, :our_partners, :payment_methods]
 
   helper_method :product_passed
-
-  add_breadcrumb 'Home', :root_path
 
   # GET index page
   def index
@@ -31,7 +29,7 @@ class HomeController < ApplicationController
 
   # GET about_us page
   def about_us
-    add_breadcrumb 'About'
+    add_breadcrumb t('about')
 
     @title = 'About'
     @html = if @web_store_detail.nil? then
@@ -49,7 +47,7 @@ class HomeController < ApplicationController
 
   # GET contacts page
   def contacts
-    add_breadcrumb 'Contacts'
+    add_breadcrumb t('contacts')
 
     @title = 'Contacts'
     @html = if @web_store_detail.nil? then
@@ -68,7 +66,7 @@ class HomeController < ApplicationController
 
   # GET FAQ page
   def faq
-    add_breadcrumb 'FAQ'
+    add_breadcrumb t('faq')
 
     @title = 'FAQ'
     @html = if @web_store_detail.nil? then
@@ -86,7 +84,7 @@ class HomeController < ApplicationController
 
   # GET our_partners page
   def our_partners
-    add_breadcrumb 'Our partners'
+    add_breadcrumb t('our_partners')
 
     @title = 'Our partners'
     @html = if @web_store_detail.nil? then
@@ -174,7 +172,7 @@ class HomeController < ApplicationController
     UserMailer.send_message(params[:name], params[:email], 'HP message', params[:message])
 
     # Display success message
-    flash[:success] = 'Message sent successfully!'
+    flash[:success] = t('message_successful')
 
     # Return to call page
     redirect_to(:back)
@@ -201,4 +199,7 @@ class HomeController < ApplicationController
     @web_store_detail = WebStoreDetail.first
   end
 
+  def set_breadcrumb
+    add_breadcrumb t('home'), :root_path
+  end
 end
