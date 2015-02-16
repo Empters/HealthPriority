@@ -27,8 +27,8 @@
       </div>
     </div>
 
-    <div class="row" style="padding-top: 5px;">
-        <%= link_to t('add_to_cart'), {:controller => :shopping_carts, :action => :add_to_shopping_cart, :id => product.id, :quantity => 1, :remote => true }, {:class => 'button gray'} %>
+    <div class="row button-containter" style="padding-top: 5px;">
+        <%= link_to t('add_to_cart'), {:controller => :shopping_carts, :action => :add_to_shopping_cart, :id => product.id, :quantity => 1, :remote => true }, {:class => 'button green'} %>
     </div>
   </div>
 </div>
