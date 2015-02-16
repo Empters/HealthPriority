@@ -1,5 +1,6 @@
-<div class="<%= item_class%>">
+<div class="<%= item_class %>">
   <br/>
+
   <div class="text-center">
     <%= link_to '', product, :class => 'item-image', :style => 'background-image: url('+ product.image.url() + ');' %>
 
@@ -7,24 +8,26 @@
       <%= product.name %>
     </div>
     <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-6 col-sm-6 price <%= is_small %>">
-        <%= format('£ %.2f', product.price) %>
-      </div>
-      <div class="col-md-6 col-sm-6" style="padding: 0px;">
-        <div class="star-rating" style="margin: auto;">
-          <div class="star <%= is_small %>" data-rating="1"></div>
-          <div class="star <%= is_small %>" data-rating="2"></div>
-          <div class="star <%= is_small %>" data-rating="3"></div>
-          <div class="star <%= is_small %>" data-rating="4"></div>
-          <div class="star <%= is_small %>" data-rating="5"></div>
-          <!-- Place the product's rating in the div below -->
-          <div class="hidden rating-value">2</div>
+      <div class="row">
+        <div class="col-md-6 col-sm-6 price <%= is_small %>">
+          <%= format('£ %.2f', product.price) %>
         </div>
+        <div class="col-md-6 col-sm-6" style="padding: 0px;">
+          <div class="star-rating" style="margin: auto;">
+            <div class="star <%= is_small %>" data-rating="1"></div>
+            <div class="star <%= is_small %>" data-rating="2"></div>
+            <div class="star <%= is_small %>" data-rating="3"></div>
+            <div class="star <%= is_small %>" data-rating="4"></div>
+            <div class="star <%= is_small %>" data-rating="5"></div>
+            <!-- Place the product's rating in the div below -->
+            <div class="hidden rating-value">2</div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
       </div>
-      <div class="clearfix"></div>
     </div>
+    <div class="buttons-container">
+      <%= link_to t('add_to_cart'), {:controller => :shopping_carts, :action => :add_to_shopping_cart, :id => product.id, :quantity => 1, :remote => true}, {:class => 'button green'} %>
     </div>
-    <%= link_to t('add_to_cart'), {:controller => :shopping_carts, :action => :add_to_shopping_cart, :id => product.id, :quantity => 1, :remote => true }, {:class => 'button gray'} %>
   </div>
 </div>
