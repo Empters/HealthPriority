@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :init_root_categories
+  before_action :init_root_categories, :init_user
 
   after_filter :flash_to_headers
 
@@ -42,4 +42,11 @@ class ApplicationController < ActionController::Base
     return nil
   end
 
+  def init_user
+    if user_signed_in?
+      @user = current_user
+    else
+      @user = User.new
+    end
+  end
 end

@@ -1,10 +1,8 @@
 <div>
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header title-banner">
-        <div><%= t('sign_up')%></div>
-      </div>
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+      <%= form_for(@user) do |f| %>
           <div class="modal-body">
             <div class="inputs">
               <div>
@@ -45,11 +43,17 @@
                 <br/>
                 <%= f.text_field :last_name %>
               </div>
+              <br/>
+              <div>
+                <%= f.label t('last_name') %>
+                <br/>
+                <%= f.text_field :last_name %>
+              </div>
           </div>
           <div class="inputs">
             <br/>
             <div>
-              <%= f.label t('country') %>
+              <%= f.label  t('country') %>
               <br/>
               <%= f.text_field :country %>
             </div>
@@ -63,12 +67,7 @@
           </div>
           <div class="inputs">
               <div class="modal-footer">
-                <div class="login-links">
-                  <%= render "users/shared/signin_link" %>
-                  <%= render "users/shared/forgotten_pass_link" %>
-                  <%= render "users/shared/resend_confirmation_link" %>
-                </div>
-                <%= f.submit t('sign_up'), :class => 'btn btn-primary button gray' %>
+                <%= f.submit t('save'), :class => 'btn btn-primary button gray' %>
               </div>
             </div>
           </div>
