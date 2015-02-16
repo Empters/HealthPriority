@@ -1,123 +1,125 @@
-<div class="container margin-top">
-  <div class="path">
-    <%= render_breadcrumbs :separator => ' / ' %>
-  </div>
+<div class="container-background">
+  <div class="container main-content">
+    <div class="path">
+      <%= render_breadcrumbs :separator => ' / ' %>
+    </div>
 
-  <div class="form-container active">
-    <%= form_for(@payment) do |f| %>
+    <div class="form-container active">
+      <%= form_for(@payment) do |f| %>
 
-        <div class='form-horizontal well'>
-          <fieldset>
-            <legend><%= t('personal_details') %></legend>
-            <div class="control-group">
-              <%= f.label :name, class: 'control-label' %>
-              <div class="controls">
-                <%= f.text_field :name %>
+          <div class='form-horizontal well'>
+            <fieldset>
+              <legend><%= t('personal_details') %></legend>
+              <div class="control-group">
+                <%= f.label :name, class: 'control-label' %>
+                <div class="controls">
+                  <%= f.text_field :name %>
+                </div>
               </div>
-            </div>
-          </fieldset>
-        </div>
-
-        <div class='form-horizontal well'>
-          <fieldset>
-            <legend><%= t('address') %></legend>
-
-            <div class="control-group">
-              <%= f.label t('country'), class: 'control-label' %>
-              <div class="controls">
-                <%= f.text_field :country %>
-              </div>
-            </div>
-
-            <div class="control-group">
-              <%= f.label t('state'), class: 'control-label' %>
-              <div class="controls">
-                <%= f.text_field :state %>
-              </div>
-            </div>
-
-            <div class="control-group">
-              <%= f.label t('city'), class: 'control-label' %>
-              <div class="controls">
-                <%= f.text_field :city %>
-              </div>
-            </div>
-
-            <div class="control-group">
-              <%= f.label t('postal_code'), class: 'control-label' %>
-              <div class="controls">
-                <%= f.text_field :postal_code %>
-              </div>
-            </div>
-
-            <div class="control-group">
-              <%= f.label t('address'), class: 'control-label' %>
-              <div class="controls">
-                <%= f.text_field :address %>
-              </div>
-            </div>
-
-            <div class="control-group">
-              <%= f.label t('email'), class: 'control-label' %>
-              <div class="controls">
-                <%= f.text_field :email %>
-              </div>
-            </div>
-
-            <div class="control-group">
-              <%= f.label t('phone'), class: 'control-label' %>
-              <div class="controls">
-                <%= f.text_field :phone %>
-              </div>
-            </div>
-
-          </fieldset>
-        </div>
-
-        <div class='form-horizontal well'>
-          <fieldset>
-            <legend><%= t('company') %></legend>
-            <div class="control-group">
-              <%= f.label t('company'), class: 'control-label' %>
-              <div class="controls">
-                <%= f.text_field :company %>
-              </div>
-            </div>
-          </fieldset>
-        </div>
-
-        <div class='form-horizontal well'>
-          <fieldset>
-            <legend><%= t('payment_methods') %></legend>
-            <div class="control-group">
-              <%= f.label t('choose_method'), class: 'control-label' %>
-              <div class="controls">
-                <%= f.select(:payment_method, ['PayPal', 'Credit Card']) %>
-              </div>
-            </div>
-          </fieldset>
-        </div>
-
-        <div class='form-horizontal well'>
-          <fieldset>
-            <legend><%= t('additional_information') %></legend>
-            <div class="control-group">
-              <%= f.label t('description'), class: 'control-label' %>
-              <div class="controls">
-                <%= f.text_area :description %>
-              </div>
-            </div>
-          </fieldset>
-        </div>
-
-        <div class="row">
-          <div class="col-md-12 buttons-container">
-            <input name="Submit" type="submit" value="<%= t('execute_payment') %>" class="button green right submit-button">
-            <%= link_to t('shopping_cart'), shopping_carts_path, html_options = {class: 'button green right continue-shopping'} %>
+            </fieldset>
           </div>
-        </div>
 
-    <% end %>
+          <div class='form-horizontal well'>
+            <fieldset>
+              <legend><%= t('address') %></legend>
+
+              <div class="control-group">
+                <%= f.label t('country'), class: 'control-label' %>
+                <div class="controls">
+                  <%= f.text_field :country %>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <%= f.label t('state'), class: 'control-label' %>
+                <div class="controls">
+                  <%= f.text_field :state %>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <%= f.label t('city'), class: 'control-label' %>
+                <div class="controls">
+                  <%= f.text_field :city %>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <%= f.label t('postal_code'), class: 'control-label' %>
+                <div class="controls">
+                  <%= f.text_field :postal_code %>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <%= f.label t('address'), class: 'control-label' %>
+                <div class="controls">
+                  <%= f.text_field :address %>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <%= f.label t('email'), class: 'control-label' %>
+                <div class="controls">
+                  <%= f.text_field :email %>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <%= f.label t('phone'), class: 'control-label' %>
+                <div class="controls">
+                  <%= f.text_field :phone %>
+                </div>
+              </div>
+
+            </fieldset>
+          </div>
+
+          <div class='form-horizontal well'>
+            <fieldset>
+              <legend><%= t('company') %></legend>
+              <div class="control-group">
+                <%= f.label t('company'), class: 'control-label' %>
+                <div class="controls">
+                  <%= f.text_field :company %>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class='form-horizontal well'>
+            <fieldset>
+              <legend><%= t('payment_methods') %></legend>
+              <div class="control-group">
+                <%= f.label t('choose_method'), class: 'control-label' %>
+                <div class="controls">
+                  <%= f.select(:payment_method, ['PayPal', 'Credit Card']) %>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class='form-horizontal well'>
+            <fieldset>
+              <legend><%= t('additional_information') %></legend>
+              <div class="control-group">
+                <%= f.label t('description'), class: 'control-label' %>
+                <div class="controls">
+                  <%= f.text_area :description %>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 buttons-container">
+              <input name="Submit" type="submit" value="<%= t('execute_payment') %>" class="button green right submit-button">
+              <%= link_to t('shopping_cart'), shopping_carts_path, html_options = {class: 'button green right continue-shopping'} %>
+            </div>
+          </div>
+
+      <% end %>
+    </div>
+
   </div>
-
 </div>

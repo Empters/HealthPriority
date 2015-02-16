@@ -20,7 +20,7 @@
   </div>
   <div class="pager-container right">
     <% @pages.each do |page| %>
-        <%= link_to({controller: @from_controller, action: "change_page", page_number: page.number}, remote: true) do %>
+        <%= link_to({controller: @from_controller, action: 'change_page', page_number: page.number}, remote: true) do %>
             <div class="page <%= 'active' if page.is_active? %>">
               <div> <%= page.number %></div>
             </div>

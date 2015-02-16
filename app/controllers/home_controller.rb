@@ -111,6 +111,9 @@ class HomeController < ApplicationController
               @web_store_detail.delivery.nil? ? '' : @web_store_detail.delivery.html_safe
             end
 
+
+    @isDeliveryView = true
+
     respond_to do |format|
       format.html {
         render 'home/render_html'
@@ -128,6 +131,8 @@ class HomeController < ApplicationController
             else
               @web_store_detail.payment_methods.nil? ? '' : @web_store_detail.payment_methods.html_safe
             end
+
+    @isPaymentMethodsView = true
 
     respond_to do |format|
       format.html {
@@ -177,7 +182,7 @@ class HomeController < ApplicationController
 
   def set_from_controller
     @from_controller = 'home'
-    @page_label=@page_label = t('our_featured_products')
+    @page_label = t('our_featured_products')
   end
 
   def set_products_per_page

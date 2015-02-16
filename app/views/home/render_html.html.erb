@@ -1,17 +1,33 @@
-<div class="container margin-top">
+<div class="container-background">
+  <div class="container main-content <%= !@isPaymentMethodsView.nil? && @isPaymentMethodsView ? 'payment-methods-banner' : '' %>">
 
-  <div class="path">
-    <%= render_breadcrumbs :separator => ' / ' %>
+    <div class="path">
+      <%= render_breadcrumbs :separator => ' / ' %>
+    </div>
+
+    <div class="page-title">
+      <%= @title %>
+    </div>
+
+    <% if !@isDeliveryView.nil? && @isDeliveryView %>
+        <div class="delivery-map"></div>
+    <% end %>
+
+    <%= @html %>
+
+    <% if !@isDeliveryView.nil? && @isDeliveryView %>
+        <div class="row">
+          <div class="col-md-5ths col-xs-6 delivery-banner dhl-banner"></div>
+          <div class="col-md-5ths col-xs-6 delivery-banner la-post-banner"></div>
+          <div class="col-md-5ths col-xs-6 delivery-banner royal-mail-banner"></div>
+          <div class="col-md-5ths col-xs-6 delivery-banner us-post-banner"></div>
+          <div class="col-md-5ths col-xs-6 delivery-banner viva-express-banner"></div>
+        </div>
+    <% end %>
+
+    <% if !@isContactView.nil? && @isContactView %>
+        <%= render partial: 'send_message' %>
+    <% end %>
+
   </div>
-
-  <div class="page-title">
-    <%= @title %>
-  </div>
-
-  <%= @html %>
-
-  <% if !@isContactView.nil? && @isContactView %>
-      <%= render partial: 'send_message' %>
-  <% end %>
-
 </div>

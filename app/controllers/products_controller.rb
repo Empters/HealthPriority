@@ -107,7 +107,7 @@ class ProductsController < ApplicationController
     search_and_filter()
     set_pages
     @products = @products.paginate(:page => @current_page, :per_page => session[:products_per_page])
-
+    @page_label = 'Products'
     respond_to do |format|
       format.html { render 'products/index' }
       format.js { render 'search.js.erb' }

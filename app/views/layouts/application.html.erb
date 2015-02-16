@@ -5,13 +5,13 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta name="description"
         content="Health Priority is an health care online shop for all kind of high quality, tested and certified health care products.">
-  <meta property="og:title" content="Health Priority" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="http://www.healthpriority.co.uk/" />
+  <meta property="og:title" content="Health Priority"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="http://www.healthpriority.co.uk/"/>
   <meta property="og:image"
-        content="<%= image_path 'logo.png' %>" />
+        content="<%= image_path 'logo.png' %>"/>
   <meta property="og:description"
-        content="Health Priority is an health care online shop for all kind of high quality, tested and certified health care products." />
+        content="Health Priority is an health care online shop for all kind of high quality, tested and certified health care products."/>
   <title>Health Priority</title>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400&subset=latin,cyrillic-ext,greek-ext,greek,vietnamese,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -24,7 +24,7 @@
   <div class="container">
     <div class="top-bar-container left">
       <div class="top-bar-text phone">
-        <%= t('for_more_information')%> 0883 412 071
+        <%= t('for_more_information') %> 0883 412 071
       </div>
     </div>
     <div class="top-bar-container right">
@@ -48,7 +48,7 @@
       <% end %>
       <div class="top-bar-tab top-bar-text">
         <div class="fb_top"></div>
-        <%= t('connect')%>
+        <%= t('connect') %>
       </div>
     </div>
   </div>
@@ -68,15 +68,17 @@
             <div class="search-container">
               <div class="search-dropdown-container left">
                 <div class="dropdown-toggle" id="search_category" data-toggle="dropdown">
-                  <span id="chosen_category" selected_category="" class="search_text"><%= t('all_categories')%></span>
+                  <span id="chosen_category" selected_category="" class="search_text"><%= t('all_categories') %></span>
                   <b class="caret"></b>
                 </div>
                 <ul aria-labelledby="search_category" role="menu" class="dropdown-menu" id="category-menu">
                   <li>
-                    <%= t('all_categories')%>
+                    <%= t('all_categories') %>
                   </li>
                   <% @root_categories.each do |category| %>
-                      <li category="<%= category.id %>"><%= category.name %></li>
+                      <li category="<%= category.id %>">
+                        <%= category.name %>
+                      </li>
                   <% end %>
                 </ul>
               </div>
@@ -108,7 +110,7 @@
   <!-- Nav bar for phones -->
   <div class="navbar navbar-default visible-xs phone-nav">
     <div class="navbar-header" data-toggle="collapse" data-target=".phone-main-nav">
-      <div class="phone-nav-title"><%= t('menu')%></div>
+      <div class="phone-nav-title"><%= t('menu') %></div>
       <button data-target=".phone-main-nav" class="navbar-toggle">
         <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
       </button>
@@ -161,11 +163,7 @@
 
 <!-- Notification messages -->
 <%= render partial: 'layouts/flash_messages', locals: {flash: flash} %>
-
-<div>
-  <div class="notice"><%= notice %></div>
-  <div class="alert nopadding nomargin"><%= alert %></div>
-</div>
+<!-- Notification messages End-->
 
 <%= yield %>
 
@@ -240,11 +238,11 @@
   <br/>
 
   <div class="footer-main-text">
-    <%= t('trade_mark')%>
+    <%= t('trade_mark') %>
   </div>
   <div class="footer-text-title">Tuesday, Sep 09, 2014, 8:51 PST</div>
   <div class="footer-text">
-   <%= t('evaluated_by_html')%>
+    <%= t('evaluated_by_html') %>
   </div>
 </div>
 <!-- Footer End -->

@@ -43,6 +43,8 @@ Rails.application.routes.draw do
   get '/payments/show/:id' => 'payments#show'
   post '/payments/hook' => 'payments#hook'
 
+  get '/special_offers/change_page/:page_number' => 'special_offers#change_page'
+
   resources :payments
   resources :products
   resources :product_images

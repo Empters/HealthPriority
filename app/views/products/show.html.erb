@@ -1,155 +1,71 @@
-<div class="container margin-top">
+<div class="container-background">
+  <div class="container main-content">
 
-  <div class="row">
-    <!-- Product's Gallery -->
-    <div class="col-md-4 col-xs-12">
-      <div id="items-carousel" class="carousel slide" data-ride="carousel">
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-          <div class="item active">
-            <img src="<%= @product.image %>" alt="...">
-          </div>
-          <% @product.product_images.each do |product_image| %>
-              <div class="item">
-                <img src="<%= product_image.image %>" alt="...">
-              </div>
-          <% end %>
-        </div>
-        <!-- Wrapper for slides end -->
-        <br>
-        <!-- Indicators -->
-        <div class="carousel-indicators thumbs row thumbIndicatorsContainer">
-          <div class="inline">
-            <div data-target="#items-carousel" data-slide-to="0" class="col-md-3 col-xs-3 indicator">
-              <img class="img-responsive" src="<%= @product.image %>" alt="...">
+    <div class="row">
+      <!-- Product's Gallery -->
+      <div class="col-md-4 col-xs-12">
+        <div id="items-carousel" class="carousel slide" data-ride="carousel">
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+            <div class="item active">
+              <img src="<%= @product.image %>" alt="...">
             </div>
-          </div>
-          <% @product.product_images.each.with_index(1) do |product_image, i| %>
-              <div class="inline">
-                <div data-target="#items-carousel" data-slide-to="<%= i %>" class="col-md-3 col-xs-3 indicator">
-                  <img class="img-responsive" src="<%= product_image.image %>" alt="...">
+            <% @product.product_images.each do |product_image| %>
+                <div class="item">
+                  <img src="<%= product_image.image %>" alt="...">
                 </div>
+            <% end %>
+          </div>
+          <!-- Wrapper for slides end -->
+          <br>
+          <!-- Indicators -->
+          <div class="carousel-indicators thumbs row thumbIndicatorsContainer">
+            <div class="inline">
+              <div data-target="#items-carousel" data-slide-to="0" class="col-md-3 col-xs-3 indicator">
+                <img class="img-responsive" src="<%= @product.image %>" alt="...">
               </div>
-          <% end %>
+            </div>
+            <% @product.product_images.each.with_index(1) do |product_image, i| %>
+                <div class="inline">
+                  <div data-target="#items-carousel" data-slide-to="<%= i %>" class="col-md-3 col-xs-3 indicator">
+                    <img class="img-responsive" src="<%= product_image.image %>" alt="...">
+                  </div>
+                </div>
+            <% end %>
+          </div>
         </div>
       </div>
-    </div>
-    <!-- Product's Gallery  end-->
+      <!-- Product's Gallery  end-->
 
-    <!-- Product's basic info -->
-    <div class="col-md-4">
+      <!-- Product's basic info -->
+      <div class="col-md-4">
 
-      <div class="path">
-        <%= render_breadcrumbs :separator => ' / ' %>
-      </div>
+        <div class="path">
+          <%= render_breadcrumbs :separator => ' / ' %>
+        </div>
 
-      <div class="product-title">
-        <%= @product.name %>
-      </div>
+        <div class="product-title">
+          <%= @product.name %>
+        </div>
 
-      <div class="product-price"><%= t('old_price')%>:
-        <div class="old-price">£ <%= @product.price * 1.2 %></div>
-      </div>
-
-      <div class="product-price"><%= t('our_price')%>:
-        <div class="our-price">£ <%= @product.price %></div>
-      </div>
-
-      <div class="product-price saving"><%= t('you_are_saving')%>: £ <%= @product.price * 0.2 %> (20%)</div>
-      <div class="product-reviews-container">
-        <div class="product-rating left">
-          <div class="star-rating">
-            <div class="star" data-rating="1"></div>
-            <div class="star" data-rating="2"></div>
-            <div class="star" data-rating="3"></div>
-            <div class="star" data-rating="4"></div>
-            <div class="star" data-rating="5"></div>
-            <!-- Place the product's rating in the div below -->
-            <div class="hidden rating-value">3</div>
-          </div>
+        <div class="product-price"><%= t('old_price') %>:
+          <div class="old-price">£ <%= @product.price * 1.2 %></div>
         </div>
         <div class="product-reviews left"><a href="#">12 <%= t('Reviews')%></a></div>
         <div class="product-in-stock right"><%= t('in_stock')%>:
           <div class="stock"> <%= @product.isInStock? && !@product.stock_status.nil? ? @product.stock_status.name : t('no') %></div>
         </div>
-        <div class="clearfix"></div>
-        <div class="qty-add-container">
-          <div class="quantity-container">
-            <div class="text-center"><%= t('qty')%></div>
-            <div class="quantity">
-              <%= @product.quantity %>
-            </div>
-          </div>
-          <div class="add-to-cart-container">
-            <%= link_to t('add_to_cart'), {:controller => :shopping_carts, :action => :add_to_shopping_cart, :id => @product.id, :quantity => 1, :remote => true}, {:class => 'button gray'} %>
-          </div>
+
+        <div class="product-price"><%= t('our_price') %>:
+          <div class="our-price">£ <%= @product.price %></div>
         </div>
-      </div>
-    </div>
-    <!-- Product's basic info end -->
-  </div>
 
-  <!-- Product's details info -->
-  <div class="row">
-    <div class="col-md-12 product-details-container" role="tabpanel">
-      <ul class="nav nav-tabs product-details-tab-container" role="tablist">
-        <li role="presentation" class="product-details-tab active">
-          <a href="#home" aria-controls="home" role="tab" data-toggle="tab" class="product_tab"><%= t('product_overview')%></a>
-        </li>
-        <li role="presentation" class="product-details-tab">
-          <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" class="product_tab"><%= t('full_description')%></a>
-        </li>
-      </ul>
-      <div class="details-content-container">
-        <div class="tab-content">
-          <div role="tabpanel" class="tab-pane active" id="home">
-            <div class="details-header"><%= t('product_benefits')%></div>
-            <div style="word-wrap: break-word; width: auto;">
-              <%= @product.benefits %>
-            </div>
-            <br/>
-
-            <div class="details-header"><%= t('product_ingredients')%></div>
-            <div style="word-wrap: break-word; width: auto;">
-              <%= @product.ingredients %>
-            </div>
-            <br/>
-
-            <div class="details-header"><%= t('product_direction')%></div>
-            <div style="word-wrap: break-word; width: auto;">
-              <%= @product.direction %>
-            </div>
-          </div>
-
-          <div role="tabpanel" class="tab-pane" id="profile">
-            <div class="details-header"><%= t('full_description_of_the_product')%></div>
-            <div style="word-wrap: break-word; width: auto;">
-              <%= @product.description %>
-            </div>
-            <br/>
-
-            <div class="details-header"><%= t('manufacturing_company')%></div>
-            <div style="word-wrap: break-word; width: auto;">
-              <%= @product.manufacturer.nil? ? '' : @product.manufacturer.name %>
-            </div>
-          </div>
+        <div class="product-price saving">
+          <%= t('you_are_saving') %>: £ <%= @product.price * 0.2 %> (20%)
         </div>
-      </div>
-    </div>
-  </div>
-  <!-- Product's details info end -->
 
-  <!-- Product's reviews -->
-  <div class="row">
-    <div class="col-md-12">
-      <div class="product-review-title"><%= t('customer_reviews')%></div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="product-review-stars-container">
-        <div class="product-reviews-container distinct">
-          <div class="product-rating">
+        <div class="product-reviews-container">
+          <div class="product-rating left">
             <div class="star-rating">
               <div class="star" data-rating="1"></div>
               <div class="star" data-rating="2"></div>
@@ -157,33 +73,127 @@
               <div class="star" data-rating="4"></div>
               <div class="star" data-rating="5"></div>
               <!-- Place the product's rating in the div below -->
-              <div class="hidden rating-value"><%= @product.average_rating %></div>
-              <div class="product-reviews"><a href="#">(<%= @product.product_reviews.size %> <%= t('reviews')%>)</a></div>
+              <div class="hidden rating-value">3</div>
             </div>
           </div>
-
-          <% @product.product_reviews.group_by(&:rating).each do |group| %>
-              <div class="product-reviews-distinct-container">
-                <div class="product-review-star">
-                  <div class="star-name"><%= group[1][0].rating %> <%= t('stars')%></div>
-                  <div class="star-percentage">
-                    <!-- Fill the percentage below -->
-                    <div class="star-percentage-cover" style="width: <%= group[1][0].rating * 20 %>%;"></div>
-                  </div>
-                  <div class="star-count">(<%= group.size %>)</div>
-                </div>
+          <div class="product-reviews left"><a href="#">12 Reviews</a></div>
+          <div class="product-in-stock right"><%= t('in_stock') %>:
+            <div class="stock"> <%= @product.isInStock? && !@product.stock_status.nil? ? @product.stock_status.name : 'No' %></div>
+          </div>
+          <div class="clearfix"></div>
+          <div class="qty-add-container">
+            <div class="quantity-container">
+              <div class="text-center"><%= t('qty') %></div>
+              <div class="quantity">
+                <%= @product.quantity %>
               </div>
-          <% end %>
+            </div>
+            <div class="add-to-cart-container">
+              <%= link_to t('add_to_cart'), {:controller => :shopping_carts, :action => :add_to_shopping_cart, :id => @product.id, :quantity => 1, :remote => true}, {:class => 'button gray'} %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Product's basic info end -->
+    </div>
 
+    <!-- Product's details info -->
+    <div class="row">
+      <div class="col-md-12 product-details-container" role="tabpanel">
+        <ul class="nav nav-tabs product-details-tab-container" role="tablist">
+          <li role="presentation" class="product-details-tab active">
+            <a href="#home" aria-controls="home" role="tab" data-toggle="tab" class="product_tab"><%= t('product_overview') %></a>
+          </li>
+          <li role="presentation" class="product-details-tab">
+            <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" class="product_tab"><%= t('full_description') %></a>
+          </li>
+        </ul>
+        <div class="details-content-container">
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="home">
+              <div class="details-header"><%= t('product_benefits') %></div>
+              <div style="word-wrap: break-word; width: auto;">
+                <%= @product.benefits %>
+              </div>
+              <br/>
+
+              <div class="details-header"><%= t('product_ingredients') %></div>
+              <div style="word-wrap: break-word; width: auto;">
+                <%= @product.ingredients %>
+              </div>
+              <br/>
+
+              <div class="details-header"><%= t('product_direction') %></div>
+              <div style="word-wrap: break-word; width: auto;">
+                <%= @product.direction %>
+              </div>
+            </div>
+
+            <div role="tabpanel" class="tab-pane" id="profile">
+              <div class="details-header"><%= t('full_description_of_the_product') %></div>
+              <div style="word-wrap: break-word; width: auto;">
+                <%= @product.description %>
+              </div>
+              <br/>
+
+              <div class="details-header"><%= t('manufacturing_company') %></div>
+              <div style="word-wrap: break-word; width: auto;">
+                <%= @product.manufacturer.nil? ? '' : @product.manufacturer.name %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- Product's reviews end -->
+    <!-- Product's details info end -->
 
-  <!-- Last Visited Products -->
-  <div class="row">
-    <%= render :partial =>  'home/last_visited_products', locals: {title: 'Related products', products: @product.related_products.to_a() } %>
+    <!-- Product's reviews -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="product-review-title"><%= t('customer_reviews') %></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="product-review-stars-container">
+          <div class="product-reviews-container distinct">
+            <div class="product-rating">
+              <div class="star-rating">
+                <div class="star" data-rating="1"></div>
+                <div class="star" data-rating="2"></div>
+                <div class="star" data-rating="3"></div>
+                <div class="star" data-rating="4"></div>
+                <div class="star" data-rating="5"></div>
+                <!-- Place the product's rating in the div below -->
+                <div class="hidden rating-value"><%= @product.average_rating %></div>
+                <div class="product-reviews"><a href="#">(<%= @product.product_reviews.size %> <%= t('reviews') %>)</a>
+                </div>
+              </div>
+            </div>
+
+            <% @product.product_reviews.group_by(&:rating).each do |group| %>
+                <div class="product-reviews-distinct-container">
+                  <div class="product-review-star">
+                    <div class="star-name"><%= group[1][0].rating %> <%= t('stars') %></div>
+                    <div class="star-percentage">
+                      <!-- Fill the percentage below -->
+                      <div class="star-percentage-cover" style="width: <%= group[1][0].rating * 20 %>%;"></div>
+                    </div>
+                    <div class="star-count">(<%= group.size %>)</div>
+                  </div>
+                </div>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Product's reviews end -->
+
+    <!-- Last Visited Products -->
+    <div class="row">
+      <%= render :partial => 'home/last_visited_products', locals: {title: 'Related products', products: @product.related_products.to_a()} %>
+    </div>
+    <!-- Last Visited Products End -->
   </div>
-  <!-- Last Visited Products End -->
 </div>
