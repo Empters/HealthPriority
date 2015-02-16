@@ -13,6 +13,7 @@ class Payment < ActiveRecord::Base
         upload: 1,
         return: "#{Rails.application.secrets.app_host}#{return_path}",
         invoice: id,
+        currency_code: 'GBP',
         amount: total,
         quantity: total_quantity,
         notify_url: "#{Rails.application.secrets.app_host}/payments/hook",
