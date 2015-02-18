@@ -1,4 +1,4 @@
-class CategoriesController < InheritedResources::Base
+class CategoriesController < ApplicationController
 
   def index
     @categories = Category.all
