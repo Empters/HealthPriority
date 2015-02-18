@@ -169,13 +169,21 @@ class HomeController < ApplicationController
 
   def send_message
     # Try to send email message
-    UserMailer.send_message(params[:name], params[:email], 'HP message', params[:message])
+    mail = UserMailer.send_message(params[:name], params[:email], 'HP message', params[:message], params[:phone])
+
+    mail.deliver
 
     # Display success message
     flash[:success] = t('message_successful')
-
+    # binding.pry
     # Return to call page
     redirect_to(:back)
+
+    # respond_to do |format|
+    #   format.html {
+    #     render 'home/render_html'
+    #   }
+    # end
   end
 
   private
