@@ -15,7 +15,6 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    add_breadcrumb t('products'), :products_path
     set_pages
   end
 
@@ -24,7 +23,6 @@ class ProductsController < ApplicationController
   def show
     add_breadcrumb t('products'), :products_path
     add_breadcrumb @product.name, @product
-
     add_to_last_visit_product(@product)
   end
 
@@ -166,8 +164,8 @@ class ProductsController < ApplicationController
 
   def set_products_per_page
     session[:products_per_page] = 12
-    @products_per_page = 6
-    @table_css = 'col-md-4 col-sm-6 col-xs-12'
+    @products_per_row = 4
+    @table_css = 'col-md-3 col-sm-4 col-xs-12'
   end
 
   def initFilters

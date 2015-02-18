@@ -10,9 +10,9 @@ class SpecialOffersController < ApplicationController
     set_products_per_page
 
     #TODO - get spacial offers
-    search_and_filter
-    @products = @products.paginate(:page => @current_page, :per_page => session[:products_per_page])
+    @products = Product.all
     set_pages
+    paginate_products
 
     respond_to do |format|
       format.html { render 'special_offers/index' }
@@ -24,7 +24,7 @@ class SpecialOffersController < ApplicationController
     session[:page_number] = search_params[:page_number].to_i
 
     #TODO - get spacial offers
-    @products = search_and_filter
+    @products = Product.all
     set_pages
     @products = main_change_page
 
@@ -42,7 +42,7 @@ class SpecialOffersController < ApplicationController
 
   def set_products_per_page
     session[:products_per_page] = 12
-    @products_per_page = 8
+    @products_per_row = 4
     @table_css = 'col-md-3 col-sm-4 col-xs-12'
   end
 

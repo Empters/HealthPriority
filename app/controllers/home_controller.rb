@@ -187,7 +187,7 @@ class HomeController < ApplicationController
 
   def set_products_per_page
     session[:products_per_page] = 8
-    @products_per_page = 8
+    @products_per_row = 4
     @table_css = 'col-md-3 col-sm-4 col-xs-12'
   end
 

@@ -24,7 +24,7 @@ module Modules
       @current_page = session[:page_number]
       @pages.each { |p| p.is_active=false }
       @pages[@current_page-1].is_active=true
-      @products = @products.paginate(:page => @current_page, :per_page => session[:products_per_page])
+      paginate_products
     end
 
     def search_params
