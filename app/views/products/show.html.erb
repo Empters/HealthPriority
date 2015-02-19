@@ -51,8 +51,8 @@
         <div class="product-price"><%= t('old_price') %>:
           <div class="old-price">£ <%= @product.price * 1.2 %></div>
         </div>
-        <div class="product-reviews left"><a href="#">12 <%= t('Reviews')%></a></div>
-        <div class="product-in-stock right"><%= t('in_stock')%>:
+        <div class="product-reviews left"><a href="#">12 <%= t('Reviews') %></a></div>
+        <div class="product-in-stock right"><%= t('in_stock') %>:
           <div class="stock"> <%= @product.isInStock? && !@product.stock_status.nil? ? @product.stock_status.name : t('no') %></div>
         </div>
 
@@ -89,7 +89,7 @@
               </div>
             </div>
             <div class="add-to-cart-container">
-              <%= link_to t('add_to_cart'), {:controller => :shopping_carts, :action => :add_to_shopping_cart, :id => @product.id, :quantity => 1, :remote => true}, {:class => 'button gray'} %>
+              <%= link_to t('add_to_cart'), {:controller => :shopping_carts, :action => :add_to_shopping_cart, :id => @product.id, :quantity => 1, :remote => true}, {:class => 'button green'} %>
             </div>
           </div>
         </div>

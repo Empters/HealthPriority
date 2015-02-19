@@ -50,8 +50,8 @@ Rails.application.routes.draw do
   resources :product_images
   resources :product_reviews
   resources :product_discounts
-  resources :categories
   resources :manufacturers
+  resources :categories, only: :index
   resources :shopping_carts, only: :index
   resources :special_offers, only: :index
   resources :only_organics, only: :index
