@@ -9,20 +9,22 @@
       <!-- Categories End -->
 
       <!-- Payment data -->
-      <div class="col-md-9 col-xs-12 payment-methods-banner">
-        <div class="path">
-          <%= render_breadcrumbs :separator => ' / ' %>
+      <div class="col-md-9 col-xs-12">
+
+        <div class="payment-methods-banner">
+          <div class="path">
+            <%= render_breadcrumbs :separator => ' / ' %>
+          </div>
+
+          <div class="page-title">
+            <%= @title %>
+          </div>
         </div>
 
-        <div class="page-title">
-          <%= @title %>
-        </div>
-
-        <a href=http://www.gocurrency.com/ id=gocurrencytable>Currency Converter</a>
         <script src=http://gocurrency.com/v2/table_t.php?cur=USD;EUR;GBP;JPY;CAD;AUD&v=1></script>
 
         <%= @html %>
-        
+
       </div>
       <!-- Payment data End -->
 
