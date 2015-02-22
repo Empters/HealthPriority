@@ -1,0 +1,25 @@
+<div class="container-background">
+  <div class="container main-content">
+
+    <div class="path">
+      <%= render_breadcrumbs :separator => ' / ' %>
+    </div>
+
+    <div class="page-title">
+      <%= @title %>
+    </div>
+
+    <div class="delivery-map"></div>
+
+    <%= @html %>
+
+    <div class="row">
+      <div class="col-md-5ths col-xs-6 delivery-banner dhl-banner"></div>
+      <div class="col-md-5ths col-xs-6 delivery-banner la-post-banner"></div>
+      <div class="col-md-5ths col-xs-6 delivery-banner royal-mail-banner"></div>
+      <div class="col-md-5ths col-xs-6 delivery-banner us-post-banner"></div>
+      <div class="col-md-5ths col-xs-6 delivery-banner viva-express-banner"></div>
+    </div>
+
+  </div>
+</div>

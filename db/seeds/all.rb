@@ -1,81 +1,72 @@
 # Create categories
-Category.create(name: 'Homeopathy', sort_order: 1)
+category = Category.create(name: 'hair care', sort_order: 1)
+category.image = File.open(File.join(Rails.public_path, 'seed_data/categories', 'hair care.png'))
+category.save!
 
-category = Category.create(name: 'Baby & Child Care', sort_order: 2)
-Category.create(name: 'Baby Grooming', sort_order: 1, parent_id: category.id)
-Category.create(name: 'Bathing', sort_order: 2, parent_id: category.id)
-Category.create(name: 'Nappy Changing', sort_order: 3, parent_id: category.id)
-Category.create(name: 'Skin Care', sort_order: 4, parent_id: category.id)
-Category.create(name: 'Bath & Body', sort_order: 3)
+category = Category.create(name: 'beauty', sort_order: 2)
+category.image = File.open(File.join(Rails.public_path, 'seed_data/categories',  'beauty.png'))
+category.save!
 
-category = Category.create(name: 'Dental Care', sort_order: 4)
-Category.create(name: 'Denture Care', sort_order: 1, parent_id: category.id)
-Category.create(name: 'Mouthwashes', sort_order: 2, parent_id: category.id)
-Category.create(name: 'Toothpastes', sort_order: 3, parent_id: category.id)
+category = Category.create(name: 'weight loss', sort_order: 3)
+category.image = File.open(File.join(Rails.public_path, 'seed_data/categories',  'weight loss.png'))
+category.save!
 
-category = Category.create(name: 'Hair Care', sort_order: 5)
-Category.create(name: 'Conditioners', sort_order: 1, parent_id: category.id)
-Category.create(name: 'Hair Loss Products', sort_order: 2, parent_id: category.id)
-Category.create(name: 'Shampoos', sort_order: 3, parent_id: category.id)
-Category.create(name: 'Hair Tonic', sort_order: 4, parent_id: category.id)
-Category.create(name: 'Hair Oils', sort_order: 5, parent_id: category.id)
-Category.create(name: 'Shampoo & Conditioner Sets', sort_order: 6, parent_id: category.id)
+category = Category.create(name: 'vitamins and minerals', sort_order: 4)
+category.image = File.open(File.join(Rails.public_path, 'seed_data/categories',  'vitamins and minerals.png'))
+category.save!
 
-category = Category.create(name: 'Intimate Hygiene', sort_order: 6)
-Category.create(name: 'Men', sort_order: 1, parent_id: category.id)
-Category.create(name: 'Women', sort_order: 2, parent_id: category.id)
+category = Category.create(name: 'medication & remedies', sort_order: 5)
+category.image = File.open(File.join(Rails.public_path, 'seed_data/categories',  'medication & remedies.png'))
+category.save!
 
-category = Category.create(name: 'Medication, Remedies & Dietary Supplements', sort_order: 7)
-Category.create(name: 'Alternative Medicine', sort_order: 1, parent_id: category.id)
-Category.create(name: 'Diet & Nutrition', sort_order: 2, parent_id: category.id)
-Category.create(name: 'Ear Care', sort_order: 3, parent_id: category.id)
-Category.create(name: 'Eye Care', sort_order: 4, parent_id: category.id)
-Category.create(name: 'First Aid', sort_order: 5, parent_id: category.id)
-Category.create(name: 'Foot Care', sort_order: 6, parent_id: category.id)
-Category.create(name: 'Allergies', sort_order: 7, parent_id: category.id)
-Category.create(name: 'Antifungals', sort_order: 8, parent_id: category.id)
-Category.create(name: 'Bladder, Kidney, Prostate', sort_order: 9, parent_id: category.id)
-Category.create(name: 'Bruising', sort_order: 10, parent_id: category.id)
-Category.create(name: 'Cold & Flu', sort_order: 11, parent_id: category.id)
-Category.create(name: 'Cold Sores', sort_order: 12, parent_id: category.id)
-Category.create(name: 'Hemorrhoids & Piles', sort_order: 13, parent_id: category.id)
-Category.create(name: 'Heart, Circulation & Vessels', sort_order: 14, parent_id: category.id)
-Category.create(name: 'Immune System', sort_order: 15, parent_id: category.id)
-Category.create(name: 'Insect & Pest Repellents', sort_order: 16, parent_id: category.id)
-Category.create(name: 'Insomnia & Snore Relief', sort_order: 17, parent_id: category.id)
-Category.create(name: 'Itching & Rash Treatments', sort_order: 18, parent_id: category.id)
-Category.create(name: 'Liver & Gall Bladder', sort_order: 19, parent_id: category.id)
-Category.create(name: 'Memory Loss', sort_order: 20, parent_id: category.id)
-Category.create(name: 'Menopause', sort_order: 21, parent_id: category.id)
-Category.create(name: 'Muscles, Bones & Joints', sort_order: 22, parent_id: category.id)
-Category.create(name: 'Pain & Fever', sort_order: 23, parent_id: category.id)
-Category.create(name: 'Scars & Stretch Marks', sort_order: 24, parent_id: category.id)
-Category.create(name: 'Skin Diseases', sort_order: 25, parent_id: category.id)
-Category.create(name: 'Stimulants', sort_order: 26, parent_id: category.id)
-Category.create(name: 'Stress & Anxiety Relief', sort_order: 27, parent_id: category.id)
-Category.create(name: 'Tired Legs', sort_order: 28, parent_id: category.id)
-Category.create(name: 'Varicose Veins', sort_order: 29, parent_id: category.id)
-Category.create(name: 'Other (Medication)', sort_order: 30, parent_id: category.id)
+category = Category.create(name: 'dental care', sort_order: 6)
+category.image = File.open(File.join(Rails.public_path, 'seed_data/categories',  'dental care.png'))
+category.save!
 
-Category.create(name: 'Sex & Sensuality', sort_order: 8)
+category = Category.create(name: 'homeopathy', sort_order: 7)
+category.image = File.open(File.join(Rails.public_path, 'seed_data/categories',  'homeopathy.png'))
+category.save!
 
-Category.create(name: 'Visual Care', sort_order: 9)
+category = Category.create(name: 'baby & child care', sort_order: 8)
+category.image = File.open(File.join(Rails.public_path, 'seed_data/categories',  'baby & child care.png'))
+category.save!
 
-Category.create(name: 'Wellness', sort_order: 10)
+category = Category.create(name: 'bath care', sort_order: 9)
+category.image = File.open(File.join(Rails.public_path, 'seed_data/categories',  'bath care.png'))
+category.save!
 
-Category.create(name: 'Make-up', sort_order: 11)
+category = Category.create(name: 'intimate hygiene', sort_order: 10)
+category.image = File.open(File.join(Rails.public_path, 'seed_data/categories',  'intimate hygiene.png'))
+category.save!
 
-Category.create(name: 'Manicure & Pedicure', sort_order: 12)
+category = Category.create(name: 'visual care', sort_order: 11)
+category.image = File.open(File.join(Rails.public_path, 'seed_data/categories',  'visual care.png'))
+category.save!
 
-category = Category.create(name: 'Skin Care', sort_order: 13)
-Category.create(name: 'Body', sort_order: 1, parent_id: category.id)
-Category.create(name: 'Eyes', sort_order: 2, parent_id: category.id)
-Category.create(name: 'Face', sort_order: 3, parent_id: category.id)
-Category.create(name: 'Hands & Feet', sort_order: 4, parent_id: category.id)
-Category.create(name: 'Lips', sort_order: 5, parent_id: category.id)
-Category.create(name: 'Neck & Decollete', sort_order: 6, parent_id: category.id)
-Category.create(name: 'Sun Care & Tanning', sort_order: 7, parent_id: category.id)
+category = Category.create(name: 'make up', sort_order: 12)
+category.image = File.open(File.join(Rails.public_path, 'seed_data/categories',  'make up.png'))
+category.save!
 
-Category.create(name: 'Vitamins and minerals', sort_order: 14)
+category = Category.create(name: 'skin care', sort_order: 13)
+category.image = File.open(File.join(Rails.public_path, 'seed_data/categories',  'skin care.png'))
+category.save!
 
-Category.create(name: 'Weight loss', sort_order: 15)
+category = Category.create(name: 'wellness', sort_order: 14)
+category.image = File.open(File.join(Rails.public_path, 'seed_data/categories',  'wellness.png'))
+category.save!
+
+category = Category.create(name: 'manicure & pedicure', sort_order: 15)
+category.image = File.open(File.join(Rails.public_path, 'seed_data/categories',  'manicure & pedicure.png'))
+category.save!
+
+category = Category.create(name: 'sex & sensuality', sort_order: 16)
+category.image = File.open(File.join(Rails.public_path, 'seed_data/categories',  'sex & sensuality.png'))
+category.save!
+
+category = Category.create(name: 'for women', sort_order: 17)
+category.image = File.open(File.join(Rails.public_path, 'seed_data/categories',  'for women.png'))
+category.save!
+
+category = Category.create(name: 'for men', sort_order: 18)
+category.image = File.open(File.join(Rails.public_path, 'seed_data/categories',  'for men.png'))
+category.save!

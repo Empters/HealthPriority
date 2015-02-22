@@ -1,7 +1,7 @@
 <div class="title-banner">
   <%= @page_label %>
 </div>
-<div class="content-container" style="margin-top: -5px;">
+<div class="content-container">
   <!-- rows -->
   <% @products.in_groups_of(@products_per_row, false).each do |group| %>
       <div class="row nomargin">
