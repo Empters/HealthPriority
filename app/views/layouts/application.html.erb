@@ -170,42 +170,26 @@
 <!-- Footer navigation -->
 <div class="container">
   <div class="row">
-    <div class="col-md-2 col-sm-3 col-xs-6">
-      <div class="category-name">
-        First Category
-      </div>
-      <a href="#" class="category-item">Category name </a>
-      <a href="#" class="category-item">Category name </a>
-      <a href="#" class="category-item">Category name </a>
-      <a href="#" class="category-item">Category name </a>
-    </div>
-    <div class="col-md-2 col-sm-3 col-xs-6">
-      <div class="category-name">
-        First Category
-      </div>
-      <a href="#" class="category-item">Category name </a>
-      <a href="#" class="category-item">Category name </a>
-      <a href="#" class="category-item">Category name </a>
-      <a href="#" class="category-item">Category name </a>
-    </div>
-    <div class="col-md-4 col-sm-6 col-xs-12">
-      <div class="category-name">
-        First Category
-      </div>
+    <div class="col-md-8 col-sm-6 col-xs-12">
       <div class="row">
-        <div class="col-md-6 col-xs-6">
-          <a href="#" class="category-item">Category name </a>
-          <a href="#" class="category-item">Category name </a>
-          <a href="#" class="category-item">Category name </a>
-          <a href="#" class="category-item">Category name </a>
+        <div class="col-md-3 col-sm-3 col-xs-6 category-name">
+          <div class="category-arrow"></div>
+          <%= link_to t('help_center'), help_center_path %>
         </div>
-        <div class="col-md-6 col-xs-6">
-          <%= link_to t('help_center'), help_center_path, :class => 'category-item' %>
-          <%= link_to t('shipping'), delivery_methods_path, :class => 'category-item' %>
-          <%= link_to t('payment_methods'), payment_methods_path, :class => 'category-item' %>
-          <%= link_to t('what_is_included_in_the_price'), price_details_path, :class => 'category-item' %>
+        <div class="col-md-3 col-sm-3 col-xs-6 category-name">
+          <div class="category-arrow"></div>
+          <%= link_to t('shipping'), delivery_methods_path %>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-6 category-name">
+          <div class="category-arrow"></div>
+          <%= link_to t('payment_methods'), payment_methods_path %>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-6 category-name">
+          <div class="category-arrow"></div>
+          <%= link_to t('what_is_included_in_the_price'), price_details_path %>
         </div>
       </div>
+      <div class="row footer-image"></div>
     </div>
     <div class="col-md-4 col-sm-6 col-xs-12">
       <div class="category-name">
@@ -217,7 +201,6 @@
       </div>
       <div class="email-container">
         <input type="text" class="email-input" placeholder="Enter Your Email Address"/>
-
         <div class="send-email-button right"></div>
       </div>
     </div>
