@@ -70,3 +70,6 @@ category.save!
 category = Category.create(name: 'for men', sort_order: 18)
 category.image = File.open(File.join(Rails.public_path, 'seed_data/categories',  'for men.png'))
 category.save!
+
+category = Category.create(name: 'product sets', sort_order: 19)
+category.save!
