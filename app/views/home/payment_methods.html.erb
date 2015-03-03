@@ -21,7 +21,7 @@
           </div>
         </div>
 
-        <script src=http://gocurrency.com/v2/table_t.php?cur=USD;EUR;GBP;JPY;CAD;AUD&v=1></script>
+        <div id="gocurrencyDiv"></div>
 
         <%= @html %>
 
@@ -31,3 +31,36 @@
     </div>
   </div>
 </div>
+
+<script>
+
+    document.writeOld = document.write;
+    document.writelnOld = document.writeln;
+
+    // Getting the element we are rendering too and setting string and custom function
+    var sealHtml = '';
+    var scriptPlaceholder = document.getElementById('gocurrencyDiv');
+    var customWriteFnc = function (html) {
+        sealHtml += html;
+        scriptPlaceholder.innerHTML = sealHtml;
+    };
+
+    // Overwriting document.write and document.writeln with our own function
+    document.write = customWriteFnc;
+    document.writeln = customWriteFnc;
+
+    // Load async script
+    function loadScript() {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'http://gocurrency.com/v2/table_t.php?cur=USD;EUR;GBP;JPY;CAD;AUD&v=1';
+        return script;
+    }
+
+    // Hook document ready and create script html elements
+    $(document).ready(function () {
+        var head = document.getElementsByTagName('head')[0];
+        head.appendChild(loadScript());
+    });
+
+</script>
