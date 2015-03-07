@@ -1,4 +1,4 @@
-class DeviseCreateAdminUsers < ActiveRecord::Migration
+class CreateAdminUsers < ActiveRecord::Migration
   def migrate(direction)
     super
     # Create a default user
@@ -8,8 +8,8 @@ class DeviseCreateAdminUsers < ActiveRecord::Migration
   def change
     create_table(:admin_users) do |t|
       ## Database authenticatable
-      t.string :email,              null: false, default: ""
-      t.string :encrypted_password, null: false, default: ""
+      t.string :email,              null: false, default: ''
+      t.string :encrypted_password, null: false, default: ''
 
       ## Recoverable
       t.string   :reset_password_token

@@ -11,6 +11,7 @@ class CreateProducts < ActiveRecord::Migration
       t.text :benefits
       t.text :description
       t.text :direction
+      t.text :questions_answers, default: nil
       t.attachment :image
       t.integer :viewed
       t.integer :points
@@ -19,6 +20,8 @@ class CreateProducts < ActiveRecord::Migration
       t.date :date_available
       t.string :meta_keyword
       t.string :meta_description
+      t.boolean :is_best_seller, default: false
+      t.boolean :is_spacial_offer, default: false
 
       t.timestamps
     end
