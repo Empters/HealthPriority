@@ -55,11 +55,10 @@ class HomeController < ApplicationController
             else
               @web_store_detail.contact.nil? ? '' : @web_store_detail.contact.html_safe
             end
-    @isContactView = true
 
     respond_to do |format|
       format.html {
-        render 'home/render_html'
+        render 'home/contacts'
       }
     end
   end
@@ -111,12 +110,9 @@ class HomeController < ApplicationController
               @web_store_detail.delivery.nil? ? '' : @web_store_detail.delivery.html_safe
             end
 
-
-    @isDeliveryView = true
-
     respond_to do |format|
       format.html {
-        render 'home/render_html'
+        render 'home/delivery_methods'
       }
     end
   end
@@ -132,11 +128,9 @@ class HomeController < ApplicationController
               @web_store_detail.payment_methods.nil? ? '' : @web_store_detail.payment_methods.html_safe
             end
 
-    @isPaymentMethodsView = true
-
     respond_to do |format|
       format.html {
-        render 'home/render_html'
+        render 'home/payment_methods'
       }
     end
   end
