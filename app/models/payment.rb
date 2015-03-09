@@ -1,7 +1,7 @@
 class Payment < ActiveRecord::Base
 
   # Validate required attributes
-  validates_presence_of :first_name, :last_name, :address, :city, :email, :item_name, :item_number, :items, :phone, :post_code, :state, :status, :total, :total_quantity, :payment_method
+  validates_presence_of :gender_id, :first_name, :last_name, :email, :phone, :country_id, :state_id, :city, :postal_code, :address, :payment_method
 
   has_many :items, autosave: true
 
@@ -15,14 +15,14 @@ class Payment < ActiveRecord::Base
         business: 'new_test_acc@abv.bg',
         cmd: '_xclick',
         upload: 1,
-        return: "#{Rails.application.secrets.app_host}#{return_path}",
         invoice: id,
         currency_code: 'GBP',
-        amount: total,
-        quantity: total_quantity,
-        notify_url: "#{Rails.application.secrets.app_host}/payments/hook",
         item_name: item_name,
-        item_number: item_number
+        item_number: item_number,
+        amount: amount,
+        quantity: quantity,
+        notify_url: "#{Rails.application.secrets.app_host}/payments/hook",
+        return: "#{Rails.application.secrets.app_host}#{return_path}",
     }
     "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
   end

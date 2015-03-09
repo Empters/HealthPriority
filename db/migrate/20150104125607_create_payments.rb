@@ -18,10 +18,10 @@ class CreatePayments < ActiveRecord::Migration
       t.string :fax
 
       # Order data
-      t.string :total
-      t.integer :total_quantity
+      t.decimal :amount
+      t.integer :quantity
       t.string :item_name
-      t.string :item_number
+      t.integer :item_number
       t.string :description
 
       # Payment data

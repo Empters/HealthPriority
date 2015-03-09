@@ -128,10 +128,10 @@ ActiveRecord::Schema.define(version: 20150307190644) do
     t.string   "email",                          null: false
     t.string   "phone",                          null: false
     t.string   "fax"
-    t.string   "total"
-    t.integer  "total_quantity"
+    t.decimal  "amount"
+    t.integer  "quantity"
     t.string   "item_name"
-    t.string   "item_number"
+    t.integer  "item_number"
     t.string   "description"
     t.string   "payment_method",                 null: false
     t.string   "status",         default: "new", null: false
