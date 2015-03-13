@@ -1,78 +1,82 @@
-<div>
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header title-banner">
-        <div><%= t('sign_up')%></div>
-      </div>
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-          <div class="modal-body">
-            <div class="inputs">
-              <div>
-                <%= f.label t('email') %>
-                <br/>
-                <%= f.email_field :email, autofocus: true %>
-              </div>
-              <br/>
-              <div>
-                <%= f.label t('password') %>
-                <% if @validatable %>
-                    <i>(<%= @minimum_password_length %> characters minimum)</i>
-                <% end %>
-                <br/>
-                <%= f.password_field :password, autocomplete: "off" %>
-              </div>
-              <br/>
-              <div>
-                <%= f.label t('password_confirmation') %>
-                <br/>
-                <%= f.password_field :password_confirmation, autocomplete: "off" %>
-              </div>
-              <br/>
-              <div>
-                <%= f.label t('title') %>
-                <br/>
-                <%= f.select(:title, ['Mr', 'Mrs', 'Miss', 'Ms']) %>
-              </div>
-              <br/>
-              <div>
-                <%= f.label t('first_name') %>
-                <br/>
-                <%= f.text_field :first_name %>
-              </div>
-              <br/>
-              <div>
-                <%= f.label t('last_name') %>
-                <br/>
-                <%= f.text_field :last_name %>
-              </div>
-          </div>
-          <div class="inputs">
-            <br/>
-            <div>
-              <%= f.label t('country') %>
-              <br/>
-              <%= f.text_field :country %>
-            </div>
-            <br/>
-            <div>
-              <%= f.label t('address') %>
-              <br/>
-              <%= f.text_field :address %>
-            </div>
-            <br/>
-          </div>
-          <div class="inputs">
-              <div class="modal-footer">
-                <div class="login-links">
-                  <%= render "users/shared/signin_link" %>
-                  <%= render "users/shared/forgotten_pass_link" %>
-                  <%= render "users/shared/resend_confirmation_link" %>
-                </div>
-                <%= f.submit t('sign_up'), :class => 'btn btn-primary button gray' %>
-              </div>
-            </div>
-          </div>
-      <% end %>
+<div class="container-background">
+  <div class="container main-content">
+
+    <div class="path">
+      <%= render_breadcrumbs :separator => ' / ' %>
     </div>
+
+    <div class="page-title">
+      <%= t('sign_up') %>
+    </div>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+        <div class="cart-title">
+          Profile data
+        </div>
+
+        <%= f.error_messages %>
+
+        <div class="row">
+
+          <div class="col-md-4 col-xs-12">
+            <%= f.email_field :email, class: 'checkout-input', autofocus: true, placeholder: "* #{t('email')}" %>
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <%= f.password_field :password, class: 'checkout-input', autocomplete: 'off', placeholder: "* #{t('password')}" %>
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <%= f.password_field :password_confirmation, class: 'checkout-input', autocomplete: 'off', placeholder: "* #{t('password_confirmation')}" %>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-xs-12">
+
+            <div class="cart-title">
+              Person details
+            </div>
+
+            <%= f.select :gender_id, Gender.all.collect { |p| [p.name, p.id] }, {:prompt => '* Gender'}, {class: 'checkout-input'} %>
+            <%= f.text_field :first_name, class: 'checkout-input', placeholder: '* First Name' %>
+            <%= f.text_field :last_name, class: 'checkout-input', placeholder: '* Last Name' %>
+            <%= f.phone_field :phone, class: 'checkout-input', placeholder: "* #{t('phone')}" %>
+            <%= f.phone_field :fax, class: 'checkout-input', placeholder: 'Fax' %>
+
+          </div>
+
+          <div class="col-md-6 col-xs-12">
+
+            <div class="cart-title">
+              Address
+            </div>
+
+            <%= f.select :country_id, Country.all.collect { |p| [p.name, p.id] }, {:prompt => "* #{t('country')}"}, {class: 'checkout-input'} %>
+            <%= f.select :state_id, State.all.collect { |p| [p.name, p.id] }, {:prompt => "* #{t('state')}"}, {class: 'checkout-input'} %>
+            <%= f.text_field :city, class: 'checkout-input', placeholder: "* #{t('city')}" %>
+            <%= f.text_field :postal_code, class: 'checkout-input', placeholder: "* #{t('postal_code')}" %>
+            <%= f.text_field :address, class: 'checkout-input', placeholder: '* Address 1' %>
+            <%= f.text_field :second_address, class: 'checkout-input', placeholder: 'Address 2' %>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <%= render 'users/shared/signin_link' %>
+            <%= render 'users/shared/forgotten_pass_link' %>
+            <%= render 'users/shared/resend_confirmation_link' %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 buttons-container">
+            <%= f.submit t('sign_up'), :class => 'button green right submit-button' %>
+          </div>
+        </div>
+
+    <% end %>
+
   </div>
 </div>

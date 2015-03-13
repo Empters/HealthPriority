@@ -6,7 +6,7 @@ class Product < ActiveRecord::Base
   # Init image file - paperclip image
   has_attached_file :image,
                     :styles => Rails.application.config.paperclip_styles,
-                    :default_url => '/missing_original.png'
+                    :default_url => '/missing_:style.png'
 
   # Validate content type
   validates_attachment_content_type :image, :content_type => Rails.application.config.paperclip_allow_image_content, :message => Rails.application.config.paperclip_allow_image_content_message
@@ -37,13 +37,11 @@ class Product < ActiveRecord::Base
   accepts_nested_attributes_for :product_images, allow_destroy: true,
                                 :reject_if => lambda { |attributes| attributes[:image].blank? }
 
-  scope :feature_products, -> do
-    order('created_at desc').limit(18)
-  end
-
   scope :last_visit_products, -> do
     order('created_at desc').limit(4)
   end
+
+  scope :spacial_offers, -> { where(is_spacial_offer: true) }
 
   # Remove image attribute
   attr_writer :remove_image
@@ -59,7 +57,7 @@ class Product < ActiveRecord::Base
 
   def average_rating
     begin
-      (product_reviews.map{|x| x.rating}.inject(:+) / product_reviews.size).round
+      (product_reviews.map { |x| x.rating }.inject(:+) / product_reviews.size).round
     rescue
       0
     end

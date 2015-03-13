@@ -1,26 +1,36 @@
 class CreatePayments < ActiveRecord::Migration
   def change
     create_table :payments do |t|
+
+      # User data
       t.integer :user_id
-      t.string :payment_method
-      t.string :name
-      t.string :company
-      t.string :phone
-      t.string :email
-      t.string :address
+      t.string :first_name, :null => false
+      t.string :last_name, :null => false
+      t.integer :gender_id, :null => false
+      t.integer :country_id, :null => false
+      t.integer :state_id
+      t.string :address, :null => false
+      t.string :second_address
       t.string :city
-      t.string :state
       t.string :postal_code
-      t.string :country
-      t.string :total
-      t.string :currency, default: '£'
-      t.string :description
-      t.string :status, default: 'new'
-      t.string :transaction_id
-      t.integer :total_quantity
-      t.datetime :purchased_at
+      t.string :email, :null => false
+      t.string :phone, :null => false
+      t.string :fax
+
+      # Order data
+      t.decimal :amount
+      t.integer :quantity
       t.string :item_name
-      t.string :item_number
+      t.integer :item_number
+      t.string :description
+
+      # Payment data
+      t.string :payment_method, :null => false
+      t.string :status, default: 'new', :null => false
+      t.string :currency, default: '£', :null => false
+      t.string :transaction_id
+      t.datetime :purchased_at
+
       t.timestamps
     end
   end

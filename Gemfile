@@ -85,3 +85,6 @@ gem 'roo', '~> 1.13.2'
 
 # Zip gem
 gem 'rubyzip', '~> 1.1.6'
+
+# Validate form gem
+gem 'dynamic_form'

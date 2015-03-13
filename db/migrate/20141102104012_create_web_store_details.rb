@@ -5,6 +5,8 @@ class CreateWebStoreDetails < ActiveRecord::Migration
       t.text :delivery
       t.text :faq
       t.text :about_us
+      t.text :partners, default: nil
+      t.text :payment_methods, default: nil
 
       t.timestamps
     end

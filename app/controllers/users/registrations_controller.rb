@@ -2,10 +2,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
 # before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
 
+  before_action :set_breadcrumb
+
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    add_breadcrumb t('sign_up')
+
+    super
+  end
 
   # POST /resource
   # def create
@@ -58,4 +62,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def after_inactive_sign_up_path_for(resource)
     super(resource)
   end
+
+  private
+
+  def set_breadcrumb
+    add_breadcrumb t('home'), :root_path
+  end
+
 end
