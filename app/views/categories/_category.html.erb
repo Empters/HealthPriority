@@ -1,6 +1,6 @@
-<div class="<%= item_class %>">
+<div class="<%= item_class %>" style="text-align: center;">
   <%= link_to '', filter_path(category), :class => 'item-image', :style => 'background-image: url('+ category.image.url() + ');' %>
-  <div class="item-title">
+  <div class="item-title" >
     <%= link_to format('%{category} (%{product_count})', {:category => category.name, :product_count => category.products_count}), filter_path(category) %>
   </div>
 </div>
