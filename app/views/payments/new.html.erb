@@ -2,6 +2,9 @@
   <div class="container main-content">
 
     <%= form_for(@payment) do |f| %>
+
+        <%= f.error_messages %>
+
         <div class="row">
 
           <div class="col-md-6 col-xs-12">
@@ -25,8 +28,8 @@
               Address
             </div>
 
-            <%= f.select :country_id, Country.all.collect { |p| [p.name, p.id] }, {:prompt => "* #{t('country')}"}, {class: 'checkout-input'} %>
-            <%= f.select :state_id, State.all.collect { |p| [p.name, p.id] }, {:prompt => "* #{t('state')}"}, {class: 'checkout-input'} %>
+            <%= f.select :country_id, Country.all.collect { |p| [p.name, p.id] }, {:prompt => "* #{t('country')}"}, {id: 'countries_select', class: 'checkout-input'} %>
+            <%= f.select :state_id, State.all.collect { |p| [p.name, p.id] }, {:prompt => "* #{t('state')}"}, {id: 'states_select', class: 'checkout-input'} %>
             <%= f.text_field :city, class: 'checkout-input', placeholder: "* #{t('city')}" %>
             <%= f.text_field :postal_code, class: 'checkout-input', placeholder: "* #{t('postal_code')}" %>
             <%= f.text_field :address, class: 'checkout-input', placeholder: '* Address 1' %>

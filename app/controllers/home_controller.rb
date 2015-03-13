@@ -173,12 +173,17 @@ class HomeController < ApplicationController
     # Return to call page
     redirect_to(:back)
 
-    # respond_to do |format|
-    #   format.html {
-    #     render 'home/render_html'
-    #   }
-    # end
   end
+
+  def update_states
+    @states = State.where('country_id = ?', params[:country_id])
+    respond_to do |format|
+      format.js {
+        render 'home/update_state'
+      }
+    end
+  end
+
 
   private
 

@@ -15,6 +15,8 @@
           Profile data
         </div>
 
+        <%= f.error_messages %>
+
         <div class="row">
 
           <div class="col-md-4 col-xs-12">
@@ -39,7 +41,6 @@
             <%= f.select :gender_id, Gender.all.collect { |p| [p.name, p.id] }, {:prompt => '* Gender'}, {class: 'checkout-input'} %>
             <%= f.text_field :first_name, class: 'checkout-input', placeholder: '* First Name' %>
             <%= f.text_field :last_name, class: 'checkout-input', placeholder: '* Last Name' %>
-            <%= f.email_field :email, class: 'checkout-input', placeholder: "* #{t('email')}" %>
             <%= f.phone_field :phone, class: 'checkout-input', placeholder: "* #{t('phone')}" %>
             <%= f.phone_field :fax, class: 'checkout-input', placeholder: 'Fax' %>
 
