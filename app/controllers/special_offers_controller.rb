@@ -9,8 +9,7 @@ class SpecialOffersController < ApplicationController
     set_from_controller
     set_products_per_page
 
-    #TODO - get spacial offers
-    @products = Product.all
+    @products = Product.spacial_offers
     set_pages
     paginate_products
 

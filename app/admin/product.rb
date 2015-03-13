@@ -5,7 +5,7 @@ ActiveAdmin.register Product do
 
   # Set permit parameters
   permit_params :name, :quantity, :viewed, :image, :price, :points, :description, :active, :manufacturer_id, :sort_order,
-                :date_available, :meta_keyword, :meta_description, :stock_status_id, :remove_image, :is_best_seller, :questions_answers,
+                :date_available, :meta_keyword, :meta_description, :stock_status_id, :remove_image, :is_best_seller, :is_spacial_offer, :questions_answers,
                 product_images_attributes: [:image, :image_file_name, :image_content_type, :image_file_size, :image_updated_at, :_destroy, :id],
                 category_ids: [], related_product_ids: []
 
@@ -16,6 +16,7 @@ ActiveAdmin.register Product do
   filter :manufacturer
   filter :categories
   filter :is_best_seller
+  filter :is_spacial_offer
   filter :active
   filter :meta_description
 
@@ -38,6 +39,7 @@ ActiveAdmin.register Product do
       end
     end
     column :is_best_seller
+    column :is_spacial_offer
     column :active
     column :created_at
     column :updated_at
@@ -61,6 +63,7 @@ ActiveAdmin.register Product do
       f.input :description, :as => :ckeditor
       f.input :questions_answers, :as => :ckeditor
       f.input :is_best_seller
+      f.input :is_spacial_offer
       f.input :active
       f.input :sort_order
       f.input :date_available, :as => :date_picker

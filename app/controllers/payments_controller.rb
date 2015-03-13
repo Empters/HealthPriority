@@ -2,8 +2,11 @@ class PaymentsController < ApplicationController
 
   protect_from_forgery except: [:hook]
 
+  before_action :set_breadcrumb, only: [:show]
+
   def show
-    #TODO - show payment status
+    add_breadcrumb 'Payment'
+
     @payment = Payment.find params[:id]
   end
 
@@ -12,7 +15,9 @@ class PaymentsController < ApplicationController
   end
 
   def create
+
     @payment = Payment.new(payment_params)
+
     total_quantity = 0
     item_name = ''
     item_number = ''
@@ -30,11 +35,13 @@ class PaymentsController < ApplicationController
       total_quantity = total_quantity + quantity
       item_number.concat(quantity.to_s).concat(';')
     end
-    @payment.total_quantity = total_quantity
-    @payment.total = shopping_cart.total_price
+
     @payment.item_name = item_name
     @payment.item_number = item_number
+    @payment.quantity = total_quantity
+    @payment.amount = shopping_cart.total_price
     @payment.user = current_user unless user_signed_in?
+
     if @payment.save
       redirect_to @payment.paypal_url(payment_path(@payment))
     else
@@ -44,7 +51,7 @@ class PaymentsController < ApplicationController
 
   def hook
 
-    # Permit all Paypal input params
+    # Permit all paypal input params
     params.permit!
 
     @payment = Payment.find params[:invoice]
@@ -55,7 +62,13 @@ class PaymentsController < ApplicationController
   end
 
   def payment_params
-    params.require(:payment).permit(:name, :company, :address, :city, :state, :postal_code, :country, :phone, :email, :description, :payment_method)
+    params.require(:payment).permit(:gender_id, :first_name, :last_name, :email, :phone, :fax, :country_id, :state_id, :city, :postal_code, :address, :second_address, :payment_method, :description)
+  end
+
+  private
+
+  def set_breadcrumb
+    add_breadcrumb t('home'), :root_path
   end
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150212143515) do
+ActiveRecord::Schema.define(version: 20150307190644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,17 @@ ActiveRecord::Schema.define(version: 20150212143515) do
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
+  create_table "countries", force: true do |t|
+    t.string "iso"
+    t.string "name"
+  end
+
+  create_table "genders", force: true do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "items", force: true do |t|
     t.integer  "payment_id"
     t.integer  "product_id"
@@ -105,25 +116,28 @@ ActiveRecord::Schema.define(version: 20150212143515) do
 
   create_table "payments", force: true do |t|
     t.integer  "user_id"
-    t.string   "payment_method"
-    t.string   "name"
-    t.string   "company"
-    t.string   "phone"
-    t.string   "email"
-    t.string   "address"
+    t.string   "first_name",                     null: false
+    t.string   "last_name",                      null: false
+    t.integer  "gender_id",                      null: false
+    t.integer  "country_id",                     null: false
+    t.integer  "state_id"
+    t.string   "address",                        null: false
+    t.string   "second_address"
     t.string   "city"
-    t.string   "state"
     t.string   "postal_code"
-    t.string   "country"
-    t.string   "total"
-    t.string   "currency",       default: "£"
-    t.string   "description"
-    t.string   "status",         default: "new"
-    t.string   "transaction_id"
-    t.integer  "total_quantity"
-    t.datetime "purchased_at"
+    t.string   "email",                          null: false
+    t.string   "phone",                          null: false
+    t.string   "fax"
+    t.decimal  "amount"
+    t.integer  "quantity"
     t.string   "item_name"
-    t.string   "item_number"
+    t.integer  "item_number"
+    t.string   "description"
+    t.string   "payment_method",                 null: false
+    t.string   "status",         default: "new", null: false
+    t.string   "currency",       default: "£",   null: false
+    t.string   "transaction_id"
+    t.datetime "purchased_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -178,6 +192,7 @@ ActiveRecord::Schema.define(version: 20150212143515) do
     t.text     "benefits"
     t.text     "description"
     t.text     "direction"
+    t.text     "questions_answers"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -189,15 +204,21 @@ ActiveRecord::Schema.define(version: 20150212143515) do
     t.date     "date_available"
     t.string   "meta_keyword"
     t.string   "meta_description"
+    t.boolean  "is_best_seller",     default: false
+    t.boolean  "is_spacial_offer",   default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_best_seller",     default: false
-    t.text     "questions_answers"
   end
 
   create_table "products_categories", id: false, force: true do |t|
     t.integer "product_id"
     t.integer "category_id"
+  end
+
+  create_table "states", force: true do |t|
+    t.string  "name"
+    t.integer "country_id"
+    t.string  "iso"
   end
 
   create_table "stock_statuses", force: true do |t|
@@ -221,13 +242,19 @@ ActiveRecord::Schema.define(version: 20150212143515) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "gender_id",                           null: false
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "title"
-    t.string   "country"
+    t.integer  "country_id",                          null: false
+    t.integer  "state_id"
+    t.string   "city"
+    t.string   "postal_code"
     t.string   "address"
+    t.string   "second_address"
+    t.string   "phone"
+    t.string   "fax"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
@@ -239,10 +266,10 @@ ActiveRecord::Schema.define(version: 20150212143515) do
     t.text     "delivery"
     t.text     "faq"
     t.text     "about_us"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.text     "partners"
     t.text     "payment_methods"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get '/home/payment_methods' => 'home#payment_methods', :as => 'payment_methods'
   get '/home/help_center' => 'home#help_center', :as => 'help_center'
   get '/home/price_details' => 'home#price_details', :as => 'price_details'
+  get '/home/update_states', :as => 'update_states'
   post '/home/send_message' => 'home#send_message'
 
   get '/products/search/(:token)(/category/:category)', to: 'products#search', :as => 'search'

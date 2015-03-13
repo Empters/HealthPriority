@@ -27,7 +27,7 @@ function getUrlRoot() {
 
 /* Add jquery extension method */
 jQuery.fn.center = function () {
-    this.css("position","absolute");
+    this.css("position", "absolute");
     this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) +
             $(window).scrollTop()) + "px");
     this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) +
@@ -77,7 +77,7 @@ function setProductCountToCart(e) {
 
 /* Show ajax message */
 function show_ajax_message(msg, type) {
-    switch (type){
+    switch (type) {
         case 'notice':
         {
             type = 'info';
@@ -90,26 +90,27 @@ function show_ajax_message(msg, type) {
         }
     }
 
-    var message = '<div class="alert alert-' + type +' notification">' +
-    '<button class="close" data-dismiss="alert">×</button>' +
+    var message = '<div class="alert alert-' + type + ' notification">' +
+            '<button class="close" data-dismiss="alert">×</button>' +
             msg +
-    '</div>';
+            '</div>';
 
     $("#flash-message").append(message);
     show_notifications();
 }
 
 /* Show notifications */
-function show_notifications(){
+function show_notifications() {
     $("#flash-message").center();
-    $(".notification").show().delay(3000).fadeOut(300, function() { $(this).remove(); });
+    $(".notification").show().delay(3000).fadeOut(300, function () {
+        $(this).remove();
+    });
 }
 
-function getAjaxNotificationMessage(request){
+function getAjaxNotificationMessage(request) {
     var msg = request.getResponseHeader('X-Message');
     var type = request.getResponseHeader('X-Message-Type');
-    if (msg && type)
-    {
+    if (msg && type) {
         return { msg: msg, notificationType: type };
     }
 
@@ -117,59 +118,56 @@ function getAjaxNotificationMessage(request){
 }
 
 /* Hook document ajax completed - show ajax notification */
-$(document).ajaxComplete(function(event, request) {
+$(document).ajaxComplete(function (event, request) {
     var notification = getAjaxNotificationMessage(request);
-    if (notification)
-    {
+    if (notification) {
         show_ajax_message(notification.msg, notification.notificationType);
     }
 });
 
 /* Hook document ajax errors - show ajax notification */
-$( document ).ajaxError(function(event, request) {
+$(document).ajaxError(function (event, request) {
     var notification = getAjaxNotificationMessage(request);
-    if (notification)
-    {
+    if (notification) {
         show_ajax_message(notification.msg, notification.notificationType);
     }
-    else
-    {
+    else {
         show_ajax_message("Application error!", "error");
     }
 });
 
 /* Hook document ready - bind js events */
-$(document).ready(function(){
-    $('#search_link').click(function(){
+$(document).ready(function () {
+    $('#search_link').click(function () {
         var url_arr = document.URL.split('/');
         var page_name = url_arr[3];
         var token = $('#search_input').val();
-        if(token != '') {
+        if (token != '') {
             token = '/' + token
         }
-        var category =  $('#chosen_category').attr('selected_category');
-        if(category != '') {
+        var category = $('#chosen_category').attr('selected_category');
+        if (category != '') {
             category = '/category/' + category
         }
 
-        if(page_name == 'products' && (url_arr[4] == undefined || url_arr[4] == 'search')) {
+        if (page_name == 'products' && (url_arr[4] == undefined || url_arr[4] == 'search')) {
             var url = getUrlRoot() + '/products/search' + token + category + '.js';
             $.ajax({
                 url: url
             });
         } else {
-            var path = getUrlRoot() +'/products/search' + token + category;
+            var path = getUrlRoot() + '/products/search' + token + category;
             document.location.href = path
         }
     });
 
-    $('#category-menu').children('li').click(function(){
-        var filter_category = $(this).attr('category') == undefined? '' : $(this).attr('category');
+    $('#category-menu').children('li').click(function () {
+        var filter_category = $(this).attr('category') == undefined ? '' : $(this).attr('category');
         $('#chosen_category').attr('selected_category', filter_category);
     });
 
-    $('#search_input').on('keypress', function(e){
-        if(e.keyCode==13){
+    $('#search_input').on('keypress', function (e) {
+        if (e.keyCode == 13) {
             $('#search_link').click();
         }
     });
@@ -177,6 +175,17 @@ $(document).ready(function(){
     $(document).on("keydown", ".quantity-js", validateProductQuantity);
 
     $(document).on("focusout", ".quantity-js", setProductCountToCart);
+
+    //TODO - not work in this moment
+/*    $(document).on('change', '#countries_select', function () {
+        $.ajax({
+            url: getUrlRoot() + '/home/update_states',
+            type: 'GET',
+            dataType: 'script',
+            data: {
+                country_id: $("#countries_select option:selected").val()
+            }});
+    });*/
 
     show_notifications();
 });

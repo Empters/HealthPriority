@@ -1,31 +1,33 @@
-<div class="title-banner">
-  <%= @page_label %>
-</div>
-<div class="content-container">
-  <!-- rows -->
-  <% @products.in_groups_of(@products_per_row, false).each do |group| %>
-      <div class="row nomargin">
-        <% group.each do |product| %>
-            <%= render partial: 'products/product', locals: {product: product, item_class: @table_css + ' item-container', is_small: 'small'} %>
+<% if (!@products.nil?) %>
+    <div class="title-banner">
+      <%= @page_label %>
+    </div>
+    <div class="content-container">
+      <!-- rows -->
+      <% @products.in_groups_of(@products_per_row, false).each do |group| %>
+          <div class="row nomargin">
+            <% group.each do |product| %>
+                <%= render partial: 'products/product', locals: {product: product, item_class: @table_css + ' item-container', is_small: 'small'} %>
+            <% end %>
+          </div>
+      <% end %>
+
+      <!-- rows -->
+    </div>
+    <div class="pager-wrapper">
+
+      <div class="products-count left">
+        <%= product_passed %> of <%= @products.count %> products
+      </div>
+      <div class="pager-container right">
+        <% @pages.each do |page| %>
+            <%= link_to({controller: @from_controller, action: 'change_page', page_number: page.number}, remote: true) do %>
+                <div class="page <%= 'active' if page.is_active? %>">
+                  <div> <%= page.number %></div>
+                </div>
+            <% end %>
         <% end %>
       </div>
-  <% end %>
-
-  <!-- rows -->
-</div>
-<div class="pager-wrapper">
-
-  <div class="products-count left">
-    <%= product_passed %> of <%= @products.count %> products
-  </div>
-  <div class="pager-container right">
-    <% @pages.each do |page| %>
-        <%= link_to({controller: @from_controller, action: 'change_page', page_number: page.number}, remote: true) do %>
-            <div class="page <%= 'active' if page.is_active? %>">
-              <div> <%= page.number %></div>
-            </div>
-        <% end %>
-    <% end %>
-  </div>
-  <div class="clearfix"></div>
-</div>
+      <div class="clearfix"></div>
+    </div>
+<% end %>
