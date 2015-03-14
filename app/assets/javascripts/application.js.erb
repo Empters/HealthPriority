@@ -176,8 +176,8 @@ $(document).ready(function () {
 
     $(document).on("focusout", ".quantity-js", setProductCountToCart);
 
-    //TODO - not work in this moment
-/*    $(document).on('change', '#countries_select', function () {
+    // Hook cascade country dropDownChanged - update state by country
+    $(document).on('change', '#countries_select', function () {
         $.ajax({
             url: getUrlRoot() + '/home/update_states',
             type: 'GET',
@@ -185,7 +185,7 @@ $(document).ready(function () {
             data: {
                 country_id: $("#countries_select option:selected").val()
             }});
-    });*/
+    });
 
     show_notifications();
 });

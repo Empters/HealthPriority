@@ -176,7 +176,7 @@ class HomeController < ApplicationController
   end
 
   def update_states
-    @states = State.where('country_id = ?', params[:country_id])
+    @states = params[:country_id].nil? ? nil : State.where(country_id: params[:country_id])
     respond_to do |format|
       format.js {
         render 'home/update_state'
