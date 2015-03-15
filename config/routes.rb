@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   post '/home/send_message' => 'home#send_message'
 
   get '/products/search/(:token)(/category/:category)', to: 'products#search', :as => 'search'
+  get '/products/autocomplete/:query', to: 'products#autocomplete'
   get '/products/filter/:category' => 'products#filter', :as => 'filter'
   get '/products/brand/:brand' => 'products#brand', :as => 'brand'
   get '/products/price/:range' => 'products#price', :as => 'price'
