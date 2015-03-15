@@ -28,8 +28,8 @@
               Address
             </div>
 
-            <%= f.select :country_id, Country.all.collect { |p| [p.name, p.id] }, {:prompt => "* #{t('country')}"}, {id: 'countries_select', class: 'checkout-input'} %>
-            <%= f.select :state_id, State.where(country_id: @payment.country_id).collect { |p| [p.name, p.id] }, {:prompt => "* #{t('state')}"}, {id: 'states_select', class: 'checkout-input'} %>
+            <%= f.select :country_id, Country.all.collect { |p| [p.name, p.id] }, {:include_blank => "* #{t('country')}"}, {id: 'countries_select', class: 'checkout-input'} %>
+            <%= f.select :state_id, State.where(country_id: @payment.country_id).collect { |p| [p.name, p.id] }, {:include_blank => "* #{t('state')}"}, {id: 'states_select', class: 'checkout-input'} %>
             <%= f.text_field :city, class: 'checkout-input', placeholder: "* #{t('city')}" %>
             <%= f.text_field :postal_code, class: 'checkout-input', placeholder: "* #{t('postal_code')}" %>
             <%= f.text_field :address, class: 'checkout-input', placeholder: '* Address 1' %>
@@ -70,7 +70,7 @@
         <div class="row">
 
           <div class="col-md-12 buttons-container">
-            <input name="Submit" type="submit" value="<%= t('execute_payment') %>" class="button green right submit-button">
+            <input type="submit" value="<%= t('execute_payment') %>" class="button green right submit-button">
             <%= link_to t('shopping_cart'), shopping_carts_path, html_options = {class: 'button green right continue-shopping'} %>
           </div>
 
