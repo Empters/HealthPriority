@@ -340,7 +340,7 @@ textarea.contact-input, textarea.checkout-input {
     resize: vertical;
 }
 
-select.contact-input{
+select.contact-input {
     width: auto;
 }
 
@@ -820,6 +820,10 @@ select.contact-input{
     background: #ffffff;
 }
 
+.container.main-content-transparent {
+    background: transparent;
+}
+
 .container-background {
     background-image: url("<%= image_path 'bg.jpg' %>");
     background-repeat: no-repeat;
@@ -1191,22 +1195,18 @@ body {
     padding-left: 0;
 }
 
-.small-banners {
-    background-image: url("/assets/bg.jpg");
-}
-
 .item-title {
     margin: 18px;
 }
 
-.footer-image{
+.footer-image {
     background-image: url("/assets/footer.jpg");
     background-repeat: no-repeat;
     height: 180px;
     margin-bottom: -40px;
 }
 
-.compiled_sets_banner{
+.compiled_sets_banner {
     background-image: url("/assets/compiled_sets_banner.jpg");
     background-repeat: no-repeat;
     background-position: center;
@@ -1226,10 +1226,12 @@ span.twitter-typeahead .tt-dropdown-menu {
     background-color: #FFFFFF;
     border: solid #F79114 1px;
 }
+
 span.twitter-typeahead .tt-suggestion > p {
     padding: 5px 10px;
     width: 100%;
 }
+
 span.twitter-typeahead .tt-suggestion > p:hover,
 span.twitter-typeahead .tt-suggestion > p:focus {
     background: #F79114;
@@ -1244,4 +1246,8 @@ span.twitter-typeahead .tt-suggestion.tt-cursor {
 
 span.twitter-typeahead {
     height: 100%;
+}
+
+.block a {
+    display: block;
 }

@@ -3,15 +3,34 @@ class PaymentsController < ApplicationController
   protect_from_forgery except: [:hook]
 
   before_action :set_breadcrumb, only: [:show]
+  before_action :init_user
 
   def show
     add_breadcrumb 'Payment'
-
     @payment = Payment.find params[:id]
   end
 
   def new
+
+    # Create new payment
     @payment = Payment.new
+
+    # If have login user - init payment with login user data
+    if !@user.nil?
+      @payment.gender_id = @user.gender_id
+      @payment.first_name = @user.first_name
+      @payment.last_name = @user.last_name
+      @payment.email = @user.email
+      @payment.phone = @user.phone
+      @payment.fax = @user.fax
+      @payment.country_id = @user.country_id
+      @payment.state_id = @user.state_id
+      @payment.city = @user.city
+      @payment.postal_code = @user.postal_code
+      @payment.address = @user.address
+      @payment.second_address = @user.second_address
+    end
+
   end
 
   # POST /payment
@@ -78,6 +97,10 @@ class PaymentsController < ApplicationController
 
   def set_breadcrumb
     add_breadcrumb t('home'), :root_path
+  end
+
+  def init_user
+    @user = user_signed_in? ? current_user : nil
   end
 
 end

@@ -184,7 +184,6 @@ class HomeController < ApplicationController
     end
   end
 
-
   private
 
   def set_from_controller
@@ -209,4 +208,5 @@ class HomeController < ApplicationController
   def set_breadcrumb
     add_breadcrumb t('home'), :root_path
   end
+
 end
