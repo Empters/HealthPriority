@@ -117,28 +117,21 @@ function getAjaxNotificationMessage(request) {
     return null;
 }
 
-/* Hook document ajax completed - show ajax notification */
-$(document).ajaxComplete(function (event, request) {
-    var notification = getAjaxNotificationMessage(request);
-    if (notification) {
-        show_ajax_message(notification.msg, notification.notificationType);
-    }
-});
+function initCountryCascadeDropDown(){
+    $(document).on('change', '#countries_select', function () {
+        $.ajax({
+            url: getUrlRoot() + '/home/update_states',
+            type: 'GET',
+            dataType: 'script',
+            data: {
+                country_id: $("#countries_select option:selected").val()
+            }});
+    });
+}
 
-/* Hook document ajax errors - show ajax notification */
-$(document).ajaxError(function (event, request) {
-    var notification = getAjaxNotificationMessage(request);
-    if (notification) {
-        show_ajax_message(notification.msg, notification.notificationType);
-    }
-    else {
-        show_ajax_message("Application error!", "error");
-    }
-});
-
-/* Hook document ready - bind js events */
-$(document).ready(function () {
-    $('#search_link').click(function () {
+function initProductSearchControl(){
+    $(document).off('click', '#search_link');
+    $(document).on('click', '#search_link', function () {
         var url_arr = document.URL.split('/');
         var page_name = url_arr[3];
         var token = $('#search_input').val();
@@ -161,31 +154,70 @@ $(document).ready(function () {
         }
     });
 
-    $('#category-menu').children('li').click(function () {
-        var filter_category = $(this).attr('category') == undefined ? '' : $(this).attr('category');
-        $('#chosen_category').attr('selected_category', filter_category);
-    });
-
-    $('#search_input').on('keypress', function (e) {
+    $(document).off('keypress', '#search_input');
+    $(document).on('keypress', '#search_input', function (e) {
         if (e.keyCode == 13) {
             $('#search_link').click();
         }
     });
 
+    var productSearch = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        remote: getUrlRoot() + '/products/autocomplete/%QUERY.json'
+    });
+
+    productSearch.initialize();
+
+    $('#search_input').typeahead(null, {
+        name: 'product',
+        displayKey: 'name',
+        source: productSearch.ttAdapter()
+    });
+}
+
+function initCategoryMenu(){
+    $('#category-menu').children('li').click(function () {
+        var filter_category = $(this).attr('category') == undefined ? '' : $(this).attr('category');
+        $('#chosen_category').attr('selected_category', filter_category);
+    });
+}
+
+function initProductCart(){
     $(document).on("keydown", ".quantity-js", validateProductQuantity);
 
     $(document).on("focusout", ".quantity-js", setProductCountToCart);
+}
 
-    //TODO - not work in this moment
-/*    $(document).on('change', '#countries_select', function () {
-        $.ajax({
-            url: getUrlRoot() + '/home/update_states',
-            type: 'GET',
-            dataType: 'script',
-            data: {
-                country_id: $("#countries_select option:selected").val()
-            }});
-    });*/
+/* Hook document ready - bind js events */
+$(document).ready(function () {
+
+    /* Hook document ajax completed - show ajax notification */
+    $(document).ajaxComplete(function (event, request) {
+        var notification = getAjaxNotificationMessage(request);
+        if (notification) {
+            show_ajax_message(notification.msg, notification.notificationType);
+        }
+    });
+
+    /* Hook document ajax errors - show ajax notification */
+    $(document).ajaxError(function (event, request) {
+        var notification = getAjaxNotificationMessage(request);
+        if (notification) {
+            show_ajax_message(notification.msg, notification.notificationType);
+        }
+        else {
+            show_ajax_message("Application error!", "error");
+        }
+    });
+
+    initProductSearchControl();
+
+    initCategoryMenu();
+
+    initProductCart();
+
+    initCountryCascadeDropDown();
 
     show_notifications();
 });

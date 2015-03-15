@@ -100,6 +100,11 @@ class ProductsController < ApplicationController
     end
   end
 
+  # GET /products/autocomplete
+  def autocomplete
+    render json: params[:query].blank? ? nil : Product.where("UPPER(name) LIKE UPPER(?)", "%#{params[:query]}%").limit(10)
+  end
+
   # GET /products/filter
   def filter
     search_and_filter()

@@ -14,39 +14,48 @@ class PaymentsController < ApplicationController
     @payment = Payment.new
   end
 
+  # POST /payment
+  # POST /payment.json
   def create
 
     @payment = Payment.new(payment_params)
+    if @payment.valid?
 
-    total_quantity = 0
-    item_name = ''
-    item_number = ''
-    shopping_cart.products.each do |product, quantity|
+      total_quantity = 0
+      item_name = ''
+      item_number = ''
 
-      item = Item.new
-      item.product_id = product.id
-      item.name = product.name
-      item.price = product.price
-      item.quantity = quantity
+      shopping_cart.products.each do |product, quantity|
 
-      @payment.items << item
+        item = Item.new
+        item.product_id = product.id
+        item.name = product.name
+        item.price = product.price
+        item.quantity = quantity
 
-      item_name.concat(item.name).concat(';')
-      total_quantity = total_quantity + quantity
-      item_number.concat(quantity.to_s).concat(';')
+        @payment.items << item
+
+        item_name.concat(item.name).concat(';')
+        total_quantity = total_quantity + quantity
+        item_number.concat(quantity.to_s).concat(';')
+      end
+
+      @payment.item_name = item_name
+      @payment.item_number = item_number
+      @payment.quantity = total_quantity
+      @payment.amount = shopping_cart.total_price
+      @payment.user = current_user unless user_signed_in?
     end
 
-    @payment.item_name = item_name
-    @payment.item_number = item_number
-    @payment.quantity = total_quantity
-    @payment.amount = shopping_cart.total_price
-    @payment.user = current_user unless user_signed_in?
-
-    if @payment.save
+    if @payment.valid? && @payment.save
       redirect_to @payment.paypal_url(payment_path(@payment))
     else
-      render 'shopping_carts/cancel'
+      respond_to do |format|
+        format.html { render :new }
+        format.json { render json: @payment.errors, status: :unprocessable_entity }
+      end
     end
+
   end
 
   def hook

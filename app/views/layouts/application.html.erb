@@ -62,6 +62,7 @@
       <div class="col-md-2 col-sm-2 col-xs-1 nomargin nopadding">
         <%= link_to '', root_path, :class => 'logo', :data => {:no_turbolink => true} %>
       </div>
+
       <div class="col-md-8 col-sm-8 col-xs-8">
         <div class="search-section">
           <div class="col-md-10 col-sm-10 col-xs-10">
@@ -83,17 +84,19 @@
                 </ul>
               </div>
               <div class="search-input-container left">
-                <input type="text" id="search_input" class="search-input" placeholder="<%= t('search_token') %>"/>
+                <input type="text" id="search_input" class="typeahead search-input" placeholder="<%= t('search_token') %>"/>
               </div>
               <div class="right search-image-div">
                 <div id="search_link" class='search-image'></div>
               </div>
             </div>
           </div>
+
           <div class="col-md-2 col-sm-2 col-xs-2">
             <!-- Cert logo -->
             <%= link_to '', '#', :class => 'cert-logo', :data => {:no_turbolink => true} %>
           </div>
+
         </div>
       </div>
       <div id="shopping_cart_div" class="col-md-2 col-sm-2 col-xs-2 nopadding nomargin">
