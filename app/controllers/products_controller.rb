@@ -86,6 +86,8 @@ class ProductsController < ApplicationController
 
     search_and_filter()
     set_pages
+
+    @page_label = t('our_products')
     @products = @products.paginate(:page => @current_page, :per_page => session[:products_per_page])
 
     respond_to do |format|
@@ -98,6 +100,7 @@ class ProductsController < ApplicationController
         render '/products/index'
       }
     end
+
   end
 
   # GET /products/autocomplete
@@ -107,49 +110,62 @@ class ProductsController < ApplicationController
 
   # GET /products/filter
   def filter
+
     search_and_filter()
     set_pages
+
+    @page_label = t('our_products')
     @products = @products.paginate(:page => @current_page, :per_page => session[:products_per_page])
-    @page_label = 'Products'
+
     respond_to do |format|
       format.html { render 'products/index' }
       format.js { render 'search.js.erb' }
     end
+
   end
 
-  # GET /products/filter
+  # GET /products/brand
   def brand
+
     filter_by_manufacturer()
     set_pages
+
+    @page_label = t('our_products')
     @products = @products.paginate(:page => @current_page, :per_page => session[:products_per_page])
 
     respond_to do |format|
-      format.html { puts 'html' }
       format.js { render 'search.js.erb' }
     end
+
   end
 
   def price
 
     filter_by_price()
     set_pages
+
+    @page_label = t('our_products')
     @products = @products.paginate(:page => @current_page, :per_page => session[:products_per_page])
 
     respond_to do |format|
-      format.html { puts 'html' }
       format.js { render 'search.js.erb' }
     end
+
   end
 
   def change_page
+
     session[:page_number] = search_params[:page_number].to_i
+
     search_and_filter
     set_pages
+
     @products = main_change_page
 
     respond_to do |format|
       format.js { render 'products/search.js.erb' }
     end
+
   end
 
   private
