@@ -5,19 +5,21 @@ class PaymentsController < ApplicationController
   before_action :set_breadcrumb, only: [:show]
 
   def show
+    puts "show"
     add_breadcrumb 'Payment'
 
     @payment = Payment.find params[:id]
   end
 
   def new
+    puts "new"
     @payment = Payment.new
   end
 
   # POST /payment
   # POST /payment.json
   def create
-
+    puts "create"
     @payment = Payment.new(payment_params)
     if @payment.valid?
 
@@ -59,7 +61,8 @@ class PaymentsController < ApplicationController
   end
 
   def hook
-
+    puts "hook"
+    puts params
     # Permit all paypal input params
     params.permit!
 
@@ -71,6 +74,8 @@ class PaymentsController < ApplicationController
   end
 
   def payment_params
+    puts 'payment controller'
+    puts params
     params.require(:payment).permit(:gender_id, :first_name, :last_name, :email, :phone, :fax, :country_id, :state_id, :city, :postal_code, :address, :second_address, :payment_method, :description)
   end
 
