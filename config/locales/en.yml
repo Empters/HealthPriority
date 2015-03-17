@@ -136,3 +136,4 @@ en:
   password: 'Password'
   change_password: 'Change Password'
   change_user_and_password: 'Change Mail and Password'
+  account: "Account"

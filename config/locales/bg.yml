@@ -135,3 +135,4 @@ bg:
   password: 'Парола'
   change_password: 'Промяна на парола'
   change_user_and_password: 'Промяна на мейл и парола'
+  account: "Профил"

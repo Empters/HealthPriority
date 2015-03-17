@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 # before_filter :configure_account_update_params, only: [:update]
   before_filter :authenticate_user!
   before_action :load_user
+  before_action :set_breadcrumb
 
   def index
     puts 'index'
@@ -12,6 +13,9 @@ class UsersController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+    add_breadcrumb t('account')
+
+    @title = 'My Account'
   end
 
   # GET /products/new
@@ -56,5 +60,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation, :gender_id, :first_name, :last_name, :phone, :fax, :country_id, :state_id, :city, :postal_code, :address, :second_address)
+  end
+
+  def set_breadcrumb
+    add_breadcrumb t('home'), :root_path
   end
 end
