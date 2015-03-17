@@ -3,12 +3,10 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!
   before_action :init_user, :set_breadcrumb
 
-  def index
-  end
-
   # GET /products/1
   # GET /products/1.json
   def show
+    add_breadcrumb t('my_account')
   end
 
   # GET /products/new
@@ -17,8 +15,8 @@ class UsersController < ApplicationController
 
   # GET /products/1/edit
   def edit
-    add_breadcrumb t('Account')
-    add_breadcrumb t('edit')
+    add_breadcrumb t('my_account'), user_path(@user)
+    add_breadcrumb 'Edit account'
   end
 
   # POST /products
