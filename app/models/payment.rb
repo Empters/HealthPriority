@@ -4,6 +4,7 @@ class Payment < ActiveRecord::Base
   validates_presence_of :gender_id, :first_name, :last_name, :email, :phone, :country_id, :city, :postal_code, :address, :payment_method
 
   has_many :items, autosave: true
+  has_one :order, autosave: true
 
   belongs_to :user
   belongs_to :gender

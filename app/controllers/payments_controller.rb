@@ -44,12 +44,13 @@ class PaymentsController < ApplicationController
 
       @payment.item_name = item_name
       @payment.item_number = item_number
-      @payment.quantity = total_quantity
+      # @payment.quantity = total_quantity
       @payment.amount = shopping_cart.total_price
       @payment.user = current_user unless user_signed_in?
     end
 
     if @payment.valid? && @payment.save
+      clear_shopping_cart
       redirect_to @payment.paypal_url(payment_path(@payment))
     else
       respond_to do |format|
@@ -67,8 +68,14 @@ class PaymentsController < ApplicationController
     params.permit!
 
     @payment = Payment.find params[:invoice]
-    @payment.update_attributes notification_params: params, status: params[:payment_status], transaction_id: params[:txn_id], purchased_at: Time.now
-    @payment.save
+    if @payment.status != 'Completed'
+      @payment.order = Order.new
+      @payment.order.update_attributes params
+      @payment.update_attribute :status, params[:payment_status]
+      @payment.update_attribute :transaction_id, params[:txn_id]
+      @payment.update_attribute :purchased_at, Time.now
+      @payment.save
+    end
 
     render nothing: true
   end
