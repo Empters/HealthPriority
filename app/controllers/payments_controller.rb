@@ -71,11 +71,13 @@ class PaymentsController < ApplicationController
     @payment = Payment.find params[:invoice]
     if @payment.status != 'Completed'
       @payment.order = Order.new
-      @payment.order.update_attributes params
+
       @payment.update_attribute :status, params[:payment_status]
       @payment.update_attribute :transaction_id, params[:txn_id]
       @payment.update_attribute :purchased_at, Time.now
+
       @payment.save
+      @payment.order.update_attributes params
     end
 
     render nothing: true

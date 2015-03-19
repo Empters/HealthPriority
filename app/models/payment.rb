@@ -23,7 +23,7 @@ class Payment < ActiveRecord::Base
         amount: amount,
         quantity: quantity,
         notify_url: "#{Rails.application.secrets.app_host}/payments/hook",
-        return: "#{Rails.application.secrets.app_host}/show/#{return_path}",
+        return: "#{Rails.application.secrets.app_host}/show#{return_path}",
     }
     "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
   end
