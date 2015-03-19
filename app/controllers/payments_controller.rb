@@ -62,6 +62,7 @@ class PaymentsController < ApplicationController
   end
 
   def hook
+    puts "---------------------"
     puts "hook"
     puts params
     # Permit all paypal input params
@@ -75,7 +76,6 @@ class PaymentsController < ApplicationController
       @payment.update_attribute :transaction_id, params[:txn_id]
       @payment.update_attribute :purchased_at, Time.now
       @payment.save
-      @payment.order.save
     end
 
     render nothing: true
