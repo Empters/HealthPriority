@@ -70,7 +70,6 @@ class PaymentsController < ApplicationController
 
     @payment = Payment.find params[:invoice]
     if @payment.status != 'Completed'
-      @payment.order = Order.new
 
       @payment.update_attribute :status, params[:payment_status]
       @payment.update_attribute :transaction_id, params[:txn_id]
