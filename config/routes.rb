@@ -43,6 +43,9 @@ Rails.application.routes.draw do
   delete '/shopping_carts/remove_product' => 'shopping_carts#remove_product'
 
   get '/payments/show/:id' => 'payments#show'
+  post '/payments/show/:id' => 'payments#show'
+  get '/payments/:id' => 'payments#show'
+  post '/payments/:id' => 'payments#show'
   post '/payments/hook' => 'payments#hook'
 
   get '/special_offers/change_page/:page_number' => 'special_offers#change_page'
