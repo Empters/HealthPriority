@@ -13,7 +13,7 @@ class Payment < ActiveRecord::Base
 
   def paypal_url(return_path)
     values = {
-        business: 'new_test_acc@abv.bg',
+        business: 'test123445@abv.bg',
         cmd: '_xclick',
         upload: 1,
         invoice: id,
