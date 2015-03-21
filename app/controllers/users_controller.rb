@@ -1,17 +1,12 @@
 class UsersController < ApplicationController
-# before_filter :configure_sign_up_params, only: [:create]
-# before_filter :configure_account_update_params, only: [:update]
+
   before_filter :authenticate_user!
-  before_action :load_user
-
-  def index
-    puts 'index'
-  end
-
+  before_action :init_user, :set_breadcrumb
 
   # GET /products/1
   # GET /products/1.json
   def show
+    add_breadcrumb t('my_account')
   end
 
   # GET /products/new
@@ -20,27 +15,21 @@ class UsersController < ApplicationController
 
   # GET /products/1/edit
   def edit
-    # binding.pry
+    add_breadcrumb t('my_account'), user_path(@user)
+    add_breadcrumb 'Edit account'
   end
 
   # POST /products
   # POST /products.json
   def create
-    # binding.pry
   end
 
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
-    @user = current_user
-    # binding.pry
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -50,11 +39,18 @@ class UsersController < ApplicationController
   def destroy
   end
 
-  def load_user
+  private
+
+  def init_user
     @user ||= current_user
   end
 
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation, :gender_id, :first_name, :last_name, :phone, :fax, :country_id, :state_id, :city, :postal_code, :address, :second_address)
   end
+
+  def set_breadcrumb
+    add_breadcrumb t('home'), :root_path
+  end
+
 end

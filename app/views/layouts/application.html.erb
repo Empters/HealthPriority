@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta name="description"
-        content="Health Priority is an health care online shop for all kind of high quality, tested and certified health care products.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="description" content="Health Priority is an health care online shop for all kind of high quality, tested and certified health care products.">
   <meta property="og:title" content="Health Priority"/>
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="http://www.healthpriority.co.uk/"/>
-  <meta property="og:image"
-        content="<%= image_path 'logo.png' %>"/>
-  <meta property="og:description"
-        content="Health Priority is an health care online shop for all kind of high quality, tested and certified health care products."/>
+  <meta property="og:image" content="<%= image_path 'logo.png' %>"/>
+  <meta property="og:description" content="Health Priority is an health care online shop for all kind of high quality, tested and certified health care products."/>
   <title>Health Priority</title>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400&subset=latin,cyrillic-ext,greek-ext,greek,vietnamese,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+
 <body class="main-fonts">
+
 <!-- Top bar -->
 <div class="top-bar-wrapper">
   <div class="container">
@@ -43,7 +42,7 @@
           </div>
       <% else %>
           <div class="top-bar-tab top-bar-text">
-            <%= link_to t('login'), new_user_session_path, remote: true, :'data-toggle' => 'modal', :'data-target' => '#signInModal' %>
+            <%= link_to t('login'), new_user_session_path %>
           </div>
       <% end %>
       <div class="top-bar-tab top-bar-text">
@@ -104,7 +103,6 @@
       </div>
     </div>
   </div>
-</div>
 </div>
 <!-- Search Section End -->
 
@@ -204,11 +202,11 @@
       </div>
       <div class="email-container">
         <input type="text" class="email-input" placeholder="Enter Your Email Address"/>
+
         <div class="send-email-button right"></div>
       </div>
     </div>
   </div>
-</div>
 </div>
 <!-- Footer navigation End -->
 
@@ -231,15 +229,7 @@
     <%= t('evaluated_by_html') %>
   </div>
 </div>
-<!-- Footer End -->
-
-<!-- Login modals -->
-<%= render 'layouts/sign_in_modal' %>
-<%= render 'layouts/sign_up_modal' %>
-<%= render 'layouts/forgotten_pass_modal' %>
-<%= render 'layouts/resend_confirmation_modal' %>
-<%= render 'layouts/edit_profile_modal' %>
-<!-- Login modals End-->
 
 </body>
+
 </html>
