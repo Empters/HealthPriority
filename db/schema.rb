@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150307190644) do
+ActiveRecord::Schema.define(version: 20150321203051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -112,6 +112,54 @@ ActiveRecord::Schema.define(version: 20150307190644) do
     t.integer  "sort_order",         default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "orders", force: true do |t|
+    t.decimal  "mc_gross"
+    t.integer  "invoice"
+    t.string   "protection_eligibility"
+    t.string   "address_status"
+    t.string   "payer_id"
+    t.decimal  "tax"
+    t.string   "address_street"
+    t.date     "payment_date"
+    t.string   "payment_status"
+    t.string   "charset"
+    t.string   "address_zip"
+    t.string   "first_name"
+    t.string   "address_country_code"
+    t.string   "address_name"
+    t.string   "notify_version"
+    t.string   "custom"
+    t.string   "payer_status"
+    t.string   "business"
+    t.string   "address_country"
+    t.string   "address_city"
+    t.integer  "quantity"
+    t.string   "verify_sign"
+    t.string   "payer_email"
+    t.string   "txn_id"
+    t.string   "payment_type"
+    t.string   "last_name"
+    t.string   "address_state"
+    t.string   "receiver_email"
+    t.string   "receiver_id"
+    t.string   "pending_reason"
+    t.string   "txn_type"
+    t.string   "item_name"
+    t.string   "mc_currency"
+    t.integer  "item_number"
+    t.string   "residence_country"
+    t.integer  "test_ipn"
+    t.decimal  "handling_amount"
+    t.string   "transaction_subject"
+    t.string   "payment_gross"
+    t.decimal  "shipping"
+    t.string   "ipn_track_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "payment_id"
+    t.decimal  "mc_fee"
   end
 
   create_table "payments", force: true do |t|
