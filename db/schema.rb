@@ -218,7 +218,7 @@ ActiveRecord::Schema.define(version: 20150325162359) do
     t.integer "related_id", null: false
   end
 
-  create_table "product_review", force: true do |t|
+  create_table "product_reviews", force: true do |t|
     t.integer  "product_id",  null: false
     t.integer  "customer_id"
     t.string   "author"

@@ -25,10 +25,20 @@
 
         <%= @html %>
 
+        <div class="col-md-6 col-xs-12 perfect_skin_banner"></div>
+        <div class="col-md-6 col-xs-12 medical_banner"></div>
+
       </div>
       <!-- Payment data End -->
 
     </div>
+
+    <!-- Last Visited Products -->
+    <div class="row">
+      <%= render partial: 'home/last_visited_products', locals: {title: t('last_visited_products'), products: last_visit_products} %>
+    </div>
+    <!-- Last Visited Products End -->
+
   </div>
 </div>
 

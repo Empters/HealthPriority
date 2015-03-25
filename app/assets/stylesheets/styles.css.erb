@@ -909,7 +909,7 @@ select.contact-input {
     border: solid #BBD1A1 1px;
 }
 
-.account-container{
+.account-container {
     margin: 5px 15px;
     padding-bottom: 5px;
 }
@@ -1119,7 +1119,6 @@ body {
     background-size: contain;
     background-position: center;
     height: 70px;
-    cursor: pointer;
 }
 
 .dhl-banner {
@@ -1230,8 +1229,28 @@ body {
     height: 141px;
 }
 
-.compiled_sets_banner:hover {
+.perfect_skin_banner, .medical_banner {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    margin-top: 5px;
+    height: 141px;
+}
+
+.perfect_skin_banner {
+    background-image: url("/assets/perfect_skin_banner.png");
+}
+
+.medical_banner {
+    background-image: url("/assets/medical_banner.png");
+}
+
+.compiled_sets_banner:hover, .perfect_skin_banner:hover, .medical_banner:hover {
     cursor: pointer;
+}
+
+.last_visited_products {
+    margin: 10px 0;
 }
 
 span.twitter-typeahead .tt-dropdown-menu {
@@ -1270,6 +1289,7 @@ span.twitter-typeahead {
 .rate {
     cursor: pointer;
 }
+
 .rate:hover {
     background-image: url("<%= image_path 'product-page-star-active.png' %>");
 }
