@@ -57,7 +57,7 @@ class Product < ActiveRecord::Base
 
   def average_rating
     begin
-      (product_reviews.map { |x| x.rating }.inject(:+) / product_reviews.size).round
+      ((product_reviews.map { |x| x.rating }.inject(:+)).to_d / product_reviews.size).round
     rescue
       0
     end

@@ -1266,3 +1266,14 @@ span.twitter-typeahead {
 .block a {
     display: block;
 }
+
+.rate {
+    cursor: pointer;
+}
+.rate:hover {
+    background-image: url("<%= image_path 'product-page-star-active.png' %>");
+}
+
+.rate.active:hover {
+    background-image: url("<%= image_path 'product-page-star-inactive.png' %>");
+}

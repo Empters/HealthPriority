@@ -48,6 +48,7 @@ Rails.application.routes.draw do
   post '/payments/hook' => 'payments#hook'
 
   get '/special_offers/change_page/:page_number' => 'special_offers#change_page'
+  post '/products/:product/rate/' => 'products#rate'
 
   resources :payments
   resources :products

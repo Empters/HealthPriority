@@ -64,34 +64,8 @@
           <%= t('you_are_saving') %>: £ <%= @product.price * 0.2 %> (20%)
         </div>
 
-        <div class="product-reviews-container">
-          <div class="product-rating left">
-            <div class="star-rating">
-              <div class="star" data-rating="1"></div>
-              <div class="star" data-rating="2"></div>
-              <div class="star" data-rating="3"></div>
-              <div class="star" data-rating="4"></div>
-              <div class="star" data-rating="5"></div>
-              <!-- Place the product's rating in the div below -->
-              <div class="hidden rating-value">3</div>
-            </div>
-          </div>
-          <div class="product-reviews left"><a href="#">12 Reviews</a></div>
-          <div class="product-in-stock right"><%= t('in_stock') %>:
-            <div class="stock"> <%= @product.isInStock? && !@product.stock_status.nil? ? @product.stock_status.name : 'No' %></div>
-          </div>
-          <div class="clearfix"></div>
-          <div class="qty-add-container">
-            <div class="quantity-container">
-              <div class="text-center"><%= t('qty') %></div>
-              <div class="quantity">
-                <%= @product.quantity %>
-              </div>
-            </div>
-            <div class="add-to-cart-container">
-              <%= link_to t('add_to_cart'), {:controller => :shopping_carts, :action => :add_to_shopping_cart, :id => @product.id, :quantity => 1, :remote => true}, {:class => 'button green'} %>
-            </div>
-          </div>
+        <div class="product-reviews-container" id="product-reviews-container">
+          <%= render :partial => 'product_review', locals: {product: @product} %>
         </div>
       </div>
       <!-- Product's basic info end -->
@@ -157,36 +131,8 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <div class="product-review-stars-container">
-          <div class="product-reviews-container distinct">
-            <div class="product-rating">
-              <div class="star-rating">
-                <div class="star" data-rating="1"></div>
-                <div class="star" data-rating="2"></div>
-                <div class="star" data-rating="3"></div>
-                <div class="star" data-rating="4"></div>
-                <div class="star" data-rating="5"></div>
-                <!-- Place the product's rating in the div below -->
-                <div class="hidden rating-value"><%= @product.average_rating %></div>
-                <div class="product-reviews"><a href="#">(<%= @product.product_reviews.size %> <%= t('reviews') %>)</a>
-                </div>
-              </div>
-            </div>
-
-            <% @product.product_reviews.group_by(&:rating).each do |group| %>
-                <div class="product-reviews-distinct-container">
-                  <div class="product-review-star">
-                    <div class="star-name"><%= group[1][0].rating %> <%= t('stars') %></div>
-                    <div class="star-percentage">
-                      <!-- Fill the percentage below -->
-                      <div class="star-percentage-cover" style="width: <%= group[1][0].rating * 20 %>%;"></div>
-                    </div>
-                    <div class="star-count">(<%= group.size %>)</div>
-                  </div>
-                </div>
-            <% end %>
-
-          </div>
+        <div class="product-review-stars-container" id="product-review-stars-container">
+          <%= render :partial => 'full_review', locals: {product: @product} %>
         </div>
       </div>
     </div>
