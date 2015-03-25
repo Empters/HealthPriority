@@ -22,7 +22,7 @@
 
 /* Get application url */
 function getUrlRoot() {
-    return 'http://' + location.host
+    return $(location).attr('origin');
 }
 
 /* Add jquery extension method */
@@ -220,4 +220,5 @@ $(document).ready(function () {
     initCountryCascadeDropDown();
 
     show_notifications();
+
 });

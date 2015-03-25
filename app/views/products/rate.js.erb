@@ -1,0 +1,4 @@
+$("#product-reviews-container").html($("<%= escape_javascript render('products/product_review', :product => @product) %>"));
+$("#product-review-stars-container").html($("<%= escape_javascript render('products/full_review', :product => @product) %>"));
+
+initStarRatings()
