@@ -76,50 +76,77 @@
       <div class="col-md-12 product-details-container" role="tabpanel">
         <ul class="nav nav-tabs product-details-tab-container" role="tablist">
           <li role="presentation" class="product-details-tab active">
-            <a href="#home" aria-controls="home" role="tab" data-toggle="tab" class="product_tab"><%= t('product_overview') %></a>
+            <a href="#home" aria-controls="home" role="tab" data-toggle="tab"><%= t('product_overview') %></a>
           </li>
           <li role="presentation" class="product-details-tab">
-            <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" class="product_tab"><%= t('full_description') %></a>
+            <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><%= t('full_description') %></a>
           </li>
         </ul>
         <div class="details-content-container">
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="home">
 
-              <div class="details-header"><%= t('product_benefits') %></div>
-              <div style="word-wrap: break-word; width: auto;">
-                <%= @product.benefits %>
-              </div>
-              <br/>
+              <% if !@product.benefits.nil? %>
+                  <div class="row">
+                    <div class="details-header"><%= t('product_benefits') %></div>
+                    <div style="word-wrap: break-word; width: auto;">
+                      <%= @product.benefits %>
+                    </div>
+                  </div>
+              <% end %>
 
-              <div class="details-header"><%= t('product_ingredients') %></div>
-              <div style="word-wrap: break-word; width: auto;">
-                <%= @product.ingredients %>
-              </div>
-              <br/>
+              <% if !@product.ingredients.nil? %>
+                  <div class="row">
+                    <div class="details-header"><%= t('product_ingredients') %></div>
+                    <div style="word-wrap: break-word; width: auto;">
+                      <%= @product.ingredients %>
+                    </div>
+                  </div>
+              <% end %>
 
-              <div class="details-header"><%= t('product_direction') %></div>
-              <div style="word-wrap: break-word; width: auto;">
-                <%= @product.direction %>
-              </div>
+              <% if !@product.direction.nil? %>
+                  <div class="row">
+                    <div class="details-header"><%= t('product_direction') %></div>
+                    <div style="word-wrap: break-word; width: auto;">
+                      <%= @product.direction %>
+                    </div>
+                  </div>
+              <% end %>
 
-              <div style="word-wrap: break-word; width: auto;">
-                <%= @product.direction %>
+              <div class="row delivery-panel">
+                <div class="col-md-6">
+                  <div class="delivery-image left"></div>
+                  <div class="delivery-text">*Deliveries are made by Royal Mail for UK orders.</div>
+                </div>
+                <div class="col-md-6">
+                  <div class="delivery-post-office left"></div>
+                  <div class="delivery-text">*For outside UK orders, deliveries are made by national post offices to your door.
+                  </div>
+                </div>
               </div>
 
             </div>
 
             <div role="tabpanel" class="tab-pane" id="profile">
-              <div class="details-header"><%= t('full_description_of_the_product') %></div>
-              <div style="word-wrap: break-word; width: auto;">
-                <%= @product.description %>
-              </div>
-              <br/>
 
-              <div class="details-header"><%= t('manufacturing_company') %></div>
-              <div style="word-wrap: break-word; width: auto;">
-                <%= @product.manufacturer.nil? ? '' : @product.manufacturer.name %>
-              </div>
+              <% if !@product.description.nil? %>
+                  <div class="row">
+                    <div class="details-header"><%= t('full_description_of_the_product') %></div>
+                    <div style="word-wrap: break-word; width: auto;">
+                      <%= @product.description %>
+                    </div>
+                  </div>
+              <% end %>
+
+              <% if !@product.manufacturer.nil? %>
+                  <div class="row">
+                    <div class="details-header"><%= t('manufacturing_company') %></div>
+                    <div style="word-wrap: break-word; width: auto;">
+                      <%= @product.manufacturer.name %>
+                    </div>
+                  </div>
+              <% end %>
+
             </div>
           </div>
         </div>
