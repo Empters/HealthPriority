@@ -18,10 +18,13 @@
           <div class="col-md-6 col-md-offset-3">
             <%= f.email_field :email, autofocus: true, class: 'checkout-input', placeholder: t('email') %>
           </div>
+
           <div class="col-md-6 col-md-offset-3 text-center">
             <%= f.submit t('send_instructions'), class: 'button green submit-button' %>
           </div>
+
         </div>
+
     <% end %>
 
     <%= render 'users/shared/links' %>
