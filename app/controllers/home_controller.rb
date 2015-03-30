@@ -31,7 +31,7 @@ class HomeController < ApplicationController
   def about_us
     add_breadcrumb t('about')
 
-    @title = 'About'
+    @title = t('about')
     @html = if @web_store_detail.nil? then
               ''
             else
@@ -49,7 +49,7 @@ class HomeController < ApplicationController
   def contacts
     add_breadcrumb t('contacts')
 
-    @title = 'Contacts'
+    @title = t('contacts')
     @html = if @web_store_detail.nil? then
               ''
             else
@@ -67,7 +67,7 @@ class HomeController < ApplicationController
   def faq
     add_breadcrumb t('faq')
 
-    @title = 'FAQ'
+    @title = t('faq')
     @html = if @web_store_detail.nil? then
               ''
             else
@@ -85,7 +85,7 @@ class HomeController < ApplicationController
   def our_partners
     add_breadcrumb t('our_partners')
 
-    @title = 'Our partners'
+    @title = t('our_partners')
     @html = if @web_store_detail.nil? then
               ''
             else
@@ -137,26 +137,18 @@ class HomeController < ApplicationController
 
   # GET help_center page
   def help_center
-    add_breadcrumb t('help_center')
-
-    @title = t('help_center')
-
     respond_to do |format|
       format.html {
-        render 'home/render_html'
+        render 'home/help_center'
       }
     end
   end
 
   # GET price_details page
   def price_details
-    add_breadcrumb t('what_is_included_in_the_price')
-
-    @title = t('what_is_included_in_the_price')
-
     respond_to do |format|
       format.html {
-        render 'home/render_html'
+        render 'home/price_details'
       }
     end
   end

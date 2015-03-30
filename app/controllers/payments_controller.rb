@@ -6,7 +6,7 @@ class PaymentsController < ApplicationController
   before_action :init_user
 
   def show
-    add_breadcrumb 'Payment'
+    add_breadcrumb t('payment')
     @payment = Payment.find params[:id]
   end
 

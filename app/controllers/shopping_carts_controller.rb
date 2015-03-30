@@ -11,7 +11,7 @@ class ShoppingCartsController < ApplicationController
   def add_to_shopping_cart
     product_quantity = params[:quantity].to_i()
     shopping_cart.add_product_to_cart(@product, product_quantity)
-    flash[:success] = product_quantity > 0 ? 'The product is added successful!' : 'The product is removed successful!'
+    flash[:success] = product_quantity > 0 ? t('add_product_successful_message') : t('remove_product_successful_message')
     respond_to do |format|
       format.js {
         render 'shopping_carts/refresh_shopping_cart'
@@ -34,7 +34,7 @@ class ShoppingCartsController < ApplicationController
   # Delete /remove_product
   def remove_product
     shopping_cart.remove_product_from_cart(@product)
-    flash[:success] = 'The product is removed successful!'
+    flash[:success] = t('remove_product_successful_message')
     respond_to do |format|
       format.js {
         render 'shopping_carts/refresh_shopping_cart'

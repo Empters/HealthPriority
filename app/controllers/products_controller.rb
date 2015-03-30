@@ -176,7 +176,7 @@ class ProductsController < ApplicationController
     product_review.product = @product
     product_review.rating = rating
     product_review.ip = request.remote_ip
-    product_review.text = 'Customer Review'
+    product_review.text = t('customer_reviews')
     product_review.status = 1
     product_review.save
     @product_reviews = @product.product_reviews

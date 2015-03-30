@@ -194,23 +194,36 @@ ActiveAdmin.register_page 'Import Products' do
           # Search product by name
           product = Product.where('lower(name) = ?', directory.downcase).first
           unless product.nil?
-            glob_args = File.join("#{directory}", 'main.jpg')
-            entry_main_image = zip_file.glob(glob_args).first
-            unless entry_main_image.nil?
-              product.image = get_image(entry_main_image)
-            end
-
             images = Array.new
-            glob_args = File.join("#{directory}", '*.jpg')
+            glob_args = File.join("#{directory}", '*.*')
             entry_images = zip_file.glob(glob_args)
-            entry_images.select { |n| !n.name.start_with?('main.') }.each do |entry_image|
-              images << ProductImage.create!(
-                  product: product,
-                  image: get_image(entry_image)
-              )
+            entry_images.select { |n| n.name.downcase.match('^.*\.(jpg|jpeg|png|gif)$') }.each do |entry_image|
+              puts entry_image.name
+              mimeType = MIME::Types.type_for(entry_image.name).to_s
+              if entry_image.name.downcase.match('^.*main\.(jpg|jpeg|png|gif)$')
+                puts "Insert main image for product: #{product.name} with name: #{entry_image.name}"
+                product.image = get_image(entry_image)
+=begin
+                product.image.instance_write(:content_type, mimeType)
+=end
+              else
+                otherImage = ProductImage.create!(
+                    product: product,
+                    image: get_image(entry_image)
+                )
+
+=begin
+                otherImage.image.instance_write(:content_type, mimeType)
+=end
+                images << otherImage
+              end
             end
 
-            product.product_images = images
+            unless images.empty?
+              puts "Insert images for: #{product.name}"
+              product.product_images = images
+            end
+
             product.save!
           end
         end

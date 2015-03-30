@@ -88,3 +88,6 @@ gem 'rubyzip', '~> 1.1.6'
 
 # Validate form gem
 gem 'dynamic_form'
+
+# Localization library
+gem 'rails-i18n'

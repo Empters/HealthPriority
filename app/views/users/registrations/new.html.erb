@@ -14,7 +14,7 @@
         <%= f.error_messages %>
 
         <div class="cart-title">
-          Profile data
+          <%= t('profile_data') %>
         </div>
 
         <div class="row">
@@ -35,29 +35,29 @@
           <div class="col-md-6 col-xs-12">
 
             <div class="cart-title">
-              Person details
+              <%= t('personal_details') %>
             </div>
 
-            <%= f.select :gender_id, Gender.all.collect { |p| [p.name, p.id] }, {:prompt => '* Gender'}, {class: 'checkout-input'} %>
-            <%= f.text_field :first_name, class: 'checkout-input', placeholder: '* First Name' %>
-            <%= f.text_field :last_name, class: 'checkout-input', placeholder: '* Last Name' %>
+            <%= f.select :gender_id, Gender.all.collect { |p| [p.name, p.id] }, {:prompt => "* #{t('gender')}"}, {class: 'checkout-input'} %>
+            <%= f.text_field :first_name, class: 'checkout-input', placeholder: "* #{t('first_name')}" %>
+            <%= f.text_field :last_name, class: 'checkout-input', placeholder: "* #{t('last_name')}" %>
             <%= f.phone_field :phone, class: 'checkout-input', placeholder: "* #{t('phone')}" %>
-            <%= f.phone_field :fax, class: 'checkout-input', placeholder: 'Fax' %>
+            <%= f.phone_field :fax, class: 'checkout-input', placeholder: t('fax') %>
 
           </div>
 
           <div class="col-md-6 col-xs-12">
 
             <div class="cart-title">
-              Address
+              <%= t('address') %>
             </div>
 
             <%= f.select :country_id, Country.all.collect { |p| [p.name, p.id] }, {:prompt => "* #{t('country')}"}, {id: 'countries_select', class: 'checkout-input'} %>
             <%= f.select :state_id, State.where(country_id: resource.country_id).collect { |p| [p.name, p.id] }, {:prompt => "* #{t('state')}"}, {id: 'states_select', class: 'checkout-input'} %>
             <%= f.text_field :city, class: 'checkout-input', placeholder: "* #{t('city')}" %>
             <%= f.text_field :postal_code, class: 'checkout-input', placeholder: "* #{t('postal_code')}" %>
-            <%= f.text_field :address, class: 'checkout-input', placeholder: '* Address 1' %>
-            <%= f.text_field :second_address, class: 'checkout-input', placeholder: 'Address 2' %>
+            <%= f.text_field :address, class: 'checkout-input', placeholder: "* #{t('address')}" %>
+            <%= f.text_field :second_address, class: 'checkout-input', placeholder: t('address2') %>
 
           </div>
         </div>
