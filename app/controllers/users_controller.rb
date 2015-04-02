@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   # GET /products/1/edit
   def edit
     add_breadcrumb t('my_account'), user_path(@user)
-    add_breadcrumb 'Edit account'
+    add_breadcrumb t('edit_profile')
   end
 
   # POST /products
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to @user, notice: t('update_user_successful_message') }
       end
     end
   end

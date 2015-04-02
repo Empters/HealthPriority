@@ -14,51 +14,54 @@ Rails.application.routes.draw do
   # Init login gem
   devise_for :users, controllers: {:sessions => 'users/sessions', registrations: 'users/registrations', passwords: 'users/passwords', confirmations: 'users/confirmations'}
 
-  get '/home/change_page/:page_number' => 'home#change_page'
-  get '/home/about_us' => 'home#about_us', :as => 'about_us'
-  get '/home/contacts' => 'home#contacts', :as => 'contacts'
-  get '/home/faq' => 'home#faq', :as => 'faq'
-  get '/home/our_partners' => 'home#our_partners', :as => 'our_partners'
-  get '/home/delivery_methods' => 'home#delivery_methods', :as => 'delivery_methods'
-  get '/home/payment_methods' => 'home#payment_methods', :as => 'payment_methods'
-  get '/home/help_center' => 'home#help_center', :as => 'help_center'
-  get '/home/price_details' => 'home#price_details', :as => 'price_details'
-  get '/home/update_states', :as => 'update_states'
-  post '/home/send_message' => 'home#send_message'
+  get '/:locale/home/change_page/:page_number', to: 'home#change_page'
+  get '/:locale/home/about_us', to: 'home#about_us', :as => 'about_us'
+  get '/:locale/home/contacts', to: 'home#contacts', :as => 'contacts'
+  get '/:locale/home/faq', to: 'home#faq', :as => 'faq'
+  get '/:locale/home/our_partners', to: 'home#our_partners', :as => 'our_partners'
+  get '/:locale/home/delivery_methods', to: 'home#delivery_methods', :as => 'delivery_methods'
+  get '/:locale/home/payment_methods', to: 'home#payment_methods', :as => 'payment_methods'
+  get '/:locale/home/help_center', to: 'home#help_center', :as => 'help_center'
+  get '/:locale/home/price_details', to: 'home#price_details', :as => 'price_details'
+  get '/:locale/home/update_states', to: 'home#update_states', :as => 'update_states'
+  post '/home/send_message', to: 'home#send_message'
 
-  get '/products/search/(:token)(/category/:category)', to: 'products#search', :as => 'search'
-  get '/products/autocomplete/:query', to: 'products#autocomplete'
-  get '/products/filter/:category' => 'products#filter', :as => 'filter'
-  get '/products/brand/:brand' => 'products#brand', :as => 'brand'
-  get '/products/price/:range' => 'products#price', :as => 'price'
-  get '/products/change_page/:page_number' => 'products#change_page'
+  get '/:locale/products/search/(:token)(/category/:category)', to: 'products#search', :as => 'search'
+  get '/:locale/products/autocomplete/:query', to: 'products#autocomplete'
+  get '/:locale/products/filter/:category', to: 'products#filter', :as => 'filter'
+  get '/:locale/products/brand/:brand', to: 'products#brand', :as => 'brand'
+  get '/:locale/products/price/:range', to: 'products#price', :as => 'price'
+  get '/:locale/products/change_page/:page_number', to: 'products#change_page'
 
-  get '/shopping_carts/pay', to: 'shopping_carts#pay'
-  get '/shopping_carts/success', to: 'shopping_carts#success'
-  get '/shopping_carts/cancel', to: 'shopping_carts#cancel'
-  get '/shopping_carts/payments', to: 'shopping_carts#payments', :as => 'payments_list'
-  get '/shopping_carts/add_to_shopping_cart/:id&:quantity' => 'shopping_carts#add_to_shopping_cart'
+  get '/:locale/shopping_carts/pay', to: 'shopping_carts#pay'
+  get '/:locale/shopping_carts/success', to: 'shopping_carts#success'
+  get '/:locale/shopping_carts/cancel', to: 'shopping_carts#cancel'
+  get '/:locale/shopping_carts/payments', to: 'shopping_carts#payments', :as => 'payments_list'
+  get '/:locale/shopping_carts/add_to_shopping_cart/:id&:quantity', to: 'shopping_carts#add_to_shopping_cart'
   post '/shopping_carts/payments', to: 'shopping_carts#pay', :as => 'pay'
-  post '/shopping_carts/set_product_count' => 'shopping_carts#set_product_count'
-  delete '/shopping_carts/remove_product' => 'shopping_carts#remove_product'
+  post '/shopping_carts/set_product_count', to: 'shopping_carts#set_product_count'
+  delete '/shopping_carts/remove_product', to: 'shopping_carts#remove_product'
 
-  get '/payments/show/:id' => 'payments#show'
-  post '/payments/show/:id' => 'payments#show'
-  post '/show/payments/:id' => 'payments#show'
-  post '/payments/hook' => 'payments#hook'
+  get '/:locale/payments/show/:id', to: 'payments#show'
+  post '/payments/show/:id', to: 'payments#show'
+  post '/show/payments/:id', to: 'payments#show'
+  post '/payments/hook', to: 'payments#hook'
 
-  get '/special_offers/change_page/:page_number' => 'special_offers#change_page'
-  post '/products/:product/rate/' => 'products#rate'
+  get '/:locale/special_offers/change_page/:page_number', to: 'special_offers#change_page'
+  post '/products/:product/rate/', to: 'products#rate'
 
-  resources :payments
-  resources :products
-  resources :product_images
-  resources :product_reviews
-  resources :product_discounts
-  resources :manufacturers
-  resources :categories, only: :index
-  resources :shopping_carts, only: :index
-  resources :special_offers, only: :index
-  resources :only_organics, only: :index
-  resources :users
+  scope '/:locale', locale: /en|bg/ do
+    resources :payments
+    resources :products
+    resources :product_images
+    resources :product_reviews
+    resources :product_discounts
+    resources :manufacturers
+    resources :categories, only: :index
+    resources :shopping_carts, only: :index
+    resources :special_offers, only: :index
+    resources :only_organics, only: :index
+    resources :users
+  end
+
 end

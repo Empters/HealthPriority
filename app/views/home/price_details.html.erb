@@ -1,0 +1,21 @@
+<div class="container-background">
+  <div class="container nopadding main-content">
+
+    <!-- Categories -->
+    <div class="col-md-3 hidden-xs">
+      <%= render 'categories_pane', is_ajax: false %>
+    </div>
+    <!-- Categories End -->
+
+    <!-- What include in price data -->
+    <div class="col-md-9 col-xs-12">
+
+      <div class="title-banner">
+        <%= t('what_is_included_in_the_price') %>
+      </div>
+
+      <div class="content-container price-details"></div>
+    </div>
+
+  </div>
+</div>
