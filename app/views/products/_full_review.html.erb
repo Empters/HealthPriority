@@ -12,16 +12,15 @@
       </div>
     </div>
   </div>
-
-  <% product.product_reviews.group_by(&:rating).each do |group| %>
+  <% product.product_reviews.group_by(&:rating).sort.each do |group| %>
       <div class="product-reviews-distinct-container">
         <div class="product-review-star">
-          <div class="star-name"><%= group[1][0].rating %> <%= t('stars') %></div>
+          <div class="star-name"><%= group[0] %> <%= t('stars') %></div>
           <div class="star-percentage">
             <!-- Fill the percentage below -->
-            <div class="star-percentage-cover" style="width: <%= group[1][0].rating * 20 %>%;"></div>
+            <div class="star-percentage-cover" style="width: <%= ((group[1].size.to_d / product.product_reviews.size)*100) %>%;"></div>
           </div>
-          <div class="star-count">(<%= group.size %>)</div>
+          <div class="star-count">(<%= group[1].size %>)</div>
         </div>
       </div>
   <% end %>
