@@ -108,31 +108,8 @@
 
 <!-- Main Navigation -->
 <nav class="main-nav-wrapper">
-  <!-- Nav bar for phones -->
-  <div class="navbar navbar-default visible-xs phone-nav">
-    <div class="navbar-header" data-toggle="collapse" data-target=".phone-main-nav">
-      <div class="phone-nav-title"><%= t('menu') %></div>
-      <button data-target=".phone-main-nav" class="navbar-toggle">
-        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-      </button>
-    </div>
-
-    <div class="collapse navbar-collapse nopadding phone-main-nav">
-      <ul class="nav navbar navbar-left nomargin">
-        <li class="nav-item-phone text-center"><%= link_to t('home'), root_path, :data => {:no_turbolink => true}, :class => 'top-bar-text' %></li>
-        <li class="nav-item-phone text-center"><%= link_to t('about_us'), about_us_path, :class => 'top-bar-text' %></li>
-        <li class="nav-item-phone text-center"><%= link_to t('products'), categories_path, :class => 'top-bar-text' %></li>
-        <li class="nav-item-phone text-center"><%= link_to t('special_offers'), special_offers_path, :class => 'top-bar-text' %></li>
-        <li class="nav-item-phone text-center"><%= link_to t('payment_methods'), payment_methods_path, :class => 'top-bar-text' %></li>
-        <li class="nav-item-phone text-center"><%= link_to t('shipping_details'), delivery_methods_path, :class => 'top-bar-text' %></li>
-        <li class="nav-item-phone text-center"><%= link_to t('our_partners'), our_partners_path, :class => 'top-bar-text' %></li>
-        <li class="nav-item-phone text-center"><%= link_to t('contacts'), contacts_path, :class => 'top-bar-text' %></li>
-      </ul>
-    </div>
-  </div>
-  <!-- Nav bar for phones end -->
   <!-- nav bar large displays -->
-  <div class="container text-center hidden-xs">
+  <div class="container text-center">
     <div class="main-nav-tab">
       <%= link_to t('home'), root_path, :data => {:no_turbolink => true}, :class => 'top-bar-text' %>
     </div>
