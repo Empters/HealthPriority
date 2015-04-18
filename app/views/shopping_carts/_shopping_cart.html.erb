@@ -1,6 +1,6 @@
 <div class="cart-info-section">
   <div class="cart-amount"><%= shopping_cart.total_products_count %></div>
-  <%= link_to '', shopping_carts_path, :class => 'cart' %>
+  <%= link_to '', shopping_carts_path, :class => 'cart', :title => 'Shopping Cart' %>
   <div class="total-price">
     <div class="total"><%= t('total')%>:</div>
     <div class="price"><%= format('£ %.2f', shopping_cart.total_price) %></div>

@@ -8,11 +8,11 @@
           <!-- Wrapper for slides -->
           <div class="carousel-inner">
             <div class="item active">
-              <img src="<%= @product.image %>" alt="...">
+              <img src="<%= @product.image %>" alt="<%= @product.name %>">
             </div>
             <% @product.product_images.each do |product_image| %>
                 <div class="item">
-                  <img src="<%= product_image.image %>" alt="...">
+                  <img src="<%= product_image.image %>" alt="<%= @product.name %>">
                 </div>
             <% end %>
           </div>
@@ -22,13 +22,13 @@
           <div class="carousel-indicators thumbs row thumbIndicatorsContainer">
             <div class="inline">
               <div data-target="#items-carousel" data-slide-to="0" class="col-md-3 col-xs-3 indicator">
-                <img class="img-responsive" src="<%= @product.image %>" alt="...">
+                <img class="img-responsive" src="<%= @product.image %>" alt="<%= @product.name %>">
               </div>
             </div>
             <% @product.product_images.each.with_index(1) do |product_image, i| %>
                 <div class="inline">
                   <div data-target="#items-carousel" data-slide-to="<%= i %>" class="col-md-3 col-xs-3 indicator">
-                    <img class="img-responsive" src="<%= product_image.image %>" alt="...">
+                    <img class="img-responsive" src="<%= product_image.image %>" alt="<%= @product.name %>">
                   </div>
                 </div>
             <% end %>
@@ -51,7 +51,7 @@
         <div class="product-price"><%= t('old_price') %>:
           <div class="old-price">£ <%= @product.price * 1.2 %></div>
         </div>
-        <div class="product-reviews left"><a href="#">12 <%= t('Reviews') %></a></div>
+        <div class="product-reviews left"><a href="#" title="Reviews">12 <%= t('Reviews') %></a></div>
         <div class="product-in-stock right"><%= t('in_stock') %>:
           <div class="stock"> <%= @product.isInStock? && !@product.stock_status.nil? ? @product.stock_status.name : t('no') %></div>
         </div>
