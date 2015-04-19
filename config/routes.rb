@@ -42,9 +42,8 @@ Rails.application.routes.draw do
   post '/shopping_carts/set_product_count', to: 'shopping_carts#set_product_count'
   delete '/shopping_carts/remove_product', to: 'shopping_carts#remove_product'
 
+  get '/payments/index', to: 'payments#index'
   get '/payments/show/:id', to: 'payments#show'
-  post '/payments/show/:id', to: 'payments#show'
-  post '/show/payments/:id', to: 'payments#show'
   post '/payments/hook', to: 'payments#hook'
 
   get '/special_offers/change_page/:page_number', to: 'special_offers#change_page'

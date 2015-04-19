@@ -142,6 +142,7 @@ bg:
   you_are_saving: 'Спестявате'
   image: 'Изображение'
   quantity: 'Количество'
+  create_date: 'Дата на създаване'
   product: 'Продукти&Категории'
   product_overview: 'Разгледайте продукта'
   product_benefits: 'Ползи от продукта'

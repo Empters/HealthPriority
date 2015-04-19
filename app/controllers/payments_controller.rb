@@ -2,11 +2,18 @@ class PaymentsController < ApplicationController
 
   protect_from_forgery except: [:hook]
 
-  before_action :set_breadcrumb, only: [:show]
+  before_action :set_breadcrumb, only: [:index, :show]
   before_action :init_user
+
+  def index
+    add_breadcrumb t('order_history')
+    @page_title = t('order_history')
+    @payments = @user.nil? ? nil : Payment.where(:user_id => @user.id)
+  end
 
   def show
     add_breadcrumb t('payment')
+    @page_title = t('payment_info')
     @payment = Payment.find params[:id]
   end
 
@@ -60,9 +67,9 @@ class PaymentsController < ApplicationController
 
       @payment.item_name = item_name
       @payment.item_number = item_number
-      # @payment.quantity = total_quantity
+      @payment.quantity = total_quantity
       @payment.amount = shopping_cart.total_price
-      @payment.user = current_user unless user_signed_in?
+      @payment.user = @user
     end
 
     if @payment.valid? && @payment.save

@@ -43,6 +43,7 @@ en:
   you_are_saving: 'You are saving'
   image: 'Image'
   quantity: 'Quantity'
+  create_date: 'Create date'
   product: 'Product'
   product_overview: 'Product Overview'
   product_benefits: 'Product Benefits'
