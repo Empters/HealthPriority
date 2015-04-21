@@ -10,6 +10,8 @@ class ApplicationController < ActionController::Base
 
   after_filter :flash_to_headers
 
+  @page_name = ''
+
 =begin
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale

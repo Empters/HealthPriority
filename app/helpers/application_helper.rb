@@ -86,4 +86,7 @@ module ApplicationHelper
     shopping_cart.add_product_to_cart(product, quantity)
   end
 
+  def set_page_title(title)
+    @page_name = title
+  end
 end
