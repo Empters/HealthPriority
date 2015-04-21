@@ -1,0 +1,54 @@
+<div class="container-background">
+  <div class="container main-content">
+    <div class="path">
+      <%= render_breadcrumbs :separator => ' / ' %>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="cart-title"><%= t('sitemap') %></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <%= t('products')%>
+        <%= link_to t('products'), products_path, :title => 'Visit Products' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <%= t('shopping_cart')%>
+        <%= link_to t('shopping_cart'), shopping_carts_path, :title => 'Visit Shopping Cart' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <%= t('contacts')%>
+        <%= link_to t('contacts'), contacts_path, :title => 'Visit Contacts' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <%= t('special_offers')%>
+        <%= link_to t('special_offers'), special_offers_path, :title => 'Visit Special Offers' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <%= t('about_us')%>
+        <%= link_to t('about_us'), about_us_path, :title => 'Visit Special Offers' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <%= t('our_partners')%>
+        <%= link_to t('our_partners'), our_partners_path, :title => 'Visit Our Partners' %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Last Visited Products End -->
+  </div>
+</div>
