@@ -5,7 +5,7 @@
   <ul class="categories-list">
     <% @price_ranges.each do |price_range| %>
         <li class="category_li">
-          <%= link_to format('%{price}', {:price => ('£'+price_range[0].to_s + ' - ' + '£'+price_range[1].to_s)}), price_path(price_range[2]), remote: true %>
+          <%= link_to format('%{price}', {:price => ('£'+price_range[0].to_s + ' - ' + '£'+price_range[1].to_s)}), price_path(price_range[2]), remote: true, :title => 'Price range' %>
         </li>
     <% end %>
   </ul>

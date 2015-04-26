@@ -60,5 +60,5 @@ Rails.application.routes.draw do
   resources :special_offers, only: :index
   resources :only_organics, only: :index
   resources :users
-
+  resources :sitemaps, only: :index
 end
