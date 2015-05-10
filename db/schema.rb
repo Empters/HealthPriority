@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150325162359) do
+ActiveRecord::Schema.define(version: 20150426143840) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,16 +92,6 @@ ActiveRecord::Schema.define(version: 20150325162359) do
     t.datetime "updated_at"
   end
 
-  create_table "items", force: true do |t|
-    t.integer  "payment_id"
-    t.integer  "product_id"
-    t.string   "name"
-    t.decimal  "price"
-    t.string   "quantity"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "manufacturers", force: true do |t|
     t.string   "name",                           null: false
     t.string   "image_file_name"
@@ -114,78 +104,66 @@ ActiveRecord::Schema.define(version: 20150325162359) do
     t.datetime "updated_at"
   end
 
-  create_table "orders", force: true do |t|
-    t.decimal  "mc_gross"
-    t.integer  "invoice"
-    t.string   "protection_eligibility"
-    t.string   "address_status"
-    t.string   "payer_id"
-    t.decimal  "tax"
-    t.string   "address_street"
-    t.date     "payment_date"
-    t.string   "payment_status"
-    t.string   "charset"
-    t.string   "address_zip"
-    t.string   "first_name"
-    t.string   "address_country_code"
-    t.string   "address_name"
-    t.string   "notify_version"
-    t.string   "custom"
-    t.string   "payer_status"
-    t.string   "business"
-    t.string   "address_country"
-    t.string   "address_city"
-    t.integer  "quantity"
-    t.string   "verify_sign"
-    t.string   "payer_email"
-    t.string   "txn_id"
-    t.string   "payment_type"
-    t.string   "last_name"
-    t.string   "address_state"
-    t.string   "receiver_email"
-    t.string   "receiver_id"
-    t.string   "pending_reason"
-    t.string   "txn_type"
-    t.string   "item_name"
-    t.string   "mc_currency"
-    t.integer  "item_number"
-    t.string   "residence_country"
-    t.integer  "test_ipn"
-    t.decimal  "handling_amount"
-    t.string   "transaction_subject"
-    t.string   "payment_gross"
-    t.decimal  "shipping"
-    t.string   "ipn_track_id"
+  create_table "order_histories", force: true do |t|
+    t.integer  "order_id"
+    t.integer  "order_status_id"
+    t.text     "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "payment_id"
-    t.decimal  "mc_fee"
   end
 
-  create_table "payments", force: true do |t|
+  create_table "order_products", force: true do |t|
+    t.integer  "order_id"
+    t.integer  "product_id"
+    t.string   "name"
+    t.integer  "quantity"
+    t.decimal  "price"
+    t.decimal  "total"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "order_statuses", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "orders", force: true do |t|
     t.integer  "user_id"
-    t.string   "first_name",                     null: false
-    t.string   "last_name",                      null: false
-    t.integer  "gender_id",                      null: false
-    t.integer  "country_id",                     null: false
+    t.string   "first_name",                           null: false
+    t.string   "last_name",                            null: false
+    t.integer  "gender_id",                            null: false
+    t.integer  "country_id",                           null: false
     t.integer  "state_id"
-    t.string   "address",                        null: false
+    t.string   "address",                              null: false
     t.string   "second_address"
     t.string   "city"
     t.string   "postal_code"
-    t.string   "email",                          null: false
-    t.string   "phone",                          null: false
+    t.string   "email",                                null: false
+    t.string   "phone",                                null: false
     t.string   "fax"
-    t.decimal  "amount"
-    t.integer  "quantity"
-    t.string   "item_name"
-    t.integer  "item_number"
+    t.integer  "order_status_id",        default: 1,   null: false
+    t.decimal  "total"
     t.string   "description"
-    t.string   "payment_method",                 null: false
-    t.string   "status",         default: "new", null: false
-    t.string   "currency",       default: "£",   null: false
-    t.string   "transaction_id"
-    t.datetime "purchased_at"
+    t.string   "currency",               default: "£", null: false
+    t.string   "ip"
+    t.string   "payment_method",                       null: false
+    t.string   "payment_status"
+    t.date     "payment_date"
+    t.integer  "payment_transaction_id"
+    t.string   "payer_id"
+    t.string   "payer_first_name"
+    t.string   "payer_last_name"
+    t.string   "payer_country"
+    t.string   "payer_state"
+    t.string   "payer_address"
+    t.string   "payer_second_address"
+    t.string   "payer_city"
+    t.string   "payer_postal_code"
+    t.string   "payer_email"
+    t.string   "payer_phone"
+    t.string   "payer_fax"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

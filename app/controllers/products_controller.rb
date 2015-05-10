@@ -49,8 +49,8 @@ class ProductsController < ApplicationController
       end
     end
 
-    if @payment.save
-      redirect_to @payment.paypal_url
+    if @order.save
+      redirect_to @order.paypal_url
     else
       render nothing: true
     end

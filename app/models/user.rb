@@ -9,9 +9,13 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :payments
+  has_many :orders
 
   has_one :country
   has_one :state
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 
 end

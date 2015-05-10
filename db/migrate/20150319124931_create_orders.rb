@@ -1,47 +1,48 @@
 class CreateOrders < ActiveRecord::Migration
   def change
     create_table :orders do |t|
-      t.decimal :mc_gross
-      t.integer :invoice
-      t.string :protection_eligibility
-      t.string :address_status
-      t.string :payer_id
-      t.decimal :tax
-      t.string :address_street
-      t.date :payment_date
+
+      # User data
+      t.integer :user_id
+      t.string :first_name, :null => false
+      t.string :last_name, :null => false
+      t.integer :gender_id, :null => false
+      t.integer :country_id, :null => false
+      t.integer :state_id
+      t.string :address, :null => false
+      t.string :second_address
+      t.string :city
+      t.string :postal_code
+      t.string :email, :null => false
+      t.string :phone, :null => false
+      t.string :fax
+
+      # Order data
+      t.integer :order_status_id, default: 1, :null => false
+      t.decimal :total
+      t.string :description
+      t.string :currency, default: '£', :null => false
+      t.string :ip
+
+      # Payment data
+      t.string :payment_method, :null => false
       t.string :payment_status
-      t.string :charset
-      t.string :address_zip
-      t.string :first_name
-      t.string :address_country_code
-      t.string :address_name
-      t.string :notify_version
-      t.string :custom
-      t.string :payer_status
-      t.string :business
-      t.string :address_country
-      t.string :address_city
-      t.integer :quantity
-      t.string :verify_sign
+      t.date :payment_date
+      t.integer :payment_transaction_id
+
+      # Payer data
+      t.string :payer_id
+      t.string :payer_first_name
+      t.string :payer_last_name
+      t.string :payer_country
+      t.string :payer_state
+      t.string :payer_address
+      t.string :payer_second_address
+      t.string :payer_city
+      t.string :payer_postal_code
       t.string :payer_email
-      t.string :txn_id
-      t.string :payment_type
-      t.string :last_name
-      t.string :address_state
-      t.string :receiver_email
-      t.string :receiver_id
-      t.string :pending_reason
-      t.string :txn_type
-      t.string :item_name
-      t.string :mc_currency
-      t.integer :item_number
-      t.string :residence_country
-      t.integer :test_ipn
-      t.decimal :handling_amount
-      t.string :transaction_subject
-      t.string :payment_gross
-      t.decimal :shipping
-      t.string :ipn_track_id
+      t.string :payer_phone
+      t.string :payer_fax
 
       t.timestamps
     end

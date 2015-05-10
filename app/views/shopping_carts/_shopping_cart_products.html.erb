@@ -10,8 +10,8 @@
 
     <div class="row">
       <div class="col-md-12 buttons-container">
-        <%= link_to t('payment'), new_payment_path, html_options = {class: 'button green right', :title => 'Payment'} %>
-        <%= link_to t('continue_shopping'), root_path, html_options = {class: 'button green right continue-shopping', :title => 'Continue shopping'} %>
+        <%= link_to t('payment'), new_order_path, html_options = {class: 'button green right', :title => t('payment')} %>
+        <%= link_to t('continue_shopping'), root_path, html_options = {class: 'button green right continue-shopping', :title => t('continue_shopping')} %>
       </div>
     </div>
 
@@ -79,7 +79,7 @@
 
     <div class="row">
       <div class="col-md-12 buttons-container">
-        <%= link_to t('payment'), new_payment_path, html_options = {class: 'button green right'} %>
+        <%= link_to t('payment'), new_order_path, html_options = {class: 'button green right'} %>
         <%= link_to t('continue_shopping'), root_path, html_options = {class: 'button green right continue-shopping'} %>
       </div>
     </div>
