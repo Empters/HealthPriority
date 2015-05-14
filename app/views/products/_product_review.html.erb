@@ -18,10 +18,10 @@
   <div class="quantity-container">
     <div class="text-center"><%= t('qty') %></div>
     <div class="quantity">
-      <%= product.quantity %>
+      <%= number_field_tag 'quantity', product.quantity, {:class => 'quantity_input'} %>
     </div>
   </div>
   <div class="add-to-cart-container">
-    <%= link_to t('add_to_cart'), {:controller => :shopping_carts, :action => :add_to_shopping_cart, :id => product.id, :quantity => 1, :remote => true}, {:class => 'button green', :title => 'Add to cart'} %>
+    <%= link_to t('add_to_cart'), {:controller => :shopping_carts, :action => :add_to_shopping_cart, :id => product.id, :quantity => 0, :remote => true}, {:class => 'button green', :title => 'Add to cart', :id => "product_add_to_card"} %>
   </div>
 </div>

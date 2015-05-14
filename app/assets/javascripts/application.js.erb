@@ -189,6 +189,16 @@ function initProductCart(){
     $(document).on("focusout", ".quantity-js", setProductCountToCart);
 }
 
+function add_quantity_to_button() {
+    $('#product_add_to_card').on("click", function() {
+
+        var str = this.href.substring(0, this.href.length - 1);
+        this.href = str + $('#quantity').val();
+
+        console.log('this.href = ', this.href);
+    });
+}
+
 /* Hook document ready - bind js events */
 $(document).ready(function () {
 
@@ -221,4 +231,5 @@ $(document).ready(function () {
 
     show_notifications();
 
+    add_quantity_to_button();
 });
