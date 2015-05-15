@@ -19,10 +19,12 @@ class UsersController < ApplicationController
     add_breadcrumb t('edit_profile')
   end
 
+=begin
   # POST /products
   # POST /products.json
   def create
   end
+=end
 
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json

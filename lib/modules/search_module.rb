@@ -44,7 +44,7 @@ module Modules
       elsif (!token && !category)
         @products ||= Product.all
       elsif !category
-        @products = Product.where("UPPER(name) LIKE :name", {:name => "%" + token.upcase + "%"})
+        @products = Product.where('UPPER(name) LIKE :name or UPPER(description) LIKE :name ', {:name => "%#{token.upcase}%"})
       elsif !token
         @category = Category.find(category)
         if (@category.parent)
