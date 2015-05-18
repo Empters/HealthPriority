@@ -1,11 +1,20 @@
 class UsersController < ApplicationController
 
+# before_filter :configure_sign_up_params, only: [:create]
+# before_filter :configure_account_update_params, only: [:update]
   before_filter :authenticate_user!
+  before_action :set_breadcrumb
   before_action :init_user, :set_breadcrumb
+  before_action :init_params, only: :edit
+
+  def index
+    puts 'index'
+  end
 
   # GET /products/1
   # GET /products/1.json
   def show
+    @title = 'My Account'
     add_breadcrumb t('my_account')
   end
 
@@ -28,7 +37,10 @@ class UsersController < ApplicationController
   # PATCH/PUT /products/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
+      inserted_params = user_params
+      inserted_params[:state_id] = 0 unless inserted_params[:state_id] != ''
+
+      if @user.update(inserted_params)
         format.html { redirect_to @user, notice: t('update_user_successful_message') }
       end
     end
@@ -53,4 +65,15 @@ class UsersController < ApplicationController
     add_breadcrumb t('home'), :root_path
   end
 
+  def init_params
+    @countries = Country.all
+    @genders = Gender.all
+
+    # binding.pry
+    if @user.country.nil?
+      @states = State.all
+    else
+      @states = State.where(:country_id => @user.country.id)
+    end
+  end
 end

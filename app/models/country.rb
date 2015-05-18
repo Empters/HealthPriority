@@ -6,4 +6,5 @@ class Country < ActiveRecord::Base
   # Has many relations
   has_many :states
 
+  has_many :users
 end

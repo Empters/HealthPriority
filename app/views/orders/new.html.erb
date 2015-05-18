@@ -1,7 +1,7 @@
 <div class="container-background">
   <div class="container main-content">
 
-    <%= form_for(@payment) do |f| %>
+    <%= form_for(@order) do |f| %>
 
         <%= f.error_messages %>
 
@@ -29,7 +29,7 @@
             </div>
 
             <%= f.select :country_id, Country.all.collect { |p| [p.name, p.id] }, {:include_blank => "* #{t('country')}"}, {id: 'countries_select', class: 'checkout-input'} %>
-            <%= f.select :state_id, State.where(country_id: @payment.country_id).collect { |p| [p.name, p.id] }, {:include_blank => "* #{t('state')}"}, {id: 'states_select', class: 'checkout-input'} %>
+            <%= f.select :state_id, State.where(country_id: @order.country_id).collect { |p| [p.name, p.id] }, {:include_blank => "* #{t('state')}"}, {id: 'states_select', class: 'checkout-input'} %>
             <%= f.text_field :city, class: 'checkout-input', placeholder: "* #{t('city')}" %>
             <%= f.text_field :postal_code, class: 'checkout-input', placeholder: "* #{t('postal_code')}" %>
             <%= f.text_field :address, class: 'checkout-input', placeholder: "* #{t('address1')}" %>

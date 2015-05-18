@@ -17,16 +17,10 @@
     </div>
     <div class="pager-wrapper">
       <div class="products-count left">
-        <%= product_passed %> of <%= @products.count %> products
+        <%= page_entries_info @products %>
       </div>
-      <div class="pager-container right">
-        <% @pages.each do |page| %>
-            <%= link_to({controller: @from_controller, action: 'change_page', page_number: page.number}, remote: true) do %>
-                <div class="page <%= 'active' if page.is_active? %>">
-                  <div> <%= page.number %></div>
-                </div>
-            <% end %>
-        <% end %>
+      <div class="flickr_pagination right">
+        <%= will_paginate @products %>
       </div>
       <div class="clearfix"></div>
     </div>

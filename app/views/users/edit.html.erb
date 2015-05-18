@@ -20,7 +20,7 @@
               <%= t('personal_details') %>
             </div>
 
-            <%= f.select :gender_id, Gender.all.collect { |p| [p.name, p.id] }, {:prompt => "* #{t('gender')}"}, {class: 'checkout-input'} %>
+            <%= f.select :gender_id, @genders.collect { |p| [p.name, p.id] }, {:prompt => "* #{t('gender')}"}, {class: 'checkout-input'} %>
             <%= f.text_field :first_name, class: 'checkout-input', placeholder: "* #{t('first_name')}" %>
             <%= f.text_field :last_name, class: 'checkout-input', placeholder: "* #{t('last_name')}" %>
             <%= f.phone_field :phone, class: 'checkout-input', placeholder: "* #{t('phone')}" %>
@@ -34,8 +34,8 @@
               <%= t('address') %>
             </div>
 
-            <%= f.select :country_id, Country.all.collect { |p| [p.name, p.id] }, {:include_blank => "* #{t('country')}"}, {id: 'countries_select', class: 'checkout-input'} %>
-            <%= f.select :state_id, State.where(country_id: resource.country_id).collect { |p| [p.name, p.id] }, {:include_blank => "* #{t('state')}"}, {id: 'states_select', class: 'checkout-input'} %>
+            <%= f.select :country_id, @countries.collect { |p| [p.name, p.id] }, {:include_blank => "* #{t('country')}"}, {id: 'countries_select', class: 'checkout-input'} %>
+            <%= f.select :state_id, @states.collect { |p| [p.name, p.id] }, {:include_blank => "* #{t('state')}"}, {id: 'states_select', class: 'checkout-input'} %>
             <%= f.text_field :city, class: 'checkout-input', placeholder: "* #{t('city')}" %>
             <%= f.text_field :postal_code, class: 'checkout-input', placeholder: "* #{t('postal_code')}" %>
             <%= f.text_field :address, class: 'checkout-input', placeholder: "* #{t('address1')}" %>

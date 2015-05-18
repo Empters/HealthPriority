@@ -10,7 +10,6 @@
         <div class="title-banner">
           <%= t('our_categories') %>
         </div>
-
         <% if !@root_categories.nil? %>
             <div class="content-container">
               <% @root_categories.in_groups_of(3, false).each do |group| %>
@@ -21,7 +20,6 @@
                   </div>
               <% end %>
         <% end %>
-
         </div>
       </div>
     </div>

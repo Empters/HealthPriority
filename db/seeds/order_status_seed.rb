@@ -1,0 +1,15 @@
+OrderStatus.delete_all
+
+OrderStatus.create(:id => 1, :name => 'Pending')
+OrderStatus.create(:id => 2, :name => 'Processing')
+OrderStatus.create(:id => 3, :name => 'Shipped')
+OrderStatus.create(:id => 4, :name => 'Complete')
+OrderStatus.create(:id => 5, :name => 'Canceled')
+OrderStatus.create(:id => 6, :name => 'Denied')
+OrderStatus.create(:id => 7, :name => 'Canceled Reversal')
+OrderStatus.create(:id => 8, :name => 'Failed')
+OrderStatus.create(:id => 9, :name => 'Refunded')
+OrderStatus.create(:id => 10, :name => 'Reversed')
+OrderStatus.create(:id => 11, :name => 'Chargeback')
+OrderStatus.create(:id => 12, :name => 'Expired')
+OrderStatus.create(:id => 13, :name => 'Voided')

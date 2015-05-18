@@ -42,20 +42,6 @@ class ShoppingCartsController < ApplicationController
     end
   end
 
-  def success
-  end
-
-  def cancel
-  end
-
-  def payment
-    @payment = ActiveRecord::Base::Payment.new
-  end
-
-  def payment_params
-    params.require(:payments).permit(:name, :company, :address, :city, :state, :postal_code, :country, :phone, :email, :description)
-  end
-
   private
 
   def init_product

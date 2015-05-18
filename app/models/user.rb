@@ -10,8 +10,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :payments
+  belongs_to :country
+  belongs_to :state
+  has_many :orders
 
-  has_one :country
-  has_one :state
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 
 end

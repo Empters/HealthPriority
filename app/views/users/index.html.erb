@@ -1,0 +1,90 @@
+<div class="container-background">
+  <div class="container main-content">
+    <div class="row">
+      <div class="col-md-9 col-xs-12">
+
+        <div class="payment-methods-banner">
+          <div class="path">
+            <%= render_breadcrumbs :separator => ' / ' %>
+          </div>
+
+          <div class="page-title">
+            <%= @title %>
+          </div>
+        </div>
+
+        <div class="container">
+          <div>
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <%= form_for(@user) do |f| %>
+                    <div class="modal-body">
+                      <div class="inputs">
+                        <div>
+                          <%= f.label t('email') %>
+                          <br/>
+                          <%= @user.email %>
+                        </div>
+                        <br/>
+
+                        <div>
+                          <%= f.label t('title') %>
+                          <br/>
+                          <%= @user.title %>
+                        </div>
+                        <br/>
+
+                        <div>
+                          <%= f.label t('first_name') %>
+                          <br/>
+                          <%= @user.first_name %>
+                        </div>
+                        <br/>
+
+                        <div>
+                          <%= f.label t('last_name') %>
+                          <br/>
+                          <%= @user.last_name %>
+                        </div>
+                        <br/>
+
+                        <div>
+                          <%= f.label t('last_name') %>
+                          <br/>
+                          <%= @user.last_name %>
+                        </div>
+                      </div>
+                      <div class="inputs">
+                        <br/>
+
+                        <div>
+                          <%= f.label t('country') %>
+                          <br/>
+                          <%= @user.country %>
+                        </div>
+                        <br/>
+
+                        <div>
+                          <%= f.label t('address') %>
+                          <br/>
+                          <%= @user.address %>
+                        </div>
+                        <br/>
+                      </div>
+                      <div class="inputs">
+                        <div class="modal-footer">
+                          <%= link_to 'Edit', edit_user_profile_path(@user), :class => 'btn btn-primary button gray' %>
+                        </div>
+                      </div>
+                    </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Payment data End -->
+
+    </div>
+  </div>
+</div>
