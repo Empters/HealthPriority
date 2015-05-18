@@ -267,6 +267,7 @@ bg:
   update_user_successful_message: 'Потребителския провфил е променен успешно.'
   add_product_successful_message: 'Продукта е добавен успешно!'
   remove_product_successful_message: 'Продукта е премахнат успешно!'
+  product_quantity_add_to_cart_warning: "Максималния брой продукти е %{quantity}!"
   contact_message: 'Вашето съобщения...'
   contact_send_message: 'Изпрати съобщение'
   additional_information: 'Допълнителна информация'

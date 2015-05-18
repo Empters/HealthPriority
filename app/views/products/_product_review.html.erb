@@ -18,7 +18,7 @@
   <div class="quantity-container">
     <div class="text-center"><%= t('qty') %></div>
     <div class="quantity">
-      <%= number_field_tag 'quantity', product.quantity, {:class => 'quantity-input'} %>
+      <%= number_field_tag 'quantity', product.quantity, {:min => 0, :max => product.quantity, :step => 1, :class => 'quantity-input'} %>
     </div>
   </div>
   <div class="add-to-cart-container">

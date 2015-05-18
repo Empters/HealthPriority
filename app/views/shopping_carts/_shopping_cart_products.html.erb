@@ -41,7 +41,7 @@
                 <%= link_to product.name, product %>
               </div>
               <div class="col-md-2 content-table-td">
-                <%= number_field_tag 'quantity', quantity, {:min => 1, :step => 1, :class => 'quantity-js', :product_id => product.id} %>
+                <%= number_field_tag 'quantity', quantity, {:min => 1, :max => product.quantity, :step => 1, :class => 'quantity-js', :product_id => product.id} %>
               </div>
               <div class="col-md-2 content-table-td">
                 <%= format('£ %.2f', product.discount.nil? ? product.price : product.discount.price) %>
