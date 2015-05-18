@@ -178,6 +178,14 @@ ActiveAdmin.register_page 'Import Products' do
       # Read zip directories
       directories = Array.new
       zip_file.each do |entry|
+
+        entry.name = entry.name.force_encoding('UTF-8')
+        unless entry.name.valid_encoding?
+          entry.name = entry.name.encode('UTF-8', :invalid => :replace, :undef => :replace, :replace => '?')
+          puts "Zip has directory in invalid encoding: #{entry.name}"
+          next
+        end
+
         puts "Read zip entry: #{entry.name}"
         directory_name = File.dirname(entry.name)
         unless directory_name == '.' || directories.include?(directory_name)
@@ -187,36 +195,38 @@ ActiveAdmin.register_page 'Import Products' do
 
       # Import products is in one transaction
       ActiveRecord::Base.transaction do
-
         directories.each do |directory|
-          puts "Working with zip directory: #{directory}"
+          begin
+            # Search product by name
+            puts "Working with zip directory: #{directory}"
+            product = Product.where('lower(name) = ?', directory.downcase).first
+            unless product.nil?
+              images = Array.new
+              glob_args = File.join("#{directory}", '*.*')
+              entry_images = zip_file.glob(glob_args)
+              entry_images.select { |n| n.name.downcase.match('^.*\.(jpg|jpeg|png|gif)$') }.each do |entry_image|
+                puts entry_image.name
+                if entry_image.name.downcase.match('^.*main\.(jpg|jpeg|png|gif)$')
+                  product.image = get_image(entry_image)
+                else
+                  otherImage = ProductImage.create!(
+                      product: product,
+                      image: get_image(entry_image)
+                  )
 
-          # Search product by name
-          product = Product.where('lower(name) = ?', directory.downcase).first
-          unless product.nil?
-            images = Array.new
-            glob_args = File.join("#{directory}", '*.*')
-            entry_images = zip_file.glob(glob_args)
-            entry_images.select { |n| n.name.downcase.match('^.*\.(jpg|jpeg|png|gif)$') }.each do |entry_image|
-              puts entry_image.name
-              mimeType = MIME::Types.type_for(entry_image.name).to_s
-              if entry_image.name.downcase.match('^.*main\.(jpg|jpeg|png|gif)$')
-                product.image = get_image(entry_image)
-              else
-                otherImage = ProductImage.create!(
-                    product: product,
-                    image: get_image(entry_image)
-                )
-
-                images << otherImage
+                  images << otherImage
+                end
               end
-            end
 
-            unless images.empty?
-              product.product_images = images
-            end
+              unless images.empty?
+                product.product_images = images
+              end
 
-            product.save
+              product.save!
+            end
+          rescue => ex
+            logger.error ex.message
+            next
           end
         end
       end
@@ -224,8 +234,7 @@ ActiveAdmin.register_page 'Import Products' do
 
     def get_image(zip_entry)
 
-      basename = File.basename(zip_entry.name)
-      main_image = Tempfile.new(basename)
+      main_image = Tempfile.new([File.basename(zip_entry.name), File.extname(zip_entry.name)])
       main_image.binmode
       main_image.write zip_entry.get_input_stream.read
 
