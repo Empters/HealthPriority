@@ -5,5 +5,5 @@ class State < ActiveRecord::Base
 
   # Init class relationships
   belongs_to :country
-
+  has_many :user
 end

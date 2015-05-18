@@ -1,0 +1,27 @@
+<div class="product-rating left">
+  <div class="star-rating">
+    <div class="star rate" data-rating="1"></div>
+    <div class="star rate" data-rating="2"></div>
+    <div class="star rate" data-rating="3"></div>
+    <div class="star rate" data-rating="4"></div>
+    <div class="star rate" data-rating="5"></div>
+    <!-- Place the product's rating in the div below -->
+    <div class="hidden rating-value"><%= product.average_rating %></div>
+  </div>
+</div>
+<div class="product-reviews left"><a href="#" title="Reviews"><%= product.product_reviews.size %> Reviews</a></div>
+<div class="product-in-stock right"><%= t('in_stock') %>:
+  <div class="stock"> <%= product.isInStock? && !product.stock_status.nil? ? product.stock_status.name : 'No' %></div>
+</div>
+<div class="clearfix"></div>
+<div class="qty-add-container">
+  <div class="quantity-container">
+    <div class="text-center"><%= t('qty') %></div>
+    <div class="quantity">
+      <%= number_field_tag 'quantity', product.quantity, {:class => 'quantity-input'} %>
+    </div>
+  </div>
+  <div class="add-to-cart-container">
+    <%= link_to t('add_to_cart'), {:controller => :shopping_carts, :action => :add_to_shopping_cart, :id => product.id, :quantity => 0, :remote => true}, {:class => 'button green', :title => 'Add to cart', :id => "product_add_to_card"} %>
+  </div>
+</div>

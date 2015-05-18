@@ -10,30 +10,30 @@
           <div class="col-md-6 col-xs-12">
 
             <div class="cart-title">
-              Person details
+              <%= t('personal_details') %>
             </div>
 
-            <%= f.select :gender_id, Gender.all.collect { |p| [p.name, p.id] }, {:prompt => '* Gender'}, {class: 'checkout-input'} %>
-            <%= f.text_field :first_name, class: 'checkout-input', placeholder: '* First Name' %>
-            <%= f.text_field :last_name, class: 'checkout-input', placeholder: '* Last Name' %>
+            <%= f.select :gender_id, Gender.all.collect { |p| [p.name, p.id] }, {:prompt => "* #{t('gender')}"}, {class: 'checkout-input'} %>
+            <%= f.text_field :first_name, class: 'checkout-input', placeholder: "* #{t('first_name')}" %>
+            <%= f.text_field :last_name, class: 'checkout-input', placeholder: "* #{t('last_name')}" %>
             <%= f.email_field :email, class: 'checkout-input', placeholder: "* #{t('email')}" %>
             <%= f.phone_field :phone, class: 'checkout-input', placeholder: "* #{t('phone')}" %>
-            <%= f.phone_field :fax, class: 'checkout-input', placeholder: 'Fax' %>
+            <%= f.phone_field :fax, class: 'checkout-input', placeholder: t('fax') %>
 
           </div>
 
           <div class="col-md-6 col-xs-12">
 
             <div class="cart-title">
-              Address
+              <%= t('address') %>
             </div>
 
-            <%= f.select :country_id, Country.all.collect { |p| [p.name, p.id] }, {:prompt => "* #{t('country')}"}, {id: 'countries_select', class: 'checkout-input'} %>
-            <%= f.select :state_id, State.all.collect { |p| [p.name, p.id] }, {:prompt => "* #{t('state')}"}, {id: 'states_select', class: 'checkout-input'} %>
+            <%= f.select :country_id, Country.all.collect { |p| [p.name, p.id] }, {:include_blank => "* #{t('country')}"}, {id: 'countries_select', class: 'checkout-input'} %>
+            <%= f.select :state_id, State.where(country_id: @payment.country_id).collect { |p| [p.name, p.id] }, {:include_blank => "* #{t('state')}"}, {id: 'states_select', class: 'checkout-input'} %>
             <%= f.text_field :city, class: 'checkout-input', placeholder: "* #{t('city')}" %>
             <%= f.text_field :postal_code, class: 'checkout-input', placeholder: "* #{t('postal_code')}" %>
-            <%= f.text_field :address, class: 'checkout-input', placeholder: '* Address 1' %>
-            <%= f.text_field :second_address, class: 'checkout-input', placeholder: 'Address 2' %>
+            <%= f.text_field :address, class: 'checkout-input', placeholder: "* #{t('address1')}" %>
+            <%= f.text_field :second_address, class: 'checkout-input', placeholder: t('address2') %>
 
           </div>
 
@@ -44,7 +44,7 @@
           <div class="col-md-12 col-xs-12">
 
             <div class="cart-title">
-              Payment methods
+              <%= t('payment_methods') %>
             </div>
 
             <%= f.select(:payment_method, ['PayPal', 'Credit Card'], {}, {class: 'checkout-input'}) %>
@@ -58,7 +58,7 @@
           <div class="col-md-12 col-xs-12">
 
             <div class="cart-title">
-              Additional information
+              <%= t('additional_information') %>
             </div>
 
             <%= f.text_area :description, class: 'checkout-input', placeholder: "#{t('description')}" %>
@@ -70,8 +70,8 @@
         <div class="row">
 
           <div class="col-md-12 buttons-container">
-            <input name="Submit" type="submit" value="<%= t('execute_payment') %>" class="button green right submit-button">
-            <%= link_to t('shopping_cart'), shopping_carts_path, html_options = {class: 'button green right continue-shopping'} %>
+            <input type="submit" value="<%= t('execute_payment') %>" class="button green right submit-button">
+            <%= link_to t('shopping_cart'), shopping_carts_path, html_options = {class: 'button green right continue-shopping', :title => 'Shopping Cart'} %>
           </div>
 
         </div>

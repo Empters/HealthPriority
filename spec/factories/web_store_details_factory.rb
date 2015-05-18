@@ -4,5 +4,6 @@ FactoryGirl.define do
     delivery File.read(File.join(Rails.public_path, 'seed_data',  'delivery' + '.htm'))
     faq File.read(File.join(Rails.public_path, 'seed_data',  'faq' + '.htm'))
     about_us File.read(File.join(Rails.public_path, 'seed_data',  'about_us' + '.htm'))
+    payment_methods File.read(File.join(Rails.public_path, 'seed_data',  'payment_methods' + '.htm'))
   end
 end

@@ -1,40 +1,55 @@
-<div>
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <%= form_for(@user) do |f| %>
-          <div class="modal-body">
-            <div class="inputs">
-              <div style="float: right;">
-                <%= link_to t('change_user_and_password'), edit_user_registration_path, remote: true, :'data-toggle' => 'modal', :'data-target' => '#editProfileModal' %>
-              </div>
-              <br/>
-              <div>
-                <%= f.label t('first_name') %>
-                <br/>
-                <%= f.text_field :first_name %>
-              </div>
-              <br/>
-              <div>
-                <%= f.label t('last_name') %>
-                <br/>
-                <%= f.text_field :last_name %>
-              </div>
-            </div>
-            <div class="inputs">
-              <div>
-                <%= f.label t('address') %>
-                <br/>
-                <%= f.text_field :address %>
-              </div>
-              <br/>
-            </div>
-            <div class="inputs">
-              <div class="modal-footer">
-                <%= f.submit t('save'), :class => 'btn btn-primary button gray' %>
-              </div>
-            </div>
-          </div>
-      <% end %>
+<div class="container-background">
+  <div class="container main-content main-content-transparent">
+
+    <div class="path">
+      <%= render_breadcrumbs :separator => ' / ' %>
     </div>
+
+    <div class="page-title">
+      <%= t('edit_profile') %>
+    </div>
+
+    <%= form_for(@user) do |f| %>
+
+        <%= f.error_messages %>
+
+        <div class="row">
+          <div class="col-md-6 col-xs-12">
+
+            <div class="cart-title">
+              <%= t('personal_details') %>
+            </div>
+
+            <%= f.select :gender_id, @genders.collect { |p| [p.name, p.id] }, {:prompt => "* #{t('gender')}"}, {class: 'checkout-input'} %>
+            <%= f.text_field :first_name, class: 'checkout-input', placeholder: "* #{t('first_name')}" %>
+            <%= f.text_field :last_name, class: 'checkout-input', placeholder: "* #{t('last_name')}" %>
+            <%= f.phone_field :phone, class: 'checkout-input', placeholder: "* #{t('phone')}" %>
+            <%= f.phone_field :fax, class: 'checkout-input', placeholder: t('fax') %>
+
+          </div>
+
+          <div class="col-md-6 col-xs-12">
+
+            <div class="cart-title">
+              <%= t('address') %>
+            </div>
+
+            <%= f.select :country_id, @countries.collect { |p| [p.name, p.id] }, {:include_blank => "* #{t('country')}"}, {id: 'countries_select', class: 'checkout-input'} %>
+            <%= f.select :state_id, @states.collect { |p| [p.name, p.id] }, {:include_blank => "* #{t('state')}"}, {id: 'states_select', class: 'checkout-input'} %>
+            <%= f.text_field :city, class: 'checkout-input', placeholder: "* #{t('city')}" %>
+            <%= f.text_field :postal_code, class: 'checkout-input', placeholder: "* #{t('postal_code')}" %>
+            <%= f.text_field :address, class: 'checkout-input', placeholder: "* #{t('address1')}" %>
+            <%= f.text_field :second_address, class: 'checkout-input', placeholder: t('address2') %>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 buttons-container">
+            <%= f.submit t('save'), :class => 'button green right submit-button' %>
+          </div>
+        </div>
+    <% end %>
+
   </div>
 </div>

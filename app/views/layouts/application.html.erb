@@ -1,52 +1,65 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta name="description"
-        content="Health Priority is an health care online shop for all kind of high quality, tested and certified health care products.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="description" content="Health Priority is an health care online shop for all kind of high quality, tested and certified health care products.">
+  <meta name="author" content="Empters Ltd">
+  <meta name="keywords" content="Health Priority, Health care, Health products, Medicine health, beauty, skin care, perfumes, skin cream, Empters, derma, dermatological care, dermatological help, clean skin, skin problems, beauty help, hair care, dental care, make up, wellness, for women, manicure, pedicure, sex, sensitivity, bath care, vitamins, homeopathy ">
+  <meta name="ROBOTS" content="INDEX, FOLLOW"/>
   <meta property="og:title" content="Health Priority"/>
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="http://www.healthpriority.co.uk/"/>
-  <meta property="og:image"
-        content="<%= image_path 'logo.png' %>"/>
-  <meta property="og:description"
-        content="Health Priority is an health care online shop for all kind of high quality, tested and certified health care products."/>
-  <title>Health Priority</title>
+  <meta property="og:image" content="<%= image_path 'logo.png' %>"/>
+  <meta property="og:description" content="Health Priority is an health care online shop for all kind of high quality, tested and certified health care products."/>
+  <title>Health Priority<%= @page_name %></title>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400&subset=latin,cyrillic-ext,greek-ext,greek,vietnamese,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+
 <body class="main-fonts">
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-56350917-3', 'auto');
+    ga('send', 'pageview');
+</script>
 <!-- Top bar -->
+<div class="container main-content-transparent container-background" style="position: fixed; height: 254px; top: -2px; width: 2595px; background-image: url('/assets/bg.jpg'); z-index: -1" >
+</div>
+
 <div class="top-bar-wrapper">
   <div class="container">
     <div class="top-bar-container left">
       <div class="top-bar-text phone">
-        <%= t('for_more_information') %> 0883 412 071
+        <%= t('for_more_information') %> +359 883 412 071
       </div>
     </div>
     <div class="top-bar-container right">
       <div class="top-bar-tab first-tab top-bar-text">
-        <%= link_to t('faq'), faq_path, {:class => 'navbar-link'} %>
+        <%= link_to t('faq'), faq_path, {:class => 'navbar-link', :title => 'FAQ'} %>
       </div>
       <div class="top-bar-tab top-bar-text">
-        <%= link_to t('delivery'), delivery_methods_path, :class => 'navbar-link' %>
+        <%= link_to t('delivery'), delivery_methods_path, :class => 'navbar-link', :title => 'Delivery' %>
       </div>
       <% if user_signed_in? -%>
           <div class="top-bar-tab top-bar-text">
-            <%= link_to t('my_account'), user_path(@user), :class => 'navbar-link' %>
+            <%= link_to t('my_account'), user_path(@user), :class => 'navbar-link', :title => 'My Account' %>
           </div>
           <div class="top-bar-tab top-bar-text">
-            <%= link_to t('logout'), destroy_user_session_path, method: :delete, :class => 'navbar-link' %>
+            <%= link_to t('logout'), destroy_user_session_path, method: :delete, :class => 'navbar-link', :title => 'Logout' %>
           </div>
       <% else %>
           <div class="top-bar-tab top-bar-text">
-            <%= link_to t('login'), new_user_session_path, remote: true, :'data-toggle' => 'modal', :'data-target' => '#signInModal' %>
+            <%= link_to t('login'), new_user_session_path, :title => 'LogIn' %>
           </div>
       <% end %>
-      <div class="top-bar-tab top-bar-text">
+      <div class="top-bar-tab top-bar-text" title="Health Priority Facebook">
         <div class="fb_top"></div>
         <%= t('connect') %>
       </div>
@@ -56,12 +69,14 @@
 <!-- Top bar end -->
 
 <!-- Search Section -->
+<div style="background: white">
 <div class="search-section-container">
   <div class="container">
     <div class="row">
       <div class="col-md-2 col-sm-2 col-xs-1 nomargin nopadding">
-        <%= link_to '', root_path, :class => 'logo', :data => {:no_turbolink => true} %>
+        <%= link_to '', root_path, :class => 'logo', :data => {:no_turbolink => true}, :title => 'Health Priority' %>
       </div>
+
       <div class="col-md-8 col-sm-8 col-xs-8">
         <div class="search-section">
           <div class="col-md-10 col-sm-10 col-xs-10">
@@ -83,17 +98,19 @@
                 </ul>
               </div>
               <div class="search-input-container left">
-                <input type="text" id="search_input" class="search-input" placeholder="<%= t('search_token') %>"/>
+                <input type="text" id="search_input" class="typeahead search-input" placeholder="<%= t('search_token') %>"/>
               </div>
               <div class="right search-image-div">
-                <div id="search_link" class='search-image'></div>
+                <div id="search_link" class='search-image' title="Search products"></div>
               </div>
             </div>
           </div>
+
           <div class="col-md-2 col-sm-2 col-xs-2">
             <!-- Cert logo -->
-            <%= link_to '', '#', :class => 'cert-logo', :data => {:no_turbolink => true} %>
+            <%= link_to '', '#', :class => 'cert-logo', :data => {:no_turbolink => true}, :title => 'Euro Certified' %>
           </div>
+
         </div>
       </div>
       <div id="shopping_cart_div" class="col-md-2 col-sm-2 col-xs-2 nopadding nomargin">
@@ -107,54 +124,31 @@
 
 <!-- Main Navigation -->
 <nav class="main-nav-wrapper">
-  <!-- Nav bar for phones -->
-  <div class="navbar navbar-default visible-xs phone-nav">
-    <div class="navbar-header" data-toggle="collapse" data-target=".phone-main-nav">
-      <div class="phone-nav-title"><%= t('menu') %></div>
-      <button data-target=".phone-main-nav" class="navbar-toggle">
-        <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-      </button>
-    </div>
-
-    <div class="collapse navbar-collapse nopadding phone-main-nav">
-      <ul class="nav navbar navbar-left nomargin">
-        <li class="nav-item-phone text-center"><%= link_to t('home'), root_path, :data => {:no_turbolink => true}, :class => 'top-bar-text' %></li>
-        <li class="nav-item-phone text-center"><%= link_to t('about_us'), about_us_path, :class => 'top-bar-text' %></li>
-        <li class="nav-item-phone text-center"><%= link_to t('products'), categories_path, :class => 'top-bar-text' %></li>
-        <li class="nav-item-phone text-center"><%= link_to t('special_offers'), special_offers_path, :class => 'top-bar-text' %></li>
-        <li class="nav-item-phone text-center"><%= link_to t('payment_methods'), payment_methods_path, :class => 'top-bar-text' %></li>
-        <li class="nav-item-phone text-center"><%= link_to t('shipping_details'), delivery_methods_path, :class => 'top-bar-text' %></li>
-        <li class="nav-item-phone text-center"><%= link_to t('our_partners'), our_partners_path, :class => 'top-bar-text' %></li>
-        <li class="nav-item-phone text-center"><%= link_to t('contacts'), contacts_path, :class => 'top-bar-text' %></li>
-      </ul>
-    </div>
-  </div>
-  <!-- Nav bar for phones end -->
   <!-- nav bar large displays -->
-  <div class="container text-center hidden-xs">
+  <div class="container text-center">
     <div class="main-nav-tab">
-      <%= link_to t('home'), root_path, :data => {:no_turbolink => true}, :class => 'top-bar-text' %>
+      <%= link_to t('home'), root_path, :data => {:no_turbolink => true}, :class => 'top-bar-text', :title => 'Health Priority Home' %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to t('about_us'), about_us_path, :class => 'top-bar-text' %>
+      <%= link_to t('about_us'), about_us_path, :class => 'top-bar-text', :title => 'About Us' %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to t('products'), categories_path, :class => 'top-bar-text' %>
+      <%= link_to t('products'), categories_path, :class => 'top-bar-text', :title => 'Products' %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to t('special_offers'), special_offers_path, :class => 'top-bar-text' %>
+      <%= link_to t('special_offers'), special_offers_path, :class => 'top-bar-text', :title => 'Special Offers' %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to t('payment_mehtods'), payment_methods_path, :class => 'top-bar-text' %>
+      <%= link_to t('payment_mehtods'), payment_methods_path, :class => 'top-bar-text', :title => 'Payment Methods' %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to t('shipping_details'), delivery_methods_path, :class => 'top-bar-text' %>
+      <%= link_to t('shipping_details'), delivery_methods_path, :class => 'top-bar-text', :title => 'Shipping Details' %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to t('our_partners'), our_partners_path, :class => 'top-bar-text' %>
+      <%= link_to t('our_partners'), our_partners_path, :class => 'top-bar-text', :title => 'Health Priority Partners' %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to t('contacts'), contacts_path, :class => 'top-bar-text' %>
+      <%= link_to t('contacts'), contacts_path, :class => 'top-bar-text', :title => 'Health Priority Contacts' %>
     </div>
   </div>
   <!-- nav bar large displays end -->
@@ -172,21 +166,25 @@
   <div class="row">
     <div class="col-md-8 col-sm-6 col-xs-12">
       <div class="row">
-        <div class="col-md-3 col-sm-3 col-xs-6 category-name">
+        <div class="col-md-2 col-xs-6 category-name">
           <div class="category-arrow"></div>
-          <%= link_to t('help_center'), help_center_path %>
+          <%= link_to t('help_center'), help_center_path, :title => 'Help Center' %>
         </div>
-        <div class="col-md-3 col-sm-3 col-xs-6 category-name">
+        <div class="col-md-2 col-xs-6 category-name">
           <div class="category-arrow"></div>
-          <%= link_to t('shipping'), delivery_methods_path %>
+          <%= link_to t('shipping'), delivery_methods_path, :title => 'Shipping' %>
         </div>
-        <div class="col-md-3 col-sm-3 col-xs-6 category-name">
+        <div class="col-md-2 col-xs-6 category-name">
           <div class="category-arrow"></div>
-          <%= link_to t('payment_methods'), payment_methods_path %>
+          <%= link_to t('payment_methods'), payment_methods_path, :title => 'Payment Methods' %>
         </div>
-        <div class="col-md-3 col-sm-3 col-xs-6 category-name">
+        <div class="col-md-4 col-xs-6 category-name">
           <div class="category-arrow"></div>
-          <%= link_to t('what_is_included_in_the_price'), price_details_path %>
+          <%= link_to t('what_is_included_in_the_price'), price_details_path, :title => 'Included in price' %>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-6 category-name">
+          <div class="category-arrow"></div>
+          <%= link_to t('sitemap'), sitemaps_path %>
         </div>
       </div>
       <div class="row footer-image"></div>
@@ -201,11 +199,11 @@
       </div>
       <div class="email-container">
         <input type="text" class="email-input" placeholder="Enter Your Email Address"/>
-        <div class="send-email-button right"></div>
+
+        <div class="send-email-button right" title="Send us mail"></div>
       </div>
     </div>
   </div>
-</div>
 </div>
 <!-- Footer navigation End -->
 
@@ -216,7 +214,7 @@
     Health Priority © Copyright 2014 All rights reserved.
   </div>
   <div class="footer-main-text">
-    Developed and designed by <a href="http://www.empters.com">Empters Ltd.</a>
+    Developed and designed by <a href="http://www.empters.com" title="Empters Ltd">Empters Ltd.</a>
   </div>
   <br/>
 
@@ -228,15 +226,7 @@
     <%= t('evaluated_by_html') %>
   </div>
 </div>
-<!-- Footer End -->
-
-<!-- Login modals -->
-<%= render 'layouts/sign_in_modal' %>
-<%= render 'layouts/sign_up_modal' %>
-<%= render 'layouts/forgotten_pass_modal' %>
-<%= render 'layouts/resend_confirmation_modal' %>
-<%= render 'layouts/edit_profile_modal' %>
-<!-- Login modals End-->
 
 </body>
+
 </html>

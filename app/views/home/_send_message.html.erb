@@ -1,23 +1,23 @@
 <%= form_tag(controller: 'home', action: 'send_message') do %>
     <div class="row">
       <div class="col-md-4 col-xs-12">
-        <input class="contact-input" name="name" type="text" placeholder=" * Name" data-content="Please, enter your name" data-placement="top" data-original-title="" title="">
+        <input class="contact-input" name="name" type="text" placeholder="<%= "* #{t('name')}" %>">
       </div>
       <div class="col-md-4 col-xs-12">
-        <input class="contact-input" name="email" type="email" placeholder=" * Email" name="from" data-content="Please, enter correct email" data-placement="top" data-original-title="" title="">
+        <input class="contact-input" name="email" type="email" placeholder="<%= "* #{t('email')}" %>">
       </div>
       <div class="col-md-4 col-xs-12">
-        <input class="contact-input" name="phone" type="tel" placeholder=" Phone" name="phone" data-content="Please, enter correct phone" data-placement="top" data-original-title="" title="">
+        <input class="contact-input" name="phone" type="tel" placeholder="<%= "* #{t('phone')}" %>">
       </div>
     </div>
     <div class="row">
       <div class="col-md-12 col-xs-12">
-        <textarea class="contact-input" name="message" placeholder=" Your message..."></textarea>
+        <textarea class="contact-input" name="message" placeholder="<%= "* #{t('contact_message')}" %>"></textarea>
       </div>
     </div>
     <div class="row">
       <div class="text-center">
-        <input class="button green submit-button" type="submit" value="SEND MESSAGE">
+        <input class="button green submit-button" type="submit" title="Send us Message" value="<%= "* #{t('contact_send_message')}" %>">
       </div>
     </div>
 <% end %>

@@ -1,0 +1,27 @@
+<div class="product-reviews-container distinct">
+  <div class="product-rating">
+    <div class="star-rating">
+      <div class="star" data-rating="1"></div>
+      <div class="star" data-rating="2"></div>
+      <div class="star" data-rating="3"></div>
+      <div class="star" data-rating="4"></div>
+      <div class="star" data-rating="5"></div>
+      <!-- Place the product's rating in the div below -->
+      <div class="hidden rating-value"><%= product.average_rating %></div>
+      <div class="product-reviews"><a href="#">(<%= product.product_reviews.size %> <%= t('reviews') %>)</a>
+      </div>
+    </div>
+  </div>
+  <% product.product_reviews.group_by(&:rating).sort.each do |group| %>
+      <div class="product-reviews-distinct-container">
+        <div class="product-review-star">
+          <div class="star-name"><%= group[0] %> <%= t('stars') %></div>
+          <div class="star-percentage">
+            <!-- Fill the percentage below -->
+            <div class="star-percentage-cover" style="width: <%= ((group[1].size.to_d / product.product_reviews.size)*100) %>%;"></div>
+          </div>
+          <div class="star-count">(<%= group[1].size %>)</div>
+        </div>
+      </div>
+  <% end %>
+</div>

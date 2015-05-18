@@ -10,6 +10,18 @@ class ApplicationController < ActionController::Base
 
   after_filter :flash_to_headers
 
+  @page_name = ''
+
+=begin
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+  end
+
+  def default_url_options(options = {})
+    { locale: I18n.locale }.merge options
+  end
+=end
+
   private
 
   ALLOW_MESSAGE_TYPES = ['error', 'warning', 'success', 'notice']

@@ -1,8 +1,12 @@
 class Users::PasswordsController < Devise::PasswordsController
+
+  before_action :set_breadcrumb
+
   # GET /resource/password/new
-  # def new
-  #   super
-  # end
+  def new
+    add_breadcrumb t('forgotten_pass')
+    super
+  end
 
   # POST /resource/password
   # def create
@@ -10,9 +14,10 @@ class Users::PasswordsController < Devise::PasswordsController
   # end
 
   # GET /resource/password/edit?reset_password_token=abcdef
-  # def edit
-  #   super
-  # end
+  def edit
+    add_breadcrumb t('change_password')
+    super
+  end
 
   # PUT /resource/password
   # def update
@@ -29,4 +34,11 @@ class Users::PasswordsController < Devise::PasswordsController
   def after_sending_reset_password_instructions_path_for(resource_name)
     root_path(resource_name)
   end
+
+  private
+
+  def set_breadcrumb
+    add_breadcrumb t('home'), :root_path
+  end
+
 end

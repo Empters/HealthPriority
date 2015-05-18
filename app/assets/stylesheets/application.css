@@ -15,6 +15,7 @@
  *= require bootstrap.min
  *= require royalslider/royalslider
  *= require royalslider/skins/minimal-white/rs-minimal-white
+ *= require typeaheadjs
  *= require styles.css.erb
  *= require_self
  * require_tree .

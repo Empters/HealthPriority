@@ -12,13 +12,25 @@
 
       <!-- Products -->
       <div id="products_div" class="col-md-9 col-xs-12">
-        <div class="compiled_sets_banner"></div>
+
+        <div class="compiled_sets_banner" title="Shop here"></div>
+
         <%= render 'products/products_list' %>
+
+        <div class="col-md-6 col-xs-12 perfect_skin_banner" title="Perfect Skin"></div>
+        <div class="col-md-6 col-xs-12 medical_banner" title="Medical Care"></div>
+
       </div>
       <!-- Products End -->
 
     </div>
     <!-- Categories & Products End-->
+
+    <!-- Last Visited Products -->
+    <div class="row">
+      <%= render partial: 'home/last_visited_products', locals: {title: t('last_visited_products'), products: last_visit_products} %>
+    </div>
+    <!-- Last Visited Products End -->
 
   </div>
 </div>

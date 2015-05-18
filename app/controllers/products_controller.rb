@@ -86,6 +86,8 @@ class ProductsController < ApplicationController
 
     search_and_filter()
     set_pages
+
+    @page_label = t('our_products')
     @products = @products.paginate(:page => @current_page, :per_page => session[:products_per_page])
 
     respond_to do |format|
@@ -98,52 +100,89 @@ class ProductsController < ApplicationController
         render '/products/index'
       }
     end
+
+  end
+
+  # GET /products/autocomplete
+  def autocomplete
+    render json: params[:query].blank? ? nil : Product.where("UPPER(name) LIKE UPPER(?)", "%#{params[:query]}%").limit(10)
   end
 
   # GET /products/filter
   def filter
+
     search_and_filter()
     set_pages
+
+    @page_label = t('our_products')
     @products = @products.paginate(:page => @current_page, :per_page => session[:products_per_page])
-    @page_label = 'Products'
+
     respond_to do |format|
       format.html { render 'products/index' }
       format.js { render 'search.js.erb' }
     end
+
   end
 
-  # GET /products/filter
+  # GET /products/brand
   def brand
+
     filter_by_manufacturer()
     set_pages
+
+    @page_label = t('our_products')
     @products = @products.paginate(:page => @current_page, :per_page => session[:products_per_page])
 
     respond_to do |format|
-      format.html { puts 'html' }
       format.js { render 'search.js.erb' }
     end
+
   end
 
   def price
 
     filter_by_price()
     set_pages
+
+    @page_label = t('our_products')
     @products = @products.paginate(:page => @current_page, :per_page => session[:products_per_page])
 
     respond_to do |format|
-      format.html { puts 'html' }
       format.js { render 'search.js.erb' }
     end
+
   end
 
   def change_page
+
     session[:page_number] = search_params[:page_number].to_i
+
     search_and_filter
     set_pages
+
     @products = main_change_page
 
     respond_to do |format|
       format.js { render 'products/search.js.erb' }
+    end
+
+  end
+
+  def rate
+    rating = params[:rating]
+    product_id = params[:product]
+    @product = Product.find(product_id)
+    product_review = ProductReview.new
+    product_review.product = @product
+    product_review.rating = rating
+    product_review.ip = request.remote_ip
+    product_review.text = t('customer_reviews')
+    product_review.status = 1
+    product_review.save
+    @product_reviews = @product.product_reviews
+
+    respond_to do |format|
+      format.js { render 'rate.js.erb' }
     end
   end
 
@@ -172,6 +211,7 @@ class ProductsController < ApplicationController
     @brands ||= Manufacturer.all
     @price_ranges ||= [ [0.01, 1.99, 0], [2, 4.99, 1], [5, 9.99, 2], [10.00, 15.99, 3], [16.00, 19.99, 4], [20.00, 49.99, 5], [50.00, 99.99, 6], [100, 1000, 7] ]
     @page_label = t('our_products')
+    @page_name = ' Health Care Products'
   end
 
   def set_breadcrumb

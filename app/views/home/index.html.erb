@@ -1,8 +1,8 @@
 <!-- Page content -->
 <div class="container-background">
-  <div class="container main-content" style="padding-top: 0">
+  <div class="container main-content-transparent">
     <div class="container hidden-xs banner-container">
-      <div class="row small-banners">
+      <div class="row">
 
         <!-- Gallery -->
         <div class="col-md-8">
@@ -11,7 +11,7 @@
         <!-- Gallery End -->
 
         <!-- Banners -->
-        <div class="col-md-4 small-banners">
+        <div class="col-md-4">
           <%= render 'banners' %>
         </div>
         <!-- Banners End -->
@@ -26,15 +26,11 @@
   </div>
 </div>
 
-<div class="container-fluid nopadding nomargin visible-xs">
-  <%= render 'categories_pane_phone', is_ajax: false %>
-</div>
-
 <div class="container prod-container">
   <!-- Categories & Products-->
   <div class="row">
     <!-- Categories -->
-    <div class="col-md-3 hidden-xs prod-category">
+    <div class="col-md-3 prod-category">
       <%= render 'categories_pane', is_ajax: false %>
     </div>
     <!-- Categories End -->

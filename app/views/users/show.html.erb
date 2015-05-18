@@ -1,51 +1,51 @@
-<div class="container">
-  <div>
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <%= form_for(@user) do |f| %>
-            <div class="modal-body">
-              <div class="inputs">
-                <div>
-                  <%= f.label t('email') %>
-                  <br/>
-                  <%= @user.email %>
-                </div>
-                <br/>
-                <div>
-                  <%= f.label t('first_name') %>
-                  <br/>
-                  <%= @user.first_name %>
-                </div>
-                <br/>
-                <div>
-                  <%= f.label t('last_name') %>
-                  <br/>
-                  <%= @user.last_name %>
-                </div>
-                <br/>
-                <div>
-                  <%= f.label t('last_name') %>
-                  <br/>
-                  <%= @user.last_name %>
-                </div>
-              </div>
-              <div class="inputs">
-                <br/>
-                <div>
-                  <%= f.label t('address') %>
-                  <br/>
-                  <%= @user.address %>
-                </div>
-                <br/>
-              </div>
-              <div class="inputs">
-                <div class="modal-footer">
-                  <%= link_to t('edit'), edit_user_path(@user),  :class => 'btn btn-primary button gray' %>
-                </div>
-            <% end %>
-          </div>
+<div class="container-background">
+  <div class="container main-content main-content-transparent">
+
+    <div class="path">
+      <%= render_breadcrumbs :separator => ' / ' %>
+    </div>
+
+    <div class="page-title">
+      <%= t('my_account') %>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 account-container">
+
+        <div class="cart-title">
+          <%= t('my_account') %>
+        </div>
+
+        <div>
+          <div class="arrow"></div>
+          <%= link_to t('edit_profile'), edit_user_path(@user) %>
+        </div>
+
+        <div>
+          <div class="arrow"></div>
+          <%= link_to t('change_password'), edit_user_registration_path(@user) %>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 account-container">
+        <div class="cart-title">
+          My Orders
+        </div>
+
+        <div>
+          <div class="arrow"></div>
+          <%= link_to t('order_history'), '#' %>
+        </div>
+
+        <div>
+          <div class="arrow"></div>
+          <%= link_to t('return_request'), '#' %>
         </div>
       </div>
     </div>
+
   </div>
 </div>

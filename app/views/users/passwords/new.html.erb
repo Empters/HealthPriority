@@ -1,12 +1,33 @@
-<h2><%= t('forgotten_pass')%></h2>
+<div class="container-background">
+  <div class="container main-content main-content-transparent">
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+    <div class="path">
+      <%= render_breadcrumbs :separator => ' / ' %>
+    </div>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+    <div class="page-title">
+      <%= t('forgotten_pass') %>
+    </div>
 
-  <div><%= f.submit t('send_instructions') %></div>
-<% end %>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :post}) do |f| %>
 
-<%= render "users/shared/links" %>
+        <div class="row">
+
+          <%= f.error_messages %>
+
+          <div class="col-md-6 col-md-offset-3">
+            <%= f.email_field :email, autofocus: true, class: 'checkout-input', placeholder: t('email') %>
+          </div>
+
+          <div class="col-md-6 col-md-offset-3 text-center">
+            <%= f.submit t('send_instructions'), class: 'button green submit-button' %>
+          </div>
+
+        </div>
+
+    <% end %>
+
+    <%= render 'users/shared/links' %>
+
+  </div>
+</div>

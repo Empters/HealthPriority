@@ -1,0 +1,15 @@
+function initRating() {
+  $(document).on('click', '.rate', function() {
+    var val = $(this).attr('data-rating');
+    var url = $(location).attr('href') + '/rate';
+    $.ajax({
+      url: url,
+      type: 'POST',
+      dataType: 'script',
+      data: {
+        rating: val
+      }});
+  });
+}
+
+initRating();
