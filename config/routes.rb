@@ -33,24 +33,19 @@ Rails.application.routes.draw do
   get '/products/price/:range', to: 'products#price', :as => 'price'
   get '/products/change_page/:page_number', to: 'products#change_page'
 
-  get '/shopping_carts/pay', to: 'shopping_carts#pay'
-  get '/shopping_carts/success', to: 'shopping_carts#success'
-  get '/shopping_carts/cancel', to: 'shopping_carts#cancel'
-  get '/shopping_carts/payments', to: 'shopping_carts#payments', :as => 'payments_list'
+  get '/shopping_carts/index', to: 'shopping_carts#index'
   get '/shopping_carts/add_to_shopping_cart/:id&:quantity', to: 'shopping_carts#add_to_shopping_cart'
-  post '/shopping_carts/payments', to: 'shopping_carts#pay', :as => 'pay'
   post '/shopping_carts/set_product_count', to: 'shopping_carts#set_product_count'
   delete '/shopping_carts/remove_product', to: 'shopping_carts#remove_product'
 
-  get '/payments/show/:id', to: 'payments#show'
-  post '/payments/show/:id', to: 'payments#show'
-  post '/show/payments/:id', to: 'payments#show'
-  post '/payments/hook', to: 'payments#hook'
+  get '/orders/index', to: 'orders#index'
+  get '/orders/show/:id', to: 'orders#show'
+  post '/orders/hook', to: 'orders#hook'
 
   get '/special_offers/change_page/:page_number', to: 'special_offers#change_page'
   post '/products/:product/rate/', to: 'products#rate'
 
-  resources :payments
+  resources :orders
   resources :products
   resources :product_images
   resources :product_reviews

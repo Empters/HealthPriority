@@ -12,4 +12,10 @@ class User < ActiveRecord::Base
   has_many :payments
   belongs_to :country
   belongs_to :state
+  has_many :orders
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
 end

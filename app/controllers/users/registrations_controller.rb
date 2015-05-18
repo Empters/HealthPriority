@@ -1,5 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-# before_filter :configure_sign_up_params, only: [:create]
+
+  before_filter :configure_account_create_params, only: [:create]
   before_filter :configure_account_update_params, only: [:update]
 
   before_action :set_breadcrumb
@@ -11,9 +12,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+  end
 
   # GET /resource/edit
   def edit
@@ -42,15 +43,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected
 
-  # You can put the params you want to permit in the empty array.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.for(:sign_up) << :attribute
-  # end
+  def configure_account_create_params
+    devise_parameter_sanitizer.for(:sign_up) { |u|
+      u.permit(:email, :password, :password_confirmation, :gender_id, :first_name, :last_name, :phone, :fax, :country_id, :state_id, :city, :postal_code, :address, :second_address)
+    }
+  end
 
   def configure_account_update_params
-=begin
-    devise_parameter_sanitizer.for(:account_update) << :attribute
-=end
     devise_parameter_sanitizer.for(:account_update) { |u|
       u.permit(:password, :password_confirmation, :current_password)
     }
