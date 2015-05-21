@@ -92,7 +92,7 @@ class OrdersController < ApplicationController
 
     #TODO - check payment status - https://www.paypal.com/us/webapps/helpcenter/helphub/article/?solutionId=FAQ2334
     paymentStatus = params[:payment_status]
-    if paymentStatus.upcase != 'COMPLETED'
+    if paymentStatus.upcase == 'COMPLETED'
 
       # Find order and set status to 'Processing'
       @order = Order.find(params[:invoice].to_i)

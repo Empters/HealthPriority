@@ -31,10 +31,10 @@
                 <div class="product-content-table-item">
                   <div class="col-md-1 content-table-td"><%= order.id %></div>
                   <div class="col-md-2 content-table-td"><%= I18n.l order.created_at %></div>
-                  <div class="col-md-4 content-table-td"><%= order.item_name %></div>
-                  <div class="col-md-2 content-table-td"><%= order.status %></div>
-                  <div class="col-md-1 content-table-td"><%= order.quantity %></div>
-                  <div class="col-md-2 content-table-td"><%= format('£ %.2f', order.amount) %></div>
+                  <div class="col-md-4 content-table-td"><%= order.order_products_names %></div>
+                  <div class="col-md-2 content-table-td"><%= order.order_status.name %></div>
+                  <div class="col-md-1 content-table-td"><%= order.total_quantity %></div>
+                  <div class="col-md-2 content-table-td"><%= format('£ %.2f', order.total) %></div>
                 </div>
               </div>
             </div>

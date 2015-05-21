@@ -27,10 +27,18 @@ class Order < ActiveRecord::Base
         item_number: total_quantity,
         amount: total,
         quantity: total_quantity,
-        notify_url: "#{Rails.application.secrets.app_host}/orders/hook",
-        return: "#{Rails.application.secrets.app_host}/show#{return_path}",
+        notify_url: "http://7efc4e44.ngrok.com/orders/hook",
+        return: "http://7efc4e44.ngrok.com/show#{return_path}",
     }
     "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
+  end
+
+  def order_products_names
+    order_products.map { |f| f.name }.join(',')
+  end
+
+  def total_quantity
+    order_products.empty? ? 0 : order_products.sum(:quantity)
   end
 
   private
@@ -48,14 +56,6 @@ class Order < ActiveRecord::Base
       @orderHistory.order_status = self.order_status
       @orderHistory.save!
     end
-  end
-
-  def order_products_names
-    order_products.map { |f| f.name }.join(',')
-  end
-
-  def total_quantity
-    order_products.empty? ? 0 : order_products.sum(:quantity)
   end
 
 end
