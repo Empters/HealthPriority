@@ -40,6 +40,7 @@ Rails.application.routes.draw do
 
   get '/orders/index', to: 'orders#index'
   get '/orders/show/:id', to: 'orders#show'
+  post '/show/orders/:id', to: 'orders#show'
   post '/orders/hook', to: 'orders#hook'
 
   get '/special_offers/change_page/:page_number', to: 'special_offers#change_page'
