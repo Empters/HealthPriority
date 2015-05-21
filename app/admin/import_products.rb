@@ -91,6 +91,10 @@ ActiveAdmin.register_page 'Import Products' do
 
         ((workbook.first_row + 1)..workbook.last_row).each do |i|
 
+          if workbook.row(i)[headers['manufacturer']].nil?
+            next
+          end
+
           # Init manufacturer
           manufacturer_name = workbook.row(i)[headers['manufacturer']].strip
           manufacturer = Manufacturer.where('lower(name) = ?', manufacturer_name.downcase).first

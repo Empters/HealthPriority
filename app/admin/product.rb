@@ -4,7 +4,7 @@ ActiveAdmin.register Product do
   menu :parent => 'Catalog', :priority => 4
 
   # Set permit parameters
-  permit_params :name, :quantity, :viewed, :image, :price, :points, :description, :active, :manufacturer_id, :sort_order,
+  permit_params :name, :full_name, :quantity, :viewed, :image, :price, :points, :ingredients, :benefits, :description, :direction, :active, :manufacturer_id, :sort_order,
                 :date_available, :meta_keyword, :meta_description, :stock_status_id, :remove_image, :is_best_seller, :is_spacial_offer, :questions_answers,
                 product_images_attributes: [:image, :image_file_name, :image_content_type, :image_file_size, :image_updated_at, :_destroy, :id],
                 category_ids: [], related_product_ids: []
@@ -50,6 +50,7 @@ ActiveAdmin.register Product do
   form :html => {:multipart => true} do |f|
     f.inputs do
       f.input :name
+      f.input :full_name
       f.input :categories, :as => :select, :multiple => true, :member_label => :full_name
       f.input :related_products, :as => :select, :multiple => true, :member_label => :name
       f.input :manufacturer_id, :as => :select, collection: Manufacturer.all, :member_label => :name, :member_value => :id, :include_blank => 'Choose manufacturer'
@@ -60,7 +61,10 @@ ActiveAdmin.register Product do
       if (f.object.image.present?)
         f.input :remove_image, :as => :boolean, :required => false, :label => 'Remove image'
       end
+      f.input :ingredients, :as => :ckeditor
+      f.input :benefits, :as => :ckeditor
       f.input :description, :as => :ckeditor
+      f.input :direction, :as => :ckeditor
       f.input :questions_answers, :as => :ckeditor
       f.input :is_best_seller
       f.input :is_spacial_offer
