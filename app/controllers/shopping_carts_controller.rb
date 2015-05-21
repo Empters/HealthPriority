@@ -10,8 +10,12 @@ class ShoppingCartsController < ApplicationController
   # Get /add_to_shopping_cart
   def add_to_shopping_cart
     product_quantity = params[:quantity].to_i()
-    shopping_cart.add_product_to_cart(@product, product_quantity)
-    flash[:success] = product_quantity > 0 ? t('add_product_successful_message') : t('remove_product_successful_message')
+    if shopping_cart.add_product_to_cart(@product, product_quantity)
+      flash[:success] = product_quantity > 0 ? t('add_product_successful_message') : t('remove_product_successful_message')
+    else
+      flash[:warning] = t('product_quantity_add_to_cart_warning', quantity: @product.quantity)
+    end
+
     respond_to do |format|
       format.js {
         render 'shopping_carts/refresh_shopping_cart'

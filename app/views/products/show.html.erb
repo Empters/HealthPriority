@@ -90,7 +90,7 @@
                   <div class="row">
                     <div class="details-header"><%= t('product_benefits') %></div>
                     <div style="word-wrap: break-word; width: auto;">
-                      <%= @product.benefits %>
+                      <%= raw @product.benefits %>
                     </div>
                   </div>
               <% end %>
@@ -99,7 +99,7 @@
                   <div class="row">
                     <div class="details-header"><%= t('product_ingredients') %></div>
                     <div style="word-wrap: break-word; width: auto;">
-                      <%= @product.ingredients %>
+                      <%= raw @product.ingredients %>
                     </div>
                   </div>
               <% end %>
@@ -108,7 +108,7 @@
                   <div class="row">
                     <div class="details-header"><%= t('product_direction') %></div>
                     <div style="word-wrap: break-word; width: auto;">
-                      <%= @product.direction %>
+                      <%= raw @product.direction %>
                     </div>
                   </div>
               <% end %>
@@ -133,7 +133,7 @@
                   <div class="row">
                     <div class="details-header"><%= t('full_description_of_the_product') %></div>
                     <div style="word-wrap: break-word; width: auto;">
-                      <%= @product.description %>
+                      <%= raw @product.description %>
                     </div>
                   </div>
               <% end %>

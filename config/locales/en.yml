@@ -148,6 +148,7 @@ en:
   update_user_successful_message: 'User was successfully updated.'
   add_product_successful_message: 'The product is added successful!'
   remove_product_successful_message: 'The product is removed successful!'
+  product_quantity_add_to_cart_warning: "Max product quantity is %{quantity}!"
   contact_message: 'Your message...'
   contact_send_message: 'Send message'
   additional_information: 'Additional information'

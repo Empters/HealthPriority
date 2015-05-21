@@ -12,6 +12,10 @@ class ShoppingCart
     last_quantity = products.has_key?(product) ? products[product].to_i() : 0
     product_quantity = last_quantity + quantity
 
+    if product_quantity > product.quantity
+      return false
+    end
+
     # Check if
     if product_quantity > 0
       # Change product count
@@ -20,6 +24,8 @@ class ShoppingCart
       # Remove product
       remove_product_from_cart(product)
     end
+
+    return true
   end
 
   # Set products count
@@ -47,7 +53,7 @@ class ShoppingCart
 
     # Calculate products count
     if !products.empty?
-      products.each {|key, value| total_products_count = total_products_count + value }
+      products.each { |key, value| total_products_count = total_products_count + value }
     end
 
     @total_products_count = total_products_count
@@ -61,7 +67,7 @@ class ShoppingCart
 
     # Calculate products price
     if !products.empty?
-      products.each{|key, value|
+      products.each { |key, value|
         # Get products discount
         key.discount = key.product_discounts.where('date_start <= ? and date_end >= ? and quantity <= ?', DateTime.now, DateTime.now, value).order('priority ASC').first
         product_price = key.discount.nil? ? key.price : key.discount.price

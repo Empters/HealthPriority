@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
 
   before_action :set_breadcrumb, only: [:index, :show]
   before_action :init_user
+  before_action :init_params, only: :new
 
   def index
     add_breadcrumb t('order_history')
@@ -23,7 +24,7 @@ class OrdersController < ApplicationController
     @order = Order.new
 
     # If have login user - init order with login user data
-    if !@user.nil?
+    unless @user.nil?
       @order.gender_id = @user.gender_id
       @order.first_name = @user.first_name
       @order.last_name = @user.last_name
@@ -46,8 +47,13 @@ class OrdersController < ApplicationController
 
     @order = Order.new(order_params)
     if @order.valid?
-      total_quantity = 0
       shopping_cart.products.each do |product, quantity|
+
+        # TODO - check if product quantity is correct
+        # if product.quantity > quantity
+        #   @order.errors.add(:name, 'must be implemented')
+        #   next
+        # end
 
         order_product = OrderProduct.new
         order_product.product_id = product.id
@@ -56,27 +62,26 @@ class OrdersController < ApplicationController
         order_product.quantity = quantity
 
         @order.order_products << order_product
-
-        total_quantity = total_quantity + quantity
       end
 
       # Set order status to 'Pending'
-      @order.order_status = OrderStatus.find params[1]
-      @order.quantity = total_quantity
+      @order.order_status = OrderStatus.find(1)
       @order.total = shopping_cart.total_price
       @order.user = @user
       @order.ip = request.remote_ip
 
     end
 
+    # TODO - change product quantity
     if @order.valid? && @order.save
       clear_shopping_cart
       redirect_to @order.paypal_url(order_path(@order))
-    else
-      respond_to do |format|
-        format.html { render :new }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
-      end
+      return
+    end
+
+    respond_to do |format|
+      format.html { render :new }
+      format.json { render json: @order.errors, status: :unprocessable_entity }
     end
 
   end
@@ -90,8 +95,8 @@ class OrdersController < ApplicationController
     if paymentStatus.upcase != 'COMPLETED'
 
       # Find order and set status to 'Processing'
-      @order = Order.find params[:invoice]
-      @order.update_attribute :status, OrderStatus.find params[2]
+      @order = Order.find(params[:invoice].to_i)
+      @order.update_attribute :order_status, OrderStatus.find(2)
 
       # Update payment data
       @order.update_attribute :payment_status, paymentStatus
@@ -128,6 +133,17 @@ class OrdersController < ApplicationController
 
   def init_user
     @user = user_signed_in? ? current_user : nil
+  end
+
+  def init_params
+    @genders = Gender.all
+    @countries = Country.all
+
+    if !@user.nil? && !@user.country.nil?
+      @states = State.where(:country_id => @user.country.id)
+    else
+      @states = State.all
+    end
   end
 
 end
