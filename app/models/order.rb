@@ -27,8 +27,8 @@ class Order < ActiveRecord::Base
         item_number: total_quantity,
         amount: total,
         quantity: total_quantity,
-        notify_url: "http://7efc4e44.ngrok.com/orders/hook",
-        return: "http://7efc4e44.ngrok.com/show#{return_path}",
+        notify_url: "#{Rails.application.secrets.app_host}/orders/hook",
+        return: "#{Rails.application.secrets.app_host}/show#{return_path}",
     }
     "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
   end
