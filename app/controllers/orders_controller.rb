@@ -95,27 +95,29 @@ class OrdersController < ApplicationController
     if paymentStatus.upcase == 'COMPLETED'
 
       # Find order and set status to 'Processing'
-      @order = Order.find(params[:invoice].to_i)
-      @order.update_attribute :order_status, OrderStatus.find(2)
+      @order = Order.where(invoice: params[:invoice]).first
+      unless @order.nil?
 
-      # Update payment data
-      @order.update_attribute :payment_status, paymentStatus
-      @order.update_attribute :payment_transaction_id, params[:txn_id]
-      @order.update_attribute :payment_method, params[:txn_type]
-      @order.update_attribute :payment_date, Time.now
+        # Update payment data
+        @order.order_status = OrderStatus.find(2)
+        @order.payment_status = paymentStatus
+        @order.payment_transaction_id = params[:txn_id]
+        @order.payment_method = params[:txn_type]
+        @order.payment_date = Time.now
 
-      # Update payer data
-      @order.update_attribute :payer_id, params[:payer_id]
-      @order.update_attribute :payer_first_name, params[:first_name]
-      @order.update_attribute :payer_last_name, params[:last_name]
-      @order.update_attribute :payer_country, params[:address_country]
-      @order.update_attribute :payer_state, params[:address_state]
-      @order.update_attribute :payer_address, params[:address_name]
-      @order.update_attribute :payer_city, params[:address_city]
-      @order.update_attribute :payer_postal_code, params[:address_zip]
-      @order.update_attribute :payer_email, params[:payer_email]
+        # Update payer data
+        @order.payer_id = params[:payer_id]
+        @order.payer_first_name = params[:first_name]
+        @order.payer_last_name = params[:last_name]
+        @order.payer_country = params[:address_country]
+        @order.payer_state = params[:address_state]
+        @order.payer_address = params[:address_name]
+        @order.payer_city = params[:address_city]
+        @order.payer_postal_code = params[:address_zip]
+        @order.payer_email = params[:payer_email]
 
-      @order.save!
+        @order.save!
+      end
     end
 
     render nothing: true
