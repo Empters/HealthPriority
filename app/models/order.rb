@@ -1,7 +1,7 @@
 class Order < ActiveRecord::Base
 
   before_save :before_save
-  after_save :handle_status_changed
+  after_save :after_save
 
   # Validate required attributes
   validates_presence_of :gender_id, :first_name, :last_name, :email, :phone, :country_id, :city, :postal_code, :address, :payment_method
@@ -21,14 +21,14 @@ class Order < ActiveRecord::Base
         business: 'test123445@abv.bg',
         cmd: '_xclick',
         upload: 1,
-        invoice: id,
+        invoice: invoice,
         currency_code: 'GBP',
         item_name: order_products_names,
         item_number: total_quantity,
         amount: total,
         quantity: total_quantity,
-        notify_url: "http://7efc4e44.ngrok.com/orders/hook",
-        return: "http://7efc4e44.ngrok.com/show#{return_path}",
+        notify_url: "#{Rails.application.secrets.app_host}/orders/hook",
+        return: "#{Rails.application.secrets.app_host}/show#{return_path}",
     }
     "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
   end
@@ -48,13 +48,21 @@ class Order < ActiveRecord::Base
     return true
   end
 
-  # Save order history when order status changed
-  def handle_status_changed
-    if @was_a_new_record || self.order_status_id_changed?
-      @orderHistory = OrderHistory.new()
-      @orderHistory.order = self
-      @orderHistory.order_status = self.order_status
-      @orderHistory.save!
+  def after_save
+
+    # Check if is a new order
+    if @was_a_new_record
+
+      self.update_attributes!(:invoice => "#{self.id}-#{self.created_at.to_formatted_s(:number)}")
+
+      # Save order history when order status changed
+      if self.order_status_id_changed?
+        @orderHistory = OrderHistory.new()
+        @orderHistory.order = self
+        @orderHistory.order_status = self.order_status
+        @orderHistory.save!
+      end
+
     end
   end
 

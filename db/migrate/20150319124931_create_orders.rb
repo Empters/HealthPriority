@@ -18,6 +18,7 @@ class CreateOrders < ActiveRecord::Migration
       t.string :fax
 
       # Order data
+      t.string :invoice
       t.integer :order_status_id, default: 1, :null => false
       t.decimal :total
       t.string :description
@@ -46,5 +47,7 @@ class CreateOrders < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :orders, :invoice, unique: true
   end
 end
