@@ -17,9 +17,9 @@ module Modules
         @products = Product.where('manufacturer_id' => session[:brand])
       elsif (!token && !category)
         @products ||= Product.all
-      elsif !category
+      elsif category.blank?
         @products = Product.where('UPPER(name) LIKE :name or UPPER(description) LIKE :name ', {:name => "%#{token.upcase}%"})
-      elsif !token
+      elsif token.blank?
         @category = Category.find(category)
         if (@category.parent)
           @products = Product.joins(products_categories: :category).where(categories: {id: @category})
