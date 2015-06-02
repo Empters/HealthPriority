@@ -86,7 +86,11 @@ module ApplicationHelper
     shopping_cart.add_product_to_cart(product, quantity)
   end
 
-  def set_page_title(title)
-    @page_name = title
+  def init_product_list_view(page_label, products_per_page, products_per_row, table_css)
+    @page_label = page_label
+    @products_per_page = products_per_page
+    @products_per_row = products_per_row
+    @table_css = table_css
   end
+
 end

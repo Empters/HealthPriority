@@ -1,21 +1,20 @@
 class ProductsController < ApplicationController
-  before_action :initFilters, :set_products_per_page
-  before_action :set_from_controller
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_action :set_products, only: [:index]
-  before_action :set_search_and_filter_params, only: [:filter, :search, :brand, :price]
+
   before_action :set_breadcrumb
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :init_product_list, :set_search_and_filter_params, :initFilters, only: [:index, :filter, :search]
+
   respond_to :html, :js
 
-  include ApplicationHelper
   include Modules::SearchModule
-
-  helper_method :product_passed
 
   # GET /products
   # GET /products.json
   def index
-    set_pages
+
+    # Get last added products
+    @products = Product.order(:created_at => :desc).paginate(:page => params[:page], :per_page => @products_per_page)
+
   end
 
   # GET /products/1
@@ -85,10 +84,8 @@ class ProductsController < ApplicationController
   def search
 
     search_and_filter()
-    set_pages
 
-    @page_label = t('our_products')
-    @products = @products.paginate(:page => @current_page, :per_page => session[:products_per_page])
+    @products = @products.paginate(:page => params[:page], :per_page => @products_per_page)
 
     respond_to do |format|
       format.js {
@@ -112,10 +109,8 @@ class ProductsController < ApplicationController
   def filter
 
     search_and_filter()
-    set_pages
 
-    @page_label = t('our_products')
-    @products = @products.paginate(:page => @current_page, :per_page => session[:products_per_page])
+    @products = @products.paginate(:page => params[:page], :per_page => @products_per_page)
 
     respond_to do |format|
       format.html { render 'products/index' }
@@ -124,94 +119,26 @@ class ProductsController < ApplicationController
 
   end
 
-  # GET /products/brand
-  def brand
-
-    filter_by_manufacturer()
-    set_pages
-
-    @page_label = t('our_products')
-    @products = @products.paginate(:page => @current_page, :per_page => session[:products_per_page])
-
-    respond_to do |format|
-      format.js { render 'search.js.erb' }
-    end
-
-  end
-
-  def price
-
-    filter_by_price()
-    set_pages
-
-    @page_label = t('our_products')
-    @products = @products.paginate(:page => @current_page, :per_page => session[:products_per_page])
-
-    respond_to do |format|
-      format.js { render 'search.js.erb' }
-    end
-
-  end
-
-  def change_page
-
-    session[:page_number] = search_params[:page_number].to_i
-
-    search_and_filter
-    set_pages
-
-    @products = main_change_page
-
-    respond_to do |format|
-      format.js { render 'products/search.js.erb' }
-    end
-
-  end
-
-  def rate
-    rating = params[:rating]
-    product_id = params[:product]
-    @product = Product.find(product_id)
-    product_review = ProductReview.new
-    product_review.product = @product
-    product_review.rating = rating
-    product_review.ip = request.remote_ip
-    product_review.text = t('customer_reviews')
-    product_review.status = 1
-    product_review.save
-    @product_reviews = @product.product_reviews
-
-    respond_to do |format|
-      format.js { render 'rate.js.erb' }
-    end
-  end
-
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_product
-      @product = Product.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def product_params
-      params.require(:product).permit(:name, :model, :quantity, :viewed, :image, :price, :points, :description)
-    end
-
-  def set_from_controller
-    @from_controller = 'products'
+  # Use callbacks to share common setup or constraints between actions.
+  def set_product
+    @product = Product.find(params[:id])
   end
 
-  def set_products_per_page
-    session[:products_per_page] = 12
-    @products_per_row = 4
-    @table_css = 'col-md-3 col-sm-4 col-xs-12'
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def product_params
+    params.require(:product).permit(:name, :model, :quantity, :viewed, :image, :price, :points, :description)
+  end
+
+  def init_product_list
+    init_product_list_view(t('our_products'), 12, 4, 'col-md-3 col-sm-4 col-xs-12')
   end
 
   def initFilters
+    @page_name = 'Health Care Products'
     @brands ||= Manufacturer.all
     @price_ranges ||= [ [0.01, 1.99, 0], [2, 4.99, 1], [5, 9.99, 2], [10.00, 15.99, 3], [16.00, 19.99, 4], [20.00, 49.99, 5], [50.00, 99.99, 6], [100, 1000, 7] ]
-    @page_label = t('our_products')
-    @page_name = ' Health Care Products'
   end
 
   def set_breadcrumb
