@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   # Init login gem
   devise_for :users, controllers: {:sessions => 'users/sessions', registrations: 'users/registrations', passwords: 'users/passwords', confirmations: 'users/confirmations'}
 
-  get '/home/change_page/:page_number', to: 'home#change_page'
   get '/home/about_us', to: 'home#about_us', :as => 'about_us'
   get '/home/contacts', to: 'home#contacts', :as => 'contacts'
   get '/home/faq', to: 'home#faq', :as => 'faq'
@@ -28,10 +27,9 @@ Rails.application.routes.draw do
 
   get '/products/search/(:token)(/category/:category)', to: 'products#search', :as => 'search'
   get '/products/autocomplete/:query', to: 'products#autocomplete'
-  get '/products/filter/:category', to: 'products#filter', :as => 'filter'
-  get '/products/brand/:brand', to: 'products#brand', :as => 'brand'
-  get '/products/price/:range', to: 'products#price', :as => 'price'
-  get '/products/change_page/:page_number', to: 'products#change_page'
+  get '/products/filter', to: 'products#filter', :as => 'filter'
+  # get '/products/brand/:brand', to: 'products#brand', :as => 'brand'
+  # get '/products/price/:range', to: 'products#price', :as => 'price'
 
   get '/shopping_carts/index', to: 'shopping_carts#index'
   get '/shopping_carts/add_to_shopping_cart/:id&:quantity', to: 'shopping_carts#add_to_shopping_cart'
@@ -43,7 +41,6 @@ Rails.application.routes.draw do
   post '/show/orders/:id', to: 'orders#show'
   post '/orders/hook', to: 'orders#hook'
 
-  get '/special_offers/change_page/:page_number', to: 'special_offers#change_page'
   post '/products/:product/rate/', to: 'products#rate'
 
   resources :orders

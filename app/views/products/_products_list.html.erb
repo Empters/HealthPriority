@@ -20,7 +20,7 @@
         <%= page_entries_info @products %>
       </div>
       <div class="flickr_pagination right">
-        <%= will_paginate @products %>
+        <%= will_paginate @products, :inner_window => 2, :outer_window => 0 %>
       </div>
       <div class="clearfix"></div>
     </div>

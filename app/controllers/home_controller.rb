@@ -4,27 +4,22 @@ class HomeController < ApplicationController
 
   skip_before_filter :authenticate_user!
   before_action :set_breadcrumb
-  before_action :set_products_per_page, only: [:index, :change_page]
-  before_action :set_from_controller, :set_best_sellers, :set_products, :set_pages, :set_search_and_filter_params, only: [:index, :change_page]
   before_action :set_web_store_detail, only: [:about_us, :contacts, :delivery_methods, :faq, :our_partners, :payment_methods]
 
-  helper_method :product_passed
+  include ApplicationHelper
 
   # GET index page
   def index
-  end
 
-  # GET change_page
-  def change_page
-    session[:page_number] = search_params[:page_number].to_i
+    # Init product list view parameters
+    init_product_list_view(t('our_featured_products'), 8, 4, 'col-md-3 col-sm-4 col-xs-12')
 
-    @products = search_and_filter
-    set_pages
-    @products = main_change_page
+    # Get best sellers
+    @best_sellers = Product.where(is_best_seller: true)
 
-    respond_to do |format|
-      format.js { render 'products/search.js.erb' }
-    end
+    # Get last added products
+    @products = Product.order(:created_at => :desc).paginate(:page => params[:page], :per_page => @products_per_page)
+
   end
 
   # GET about_us page
@@ -177,21 +172,6 @@ class HomeController < ApplicationController
   end
 
   private
-
-  def set_from_controller
-    @from_controller = 'home'
-    @page_label = t('our_featured_products')
-  end
-
-  def set_products_per_page
-    session[:products_per_page] = 8
-    @products_per_row = 4
-    @table_css = 'col-md-3 col-sm-4 col-xs-12'
-  end
-
-  def set_best_sellers
-    @best_sellers = Product.where(is_best_seller: true)
-  end
 
   def set_web_store_detail
     @web_store_detail = WebStoreDetail.first

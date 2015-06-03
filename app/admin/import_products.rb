@@ -91,26 +91,29 @@ ActiveAdmin.register_page 'Import Products' do
 
         ((workbook.first_row + 1)..workbook.last_row).each do |i|
 
-          if workbook.row(i)[headers['manufacturer']].nil?
+          manufacturer_header_name = headers['bg manufacturer'].blank? ? headers['manufacturer'] : headers['bg manufacturer']
+          if workbook.row(i)[manufacturer_header_name].nil?
             next
           end
 
           # Init manufacturer
-          manufacturer_name = workbook.row(i)[headers['manufacturer']].strip
+          manufacturer_name = workbook.row(i)[manufacturer_header_name].strip
           manufacturer = Manufacturer.where('lower(name) = ?', manufacturer_name.downcase).first
           if manufacturer.nil?
             manufacturer = Manufacturer.create!(name: manufacturer_name)
           end
 
           # Init category
-          category_name = workbook.row(i)[headers['category']].strip
+          category_header_name = headers['bg category'].blank? ? headers['category'] : headers['bg category']
+          category_name = workbook.row(i)[category_header_name].strip
           category = Category.where('lower(name) = ?', category_name.downcase).first
           if category.nil?
             category = Category.create!(name: category_name)
           end
 
           # Init subcategory
-          subcategory_name = workbook.row(i)[headers['subcategory']]
+          subcategory_header_name = headers['bg subcategory'].blank? ? headers['subcategory'] : headers['bg subcategory']
+          subcategory_name = workbook.row(i)[subcategory_header_name]
           unless subcategory_name.blank?
             subcategory_name = subcategory_name.strip
             subcategory = Category.where('lower(name) = ?', subcategory_name.downcase).first
@@ -120,7 +123,8 @@ ActiveAdmin.register_page 'Import Products' do
           end
 
           # Init manufacturer
-          stock_status_name = workbook.row(i)[headers['stock status']]
+          stock_status_header_name = headers['bg stock status'].blank? ? headers['stock status'] : headers['bg stock status']
+          stock_status_name = workbook.row(i)[stock_status_header_name]
           unless stock_status_name.nil? || stock_status_name.blank?
             stock_status_name = stock_status_name.strip
             stock_status = StockStatus.where('lower(name) = ?', stock_status_name.downcase).first
@@ -129,19 +133,21 @@ ActiveAdmin.register_page 'Import Products' do
             end
           end
 
-          # Create product
-          product = Product.create!(
-              name: workbook.row(i)[headers['name']].strip,
-              full_name: workbook.row(i)[headers['full name']].strip,
-              benefits: workbook.row(i)[headers['benefits']],
-              description: workbook.row(i)[headers['description']],
-              ingredients: workbook.row(i)[headers['ingredients']],
-              direction: workbook.row(i)[headers['direction']],
+          # Create or update product
+          name = workbook.row(i)[headers['name']].strip
+          product = Product.find_or_create_by(name: name)
+          product.update_attributes!(
+              name: workbook.row(i)[headers['bg name'].blank? ? headers['name'] : headers['bg name']].strip,
+              full_name: workbook.row(i)[headers['bg full name'].blank? ? headers['full name'] : headers['bg full name']].strip,
+              benefits: workbook.row(i)[headers['bg benefits'].blank? ? headers['benefits'] : headers['bg benefits']],
+              description: workbook.row(i)[headers['bg description'].blank? ? headers['description'] : headers['bg description']],
+              ingredients: workbook.row(i)[headers['bg ingredients'].blank? ? headers['ingredients'] : headers['bg ingredients']],
+              direction: workbook.row(i)[headers['bg direction'].blank? ? headers['direction'] : headers['bg direction']],
               stock_status_id: stock_status.id,
-              price: workbook.row(i)[headers['price']].to_f,
-              quantity: workbook.row(i)[headers['quantity']].to_i,
+              price: workbook.row(i)[headers['bg price'].blank? ? headers['price'] : headers['bg price']].to_f,
+              quantity: workbook.row(i)[headers['bg quantity'].blank? ? headers['quantity'] : headers['bg quantity']].to_i,
               is_best_seller: !workbook.row(i)[headers['best seller']].blank? && workbook.row(i)[headers['best seller']].downcase == 'true',
-              questions_answers: workbook.row(i)[headers['questions & answers']],
+              questions_answers: workbook.row(i)[headers['bg questions & answers'].blank? ? headers['questions & answers'] : headers['bg questions & answers']],
               manufacturer_id: manufacturer.id,
               categories: subcategory.nil? ? [category] : [subcategory])
         end

@@ -33,12 +33,12 @@ ActiveAdmin.register Category do
 
   # Init edit page
   form :html => {:multipart => true} do |f|
-    f.inputs 'Category' do
+    f.inputs do
       f.input :name
       f.input :parent_id, :as => :select, collection: Category.where.not(id: f.object.id), :member_label => :name, :member_value => :id, :include_blank => 'Choose category'
       f.input :image, :as => :file, :required => false, :hint => f.object.image.present? ? image_tag(f.object.image.url(:thumb)) : ''
       if (f.object.image.present?)
-        f.input :remove_image, :as=> :boolean, :required => false, :label => 'Remove image'
+        f.input :remove_image, :as => :boolean, :required => false, :label => 'Remove image'
       end
       f.input :description, :as => :ckeditor
       f.input :active
