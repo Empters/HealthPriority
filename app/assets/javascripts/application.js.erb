@@ -134,8 +134,7 @@ function initProductSearchControl() {
     $(document).on('click', '#search_link', function () {
         var token = $('#search_input').val();
         var category = $('#chosen_category').attr('selected_category');
-        var url = getUrlRoot() + '/products/search';
-        $.get(url, {token: token, category: category});
+        window.location.href = getUrlRoot() + '/products/search?' + decodeURIComponent( $.param( {token: token, category: category}) );
     });
 
     $(document).off('keypress', '#search_input');
