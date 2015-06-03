@@ -28,8 +28,6 @@ Rails.application.routes.draw do
   get '/products/search/(:token)(/category/:category)', to: 'products#search', :as => 'search'
   get '/products/autocomplete/:query', to: 'products#autocomplete'
   get '/products/filter', to: 'products#filter', :as => 'filter'
-  # get '/products/brand/:brand', to: 'products#brand', :as => 'brand'
-  # get '/products/price/:range', to: 'products#price', :as => 'price'
 
   get '/shopping_carts/index', to: 'shopping_carts#index'
   get '/shopping_carts/add_to_shopping_cart/:id&:quantity', to: 'shopping_carts#add_to_shopping_cart'
