@@ -112,7 +112,7 @@ function getAjaxNotificationMessage(request) {
     var msg = request.getResponseHeader('X-Message');
     var type = request.getResponseHeader('X-Message-Type');
     if (msg && type) {
-        msg = decodeURIComponent(msg.replace(/\+/g, " "));
+        msg = decodeURIComponent(escape(msg));
         return { msg: msg, notificationType: type };
     }
 

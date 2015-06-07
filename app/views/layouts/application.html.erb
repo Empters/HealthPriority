@@ -198,16 +198,14 @@
     </div>
     <div class="col-md-4 col-sm-6 col-xs-12">
       <div class="category-name">
-        e-mail newsletter
+        <%= t('newsletter')%>
       </div>
       <div class="category-text">
-        All products on the website would be
-        featured under categories lists.
+        <%= t('newsletter_desc')%>
       </div>
       <div class="email-container">
-        <input type="text" class="email-input" placeholder="Enter Your Email Address"/>
-
-        <div class="send-email-button right" title="Send us mail"></div>
+        <input type="text" class="email-input" placeholder="<%= t('newsletter_placeholder')%>"/>
+        <div class="send-email-button right" title="<%= t('newsletter_send_mail')%>"></div>
       </div>
     </div>
   </div>
@@ -218,10 +216,10 @@
 <div class="footer text-center">
   <div class="sponsors-footer"></div>
   <div class="footer-main-text">
-    Health Priority © Copyright 2014 All rights reserved.
+    <%= t('copyright')%>
   </div>
   <div class="footer-main-text">
-    Developed and designed by <a href="http://www.empters.com" title="Empters Ltd">Empters Ltd.</a>
+    <%= t('developed_by')%> <a href="http://www.empters.com" title="Empters Ltd">Empters Ltd.</a>
   </div>
   <br/>
 
