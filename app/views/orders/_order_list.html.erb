@@ -34,7 +34,7 @@
                   <div class="col-md-4 content-table-td"><%= order.order_products_names %></div>
                   <div class="col-md-2 content-table-td"><%= order.order_status.name %></div>
                   <div class="col-md-1 content-table-td"><%= order.total_quantity %></div>
-                  <div class="col-md-2 content-table-td"><%= format('£ %.2f', order.total) %></div>
+                  <div class="col-md-2 content-table-td"><%= number_to_currency(order.total) %></div>
                 </div>
               </div>
             </div>

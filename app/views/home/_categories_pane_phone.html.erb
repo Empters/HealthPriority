@@ -12,11 +12,11 @@
       <ul class="nav navbar navbar-left nomargin">
         <% @root_categories.each do |category| %>
             <li class="nav-item-phone text-center category_li">
-              <%= link_to category.name, filter_path(category),  remote: true, :title => category.name %>
+              <%= link_to category.name, filter_path(category), :title => category.name %>
             </li>
             <% category.children.each do |child_category| %>
                 <li class="nav-item-phone text-center category_li">
-                  <%= link_to child_category.name, filter_path(child_category),  remote: true, :title => child_category.name %>
+                  <%= link_to child_category.name, filter_path(child_category), :title => child_category.name %>
                 </li>
             <% end %>
         <% end %>

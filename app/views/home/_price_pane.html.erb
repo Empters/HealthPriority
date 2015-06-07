@@ -1,12 +1,14 @@
-<div class="title-banner">
-  <%= t('shop_by_price')%>
-</div>
-<div class="content-container categories-container">
-  <ul class="categories-list">
-    <% @price_ranges.each do |price_range| %>
-        <li class="category_li">
-          <%= link_to format('%{price}', {:price => ('£'+price_range[0].to_s + ' - ' + '£'+price_range[1].to_s)}), filter_path(:range => price_range[2]), remote: true, :title => 'Price range' %>
-        </li>
-    <% end %>
-  </ul>
-</div>
+<% unless @price_ranges.blank? %>
+    <div class="title-banner">
+      <%= t('shop_by_price') %>
+    </div>
+    <div class="content-container categories-container">
+      <ul class="categories-list">
+        <% @price_ranges.each do |price_range| %>
+            <li class="category_li">
+              <%= link_to number_to_currency(price_range[0]).to_s + ' - ' + number_to_currency(price_range[1]).to_s, filter_path(:range => price_range[2]), :title => t('shop_by_price') %>
+            </li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>

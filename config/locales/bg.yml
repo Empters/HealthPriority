@@ -5,15 +5,15 @@ bg:
     page_gap: "&hellip;"
     page_entries_info:
       single_page:
-        zero:  "No %{model} found"
-        one:   "Displaying 1 %{model}"
-        other: "Displaying all %{count} %{model}"
+        zero:  "Няма намерени резултати"
+        one:   "Резултат 1"
+        other: "Всички %{count}"
       single_page_html:
-        zero:  "No %{model} found"
-        one:   "Displaying <b>1</b> %{model}"
-        other: "Displaying <b>all&nbsp;%{count}</b> %{model}"
-      multi_page: "Displaying %{model} %{from} - %{to} of %{count} in total"
-      multi_page_html: "Displaying %{model} <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{count}</b> in total"
+        zero:  "Няма намерени резултати"
+        one:   "Резултат <b>1</b>"
+        other: "Всички <b>&nbsp;%{count}</b>"
+      multi_page: "Резултати %{from} - %{to} о %{count}"
+      multi_page_html: "Резултати <b>%{from}&nbsp;-&nbsp;%{to}</b> от <b>%{count}</b>"
 
   active_admin:
     dashboard: Табло

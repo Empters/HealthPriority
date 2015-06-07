@@ -1,4 +1,4 @@
-en:
+en-GB:
   will_paginate:
     previous_label: "&#8592;"
     next_label: "&#8594;"

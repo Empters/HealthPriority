@@ -7,7 +7,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-6 col-sm-6 price <%= is_small %>">
-          <%= format('£ %.2f', product.price) %>
+          <%= number_to_currency(product.price) %>
         </div>
         <div class="col-md-6 col-sm-6" style="padding: 0px;">
           <div class="star-rating" style="margin: auto;">
@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="buttons-container">
-      <%= link_to t('add_to_cart'), {:controller => :shopping_carts, :action => :add_to_shopping_cart, :id => product.id, :quantity => 1, :remote => true}, {:class => 'button green', :title => 'Shopping Cart'} %>
+      <%= link_to t('add_to_cart'), {:controller => :shopping_carts, :action => :add_to_shopping_cart, :id => product.id, :quantity => 1, :remote => true }, {:class => 'button green', :title => t('add_to_cart'), :method => :post} %>
     </div>
   </div>
 </div>

@@ -25,12 +25,12 @@ Rails.application.routes.draw do
   get '/home/update_states', to: 'home#update_states', :as => 'update_states'
   post '/home/send_message', to: 'home#send_message'
 
-  get '/products/search/(:token)(/category/:category)', to: 'products#search', :as => 'search'
+  get '/products/search/:token&:category', to: 'products#search', :as => 'search'
   get '/products/autocomplete/:query', to: 'products#autocomplete'
   get '/products/filter', to: 'products#filter', :as => 'filter'
 
   get '/shopping_carts/index', to: 'shopping_carts#index'
-  get '/shopping_carts/add_to_shopping_cart/:id&:quantity', to: 'shopping_carts#add_to_shopping_cart'
+  post '/shopping_carts/add_to_shopping_cart', to: 'shopping_carts#add_to_shopping_cart'
   post '/shopping_carts/set_product_count', to: 'shopping_carts#set_product_count'
   delete '/shopping_carts/remove_product', to: 'shopping_carts#remove_product'
 
