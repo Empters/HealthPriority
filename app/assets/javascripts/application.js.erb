@@ -59,14 +59,14 @@ function validateProductQuantity(e) {
 }
 
 /* Set product count */
-function setProductCountToCart(e) {
+function setProductCountToCart(element) {
 
-    var value = $(this).val();
+    var value = $(element).val();
     var count = isInt(value) && parseInt(Number(value)) > 0 ? parseInt(Number(value)) : 0;
     $(this).val(count);
 
     // Call ajax to change products count
-    var product_id = $(this).data("product-id");
+    var product_id = $(element).data("product-id");
     var url = getUrlRoot() + '/shopping_carts/set_product_count.js'
     $.ajax({
         url: url,
@@ -169,8 +169,23 @@ function initCategoryMenu() {
 }
 
 function initProductCart() {
-    $(document).on('focusout', '.quantity-js', setProductCountToCart);
-    $(document).on('change', '.quantity-js', setProductCountToCart);
+
+    var productQuantityChangedTimeout;
+    $(document).on('change', '.quantity-js', function (e) {
+
+        if (productQuantityChangedTimeout) {
+            clearTimeout(productQuantityChangedTimeout);
+        }
+
+        var element = $(this);
+        productQuantityChangedTimeout = setTimeout(function () {
+            setProductCountToCart(element);
+        }, 500);
+    });
+
+    $(document).on('keyup', '.quantity-js', function () {
+        $(this).trigger('change');
+    });
 }
 
 function add_quantity_to_button() {
@@ -208,36 +223,22 @@ function init_spinner_button() {
 
     $(document).off('click', '.spinner .spinner-up');
     $(document).on('click', '.spinner .spinner-up', function () {
-
-        if (changeSpinnerTimeout) {
-            clearTimeout(changeSpinnerTimeout);
-        }
-
         var spinnerDiv = $(this).closest('div.spinner');
         var spinnerInput = spinnerDiv.find('input');
         var oldValue = spinnerInput.val();
         var quantity = isInt(oldValue) && parseInt(Number(oldValue)) > 0 ? parseInt(Number(oldValue)) : 0;
         spinnerInput.val(quantity > 0 ? quantity + 1 : 0);
-        changeSpinnerTimeout = setTimeout(function() {
-            spinnerInput.trigger('change');
-        }, 500);
+        spinnerInput.trigger('change');
     });
 
     $(document).off('click', '.spinner .spinner-down');
     $(document).on('click', '.spinner .spinner-down', function () {
-
-        if (changeSpinnerTimeout) {
-            clearTimeout(changeSpinnerTimeout);
-        }
-
         var spinnerDiv = $(this).closest('div.spinner');
         var spinnerInput = spinnerDiv.find('input');
         var oldValue = spinnerInput.val();
         var quantity = isInt(oldValue) && parseInt(Number(oldValue)) > 0 ? parseInt(Number(oldValue)) : 0;
         spinnerInput.val(quantity > 0 ? quantity - 1 : 0);
-        changeSpinnerTimeout = setTimeout(function() {
-            spinnerInput.trigger('change');
-        }, 500);
+        spinnerInput.trigger('change');
     });
 }
 
