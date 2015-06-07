@@ -55,7 +55,7 @@ body {
     color: #FFFFFF;
 }
 
-.main-nav-wrapper, .footer, .button.green, .title-banner, .button.orange:hover, .rsMinW .rsBullet span, .phone-nav, .product-details-tab.active, .product-details-tab:hover {
+.main-nav-wrapper, .footer, .button.green, .title-banner, .button.orange:hover, .rsMinW .rsBullet span, .phone-nav, .product-details-tab.active, .product-details-tab:hover, .spinner .spinner-button {
     background-color: #87BA1D;
     background-image: -moz-linear-gradient(top, #87BA1D 0, #519007 100%);
     background-image: -webkit-gradient(left top, left bottom, color-stop(0%, #87BA1D), color-stop(100%, #519007));
@@ -1405,52 +1405,23 @@ span.twitter-typeahead {
     padding-top: 0.8em;
 }
 
-.spinner {
-    width: 100px;
+.spinnerDiv{
+    min-width: 110px;
+    width: 100%;
 }
 
-.spinner input {
-    text-align: right;
+.spinner input, .spinner .spinner-button {
+    text-align: center;
     border: solid #BBD1A1 1px;
+    box-shadow: none;
 }
 
-.spinner input.form-control:focus, .spinner input.form-control:hover, .input-group-btn-vertical > .button:hover, .input-group-btn-vertical > .button:focus{
+.spinner input[type='text']:focus, .spinner .spinner-button:hover, .spinner .spinner-button:hover{
     outline: none;
     box-shadow:none;
     border: solid #BBD1A1 1px;
 }
 
-.input-group-btn-vertical {
-    position: relative;
-    white-space: nowrap;
-    width: 1%;
-    vertical-align: middle;
-    display: table-cell;
-}
-
-.input-group-btn-vertical > .button {
-    display: block;
-    float: none;
-    width: 100%;
-    max-width: 100%;
-    padding: 8px;
-    margin-left: -1px;
-    position: relative;
-    border-radius: 0;
-    box-shadow: none;
-    border: solid #BBD1A1 1px;
-}
-
-.input-group-btn-vertical > .button:first-child {
-    border-top-right-radius: 4px;
-}
-
-.input-group-btn-vertical > .button:last-child {
-    margin-top: -2px;
-    border-bottom-right-radius: 4px;
-}
-.input-group-btn-vertical i{
-    position: absolute;
-    top: -2px;
-    left: 4px;
+.quantity-container .spinnerDiv{
+    width: 110px;
 }

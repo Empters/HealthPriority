@@ -206,8 +206,8 @@ function init_spinner_button() {
     $(document).off('keydown', '.spinner input');
     $(document).on('keydown', '.spinner input', validateProductQuantity);
 
-    $(document).off('click', '.spinner .button:first-of-type');
-    $(document).on('click', '.spinner .button:first-of-type', function () {
+    $(document).off('click', '.spinner .spinner-up');
+    $(document).on('click', '.spinner .spinner-up', function () {
 
         if (changeSpinnerTimeout) {
             clearTimeout(changeSpinnerTimeout);
@@ -223,8 +223,8 @@ function init_spinner_button() {
         }, 500);
     });
 
-    $(document).off('click', '.spinner .button:last-of-type');
-    $(document).on('click', '.spinner .button:last-of-type', function () {
+    $(document).off('click', '.spinner .spinner-down');
+    $(document).on('click', '.spinner .spinner-down', function () {
 
         if (changeSpinnerTimeout) {
             clearTimeout(changeSpinnerTimeout);
