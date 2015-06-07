@@ -77,5 +77,6 @@ Rails.application.configure do
 
   # Setting default language
   config.i18n.enforce_available_locales = true
-  config.i18n.default_locale = :en
+  # config.i18n.default_locale = :'en-GB'
+  config.i18n.default_locale = :bg
 end

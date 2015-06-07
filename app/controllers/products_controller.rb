@@ -119,6 +119,24 @@ class ProductsController < ApplicationController
 
   end
 
+  def rate
+    rating = params[:rating]
+    product_id = params[:product]
+    @product = Product.find(product_id)
+    product_review = ProductReview.new
+    product_review.product = @product
+    product_review.rating = rating
+    product_review.ip = request.remote_ip
+    product_review.text = t('customer_reviews')
+    product_review.status = 1
+    product_review.save
+    @product_reviews = @product.product_reviews
+
+    respond_to do |format|
+      format.js { render 'rate.js.erb' }
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

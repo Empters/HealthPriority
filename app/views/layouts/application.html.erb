@@ -21,16 +21,23 @@
 
 <body class="main-fonts">
 <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
     ga('create', 'UA-56350917-3', 'auto');
     ga('send', 'pageview');
 </script>
 <!-- Top bar -->
-<div class="container main-content-transparent container-background" style="position: fixed; height: 254px; top: -2px; width: 2595px; background-image: url('/assets/bg.jpg'); z-index: -1" >
+<div class="container main-content-transparent container-background" style="position: fixed; height: 254px; top: -2px; width: 2595px; background-image: url('/assets/bg.jpg'); z-index: -1">
 </div>
 
 <div class="top-bar-wrapper">
@@ -45,18 +52,18 @@
         <%= link_to t('faq'), faq_path, {:class => 'navbar-link', :title => 'FAQ'} %>
       </div>
       <div class="top-bar-tab top-bar-text">
-        <%= link_to t('delivery'), delivery_methods_path, :class => 'navbar-link', :title => 'Delivery' %>
+        <%= link_to t('delivery'), delivery_methods_path, :class => 'navbar-link', :title => t('delivery') %>
       </div>
       <% if user_signed_in? -%>
           <div class="top-bar-tab top-bar-text">
-            <%= link_to t('my_account'), user_path(@user), :class => 'navbar-link', :title => 'My Account' %>
+            <%= link_to t('my_account'), user_path(@user), :class => 'navbar-link', :title => t('my_account') %>
           </div>
           <div class="top-bar-tab top-bar-text">
-            <%= link_to t('logout'), destroy_user_session_path, method: :delete, :class => 'navbar-link', :title => 'Logout' %>
+            <%= link_to t('logout'), destroy_user_session_path, method: :delete, :class => 'navbar-link', :title => t('logout') %>
           </div>
       <% else %>
           <div class="top-bar-tab top-bar-text">
-            <%= link_to t('login'), new_user_session_path, :title => 'LogIn' %>
+            <%= link_to t('login'), new_user_session_path, :title => t('login') %>
           </div>
       <% end %>
       <div class="top-bar-tab top-bar-text" title="Health Priority Facebook">
@@ -70,55 +77,55 @@
 
 <!-- Search Section -->
 <div style="background: white">
-<div class="search-section-container">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-2 col-sm-2 col-xs-1 nomargin nopadding">
-        <%= link_to '', root_path, :class => 'logo', :data => {:no_turbolink => true}, :title => 'Health Priority' %>
-      </div>
+  <div class="search-section-container">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2 col-sm-2 col-xs-1 nomargin nopadding">
+          <%= link_to '', root_path, :class => 'logo', :data => {:no_turbolink => true}, :title => 'Health Priority' %>
+        </div>
 
-      <div class="col-md-8 col-sm-8 col-xs-8">
-        <div class="search-section">
-          <div class="col-md-10 col-sm-10 col-xs-10">
-            <div class="search-container">
-              <div class="search-dropdown-container left">
-                <div class="dropdown-toggle" id="search_category" data-toggle="dropdown">
-                  <span id="chosen_category" selected_category="" class="search_text"><%= t('all_categories') %></span>
-                  <b class="caret"></b>
+        <div class="col-md-8 col-sm-8 col-xs-8">
+          <div class="search-section">
+            <div class="col-md-10 col-sm-10 col-xs-10">
+              <div class="search-container">
+                <div class="search-dropdown-container left">
+                  <div class="dropdown-toggle" id="search_category" data-toggle="dropdown">
+                    <span id="chosen_category" selected_category="" class="search_text"><%= t('all_categories') %></span>
+                    <b class="caret"></b>
+                  </div>
+                  <ul aria-labelledby="search_category" role="menu" class="dropdown-menu" id="category-menu">
+                    <li>
+                      <%= t('all_categories') %>
+                    </li>
+                    <% @root_categories.each do |category| %>
+                        <li category="<%= category.id %>">
+                          <%= category.name %>
+                        </li>
+                    <% end %>
+                  </ul>
                 </div>
-                <ul aria-labelledby="search_category" role="menu" class="dropdown-menu" id="category-menu">
-                  <li>
-                    <%= t('all_categories') %>
-                  </li>
-                  <% @root_categories.each do |category| %>
-                      <li category="<%= category.id %>">
-                        <%= category.name %>
-                      </li>
-                  <% end %>
-                </ul>
-              </div>
-              <div class="search-input-container left">
-                <input type="text" id="search_input" class="typeahead search-input" placeholder="<%= t('search_token') %>"/>
-              </div>
-              <div class="right search-image-div">
-                <div id="search_link" class='search-image' title="Search products"></div>
+                <div class="search-input-container left">
+                  <input type="text" id="search_input" class="typeahead search-input" placeholder="<%= t('search_token') %>"/>
+                </div>
+                <div class="right search-image-div">
+                  <div id="search_link" class='search-image' title="Search products"></div>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="col-md-2 col-sm-2 col-xs-2">
-            <!-- Cert logo -->
-            <%= link_to '', '#', :class => 'cert-logo', :data => {:no_turbolink => true}, :title => 'Euro Certified' %>
-          </div>
+            <div class="col-md-2 col-sm-2 col-xs-2">
+              <!-- Cert logo -->
+              <%= link_to '', '#', :class => 'cert-logo', :data => {:no_turbolink => true}, :title => 'Euro Certified' %>
+            </div>
 
+          </div>
         </div>
-      </div>
-      <div id="shopping_cart_div" class="col-md-2 col-sm-2 col-xs-2 nopadding nomargin">
-        <%= render 'shopping_carts/shopping_cart' %>
+        <div id="shopping_cart_div" class="col-md-2 col-sm-2 col-xs-2 nopadding nomargin">
+          <%= render 'shopping_carts/shopping_cart' %>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </div>
 <!-- Search Section End -->
 
@@ -127,28 +134,28 @@
   <!-- nav bar large displays -->
   <div class="container text-center">
     <div class="main-nav-tab">
-      <%= link_to t('home'), root_path, :data => {:no_turbolink => true}, :class => 'top-bar-text', :title => 'Health Priority Home' %>
+      <%= link_to t('home'), root_path, :data => {:no_turbolink => true}, :class => 'top-bar-text', :title => t('home') %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to t('about_us'), about_us_path, :class => 'top-bar-text', :title => 'About Us' %>
+      <%= link_to t('about_us'), about_us_path, :class => 'top-bar-text', :title => t('about_us') %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to t('products'), categories_path, :class => 'top-bar-text', :title => 'Products' %>
+      <%= link_to t('products'), categories_path, :class => 'top-bar-text', :title => t('products') %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to t('special_offers'), special_offers_path, :class => 'top-bar-text', :title => 'Special Offers' %>
+      <%= link_to t('special_offers'), special_offers_path, :class => 'top-bar-text', :title => t('special_offers') %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to t('payment_mehtods'), payment_methods_path, :class => 'top-bar-text', :title => 'Payment Methods' %>
+      <%= link_to t('payment_mehtods'), payment_methods_path, :class => 'top-bar-text', :title => t('payment_mehtods') %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to t('shipping_details'), delivery_methods_path, :class => 'top-bar-text', :title => 'Shipping Details' %>
+      <%= link_to t('shipping_details'), delivery_methods_path, :class => 'top-bar-text', :title => t('shipping_details') %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to t('our_partners'), our_partners_path, :class => 'top-bar-text', :title => 'Health Priority Partners' %>
+      <%= link_to t('our_partners'), our_partners_path, :class => 'top-bar-text', :title => t('our_partners') %>
     </div>
     <div class="main-nav-tab">
-      <%= link_to t('contacts'), contacts_path, :class => 'top-bar-text', :title => 'Health Priority Contacts' %>
+      <%= link_to t('contacts'), contacts_path, :class => 'top-bar-text', :title => t('contacts') %>
     </div>
   </div>
   <!-- nav bar large displays end -->
@@ -168,39 +175,37 @@
       <div class="row">
         <div class="col-md-2 col-xs-6 category-name">
           <div class="category-arrow"></div>
-          <%= link_to t('help_center'), help_center_path, :title => 'Help Center' %>
+          <%= link_to t('help_center'), help_center_path, :title => t('help_center') %>
         </div>
         <div class="col-md-2 col-xs-6 category-name">
           <div class="category-arrow"></div>
-          <%= link_to t('shipping'), delivery_methods_path, :title => 'Shipping' %>
+          <%= link_to t('shipping'), delivery_methods_path, :title => t('shipping') %>
         </div>
         <div class="col-md-2 col-xs-6 category-name">
           <div class="category-arrow"></div>
-          <%= link_to t('payment_methods'), payment_methods_path, :title => 'Payment Methods' %>
+          <%= link_to t('payment_methods'), payment_methods_path, :title => t('payment_methods') %>
         </div>
         <div class="col-md-4 col-xs-6 category-name">
           <div class="category-arrow"></div>
-          <%= link_to t('what_is_included_in_the_price'), price_details_path, :title => 'Included in price' %>
+          <%= link_to t('what_is_included_in_the_price'), price_details_path, :title => t('what_is_included_in_the_price') %>
         </div>
         <div class="col-md-2 col-sm-2 col-xs-6 category-name">
           <div class="category-arrow"></div>
-          <%= link_to t('sitemap'), sitemaps_path %>
+          <%= link_to t('sitemap'), sitemaps_path, :title => t('sitemap') %>
         </div>
       </div>
       <div class="row footer-image"></div>
     </div>
     <div class="col-md-4 col-sm-6 col-xs-12">
       <div class="category-name">
-        e-mail newsletter
+        <%= t('newsletter')%>
       </div>
       <div class="category-text">
-        All products on the website would be
-        featured under categories lists.
+        <%= t('newsletter_desc')%>
       </div>
       <div class="email-container">
-        <input type="text" class="email-input" placeholder="Enter Your Email Address"/>
-
-        <div class="send-email-button right" title="Send us mail"></div>
+        <input type="text" class="email-input" placeholder="<%= t('newsletter_placeholder')%>"/>
+        <div class="send-email-button right" title="<%= t('newsletter_send_mail')%>"></div>
       </div>
     </div>
   </div>
@@ -211,10 +216,10 @@
 <div class="footer text-center">
   <div class="sponsors-footer"></div>
   <div class="footer-main-text">
-    Health Priority © Copyright 2014 All rights reserved.
+    <%= t('copyright')%>
   </div>
   <div class="footer-main-text">
-    Developed and designed by <a href="http://www.empters.com" title="Empters Ltd">Empters Ltd.</a>
+    <%= t('developed_by')%> <a href="http://www.empters.com" title="Empters Ltd">Empters Ltd.</a>
   </div>
   <br/>
 

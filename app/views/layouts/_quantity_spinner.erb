@@ -1,0 +1,19 @@
+<%
+   min = min.nil? ? 0 : min
+   max = max.nil? ? 999 : max
+   value = value.nil? ? 0 : value
+   css = css.blank? ? '' : css
+   attrs = attrs.blank? ? '' : attrs
+%>
+
+<div class="spinnerDiv">
+  <div class="input-group spinner">
+  <span class="input-group-btn">
+    <button class="btn btn-default spinner-button spinner-down" type="button">-</button>
+  </span>
+    <input type="text" class="form-control <%= css %>" value="<%= value %>" min="<%= min %>" max="<%= max %>" <%= attrs %> />
+  <span class="input-group-btn">
+    <button class="btn btn-default spinner-button spinner-up" type="button">+</button>
+  </span>
+  </div>
+</div>

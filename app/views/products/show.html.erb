@@ -38,7 +38,7 @@
       <!-- Product's Gallery  end-->
 
       <!-- Product's basic info -->
-      <div class="col-md-4">
+      <div class="col-md-5">
 
         <div class="path">
           <%= render_breadcrumbs :separator => ' / ' %>
@@ -48,25 +48,35 @@
           <%= @product.name %>
         </div>
 
-        <div class="product-price"><%= t('old_price') %>:
-          <div class="old-price">£ <%= @product.price * 1.2 %></div>
-        </div>
-        <div class="product-reviews left"><a href="#" title="Reviews">12 <%= t('Reviews') %></a></div>
-        <div class="product-in-stock right"><%= t('in_stock') %>:
-          <div class="stock"> <%= @product.isInStock? && !@product.stock_status.nil? ? @product.stock_status.name : t('no') %></div>
-        </div>
-
-        <div class="product-price"><%= t('our_price') %>:
-          <div class="our-price">£ <%= @product.price %></div>
+        <div class="product-price left">
+          <%= t('old_price') %>:
+          <div class="old-price">
+            <%= number_to_currency(@product.price * 1.2) %>
+          </div>
         </div>
 
-        <div class="product-price saving">
-          <%= t('you_are_saving') %>: £ <%= @product.price * 0.2 %> (20%)
+        <div class="clearfix"></div>
+
+        <div class="product-price left">
+          <%= t('our_price') %>:
+          <div class="our-price">
+            <%= number_to_currency(@product.price) %>
+          </div>
         </div>
 
-        <div class="product-reviews-container" id="product-reviews-container">
+        <div class="clearfix"></div>
+
+        <div class="product-price saving left">
+          <%= t('you_are_saving') %>:
+          <%= number_to_currency(@product.price * 0.2) %> (20%)
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="product-reviews-container left" id="product-reviews-container">
           <%= render :partial => 'product_review', locals: {product: @product} %>
         </div>
+
       </div>
       <!-- Product's basic info end -->
     </div>
@@ -116,12 +126,11 @@
               <div class="row delivery-panel">
                 <div class="col-md-6">
                   <div class="delivery-image left"></div>
-                  <div class="delivery-text">*Deliveries are made by Royal Mail for UK orders.</div>
+                  <div class="delivery-text"><%= t('delivery_text')%></div>
                 </div>
                 <div class="col-md-6">
                   <div class="delivery-post-office left"></div>
-                  <div class="delivery-text">*For outside UK orders, deliveries are made by national post offices to your door.
-                  </div>
+                  <div class="delivery-text"><%= t('delivery_text_post-office')%></div>
                 </div>
               </div>
 

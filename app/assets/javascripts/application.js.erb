@@ -59,13 +59,14 @@ function validateProductQuantity(e) {
 }
 
 /* Set product count */
-function setProductCountToCart(e) {
-    var value = $(this).val();
+function setProductCountToCart(element) {
+
+    var value = $(element).val();
     var count = isInt(value) && parseInt(Number(value)) > 0 ? parseInt(Number(value)) : 0;
     $(this).val(count);
 
     // Call ajax to change products count
-    var product_id = $(this).attr("product_id");
+    var product_id = $(element).data("product-id");
     var url = getUrlRoot() + '/shopping_carts/set_product_count.js'
     $.ajax({
         url: url,
@@ -111,6 +112,7 @@ function getAjaxNotificationMessage(request) {
     var msg = request.getResponseHeader('X-Message');
     var type = request.getResponseHeader('X-Message-Type');
     if (msg && type) {
+        msg = decodeURIComponent(escape(msg));
         return { msg: msg, notificationType: type };
     }
 
@@ -134,7 +136,7 @@ function initProductSearchControl() {
     $(document).on('click', '#search_link', function () {
         var token = $('#search_input').val();
         var category = $('#chosen_category').attr('selected_category');
-        window.location.href = getUrlRoot() + '/products/search?' + decodeURIComponent( $.param( {token: token, category: category}) );
+        window.location.href = getUrlRoot() + '/products/search?' + encodeURIComponent($.param({token: token, category: category}));
     });
 
     $(document).off('keypress', '#search_input');
@@ -167,16 +169,76 @@ function initCategoryMenu() {
 }
 
 function initProductCart() {
-    $(document).on("keydown", ".quantity-js", validateProductQuantity);
 
-    $(document).on("focusout", ".quantity-js", setProductCountToCart);
+    var productQuantityChangedTimeout;
+    $(document).on('change', '.quantity-js', function (e) {
+
+        if (productQuantityChangedTimeout) {
+            clearTimeout(productQuantityChangedTimeout);
+        }
+
+        var element = $(this);
+        productQuantityChangedTimeout = setTimeout(function () {
+            setProductCountToCart(element);
+        }, 500);
+    });
+
+    $(document).on('keyup', '.quantity-js', function () {
+        $(this).trigger('change');
+    });
 }
 
 function add_quantity_to_button() {
-    $('#product_add_to_card').on("click", function () {
+    $(document).off('click', '.add-to-card-js');
+    $(document).on('click', '.add-to-card-js', function () {
 
-        var str = this.href.substring(0, this.href.length - 1);
-        this.href = str + $('#quantity').val();
+        var quantitySelector = $(this).data('quantity-selector');
+        var value = $(quantitySelector).val();
+        var quantity = isInt(value) && parseInt(Number(value)) > 0 ? parseInt(Number(value)) : 0;
+        if (quantity < 1) {
+            return;
+        }
+
+        var data = {
+            id: $(this).data("product-id"),
+            quantity: quantity
+        };
+
+        var url = getUrlRoot() + '/shopping_carts/add_to_shopping_cart';
+        $.ajax({
+            url: url,
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(data)
+        });
+    });
+}
+
+function init_spinner_button() {
+
+    var changeSpinnerTimeout;
+
+    $(document).off('keydown', '.spinner input');
+    $(document).on('keydown', '.spinner input', validateProductQuantity);
+
+    $(document).off('click', '.spinner .spinner-up');
+    $(document).on('click', '.spinner .spinner-up', function () {
+        var spinnerDiv = $(this).closest('div.spinner');
+        var spinnerInput = spinnerDiv.find('input');
+        var oldValue = spinnerInput.val();
+        var quantity = isInt(oldValue) && parseInt(Number(oldValue)) > 0 ? parseInt(Number(oldValue)) : 0;
+        spinnerInput.val(quantity > 0 ? quantity + 1 : 0);
+        spinnerInput.trigger('change');
+    });
+
+    $(document).off('click', '.spinner .spinner-down');
+    $(document).on('click', '.spinner .spinner-down', function () {
+        var spinnerDiv = $(this).closest('div.spinner');
+        var spinnerInput = spinnerDiv.find('input');
+        var oldValue = spinnerInput.val();
+        var quantity = isInt(oldValue) && parseInt(Number(oldValue)) > 0 ? parseInt(Number(oldValue)) : 0;
+        spinnerInput.val(quantity > 0 ? quantity - 1 : 0);
+        spinnerInput.trigger('change');
     });
 }
 
@@ -215,4 +277,6 @@ $(document).ready(function () {
     show_notifications();
 
     add_quantity_to_button();
+
+    init_spinner_button();
 });

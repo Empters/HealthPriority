@@ -5,7 +5,7 @@
   <ul class="categories-list">
     <% @brands.each do |brand| %>
         <li class="category_li">
-          <%= link_to format('%{brand} (%{brand_count})', {:brand => brand.name, :brand_count => brand.products.length}), filter_path(:brand => brand), :title => brand.name, remote: true %>
+          <%= link_to format('%{brand} (%{brand_count})', {:brand => brand.name, :brand_count => brand.products.length}), filter_path(:brand => brand), :title => brand.name %>
         </li>
     <% end %>
   </ul>

@@ -22,5 +22,6 @@ module HealthPriority
     config.paperclip_allow_image_content_message = 'invalid image format!'
 
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+    config.assets.paths << "#{Rails}/vendor/assets/fonts"
   end
 end

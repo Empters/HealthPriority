@@ -41,13 +41,13 @@
                 <%= link_to product.name, product %>
               </div>
               <div class="col-md-2 content-table-td">
-                <%= number_field_tag 'quantity', quantity, {:min => 1, :max => product.quantity, :step => 1, :class => 'quantity-js', :product_id => product.id} %>
+                <%= render partial: 'layouts/quantity_spinner', locals: {value: quantity, min: product.quantity > 0 ? 1 : 0, max: product.quantity > 0 ? product.quantity : 0, css: 'quantity-js', attrs: "data-product-id=#{product.id}" } %>
               </div>
               <div class="col-md-2 content-table-td">
-                <%= format('£ %.2f', product.discount.nil? ? product.price : product.discount.price) %>
+                <%= number_to_currency(product.discount.nil? ? product.price : product.discount.price) %>
               </div>
               <div class="col-md-2 content-table-td">
-                <%= format('£ %.2f', product.discount.nil? ? product.price * quantity : product.discount.price * quantity) %>
+                <%= number_to_currency(product.discount.nil? ? product.price * quantity : product.discount.price * quantity) %>
               </div>
               <div class="col-md-1 content-table-td">
                 <%= link_to '', url_for(controller: :shopping_carts, action: :remove_product, id: product.id), method: :delete, remote: true, data: {confirm: t('confirm_remove_product', product_name: product.name)}, :class => 'remove-product' %>
@@ -62,7 +62,7 @@
       <div class="col-md-12">
         <div class="cart-total-container">
           <div class="product-price text-right"><%= t('total')%>:
-            <div class="our-price">£ <%= shopping_cart.total_price %></div>
+            <div class="our-price"><%= number_to_currency(shopping_cart.total_price) %></div>
           </div>
         </div>
       </div>
