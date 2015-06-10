@@ -216,8 +216,6 @@ function add_quantity_to_button() {
 
 function init_spinner_button() {
 
-    var changeSpinnerTimeout;
-
     $(document).off('keydown', '.spinner input');
     $(document).on('keydown', '.spinner input', validateProductQuantity);
 
