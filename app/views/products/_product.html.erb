@@ -23,7 +23,7 @@
         <div class="clearfix"></div>
       </div>
     </div>
-    <div class="buttons-container">
+    <div class="buttons-container" style="display: none;">
       <%= link_to t('add_to_cart'), {:controller => :shopping_carts, :action => :add_to_shopping_cart, :id => product.id, :quantity => 1, :remote => true }, {:class => 'button green', :title => t('add_to_cart'), :method => :post} %>
     </div>
   </div>

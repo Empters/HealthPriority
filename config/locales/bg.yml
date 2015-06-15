@@ -287,3 +287,6 @@ bg:
   newsletter_send_mail: 'Изпрати съобщение'
   developed_by: 'Разработка и дизайн от'
   copyright: 'Health Priority © Copyright 2014 Всички права са запазени.'
+  yes_label: 'Да'
+  no_label: 'Не'
+  delivery_price: 'Цена за доставка'

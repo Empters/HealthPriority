@@ -66,6 +66,15 @@
 
         <div class="clearfix"></div>
 
+        <div class="product-price left">
+          <%= t('delivery_price') %>:
+          <div class="our-price">
+           4 лв.
+          </div>
+        </div>
+
+        <div class="clearfix"></div>
+
         <div class="product-price saving left">
           <%= t('you_are_saving') %>:
           <%= number_to_currency(@product.price * 0.2) %> (20%)

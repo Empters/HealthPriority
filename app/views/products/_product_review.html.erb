@@ -19,7 +19,7 @@
 <div class="product-in-stock right">
   <%= t('in_stock') %>:
   <div class="stock">
-    <%= product.isInStock? && !product.stock_status.nil? ? product.stock_status.name : 'No' %>
+    <%= product.isInStock? && !product.stock_status.nil? ? t('yes_label') : t('no_label') %>
   </div>
 </div>
 
@@ -30,7 +30,7 @@
     <div><%= t('qty') %></div>
     <%= render partial: 'layouts/quantity_spinner', locals: { value: product.quantity > 0 ? 1 : 0 , min: product.quantity > 0 ? 1 : 0, max: product.quantity > 0 ? product.quantity : 0, css: 'product-quantity-js'}, attrs: product.quantity > 0 ? '' : 'disabled' %>
   </div>
-  <div class="add-to-cart-container">
+  <div class="add-to-cart-container" style="display: none;">
     <%= link_to t('add_to_cart'), '#', :class => 'button green add-to-card-js', :title => t('add_to_cart'), :id => 'product_add_to_card', :data => {:product_id => product.id, :quantity_selector => '.product-quantity-js:first', :remote => true} %>
   </div>
 </div>
