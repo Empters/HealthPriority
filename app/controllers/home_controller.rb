@@ -4,7 +4,7 @@ class HomeController < ApplicationController
 
   skip_before_filter :authenticate_user!
   before_action :set_breadcrumb
-  before_action :set_web_store_detail, only: [:about_us, :contacts, :delivery_methods, :faq, :our_partners, :payment_methods]
+  before_action :set_web_store_detail, only: [:about_us, :contacts, :delivery_methods, :faq, :our_partners, :payment_methods, :rights_and_obligations, :license]
 
   include ApplicationHelper
 
@@ -117,7 +117,11 @@ class HomeController < ApplicationController
     add_breadcrumb t('rights_and_obligations')
 
     @title = t('rights_and_obligations')
-    @html = ''
+    @html = if @web_store_detail.nil? then
+              ''
+            else
+              @web_store_detail.rights_and_obligations.nil? ? '' : @web_store_detail.rights_and_obligations.html_safe
+            end
 
     respond_to do |format|
       format.html {
@@ -131,7 +135,11 @@ class HomeController < ApplicationController
     add_breadcrumb t('license')
 
     @title = t('license')
-    @html = ''
+    @html = if @web_store_detail.nil? then
+              ''
+            else
+              @web_store_detail.license.nil? ? '' : @web_store_detail.license.html_safe
+            end
 
     respond_to do |format|
       format.html {
