@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   get '/home/faq', to: 'home#faq', :as => 'faq'
   get '/home/our_partners', to: 'home#our_partners', :as => 'our_partners'
   get '/home/delivery_methods', to: 'home#delivery_methods', :as => 'delivery_methods'
+  get '/home/rights_and_obligations', to: 'home#rights_and_obligations', :as => 'rights_and_obligations'
+  get '/home/license', to: 'home#license', :as => 'license'
   get '/home/payment_methods', to: 'home#payment_methods', :as => 'payment_methods'
   get '/home/help_center', to: 'home#help_center', :as => 'help_center'
   get '/home/price_details', to: 'home#price_details', :as => 'price_details'

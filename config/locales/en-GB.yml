@@ -170,3 +170,6 @@ en-GB:
   yes_label: 'Yes'
   no_label: 'No'
   delivery_price: 'Delivery Price'
+  help_center_data: '- Do you ship to my country?<br/>- How long it takes for delivery to reach its recipient?<br/>- What is include in the price?'
+  rights_and_obligations: 'Rights and obligations'
+  license: 'License'

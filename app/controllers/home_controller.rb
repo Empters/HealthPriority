@@ -112,6 +112,34 @@ class HomeController < ApplicationController
     end
   end
 
+  # GET rights_and_obligations page
+  def rights_and_obligations
+    add_breadcrumb t('rights_and_obligations')
+
+    @title = t('rights_and_obligations')
+    @html = ''
+
+    respond_to do |format|
+      format.html {
+        render 'home/rights_and_obligations'
+      }
+    end
+  end
+
+  # GET rights_and_obligations page
+  def license
+    add_breadcrumb t('license')
+
+    @title = t('license')
+    @html = ''
+
+    respond_to do |format|
+      format.html {
+        render 'home/license'
+      }
+    end
+  end
+
   # GET delivery_methods page
   def payment_methods
     add_breadcrumb t('payment_methods')

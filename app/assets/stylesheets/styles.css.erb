@@ -138,8 +138,8 @@ body {
 
 .top-bar-tab {
     display: inline-block;
-    padding-right: 20px;
-    padding-left: 20px;
+    padding-right: 15px;
+    padding-left: 15px;
     border-right: solid #FFFFFF 1px;
 }
 
@@ -231,6 +231,21 @@ body {
     display: inline-block;
 }
 
+.bda-logo, .bphu-logo{
+    width: 100%;
+    display: inline-block;
+    background-size: contain;
+    height: 40px;
+}
+
+.bda-logo{
+    background-image: url("<%= image_path 'bdaLogo.jpg' %>");
+}
+
+.bphu-logo{
+    background-image: url("<%= image_path 'bphuLogo.png' %>");
+}
+
 .banner-element {
     width: 100%;
     height: 120px;
@@ -251,7 +266,7 @@ body {
 }
 
 .search-section {
-    padding: 20px 40px;
+    padding: 20px 20px;
     border-right: solid #ACACAC 1px;
     border-left: solid #ACACAC 1px;
 }
@@ -1325,7 +1340,7 @@ span.twitter-typeahead {
     background-size: contain;
     background-repeat: no-repeat;
     height: 408px;
-    background-image: url("<%= image_path 'what_include_price.jpg' %>");
+    background-image: url("<%= image_path 'what_include_price_bg.jpg' %>");
 }
 
 .help-center {

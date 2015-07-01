@@ -52,7 +52,10 @@
         <%= link_to t('faq'), faq_path, {:class => 'navbar-link', :title => 'FAQ'} %>
       </div>
       <div class="top-bar-tab top-bar-text">
-        <%= link_to t('delivery'), delivery_methods_path, :class => 'navbar-link', :title => t('delivery') %>
+        <%= link_to t('rights_and_obligations'), {:action => :rights_and_obligations, controller: 'home'}, :class => 'navbar-link', :title => t('rights_and_obligations') %>
+      </div>
+      <div class="top-bar-tab top-bar-text">
+        <%= link_to t('license'), {:action => :license, controller: 'home'}, :class => 'navbar-link', :title => t('license') %>
       </div>
       <% if user_signed_in? -%>
           <div class="top-bar-tab top-bar-text">
@@ -80,13 +83,15 @@
   <div class="search-section-container">
     <div class="container">
       <div class="row">
-        <div class="col-md-2 col-sm-2 col-xs-1 nomargin nopadding">
+
+        <div class="col-md-2 col-sm-2 col-xs-1">
           <%= link_to '', root_path, :class => 'logo', :data => {:no_turbolink => true}, :title => 'Health Priority' %>
         </div>
 
         <div class="col-md-8 col-sm-8 col-xs-8">
           <div class="search-section">
-            <div class="col-md-10 col-sm-10 col-xs-10">
+
+            <div class="col-md-8 col-sm-8 col-xs-8">
               <div class="search-container">
                 <div class="search-dropdown-container left">
                   <div class="dropdown-toggle" id="search_category" data-toggle="dropdown">
@@ -113,16 +118,20 @@
               </div>
             </div>
 
-            <div class="col-md-2 col-sm-2 col-xs-2">
-              <!-- Cert logo -->
-              <%= link_to '', '#', :class => 'cert-logo', :data => {:no_turbolink => true}, :title => 'Euro Certified' %>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+
+              <%= link_to '', 'http://www.bda.bg/', :class => 'bda-logo', :data => {:no_turbolink => true}, :title => 'Изпълнителна агенция по лекарствата' %>
+              <%= link_to '', 'http://bphu.eu/', :class => 'bphu-logo', :data => {:no_turbolink => true}, :title => 'Български фармацевтичен съюз' %>
+
             </div>
 
           </div>
         </div>
-        <div id="shopping_cart_div" class="col-md-2 col-sm-2 col-xs-2 nopadding nomargin">
+
+        <div id="shopping_cart_div" class="col-md-2 col-sm-2 col-xs-2">
           <%= render 'shopping_carts/shopping_cart' %>
         </div>
+
       </div>
     </div>
   </div>
@@ -198,14 +207,15 @@
     </div>
     <div class="col-md-4 col-sm-6 col-xs-12">
       <div class="category-name">
-        <%= t('newsletter')%>
+        <%= t('newsletter') %>
       </div>
       <div class="category-text">
-        <%= t('newsletter_desc')%>
+        <%= t('newsletter_desc') %>
       </div>
       <div class="email-container">
-        <input type="text" class="email-input" placeholder="<%= t('newsletter_placeholder')%>"/>
-        <div class="send-email-button right" title="<%= t('newsletter_send_mail')%>"></div>
+        <input type="text" class="email-input" placeholder="<%= t('newsletter_placeholder') %>"/>
+
+        <div class="send-email-button right" title="<%= t('newsletter_send_mail') %>"></div>
       </div>
     </div>
   </div>
@@ -216,17 +226,17 @@
 <div class="footer text-center">
   <div class="sponsors-footer"></div>
   <div class="footer-main-text">
-    <%= t('copyright')%>
+    <%= t('copyright') %>
   </div>
   <div class="footer-main-text">
-    <%= t('developed_by')%> <a href="http://www.empters.com" title="Empters Ltd">Empters Ltd.</a>
+    <%= t('developed_by') %> <a href="http://www.empters.com" title="Empters Ltd">Empters Ltd.</a>
   </div>
   <br/>
 
   <div class="footer-main-text">
     <%= t('trade_mark') %>
   </div>
-  <div class="footer-text-title">Tuesday, Sep 09, 2014, 8:51 PST</div>
+  <div class="footer-text-title"></div>
   <div class="footer-text">
     <%= t('evaluated_by_html') %>
   </div>
